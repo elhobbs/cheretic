@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="debug x86|Win32">
+      <Configuration>debug x86</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E27EF227-70AF-4900-B0B7-34B375484127}</ProjectGuid>
+    <RootNamespace>cheretic</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">make -r 2&gt;&amp;1 | sed -e %27s/\(.[a-zA-Z]\+\):\([0-9]\+\):/\1(\2):/</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">make clean &amp;&amp; make -r 2&gt;&amp;1 | sed -e %27s/\(.[a-zA-Z]\+\):\([0-9]\+\):/\1(\2):/</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">make clean</NMakeCleanCommandLine>
+    <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName).nds</NMakeOutput>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ARM9;_HAVE_STDC</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\devl\cheretic\heretic\include;c:\devkitPro\libnds\include;C:\devkitPro\devkitARM\arm-eabi\include</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    </NMakeForcedIncludes>
+    <NMakeAssemblySearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    </NMakeAssemblySearchPath>
+    <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    </NMakeForcedUsingAssemblies>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">$(Configuration)\</IntDir>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <ReferencePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <ExcludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\devl\cheretic\win32;C:\devl\cheretic\heretic\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="arm9\Makefile" />
+    <None Include="arm7\Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="arm9\source\template.c" />
+    <ClCompile Include="arm7\source\template.c" />
+    <ClCompile Include="heretic\AM_MAP.c" />
+    <ClCompile Include="heretic\CT_CHAT.c" />
+    <ClCompile Include="heretic\D_MAIN.c" />
+    <ClCompile Include="heretic\D_NET.c" />
+    <ClCompile Include="heretic\F_FINALE.c" />
+    <ClCompile Include="heretic\G_GAME.c" />
+    <ClCompile Include="heretic\I_IBM.c" />
+    <ClCompile Include="heretic\I_SOUND.c" />
+    <ClCompile Include="heretic\IN_LUDE.c" />
+    <ClCompile Include="heretic\INFO.c" />
+    <ClCompile Include="heretic\M_MISC.c" />
+    <ClCompile Include="heretic\MN_MENU.c" />
+    <ClCompile Include="heretic\P_CEILNG.c" />
+    <ClCompile Include="heretic\P_DOORS.c" />
+    <ClCompile Include="heretic\P_ENEMY.c" />
+    <ClCompile Include="heretic\P_FLOOR.c" />
+    <ClCompile Include="heretic\P_INTER.c" />
+    <ClCompile Include="heretic\P_LIGHTS.c" />
+    <ClCompile Include="heretic\P_MAP.c" />
+    <ClCompile Include="heretic\P_MAPUTL.c" />
+    <ClCompile Include="heretic\P_MOBJ.c" />
+    <ClCompile Include="heretic\P_PLATS.c" />
+    <ClCompile Include="heretic\P_PSPR.c" />
+    <ClCompile Include="heretic\P_SETUP.c" />
+    <ClCompile Include="heretic\P_SIGHT.c" />
+    <ClCompile Include="heretic\P_SPEC.c" />
+    <ClCompile Include="heretic\P_SWITCH.c" />
+    <ClCompile Include="heretic\P_TELEPT.c" />
+    <ClCompile Include="heretic\P_TICK.c" />
+    <ClCompile Include="heretic\P_USER.c" />
+    <ClCompile Include="heretic\R_DATA.c" />
+    <ClCompile Include="heretic\R_MAIN.c" />
+    <ClCompile Include="heretic\R_THINGS.c" />
+    <ClCompile Include="heretic\SB_BAR.c" />
+    <ClCompile Include="heretic\SOUNDS.c" />
+    <ClCompile Include="heretic\soundst.c" />
+    <ClCompile Include="heretic\TABLES.c" />
+    <ClCompile Include="heretic\V_VIDEO.c" />
+    <ClCompile Include="heretic\W_WAD.c" />
+    <ClCompile Include="heretic\Z_ZONE.c" />
+    <ClCompile Include="arm9\source\ds_render.c" />
+    <ClCompile Include="heretic\ds_textures.c" />
+    <ClCompile Include="heretic\geometry.c" />
+    <ClCompile Include="arm9\source\glMain.c" />
+    <ClCompile Include="win32\glview.cpp" />
+    <ClCompile Include="win32\GLWindow.cpp" />
+    <ClCompile Include="heretic\polylib.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="heretic\include\AM_DATA.H" />
+    <ClInclude Include="heretic\include\AM_MAP.H" />
+    <ClInclude Include="heretic\include\DOOMDATA.H" />
+    <ClInclude Include="heretic\include\DOOMDEF.H" />
+    <ClInclude Include="heretic\include\DSTRINGS.H" />
+    <ClInclude Include="heretic\include\I_SOUND.H" />
+    <ClInclude Include="heretic\include\INFO.H" />
+    <ClInclude Include="heretic\include\map.h" />
+    <ClInclude Include="heretic\include\p_enemy.h" />
+    <ClInclude Include="heretic\include\p_inter.h" />
+    <ClInclude Include="heretic\include\p_local.h" />
+    <ClInclude Include="heretic\include\p_map.h" />
+    <ClInclude Include="heretic\include\p_maputl.h" />
+    <ClInclude Include="heretic\include\p_mobj.h" />
+    <ClInclude Include="heretic\include\p_pspr.h" />
+    <ClInclude Include="heretic\include\p_setup.h" />
+    <ClInclude Include="heretic\include\P_SPEC.H" />
+    <ClInclude Include="heretic\include\p_tick.h" />
+    <ClInclude Include="heretic\include\p_user.h" />
+    <ClInclude Include="heretic\include\R_LOCAL.H" />
+    <ClInclude Include="heretic\include\sb_bar.h" />
+    <ClInclude Include="heretic\include\SOUNDS.H" />
+    <ClInclude Include="heretic\include\SOUNDST.H" />
+    <ClInclude Include="heretic\include\ds_textures.h" />
+    <ClInclude Include="heretic\include\geometry.h" />
+    <ClInclude Include="win32\GLWindow.h" />
+    <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

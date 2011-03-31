@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="arm9">
+      <UniqueIdentifier>{186fc043-b1b3-4fec-b066-0186d892c798}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm9\source">
+      <UniqueIdentifier>{2141d445-a2a9-4200-a40f-8bf697ad188c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm9\include">
+      <UniqueIdentifier>{4d066e07-3079-43f5-86c0-024087c2c0df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm9\heretic">
+      <UniqueIdentifier>{133024f2-8213-4e4a-a92d-b324b9676ec0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm7">
+      <UniqueIdentifier>{d372bfeb-4a05-4f2e-8a36-5d872ebacad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm7\source">
+      <UniqueIdentifier>{16f988a9-b03e-4e4d-8052-51a73ff405ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm7\include">
+      <UniqueIdentifier>{4383aca1-ed09-4dab-8cda-a5aca5ab0b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arm9\heretic\include">
+      <UniqueIdentifier>{b7941ba1-cb33-43da-b95c-46c02d5cbcf8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="arm9\Makefile">
+      <Filter>arm9</Filter>
+    </None>
+    <None Include="arm7\Makefile">
+      <Filter>arm7</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="arm9\source\template.c">
+      <Filter>arm9\source</Filter>
+    </ClCompile>
+    <ClCompile Include="arm7\source\template.c">
+      <Filter>arm7\source</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\AM_MAP.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\CT_CHAT.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\D_MAIN.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\D_NET.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\F_FINALE.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\G_GAME.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\I_IBM.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\I_SOUND.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\IN_LUDE.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\INFO.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\M_MISC.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\MN_MENU.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_CEILNG.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_DOORS.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_ENEMY.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_FLOOR.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_INTER.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_LIGHTS.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_MAP.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_MAPUTL.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_MOBJ.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_PLATS.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_PSPR.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_SETUP.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_SIGHT.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_SPEC.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_SWITCH.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_TELEPT.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_TICK.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\P_USER.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\R_DATA.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\R_MAIN.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\R_THINGS.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\SB_BAR.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\SOUNDS.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\soundst.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\TABLES.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\V_VIDEO.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\W_WAD.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="heretic\Z_ZONE.c">
+      <Filter>arm9\heretic</Filter>
+    </ClCompile>
+    <ClCompile Include="arm9\source\ds_render.c" />
+    <ClCompile Include="heretic\ds_textures.c" />
+    <ClCompile Include="heretic\geometry.c" />
+    <ClCompile Include="arm9\source\glMain.c" />
+    <ClCompile Include="win32\glview.cpp" />
+    <ClCompile Include="win32\GLWindow.cpp" />
+    <ClCompile Include="heretic\polylib.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="heretic\include\AM_DATA.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\AM_MAP.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\DOOMDATA.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\DOOMDEF.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\DSTRINGS.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\I_SOUND.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\INFO.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\map.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_enemy.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_inter.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_local.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_map.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_maputl.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_mobj.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_pspr.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_setup.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\P_SPEC.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_tick.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\p_user.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\R_LOCAL.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\sb_bar.h">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\SOUNDS.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\SOUNDST.H">
+      <Filter>arm9\heretic\include</Filter>
+    </ClInclude>
+    <ClInclude Include="heretic\include\ds_textures.h" />
+    <ClInclude Include="heretic\include\geometry.h" />
+    <ClInclude Include="win32\GLWindow.h" />
+    <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
+  </ItemGroup>
+</Project>

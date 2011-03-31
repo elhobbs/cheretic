@@ -1,0 +1,2509 @@
+ cheretic
+
+ Timestamp is 4d93910e (Wed Mar 30 16:22:38 2011)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00022100H .textbss                DATA
+ 0002:00000000 00047136H .text                   CODE
+ 0002:00047140 00001030H .text$yc                CODE
+ 0002:00048170 00001020H .text$yd                CODE
+ 0003:00000000 00000104H .CRT$XCA                DATA
+ 0003:00000104 00000104H .CRT$XCAA               DATA
+ 0003:00000208 00000104H .CRT$XCU                DATA
+ 0003:0000030c 00000104H .CRT$XCZ                DATA
+ 0003:00000410 00000104H .CRT$XIA                DATA
+ 0003:00000514 00000104H .CRT$XIAA               DATA
+ 0003:00000618 00000104H .CRT$XIC                DATA
+ 0003:0000071c 00000104H .CRT$XIY                DATA
+ 0003:00000820 00000104H .CRT$XIZ                DATA
+ 0003:00000930 000047adH .rdata                  DATA
+ 0003:000050e0 0000014cH .rdata$debug            DATA
+ 0003:0000522c 000001b0H .rdata$r                DATA
+ 0003:000053dc 00000104H .rtc$IAA                DATA
+ 0003:000054e0 00000104H .rtc$IZZ                DATA
+ 0003:000055e4 00000104H .rtc$TAA                DATA
+ 0003:000056e8 00000104H .rtc$TZZ                DATA
+ 0003:000057f0 000001b1H .xdata$x                DATA
+ 0003:000059a1 00000000H .edata                  DATA
+ 0004:00000000 00025b56H .data                   DATA
+ 0004:00025b60 0003499cH .bss                    DATA
+ 0005:00000000 00000078H .idata$2                DATA
+ 0005:00000078 00000014H .idata$3                DATA
+ 0005:0000008c 000003ecH .idata$4                DATA
+ 0005:00000478 000003ecH .idata$5                DATA
+ 0005:00000864 00000af8H .idata$6                DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       __except_list              00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00009876       __ldused                   00009876     <absolute>
+ 0000:00009876       __fltused                  00009876     <absolute>
+ 0000:00000000       ___ImageBase               00400000     <linker-defined>
+ 0001:00000000       __enc$textbss$begin        00401000     <linker-defined>
+ 0001:00022100       __enc$textbss$end          00423100     <linker-defined>
+ 0002:000024b0       _AM_activateNewScale       004264b0 f   AM_MAP.obj
+ 0002:000025e0       _AM_saveScaleAndLoc        004265e0 f   AM_MAP.obj
+ 0002:00002630       _AM_restoreScaleAndLoc     00426630 f   AM_MAP.obj
+ 0002:000027e0       _AM_findMinMaxBoundaries   004267e0 f   AM_MAP.obj
+ 0002:000029f0       _AM_changeWindowLoc        004269f0 f   AM_MAP.obj
+ 0002:00002bb0       _AM_initVariables          00426bb0 f   AM_MAP.obj
+ 0002:00002e90       _AM_loadPics               00426e90 f   AM_MAP.obj
+ 0002:00002ec0       _AM_LevelInit              00426ec0 f   AM_MAP.obj
+ 0002:00002f90       _AM_Stop                   00426f90 f   AM_MAP.obj
+ 0002:00002fd0       _AM_Start                  00426fd0 f   AM_MAP.obj
+ 0002:00003060       _AM_minOutWindowScale      00427060 f   AM_MAP.obj
+ 0002:000030b0       _AM_maxOutWindowScale      004270b0 f   AM_MAP.obj
+ 0002:00003100       _AM_Responder              00427100 f   AM_MAP.obj
+ 0002:000036e0       _AM_changeWindowScale      004276e0 f   AM_MAP.obj
+ 0002:00003770       _AM_doFollowPlayer         00427770 f   AM_MAP.obj
+ 0002:000038b0       _AM_Ticker                 004278b0 f   AM_MAP.obj
+ 0002:00003930       _AM_clearFB                00427930 f   AM_MAP.obj
+ 0002:00003d10       _AM_clipMline              00427d10 f   AM_MAP.obj
+ 0002:00004300       _AM_drawFline              00428300 f   AM_MAP.obj
+ 0002:00004670       _PUTDOT                    00428670 f   AM_MAP.obj
+ 0002:00004840       _DrawWuLine                00428840 f   AM_MAP.obj
+ 0002:00004c60       _AM_drawMline              00428c60 f   AM_MAP.obj
+ 0002:00004cb0       _AM_drawGrid               00428cb0 f   AM_MAP.obj
+ 0002:00004e80       _AM_drawWalls              00428e80 f   AM_MAP.obj
+ 0002:00005260       _AM_rotate                 00429260 f   AM_MAP.obj
+ 0002:00005330       _AM_drawLineCharacter      00429330 f   AM_MAP.obj
+ 0002:000054d0       _AM_drawPlayers            004294d0 f   AM_MAP.obj
+ 0002:00005630       _AM_drawThings             00429630 f   AM_MAP.obj
+ 0002:000056e0       _AM_drawkeys               004296e0 f   AM_MAP.obj
+ 0002:000057d0       _AM_drawCrosshair          004297d0 f   AM_MAP.obj
+ 0002:00005810       _AM_Drawer                 00429810 f   AM_MAP.obj
+ 0002:00005910       _CT_Init                   00429910 f   CT_CHAT.obj
+ 0002:00005a10       _CT_Stop                   00429a10 f   CT_CHAT.obj
+ 0002:00005a30       _CT_Responder              00429a30 f   CT_CHAT.obj
+ 0002:00005e30       _CT_Ticker                 00429e30 f   CT_CHAT.obj
+ 0002:00006150       _CT_Drawer                 0042a150 f   CT_CHAT.obj
+ 0002:00006280       _CT_queueChatChar          0042a280 f   CT_CHAT.obj
+ 0002:000062e0       _CT_dequeueChatChar        0042a2e0 f   CT_CHAT.obj
+ 0002:00006340       _CT_AddChar                0042a340 f   CT_CHAT.obj
+ 0002:00006440       _CT_BackSpace              0042a440 f   CT_CHAT.obj
+ 0002:00006540       _CT_ClearChatMessage       0042a540 f   CT_CHAT.obj
+ 0002:000065a0       _D_PostEvent               0042a5a0 f   D_MAIN.obj
+ 0002:00006610       _D_ProcessEvents           0042a610 f   D_MAIN.obj
+ 0002:000066b0       _DrawMessage               0042a6b0 f   D_MAIN.obj
+ 0002:00006740       _D_Display                 0042a740 f   D_MAIN.obj
+ 0002:00006880       _D_DoomLoop                0042a880 f   D_MAIN.obj
+ 0002:000069e0       _D_PageTicker              0042a9e0 f   D_MAIN.obj
+ 0002:00006a10       _D_PageDrawer              0042aa10 f   D_MAIN.obj
+ 0002:00006a90       _D_AdvanceDemo             0042aa90 f   D_MAIN.obj
+ 0002:00006ab0       _D_DoAdvanceDemo           0042aab0 f   D_MAIN.obj
+ 0002:00006ce0       _D_StartTitle              0042ace0 f   D_MAIN.obj
+ 0002:00006d20       _D_CheckRecordFrom         0042ad20 f   D_MAIN.obj
+ 0002:00006e50       _wadprintf                 0042ae50 f   D_MAIN.obj
+ 0002:00006e70       _D_AddFile                 0042ae70 f   D_MAIN.obj
+ 0002:00007020       _hgotoxy                   0042b020 f   D_MAIN.obj
+ 0002:00007060       _hput                      0042b060 f   D_MAIN.obj
+ 0002:000070c0       _hprintf                   0042b0c0 f   D_MAIN.obj
+ 0002:000070e0       _drawstatus                0042b0e0 f   D_MAIN.obj
+ 0002:00007100       _status                    0042b100 f   D_MAIN.obj
+ 0002:00007130       _DrawThermo                0042b130 f   D_MAIN.obj
+ 0002:00007150       _tprintf                   0042b150 f   D_MAIN.obj
+ 0002:00007180       _CheckAbortStartup         0042b180 f   D_MAIN.obj
+ 0002:000071a0       _IncThermo                 0042b1a0 f   D_MAIN.obj
+ 0002:000071d0       _InitThermo                0042b1d0 f   D_MAIN.obj
+ 0002:00007200       _D_DoomMain                0042b200 f   D_MAIN.obj
+ 0002:00007c10       _NetbufferSize             0042bc10 f   D_NET.obj
+ 0002:00007c40       _NetbufferChecksum         0042bc40 f   D_NET.obj
+ 0002:00007cd0       _ExpandTics                0042bcd0 f   D_NET.obj
+ 0002:00007d90       _HSendPacket               0042bd90 f   D_NET.obj
+ 0002:00007f60       _HGetPacket                0042bf60 f   D_NET.obj
+ 0002:00008200       _GetPackets                0042c200 f   D_NET.obj
+ 0002:000085a0       _NetUpdate                 0042c5a0 f   D_NET.obj
+ 0002:00008880       _CheckAbort                0042c880 f   D_NET.obj
+ 0002:00008930       _D_ArbitrateNetStart       0042c930 f   D_NET.obj
+ 0002:00008c60       _D_CheckNetGame            0042cc60 f   D_NET.obj
+ 0002:00008e10       _D_QuitNetGame             0042ce10 f   D_NET.obj
+ 0002:00008f10       _TryRunTics                0042cf10 f   D_NET.obj
+ 0002:00009390       _F_StartFinale             0042d390 f   F_FINALE.obj
+ 0002:00009520       _F_Responder               0042d520 f   F_FINALE.obj
+ 0002:00009590       _F_Ticker                  0042d590 f   F_FINALE.obj
+ 0002:00009610       _F_TextWrite               0042d610 f   F_FINALE.obj
+ 0002:00009820       _F_DrawPatchCol            0042d820 f   F_FINALE.obj
+ 0002:000098f0       _F_DemonScroll             0042d8f0 f   F_FINALE.obj
+ 0002:00009a40       _F_DrawUnderwater          0042da40 f   F_FINALE.obj
+ 0002:00009b30       _F_Drawer                  0042db30 f   F_FINALE.obj
+ 0002:00009c30       _G_BuildTiccmd             0042dc30 f   G_GAME.obj
+ 0002:0000a700       _G_DoLoadLevel             0042e700 f   G_GAME.obj
+ 0002:0000a8a0       _G_Responder               0042e8a0 f   G_GAME.obj
+ 0002:0000ad50       _G_Ticker                  0042ed50 f   G_GAME.obj
+ 0002:0000b240       _G_InitPlayer              0042f240 f   G_GAME.obj
+ 0002:0000b280       _G_PlayerFinishLevel       0042f280 f   G_GAME.obj
+ 0002:0000b470       _G_PlayerReborn            0042f470 f   G_GAME.obj
+ 0002:0000b710       _G_CheckSpot               0042f710 f   G_GAME.obj
+ 0002:0000b8d0       _G_DeathMatchSpawnPlayer   0042f8d0 f   G_GAME.obj
+ 0002:0000b9c0       _G_DoReborn                0042f9c0 f   G_GAME.obj
+ 0002:0000bb30       _G_ScreenShot              0042fb30 f   G_GAME.obj
+ 0002:0000bb50       _G_ExitLevel               0042fb50 f   G_GAME.obj
+ 0002:0000bb80       _G_SecretExitLevel         0042fb80 f   G_GAME.obj
+ 0002:0000bbb0       _G_DoCompleted             0042fbb0 f   G_GAME.obj
+ 0002:0000bcb0       _G_WorldDone               0042fcb0 f   G_GAME.obj
+ 0002:0000bcd0       _G_DoWorldDone             0042fcd0 f   G_GAME.obj
+ 0002:0000bd10       _G_LoadGame                0042fd10 f   G_GAME.obj
+ 0002:0000bd50       _G_DoLoadGame              0042fd50 f   G_GAME.obj
+ 0002:0000bfc0       _G_DeferedInitNew          0042ffc0 f   G_GAME.obj
+ 0002:0000c000       _G_DoNewGame               00430000 f   G_GAME.obj
+ 0002:0000c050       _G_InitNew                 00430050 f   G_GAME.obj
+ 0002:0000c290       _G_ReadDemoTiccmd          00430290 f   G_GAME.obj
+ 0002:0000c3a0       _G_WriteDemoTiccmd         004303a0 f   G_GAME.obj
+ 0002:0000c4b0       _G_RecordDemo              004304b0 f   G_GAME.obj
+ 0002:0000c5f0       _G_DeferedPlayDemo         004305f0 f   G_GAME.obj
+ 0002:0000c620       _G_DoPlayDemo              00430620 f   G_GAME.obj
+ 0002:0000c760       _G_TimeDemo                00430760 f   G_GAME.obj
+ 0002:0000c850       _G_CheckDemoStatus         00430850 f   G_GAME.obj
+ 0002:0000c9a0       _G_SaveGame                004309a0 f   G_GAME.obj
+ 0002:0000c9e0       _G_DoSaveGame              004309e0 f   G_GAME.obj
+ 0002:0000cbe0       _SV_Open                   00430be0 f   G_GAME.obj
+ 0002:0000cc80       _SV_Close                  00430c80 f   G_GAME.obj
+ 0002:0000cd20       _SV_Write                  00430d20 f   G_GAME.obj
+ 0002:0000cd90       _SV_WriteByte              00430d90 f   G_GAME.obj
+ 0002:0000cdc0       _SV_WriteWord              00430dc0 f   G_GAME.obj
+ 0002:0000cdf0       _SV_WriteLong              00430df0 f   G_GAME.obj
+ 0002:0000ce20       _main                      00430e20 f   I_IBM.obj
+ 0002:0000ce60       _Win32_GetH2Tics           00430e60 f   I_IBM.obj
+ 0002:0000cea0       _I_GetTime                 00430ea0 f   I_IBM.obj
+ 0002:0000ced0       _I_WaitVBL                 00430ed0 f   I_IBM.obj
+ 0002:0000cef0       _I_SetPalette              00430ef0 f   I_IBM.obj
+ 0002:0000cf10       _I_Update                  00430f10 f   I_IBM.obj
+ 0002:0000cf30       _I_InitGraphics            00430f30 f   I_IBM.obj
+ 0002:0000cf60       _I_ShutdownGraphics        00430f60 f   I_IBM.obj
+ 0002:0000cf80       _I_ReadScreen              00430f80 f   I_IBM.obj
+ 0002:0000cfa0       _I_StartTic                00430fa0 f   I_IBM.obj
+ 0002:0000d060       _I_ReadKeys                00431060 f   I_IBM.obj
+ 0002:0000d0e0       _Sys_SendKeyEvents         004310e0 f   I_IBM.obj
+ 0002:0000d150       _I_StartFrame              00431150 f   I_IBM.obj
+ 0002:0000d170       _I_TimerISR                00431170 f   I_IBM.obj
+ 0002:0000d1a0       _ibm_handlewinkey          004311a0 f   I_IBM.obj
+ 0002:0000d220       _I_StartupKeyboard         00431220 f   I_IBM.obj
+ 0002:0000d240       _I_ShutdownKeyboard        00431240 f   I_IBM.obj
+ 0002:0000d260       _I_ResetMouse              00431260 f   I_IBM.obj
+ 0002:0000d280       _I_StartupMouse            00431280 f   I_IBM.obj
+ 0002:0000d2a0       _I_ShutdownMouse           004312a0 f   I_IBM.obj
+ 0002:0000d2c0       _I_ReadMouse               004312c0 f   I_IBM.obj
+ 0002:0000d2e0       _WaitJoyButton             004312e0 f   I_IBM.obj
+ 0002:0000d300       _I_StartupJoystick         00431300 f   I_IBM.obj
+ 0002:0000d320       _I_JoystickEvents          00431320 f   I_IBM.obj
+ 0002:0000d340       _IO_SetTimer0              00431340 f   I_IBM.obj
+ 0002:0000d380       _IO_StartupTimer           00431380 f   I_IBM.obj
+ 0002:0000d3a0       _IO_ShutdownTimer          004313a0 f   I_IBM.obj
+ 0002:0000d3c0       _I_Init                    004313c0 f   I_IBM.obj
+ 0002:0000d410       _I_Shutdown                00431410 f   I_IBM.obj
+ 0002:0000d450       _I_Error                   00431450 f   I_IBM.obj
+ 0002:0000d4c0       _I_Quit                    004314c0 f   I_IBM.obj
+ 0002:0000d510       _I_ZoneBase                00431510 f   I_IBM.obj
+ 0002:0000d5b0       _I_InitDiskFlash           004315b0 f   I_IBM.obj
+ 0002:0000d5d0       _I_BeginRead               004315d0 f   I_IBM.obj
+ 0002:0000d5f0       _I_EndRead                 004315f0 f   I_IBM.obj
+ 0002:0000d610       _I_AllocLow                00431610 f   I_IBM.obj
+ 0002:0000d660       _I_InitNetwork             00431660 f   I_IBM.obj
+ 0002:0000d730       _I_NetCmd                  00431730 f   I_IBM.obj
+ 0002:0000d760       _I_CheckExternDriver       00431760 f   I_IBM.obj
+ 0002:0000d780       _I_ReadExternDriver        00431780 f   I_IBM.obj
+ 0002:0000d7a0       _I_PauseSong               004317a0 f   I_SOUND.obj
+ 0002:0000d7c0       _I_ResumeSong              004317c0 f   I_SOUND.obj
+ 0002:0000d7e0       _I_SetMusicVolume          004317e0 f   I_SOUND.obj
+ 0002:0000d800       _I_SetSfxVolume            00431800 f   I_SOUND.obj
+ 0002:0000d820       _I_RegisterSong            00431820 f   I_SOUND.obj
+ 0002:0000d840       _I_UnRegisterSong          00431840 f   I_SOUND.obj
+ 0002:0000d860       _I_QrySongPlaying          00431860 f   I_SOUND.obj
+ 0002:0000d880       _I_StopSong                00431880 f   I_SOUND.obj
+ 0002:0000d8a0       _I_PlaySong                004318a0 f   I_SOUND.obj
+ 0002:0000d8d0       _I_GetSfxLumpNum           004318d0 f   I_SOUND.obj
+ 0002:0000d920       _I_StartSound              00431920 f   I_SOUND.obj
+ 0002:0000d940       _I_StopSound               00431940 f   I_SOUND.obj
+ 0002:0000d960       _I_SoundIsPlaying          00431960 f   I_SOUND.obj
+ 0002:0000d980       _I_UpdateSoundParams       00431980 f   I_SOUND.obj
+ 0002:0000d9a0       _I_sndArbitrateCards       004319a0 f   I_SOUND.obj
+ 0002:0000d9f0       _I_StartupSound            004319f0 f   I_SOUND.obj
+ 0002:0000da30       _I_ShutdownSound           00431a30 f   I_SOUND.obj
+ 0002:0000da50       _I_SetChannels             00431a50 f   I_SOUND.obj
+ 0002:0000da70       _IN_Start                  00431a70 f   IN_LUDE.obj
+ 0002:0000db00       _IN_WaitStop               00431b00 f   IN_LUDE.obj
+ 0002:0000db40       _IN_Stop                   00431b40 f   IN_LUDE.obj
+ 0002:0000db80       _IN_InitStats              00431b80 f   IN_LUDE.obj
+ 0002:0000df70       _IN_LoadPics               00431f70 f   IN_LUDE.obj
+ 0002:0000e120       _IN_UnloadPics             00432120 f   IN_LUDE.obj
+ 0002:0000e340       _IN_Ticker                 00432340 f   IN_LUDE.obj
+ 0002:0000e540       _IN_CheckForSkip           00432540 f   IN_LUDE.obj
+ 0002:0000e640       _IN_Drawer                 00432640 f   IN_LUDE.obj
+ 0002:0000e7d0       _IN_DrawStatBack           004327d0 f   IN_LUDE.obj
+ 0002:0000e8b0       _IN_DrawOldLevel           004328b0 f   IN_LUDE.obj
+ 0002:0000eb80       _IN_DrawYAH                00432b80 f   IN_LUDE.obj
+ 0002:0000eda0       _IN_DrawSingleStats        00432da0 f   IN_LUDE.obj
+ 0002:0000f230       _IN_DrawCoopStats          00433230 f   IN_LUDE.obj
+ 0002:0000f4f0       _IN_DrawDMStats            004334f0 f   IN_LUDE.obj
+ 0002:0000f900       _IN_DrawTime               00433900 f   IN_LUDE.obj
+ 0002:0000f9e0       _IN_DrawNumber             004339e0 f   IN_LUDE.obj
+ 0002:0000fcc0       _IN_DrTextB                00433cc0 f   IN_LUDE.obj
+ 0002:0000fd60       _M_ValidEpisodeMap         00433d60 f   M_MISC.obj
+ 0002:0000fe10       _M_CheckParm               00433e10 f   M_MISC.obj
+ 0002:0000fe80       _P_Random                  00433e80 f   M_MISC.obj
+ 0002:0000fec0       _M_Random                  00433ec0 f   M_MISC.obj
+ 0002:0000ff00       _M_ClearRandom             00433f00 f   M_MISC.obj
+ 0002:0000ff30       _M_ClearBox                00433f30 f   M_MISC.obj
+ 0002:0000ff80       _M_AddToBox                00433f80 f   M_MISC.obj
+ 0002:00010000       _M_WriteFile               00434000 f   M_MISC.obj
+ 0002:00010080       _M_ReadFile                00434080 f   M_MISC.obj
+ 0002:000101d0       _M_FindResponseFile        004341d0 f   M_MISC.obj
+ 0002:00010570       _M_ForceUppercase          00434570 f   M_MISC.obj
+ 0002:000105e0       _M_SaveDefaults            004345e0 f   M_MISC.obj
+ 0002:00010710       _M_LoadDefaults            00434710 f   M_MISC.obj
+ 0002:00010a20       _WritePCXfile              00434a20 f   M_MISC.obj
+ 0002:00010c60       _M_ScreenShot              00434c60 f   M_MISC.obj
+ 0002:00010d70       _MN_Init                   00434d70 f   MN_MENU.obj
+ 0002:00010e40       _MN_DrTextA                00434e40 f   MN_MENU.obj
+ 0002:00010ee0       _MN_TextAWidth             00434ee0 f   MN_MENU.obj
+ 0002:00010f80       _MN_DrTextB                00434f80 f   MN_MENU.obj
+ 0002:00011020       _MN_TextBWidth             00435020 f   MN_MENU.obj
+ 0002:000110c0       _MN_Ticker                 004350c0 f   MN_MENU.obj
+ 0002:00011100       _MN_Drawer                 00435100 f   MN_MENU.obj
+ 0002:00011680       _MN_LoadSlotText           00435680 f   MN_MENU.obj
+ 0002:00012100       _MN_Responder              00436100 f   MN_MENU.obj
+ 0002:000133e0       _MN_ActivateMenu           004373e0 f   MN_MENU.obj
+ 0002:000134a0       _MN_DeactivateMenu         004374a0 f   MN_MENU.obj
+ 0002:00013760       _T_MoveCeiling             00437760 f   P_CEILNG.obj
+ 0002:00013950       _EV_DoCeiling              00437950 f   P_CEILNG.obj
+ 0002:00013b90       _P_AddActiveCeiling        00437b90 f   P_CEILNG.obj
+ 0002:00013bf0       _P_RemoveActiveCeiling     00437bf0 f   P_CEILNG.obj
+ 0002:00013c80       _P_ActivateInStasisCeiling 00437c80 f   P_CEILNG.obj
+ 0002:00013d30       _EV_CeilingCrushStop       00437d30 f   P_CEILNG.obj
+ 0002:00013e10       _T_VerticalDoor            00437e10 f   P_DOORS.obj
+ 0002:00014130       _EV_DoDoor                 00438130 f   P_DOORS.obj
+ 0002:00014340       _EV_VerticalDoor           00438340 f   P_DOORS.obj
+ 0002:000146e0       _P_SpawnDoorCloseIn30      004386e0 f   P_DOORS.obj
+ 0002:00014780       _P_SpawnDoorRaiseIn5Mins   00438780 f   P_DOORS.obj
+ 0002:00014860       _P_InitMonsters            00438860 f   P_ENEMY.obj
+ 0002:00014880       _P_AddBossSpot             00438880 f   P_ENEMY.obj
+ 0002:00014900       _P_RecursiveSound          00438900 f   P_ENEMY.obj
+ 0002:00014a80       _P_NoiseAlert              00438a80 f   P_ENEMY.obj
+ 0002:00014ad0       _P_CheckMeleeRange         00438ad0 f   P_ENEMY.obj
+ 0002:00014bb0       _P_CheckMissileRange       00438bb0 f   P_ENEMY.obj
+ 0002:00014ce0       _P_Move                    00438ce0 f   P_ENEMY.obj
+ 0002:00014ef0       _P_TryWalk                 00438ef0 f   P_ENEMY.obj
+ 0002:00014f40       _P_NewChaseDir             00438f40 f   P_ENEMY.obj
+ 0002:000152b0       _P_LookForMonsters         004392b0 f   P_ENEMY.obj
+ 0002:00015400       _P_LookForPlayers          00439400 f   P_ENEMY.obj
+ 0002:00015680       _A_Look                    00439680 f   P_ENEMY.obj
+ 0002:000157a0       _A_Chase                   004397a0 f   P_ENEMY.obj
+ 0002:00015ba0       _A_FaceTarget              00439ba0 f   P_ENEMY.obj
+ 0002:00015c60       _A_Pain                    00439c60 f   P_ENEMY.obj
+ 0002:00015ca0       _A_DripBlood               00439ca0 f   P_ENEMY.obj
+ 0002:00015d60       _A_KnightAttack            00439d60 f   P_ENEMY.obj
+ 0002:00015e70       _A_ImpExplode              00439e70 f   P_ENEMY.obj
+ 0002:00015f90       _A_BeastPuff               00439f90 f   P_ENEMY.obj
+ 0002:00016020       _A_ImpMeAttack             0043a020 f   P_ENEMY.obj
+ 0002:000160b0       _A_ImpMsAttack             0043a0b0 f   P_ENEMY.obj
+ 0002:00016260       _A_ImpMsAttack2            0043a260 f   P_ENEMY.obj
+ 0002:00016310       _A_ImpDeath                0043a310 f   P_ENEMY.obj
+ 0002:00016370       _A_ImpXDeath1              0043a370 f   P_ENEMY.obj
+ 0002:000163d0       _A_ImpXDeath2              0043a3d0 f   P_ENEMY.obj
+ 0002:00016430       _P_UpdateChicken           0043a430 f   P_ENEMY.obj
+ 0002:000165f0       _A_ChicAttack              0043a5f0 f   P_ENEMY.obj
+ 0002:00016680       _A_ChicLook                0043a680 f   P_ENEMY.obj
+ 0002:000166c0       _A_ChicChase               0043a6c0 f   P_ENEMY.obj
+ 0002:00016700       _A_ChicPain                0043a700 f   P_ENEMY.obj
+ 0002:00016750       _A_Feathers                0043a750 f   P_ENEMY.obj
+ 0002:00016880       _A_MummyAttack             0043a880 f   P_ENEMY.obj
+ 0002:00016930       _A_MummyAttack2            0043a930 f   P_ENEMY.obj
+ 0002:000169e0       _A_MummyFX1Seek            0043a9e0 f   P_ENEMY.obj
+ 0002:00016a10       _A_MummySoul               0043aa10 f   P_ENEMY.obj
+ 0002:00016a70       _A_Sor1Pain                0043aa70 f   P_ENEMY.obj
+ 0002:00016aa0       _A_Sor1Chase               0043aaa0 f   P_ENEMY.obj
+ 0002:00016b00       _A_Srcr1Attack             0043ab00 f   P_ENEMY.obj
+ 0002:00016cd0       _A_SorcererRise            0043acd0 f   P_ENEMY.obj
+ 0002:00016d60       _P_DSparilTeleport         0043ad60 f   P_ENEMY.obj
+ 0002:00016f00       _A_Srcr2Decide             0043af00 f   P_ENEMY.obj
+ 0002:00016f70       _A_Srcr2Attack             0043af70 f   P_ENEMY.obj
+ 0002:000170c0       _A_BlueSpark               0043b0c0 f   P_ENEMY.obj
+ 0002:00017180       _A_GenWizard               0043b180 f   P_ENEMY.obj
+ 0002:00017290       _A_Sor2DthInit             0043b290 f   P_ENEMY.obj
+ 0002:000172c0       _A_Sor2DthLoop             0043b2c0 f   P_ENEMY.obj
+ 0002:00017310       _A_SorZap                  0043b310 f   P_ENEMY.obj
+ 0002:00017340       _A_SorRise                 0043b340 f   P_ENEMY.obj
+ 0002:00017370       _A_SorDSph                 0043b370 f   P_ENEMY.obj
+ 0002:000173a0       _A_SorDExp                 0043b3a0 f   P_ENEMY.obj
+ 0002:000173d0       _A_SorDBon                 0043b3d0 f   P_ENEMY.obj
+ 0002:00017400       _A_SorSightSnd             0043b400 f   P_ENEMY.obj
+ 0002:00017430       _A_MinotaurAtk1            0043b430 f   P_ENEMY.obj
+ 0002:000174e0       _A_MinotaurDecide          0043b4e0 f   P_ENEMY.obj
+ 0002:000176d0       _A_MinotaurCharge          0043b6d0 f   P_ENEMY.obj
+ 0002:00017770       _A_MinotaurAtk2            0043b770 f   P_ENEMY.obj
+ 0002:000178f0       _A_MinotaurAtk3            0043b8f0 f   P_ENEMY.obj
+ 0002:00017a10       _A_MntrFloorFire           0043ba10 f   P_ENEMY.obj
+ 0002:00017ac0       _A_BeastAttack             0043bac0 f   P_ENEMY.obj
+ 0002:00017b70       _A_HeadAttack              0043bb70 f   P_ENEMY.obj
+ 0002:00017e30       _A_WhirlwindSeek           0043be30 f   P_ENEMY.obj
+ 0002:00017f50       _A_HeadIceImpact           0043bf50 f   P_ENEMY.obj
+ 0002:00018070       _A_HeadFireGrow            0043c070 f   P_ENEMY.obj
+ 0002:000180e0       _A_SnakeAttack             0043c0e0 f   P_ENEMY.obj
+ 0002:00018170       _A_SnakeAttack2            0043c170 f   P_ENEMY.obj
+ 0002:00018200       _A_ClinkAttack             0043c200 f   P_ENEMY.obj
+ 0002:000182a0       _A_GhostOff                0043c2a0 f   P_ENEMY.obj
+ 0002:000182d0       _A_WizAtk1                 0043c2d0 f   P_ENEMY.obj
+ 0002:00018310       _A_WizAtk2                 0043c310 f   P_ENEMY.obj
+ 0002:00018350       _A_WizAtk3                 0043c350 f   P_ENEMY.obj
+ 0002:00018480       _A_Scream                  0043c480 f   P_ENEMY.obj
+ 0002:000185d0       _P_DropItem                0043c5d0 f   P_ENEMY.obj
+ 0002:000186a0       _A_NoBlocking              0043c6a0 f   P_ENEMY.obj
+ 0002:000188a0       _A_Explode                 0043c8a0 f   P_ENEMY.obj
+ 0002:00018970       _A_PodPain                 0043c970 f   P_ENEMY.obj
+ 0002:00018a70       _A_RemovePod               0043ca70 f   P_ENEMY.obj
+ 0002:00018ac0       _A_MakePod                 0043cac0 f   P_ENEMY.obj
+ 0002:00018bc0       _P_Massacre                0043cbc0 f   P_ENEMY.obj
+ 0002:00018c50       _A_BossDeath               0043cc50 f   P_ENEMY.obj
+ 0002:00018d50       _A_ESound                  0043cd50 f   P_ENEMY.obj
+ 0002:00018db0       _A_SpawnTeleGlitter        0043cdb0 f   P_ENEMY.obj
+ 0002:00018e30       _A_SpawnTeleGlitter2       0043ce30 f   P_ENEMY.obj
+ 0002:00018eb0       _A_AccTeleGlitter          0043ceb0 f   P_ENEMY.obj
+ 0002:00018f10       _A_InitKeyGizmo            0043cf10 f   P_ENEMY.obj
+ 0002:00018fb0       _A_VolcanoSet              0043cfb0 f   P_ENEMY.obj
+ 0002:00018fe0       _A_VolcanoBlast            0043cfe0 f   P_ENEMY.obj
+ 0002:00019140       _A_VolcBallImpact          0043d140 f   P_ENEMY.obj
+ 0002:000192c0       _A_SkullPop                0043d2c0 f   P_ENEMY.obj
+ 0002:000193e0       _A_CheckSkullFloor         0043d3e0 f   P_ENEMY.obj
+ 0002:00019420       _A_CheckSkullDone          0043d420 f   P_ENEMY.obj
+ 0002:00019460       _A_CheckBurnGone           0043d460 f   P_ENEMY.obj
+ 0002:000194a0       _A_FreeTargMobj            0043d4a0 f   P_ENEMY.obj
+ 0002:00019550       _A_AddPlayerCorpse         0043d550 f   P_ENEMY.obj
+ 0002:000195d0       _A_FlameSnd                0043d5d0 f   P_ENEMY.obj
+ 0002:00019600       _A_HideThing               0043d600 f   P_ENEMY.obj
+ 0002:00019630       _A_UnHideThing             0043d630 f   P_ENEMY.obj
+ 0002:00019660       _T_MovePlane               0043d660 f   P_FLOOR.obj
+ 0002:00019a50       _T_MoveFloor               0043da50 f   P_FLOOR.obj
+ 0002:00019bb0       _EV_DoFloor                0043dbb0 f   P_FLOOR.obj
+ 0002:0001a1c0       _EV_BuildStairs            0043e1c0 f   P_FLOOR.obj
+ 0002:0001a460       _P_SetMessage              0043e460 f   P_INTER.obj
+ 0002:0001a4e0       _P_GiveAmmo                0043e4e0 f   P_INTER.obj
+ 0002:0001a660       _P_GiveWeapon              0043e660 f   P_INTER.obj
+ 0002:0001a820       _P_GiveBody                0043e820 f   P_INTER.obj
+ 0002:0001a8b0       _P_GiveArmor               0043e8b0 f   P_INTER.obj
+ 0002:0001a900       _P_GiveKey                 0043e900 f   P_INTER.obj
+ 0002:0001a9b0       _P_GivePower               0043e9b0 f   P_INTER.obj
+ 0002:0001abd0       _P_GiveArtifact            0043ebd0 f   P_INTER.obj
+ 0002:0001ad20       _P_SetDormantArtifact      0043ed20 f   P_INTER.obj
+ 0002:0001ada0       _A_RestoreArtifact         0043eda0 f   P_INTER.obj
+ 0002:0001ae00       _P_HideSpecialThing        0043ee00 f   P_INTER.obj
+ 0002:0001ae50       _A_RestoreSpecialThing1    0043ee50 f   P_INTER.obj
+ 0002:0001aeb0       _A_RestoreSpecialThing2    0043eeb0 f   P_INTER.obj
+ 0002:0001af00       _P_TouchSpecialThing       0043ef00 f   P_INTER.obj
+ 0002:0001bc40       _P_KillMobj                0043fc40 f   P_INTER.obj
+ 0002:0001c030       _P_MinotaurSlam            00440030 f   P_INTER.obj
+ 0002:0001c170       _P_TouchWhirlwind          00440170 f   P_INTER.obj
+ 0002:0001c290       _P_ChickenMorphPlayer      00440290 f   P_INTER.obj
+ 0002:0001c480       _P_ChickenMorph            00440480 f   P_INTER.obj
+ 0002:0001c6a0       _P_AutoUseChaosDevice      004406a0 f   P_INTER.obj
+ 0002:0001c740       _P_AutoUseHealth           00440740 f   P_INTER.obj
+ 0002:0001c9f0       _P_DamageMobj              004409f0 f   P_INTER.obj
+ 0002:0001d360       _T_LightFlash              00441360 f   P_LIGHTS.obj
+ 0002:0001d410       _P_SpawnLightFlash         00441410 f   P_LIGHTS.obj
+ 0002:0001d4d0       _T_StrobeFlash             004414d0 f   P_LIGHTS.obj
+ 0002:0001d570       _P_SpawnStrobeFlash        00441570 f   P_LIGHTS.obj
+ 0002:0001d660       _EV_StartLightStrobing     00441660 f   P_LIGHTS.obj
+ 0002:0001d6e0       _EV_TurnTagLightsOff       004416e0 f   P_LIGHTS.obj
+ 0002:0001d7e0       _EV_LightTurnOn            004417e0 f   P_LIGHTS.obj
+ 0002:0001d8e0       _T_Glow                    004418e0 f   P_LIGHTS.obj
+ 0002:0001d9d0       _P_SpawnGlowingLight       004419d0 f   P_LIGHTS.obj
+ 0002:0001da70       _PIT_StompThing            00441a70 f   P_MAP.obj
+ 0002:0001db60       _P_TeleportMove            00441b60 f   P_MAP.obj
+ 0002:0001dda0       _PIT_CheckLine             00441da0 f   P_MAP.obj
+ 0002:0001df90       _PIT_CheckThing            00441f90 f   P_MAP.obj
+ 0002:0001e5a0       _PIT_CheckOnmobjZ          004425a0 f   P_MAP.obj
+ 0002:0001e6c0       _P_TestMobjLocation        004426c0 f   P_MAP.obj
+ 0002:0001e770       _P_CheckPosition           00442770 f   P_MAP.obj
+ 0002:0001ea30       _P_CheckOnmobj             00442a30 f   P_MAP.obj
+ 0002:0001ecc0       _P_FakeZMovement           00442cc0 f   P_MAP.obj
+ 0002:0001efe0       _CheckMissileImpact        00442fe0 f   P_MAP.obj
+ 0002:0001f090       _P_TryMove                 00443090 f   P_MAP.obj
+ 0002:0001f460       _P_ThingHeightClip         00443460 f   P_MAP.obj
+ 0002:0001f540       _P_HitSlideLine            00443540 f   P_MAP.obj
+ 0002:0001f710       _PTR_SlideTraverse         00443710 f   P_MAP.obj
+ 0002:0001f850       _P_SlideMove               00443850 f   P_MAP.obj
+ 0002:0001fbe0       _PTR_AimTraverse           00443be0 f   P_MAP.obj
+ 0002:0001ff20       _PTR_ShootTraverse         00443f20 f   P_MAP.obj
+ 0002:00020400       _P_AimLineAttack           00444400 f   P_MAP.obj
+ 0002:00020510       _P_LineAttack              00444510 f   P_MAP.obj
+ 0002:00020610       _PTR_UseTraverse           00444610 f   P_MAP.obj
+ 0002:000206c0       _P_UseLines                004446c0 f   P_MAP.obj
+ 0002:00020770       _PIT_RadiusAttack          00444770 f   P_MAP.obj
+ 0002:000208d0       _P_RadiusAttack            004448d0 f   P_MAP.obj
+ 0002:00020a10       _PIT_ChangeSector          00444a10 f   P_MAP.obj
+ 0002:00020b70       _P_ChangeSector            00444b70 f   P_MAP.obj
+ 0002:00020c10       _P_AproxDistance           00444c10 f   P_MAPUTL.obj
+ 0002:00020c80       _P_PointOnLineSide         00444c80 f   P_MAPUTL.obj
+ 0002:00020dd0       _P_BoxOnLineSide           00444dd0 f   P_MAPUTL.obj
+ 0002:00020f80       _P_PointOnDivlineSide      00444f80 f   P_MAPUTL.obj
+ 0002:000210e0       _P_MakeDivline             004450e0 f   P_MAPUTL.obj
+ 0002:00021140       _P_InterceptVector         00445140 f   P_MAPUTL.obj
+ 0002:000212c0       _P_LineOpening             004452c0 f   P_MAPUTL.obj
+ 0002:000213a0       _P_UnsetThingPosition      004453a0 f   P_MAPUTL.obj
+ 0002:000214f0       _P_SetThingPosition        004454f0 f   P_MAPUTL.obj
+ 0002:00021670       _P_BlockLinesIterator      00445670 f   P_MAPUTL.obj
+ 0002:00021770       _P_BlockThingsIterator     00445770 f   P_MAPUTL.obj
+ 0002:00021810       _PIT_AddLineIntercepts     00445810 f   P_MAPUTL.obj
+ 0002:000219f0       _PIT_AddThingIntercepts    004459f0 f   P_MAPUTL.obj
+ 0002:00021bc0       _P_TraverseIntercepts      00445bc0 f   P_MAPUTL.obj
+ 0002:00021ca0       _P_PathTraverse            00445ca0 f   P_MAPUTL.obj
+ 0002:000220a0       _P_SetMobjState            004460a0 f   P_MOBJ.obj
+ 0002:00022150       _P_SetMobjStateNF          00446150 f   P_MOBJ.obj
+ 0002:000221e0       _P_ExplodeMissile          004461e0 f   P_MOBJ.obj
+ 0002:000222b0       _P_FloorBounceMissile      004462b0 f   P_MOBJ.obj
+ 0002:00022300       _P_ThrustMobj              00446300 f   P_MOBJ.obj
+ 0002:000223b0       _P_FaceMobj                004463b0 f   P_MOBJ.obj
+ 0002:00022490       _P_SeekerMissile           00446490 f   P_MOBJ.obj
+ 0002:00022670       _P_XYMovement              00446670 f   P_MOBJ.obj
+ 0002:00022d70       _P_ZMovement               00446d70 f   P_MOBJ.obj
+ 0002:000232b0       _P_NightmareRespawn        004472b0 f   P_MOBJ.obj
+ 0002:000234a0       _P_BlasterMobjThinker      004474a0 f   P_MOBJ.obj
+ 0002:00023710       _P_MobjThinker             00447710 f   P_MOBJ.obj
+ 0002:00023a50       _P_SpawnMobj               00447a50 f   P_MOBJ.obj
+ 0002:00023d50       _P_RemoveMobj              00447d50 f   P_MOBJ.obj
+ 0002:00023da0       _P_SpawnPlayer             00447da0 f   P_MOBJ.obj
+ 0002:00024040       _P_SpawnMapThing           00448040 f   P_MOBJ.obj
+ 0002:000245b0       _P_SpawnPuff               004485b0 f   P_MOBJ.obj
+ 0002:000246a0       _P_BloodSplatter           004486a0 f   P_MOBJ.obj
+ 0002:00024730       _P_RipperBlood             00448730 f   P_MOBJ.obj
+ 0002:00024820       _P_GetThingFloorType       00448820 f   P_MOBJ.obj
+ 0002:00024850       _P_HitFloor                00448850 f   P_MOBJ.obj
+ 0002:00024ad0       _P_CheckMissileSpawn       00448ad0 f   P_MOBJ.obj
+ 0002:00024b70       _P_SpawnMissile            00448b70 f   P_MOBJ.obj
+ 0002:00024e20       _P_SpawnMissileAngle       00448e20 f   P_MOBJ.obj
+ 0002:00024fc0       _P_SpawnPlayerMissile      00448fc0 f   P_MOBJ.obj
+ 0002:00025350       _P_SPMAngle                00449350 f   P_MOBJ.obj
+ 0002:000255a0       _A_ContMobjSound           004495a0 f   P_MOBJ.obj
+ 0002:00025600       _T_PlatRaise               00449600 f   P_PLATS.obj
+ 0002:000258b0       _EV_DoPlat                 004498b0 f   P_PLATS.obj
+ 0002:00025c50       _P_ActivateInStasis        00449c50 f   P_PLATS.obj
+ 0002:00025d00       _EV_StopPlat               00449d00 f   P_PLATS.obj
+ 0002:00025dc0       _P_AddActivePlat           00449dc0 f   P_PLATS.obj
+ 0002:00025e30       _P_RemoveActivePlat        00449e30 f   P_PLATS.obj
+ 0002:00025ed0       _P_OpenWeapons             00449ed0 f   P_PSPR.obj
+ 0002:00025ef0       _P_AddMaceSpot             00449ef0 f   P_PSPR.obj
+ 0002:00025f70       _P_RepositionMace          00449f70 f   P_PSPR.obj
+ 0002:00026030       _P_CloseWeapons            0044a030 f   P_PSPR.obj
+ 0002:000260b0       _P_SetPsprite              0044a0b0 f   P_PSPR.obj
+ 0002:000261a0       _P_ActivateBeak            0044a1a0 f   P_PSPR.obj
+ 0002:00026200       _P_PostChickenWeapon       0044a200 f   P_PSPR.obj
+ 0002:00026280       _P_BringUpWeapon           0044a280 f   P_PSPR.obj
+ 0002:00026360       _P_CheckAmmo               0044a360 f   P_PSPR.obj
+ 0002:000265f0       _P_FireWeapon              0044a5f0 f   P_PSPR.obj
+ 0002:00026720       _P_DropWeapon              0044a720 f   P_PSPR.obj
+ 0002:000267a0       _A_WeaponReady             0044a7a0 f   P_PSPR.obj
+ 0002:000269f0       _P_UpdateBeak              0044a9f0 f   P_PSPR.obj
+ 0002:00026a30       _A_BeakReady               0044aa30 f   P_PSPR.obj
+ 0002:00026b20       _A_ReFire                  0044ab20 f   P_PSPR.obj
+ 0002:00026bb0       _A_Lower                   0044abb0 f   P_PSPR.obj
+ 0002:00026c70       _A_BeakRaise               0044ac70 f   P_PSPR.obj
+ 0002:00026cc0       _A_Raise                   0044acc0 f   P_PSPR.obj
+ 0002:00026d70       _P_BulletSlope             0044ad70 f   P_PSPR.obj
+ 0002:00026e70       _A_BeakAttackPL1           0044ae70 f   P_PSPR.obj
+ 0002:00026fa0       _A_BeakAttackPL2           0044afa0 f   P_PSPR.obj
+ 0002:000270d0       _A_StaffAttackPL1          0044b0d0 f   P_PSPR.obj
+ 0002:000271d0       _A_StaffAttackPL2          0044b1d0 f   P_PSPR.obj
+ 0002:000272d0       _A_FireBlasterPL1          0044b2d0 f   P_PSPR.obj
+ 0002:000273c0       _A_FireBlasterPL2          0044b3c0 f   P_PSPR.obj
+ 0002:00027450       _A_FireGoldWandPL1         0044b450 f   P_PSPR.obj
+ 0002:00027530       _A_FireGoldWandPL2         0044b530 f   P_PSPR.obj
+ 0002:00027690       _A_FireMacePL1B            0044b690 f   P_PSPR.obj
+ 0002:00027830       _A_FireMacePL1             0044b830 f   P_PSPR.obj
+ 0002:00027920       _A_MacePL1Check            0044b920 f   P_PSPR.obj
+ 0002:00027a00       _A_MaceBallImpact          0044ba00 f   P_PSPR.obj
+ 0002:00027b20       _A_MaceBallImpact2         0044bb20 f   P_PSPR.obj
+ 0002:00027e20       _A_FireMacePL2             0044be20 f   P_PSPR.obj
+ 0002:00027f00       _A_DeathBallImpact         0044bf00 f   P_PSPR.obj
+ 0002:000281a0       _A_SpawnRippers            0044c1a0 f   P_PSPR.obj
+ 0002:000282b0       _A_FireCrossbowPL1         0044c2b0 f   P_PSPR.obj
+ 0002:00028340       _A_FireCrossbowPL2         0044c340 f   P_PSPR.obj
+ 0002:00028430       _A_BoltSpark               0044c430 f   P_PSPR.obj
+ 0002:000284d0       _A_FireSkullRodPL1         0044c4d0 f   P_PSPR.obj
+ 0002:00028560       _A_FireSkullRodPL2         0044c560 f   P_PSPR.obj
+ 0002:00028620       _A_SkullRodPL2Seek         0044c620 f   P_PSPR.obj
+ 0002:00028650       _A_AddPlayerRain           0044c650 f   P_PSPR.obj
+ 0002:000287b0       _A_SkullRodStorm           0044c7b0 f   P_PSPR.obj
+ 0002:000289b0       _A_RainImpact              0044c9b0 f   P_PSPR.obj
+ 0002:00028a20       _A_HideInCeiling           0044ca20 f   P_PSPR.obj
+ 0002:00028a50       _A_FirePhoenixPL1          0044ca50 f   P_PSPR.obj
+ 0002:00028b20       _A_PhoenixPuff             0044cb20 f   P_PSPR.obj
+ 0002:00028ca0       _A_InitPhoenixPL2          0044cca0 f   P_PSPR.obj
+ 0002:00028cd0       _A_FirePhoenixPL2          0044ccd0 f   P_PSPR.obj
+ 0002:00028f10       _A_ShutdownPhoenixPL2      0044cf10 f   P_PSPR.obj
+ 0002:00028f40       _A_FlameEnd                0044cf40 f   P_PSPR.obj
+ 0002:00028f70       _A_FloatPuff               0044cf70 f   P_PSPR.obj
+ 0002:00028fa0       _A_GauntletAttack          0044cfa0 f   P_PSPR.obj
+ 0002:000292d0       _A_Light0                  0044d2d0 f   P_PSPR.obj
+ 0002:00029300       _A_Light1                  0044d300 f   P_PSPR.obj
+ 0002:00029330       _A_Light2                  0044d330 f   P_PSPR.obj
+ 0002:00029360       _P_SetupPsprites           0044d360 f   P_PSPR.obj
+ 0002:000293e0       _P_MovePsprites            0044d3e0 f   P_PSPR.obj
+ 0002:000294c0       _P_LoadVertexes            0044d4c0 f   P_SETUP.obj
+ 0002:000295b0       _P_LoadSegs                0044d5b0 f   P_SETUP.obj
+ 0002:00029860       _P_LoadSubsectors          0044d860 f   P_SETUP.obj
+ 0002:00029970       _P_LoadSectors             0044d970 f   P_SETUP.obj
+ 0002:00029b00       _P_LoadNodes               0044db00 f   P_SETUP.obj
+ 0002:00029cb0       _P_LoadThings              0044dcb0 f   P_SETUP.obj
+ 0002:00029da0       _P_LoadLineDefs            0044dda0 f   P_SETUP.obj
+ 0002:0002a190       _P_LoadSideDefs            0044e190 f   P_SETUP.obj
+ 0002:0002a310       _P_LoadBlockMap            0044e310 f   P_SETUP.obj
+ 0002:0002a450       _P_GroupLines              0044e450 f   P_SETUP.obj
+ 0002:0002a840       _BuildSideSegs             0044e840 f   P_SETUP.obj
+ 0002:0002a9a0       _P_SetupLevel              0044e9a0 f   P_SETUP.obj
+ 0002:0002b020       _P_Init                    0044f020 f   P_SETUP.obj
+ 0002:0002b060       _PTR_SightTraverse         0044f060 f   P_SIGHT.obj
+ 0002:0002b210       _P_SightBlockLinesIterator 0044f210 f   P_SIGHT.obj
+ 0002:0002b3f0       _P_SightTraverseIntercepts 0044f3f0 f   P_SIGHT.obj
+ 0002:0002b530       _P_SightPathTraverse       0044f530 f   P_SIGHT.obj
+ 0002:0002b980       _P_CheckSight              0044f980 f   P_SIGHT.obj
+ 0002:0002bac0       _P_InitLava                0044fac0 f   P_SPEC.obj
+ 0002:0002bb10       _P_InitTerrainTypes        0044fb10 f   P_SPEC.obj
+ 0002:0002bbe0       _P_InitPicAnims            0044fbe0 f   P_SPEC.obj
+ 0002:0002bdd0       _getSide                   0044fdd0 f   P_SPEC.obj
+ 0002:0002be20       _getSector                 0044fe20 f   P_SPEC.obj
+ 0002:0002be70       _twoSided                  0044fe70 f   P_SPEC.obj
+ 0002:0002beb0       _getNextSector             0044feb0 f   P_SPEC.obj
+ 0002:0002bf00       _P_FindLowestFloorSurrounding 0044ff00 f   P_SPEC.obj
+ 0002:0002bfa0       _P_FindHighestFloorSurrounding 0044ffa0 f   P_SPEC.obj
+ 0002:0002c040       _P_FindNextHighestFloor    00450040 f   P_SPEC.obj
+ 0002:0002c160       _P_FindLowestCeilingSurrounding 00450160 f   P_SPEC.obj
+ 0002:0002c200       _P_FindHighestCeilingSurrounding 00450200 f   P_SPEC.obj
+ 0002:0002c2a0       _P_FindSectorFromLineTag   004502a0 f   P_SPEC.obj
+ 0002:0002c310       _P_FindMinSurroundingLight 00450310 f   P_SPEC.obj
+ 0002:0002c3b0       _P_CrossSpecialLine        004503b0 f   P_SPEC.obj
+ 0002:0002cd00       _P_ShootSpecialLine        00450d00 f   P_SPEC.obj
+ 0002:0002cde0       _P_PlayerInSpecialSector   00450de0 f   P_SPEC.obj
+ 0002:0002d0e0       _P_UpdateSpecials          004510e0 f   P_SPEC.obj
+ 0002:0002d400       _EV_DoDonut                00451400 f   P_SPEC.obj
+ 0002:0002d650       _P_SpawnSpecials           00451650 f   P_SPEC.obj
+ 0002:0002d970       _P_InitAmbientSound        00451970 f   P_SPEC.obj
+ 0002:0002d9c0       _P_AddAmbientSfx           004519c0 f   P_SPEC.obj
+ 0002:0002da20       _P_AmbientSound            00451a20 f   P_SPEC.obj
+ 0002:0002dce0       _P_InitSwitchList          00451ce0 f   P_SWITCH.obj
+ 0002:0002de10       _P_StartButton             00451e10 f   P_SWITCH.obj
+ 0002:0002ded0       _P_ChangeSwitchTexture     00451ed0 f   P_SWITCH.obj
+ 0002:0002e120       _P_UseSpecialLine          00452120 f   P_SWITCH.obj
+ 0002:0002e960       _P_Teleport                00452960 f   P_TELEPT.obj
+ 0002:0002ed40       _EV_Teleport               00452d40 f   P_TELEPT.obj
+ 0002:0002ee90       _P_ArchivePlayers          00452e90 f   P_TICK.obj
+ 0002:0002efa0       _P_UnArchivePlayers        00452fa0 f   P_TICK.obj
+ 0002:0002f100       _P_ArchiveWorld            00453100 f   P_TICK.obj
+ 0002:0002f330       _P_UnArchiveWorld          00453330 f   P_TICK.obj
+ 0002:0002f600       _P_ArchiveThinkers         00453600 f   P_TICK.obj
+ 0002:0002f700       _P_UnArchiveThinkers       00453700 f   P_TICK.obj
+ 0002:0002f910       _P_ArchiveSpecials         00453910 f   P_TICK.obj
+ 0002:0002fc60       _P_UnArchiveSpecials       00453c60 f   P_TICK.obj
+ 0002:000300e0       _P_InitThinkers            004540e0 f   P_TICK.obj
+ 0002:00030110       _P_AddThinker              00454110 f   P_TICK.obj
+ 0002:00030160       _P_RemoveThinker           00454160 f   P_TICK.obj
+ 0002:00030180       _P_AllocateThinker         00454180 f   P_TICK.obj
+ 0002:000301a0       _P_RunThinkers             004541a0 f   P_TICK.obj
+ 0002:00030240       _P_Ticker                  00454240 f   P_TICK.obj
+ 0002:00030300       _P_Thrust                  00454300 f   P_USER.obj
+ 0002:000304d0       _P_CalcHeight              004544d0 f   P_USER.obj
+ 0002:00030810       _P_MovePlayer              00454810 f   P_USER.obj
+ 0002:00030cb0       _P_DeathThink              00454cb0 f   P_USER.obj
+ 0002:00031030       _P_ChickenPlayerThink      00455030 f   P_USER.obj
+ 0002:00031140       _P_GetPlayerNum            00455140 f   P_USER.obj
+ 0002:000311a0       _P_UndoPlayerChicken       004551a0 f   P_USER.obj
+ 0002:00031440       _P_PlayerThink             00455440 f   P_USER.obj
+ 0002:00031c50       _P_ArtiTele                00455c50 f   P_USER.obj
+ 0002:00031d60       _P_PlayerNextArtifact      00455d60 f   P_USER.obj
+ 0002:00031e30       _P_PlayerRemoveArtifact    00455e30 f   P_USER.obj
+ 0002:00031fd0       _P_PlayerUseArtifact       00455fd0 f   P_USER.obj
+ 0002:000320a0       _P_UseArtifact             004560a0 f   P_USER.obj
+ 0002:00032430       _R_DrawColumnInCache       00456430 f   R_DATA.obj
+ 0002:00032500       _R_GenerateComposite       00456500 f   R_DATA.obj
+ 0002:000326f0       _R_GenerateLookup          004566f0 f   R_DATA.obj
+ 0002:000329d0       _R_GetColumn               004569d0 f   R_DATA.obj
+ 0002:00032a90       _R_InitTextures            00456a90 f   R_DATA.obj
+ 0002:00033180       _R_InitFlats               00457180 f   R_DATA.obj
+ 0002:00033290       _R_InitSpriteLumps         00457290 f   R_DATA.obj
+ 0002:00033480       _R_InitColormaps           00457480 f   R_DATA.obj
+ 0002:00033510       _R_InitData                00457510 f   R_DATA.obj
+ 0002:00033590       _R_FlatNumForName          00457590 f   R_DATA.obj
+ 0002:00033620       _R_CheckTextureNumForName  00457620 f   R_DATA.obj
+ 0002:000336a0       _R_TextureNumForName       004576a0 f   R_DATA.obj
+ 0002:000336f0       _R_PrecacheLevel           004576f0 f   R_DATA.obj
+ 0002:00033b70       _R_AddPointToBox           00457b70 f   R_MAIN.obj
+ 0002:00033bf0       _R_PointOnSide             00457bf0 f   R_MAIN.obj
+ 0002:00033d80       _R_PointOnSegSide          00457d80 f   R_MAIN.obj
+ 0002:00033ed0       _SlopeDiv                  00457ed0 f   R_MAIN.obj
+ 0002:00033f40       _R_PointToAngle            00457f40 f   R_MAIN.obj
+ 0002:00034140       _R_PointToAngle2           00458140 f   R_MAIN.obj
+ 0002:00034180       _R_PointToDist             00458180 f   R_MAIN.obj
+ 0002:000342e0       _R_InitPointToAngle        004582e0 f   R_MAIN.obj
+ 0002:00034300       _R_InitTables              00458300 f   R_MAIN.obj
+ 0002:00034320       _R_SetViewSize             00458320 f   R_MAIN.obj
+ 0002:00034360       _R_ExecuteSetViewSize      00458360 f   R_MAIN.obj
+ 0002:00034430       _R_InitSkyMap              00458430 f   R_MAIN.obj
+ 0002:00034480       _R_Init                    00458480 f   R_MAIN.obj
+ 0002:00034550       _R_PointInSubsector        00458550 f   R_MAIN.obj
+ 0002:000345f0       _R_SetupFrame              004585f0 f   R_MAIN.obj
+ 0002:00034710       _R_RenderPlayerView        00458710 f   R_MAIN.obj
+ 0002:00034740       _R_InstallSpriteLump       00458740 f   R_THINGS.obj
+ 0002:00034950       _R_InitSpriteDefs          00458950 f   R_THINGS.obj
+ 0002:00034d20       _R_InitSprites             00458d20 f   R_THINGS.obj
+ 0002:00034d80       _SB_Init                   00458d80 f   SB_BAR.obj
+ 0002:00035160       _SB_Ticker                 00459160 f   SB_BAR.obj
+ 0002:00035270       _SB_Drawer                 00459270 f   SB_BAR.obj
+ 0002:00035dc0       _SB_PaletteFlash           00459dc0 f   SB_BAR.obj
+ 0002:00036fd0       _SB_Responder              0045afd0 f   SB_BAR.obj
+ 0002:00037b20       _S_Start                   0045bb20 f   soundst.obj
+ 0002:00037bd0       _S_StartSong               0045bbd0 f   soundst.obj
+ 0002:00037d10       _S_StartSound              0045bd10 f   soundst.obj
+ 0002:00038390       _S_StartSoundAtVolume      0045c390 f   soundst.obj
+ 0002:000385e0       _S_StopSoundID             0045c5e0 f   soundst.obj
+ 0002:000387b0       _S_StopSound               0045c7b0 f   soundst.obj
+ 0002:000388c0       _S_SoundLink               0045c8c0 f   soundst.obj
+ 0002:00038930       _S_PauseSound              0045c930 f   soundst.obj
+ 0002:00038960       _S_ResumeSound             0045c960 f   soundst.obj
+ 0002:00038990       _S_UpdateSounds            0045c990 f   soundst.obj
+ 0002:00038ea0       _S_Init                    0045cea0 f   soundst.obj
+ 0002:00038f20       _S_GetChannelInfo          0045cf20 f   soundst.obj
+ 0002:00039040       _S_SetMaxVolume            0045d040 f   soundst.obj
+ 0002:000390f0       _S_SetMusicVolume          0045d0f0 f   soundst.obj
+ 0002:00039170       _S_ShutDown                0045d170 f   soundst.obj
+ 0002:00039190       _V_DrawPatch               0045d190 f   V_VIDEO.obj
+ 0002:000391b0       _V_DrawFuzzPatch           0045d1b0 f   V_VIDEO.obj
+ 0002:000391d0       _V_DrawShadowedPatch       0045d1d0 f   V_VIDEO.obj
+ 0002:000391f0       _V_DrawRawScreen           0045d1f0 f   V_VIDEO.obj
+ 0002:00039230       _V_Init                    0045d230 f   V_VIDEO.obj
+ 0002:00039260       _filelength                0045d260 f   W_WAD.obj
+ 0002:000392f0       _ExtractFileBase           0045d2f0 f   W_WAD.obj
+ 0002:000393f0       _W_AddFile                 0045d3f0 f   W_WAD.obj
+ 0002:000396d0       _W_InitMultipleFiles       0045d6d0 f   W_WAD.obj
+ 0002:000397b0       _W_InitFile                0045d7b0 f   W_WAD.obj
+ 0002:000397f0       _W_NumLumps                0045d7f0 f   W_WAD.obj
+ 0002:00039810       _W_CheckNumForName         0045d810 f   W_WAD.obj
+ 0002:000398f0       _W_GetNumForName           0045d8f0 f   W_WAD.obj
+ 0002:00039940       _W_LumpLength              0045d940 f   W_WAD.obj
+ 0002:00039990       _W_ReadLump                0045d990 f   W_WAD.obj
+ 0002:00039a60       _W_CacheLumpNum            0045da60 f   W_WAD.obj
+ 0002:00039b70       _W_CacheLumpName           0045db70 f   W_WAD.obj
+ 0002:00039bb0       _Z_ClearZone               0045dbb0 f   Z_ZONE.obj
+ 0002:00039c50       _Z_Init                    0045dc50 f   Z_ZONE.obj
+ 0002:00039d30       _Z_Free                    0045dd30 f   Z_ZONE.obj
+ 0002:00039e90       _Z_Malloc                  0045de90 f   Z_ZONE.obj
+ 0002:0003a0c0       _Z_FreeTags                0045e0c0 f   Z_ZONE.obj
+ 0002:0003a150       _Z_DumpHeap                0045e150 f   Z_ZONE.obj
+ 0002:0003a2a0       _Z_FileDumpHeap            0045e2a0 f   Z_ZONE.obj
+ 0002:0003a3d0       _Z_CheckHeap               0045e3d0 f   Z_ZONE.obj
+ 0002:0003a490       _Z_ChangeTag2              0045e490 f   Z_ZONE.obj
+ 0002:0003a500       _Z_FreeMemory              0045e500 f   Z_ZONE.obj
+ 0002:0003a580       _IR_AddWall                0045e580 f   ds_render.obj
+ 0002:0003bb70       _TransformAndClipSegment   0045fb70 f   ds_render.obj
+ 0002:0003be10       _IR_Subsector              0045fe10 f   ds_render.obj
+ 0002:0003cad0       _IR_RenderSkyWall          00460ad0 f   ds_render.obj
+ 0002:0003cd70       _IR_RenderWalls            00460d70 f   ds_render.obj
+ 0002:0003d260       _IR_RenderSprites          00461260 f   ds_render.obj
+ 0002:0003d710       _IR_RenderPlayerView       00461710 f   ds_render.obj
+ 0002:0003e5e0       _ds_init_textures          004625e0 f   ds_textures.obj
+ 0002:0003e880       _ds_print_blocks           00462880 f   ds_textures.obj
+ 0002:0003e990       _ds_lock_bank              00462990 f   ds_textures.obj
+ 0002:0003e9b0       _ds_unlock_bank            004629b0 f   ds_textures.obj
+ 0002:0003e9d0       _ds_adjust_size            004629d0 f   ds_textures.obj
+ 0002:0003ea70       _ds_find_free_block        00462a70 f   ds_textures.obj
+ 0002:0003eb70       _ds_is_texture_resident    00462b70 f   ds_textures.obj
+ 0002:0003ebe0       _ds_scale_texture          00462be0 f   ds_textures.obj
+ 0002:0003edc0       _ds_block_address          00462dc0 f   ds_textures.obj
+ 0002:0003ee00       _ds_load_block             00462e00 f   ds_textures.obj
+ 0002:0003ee70       _ds_tex_size               00462e70 f   ds_textures.obj
+ 0002:0003ef20       _ds_tex_parameters         00462f20 f   ds_textures.obj
+ 0002:0003ef70       _ds_load_texture           00462f70 f   ds_textures.obj
+ 0002:0003f2f0       _ds_load_map_texture       004632f0 f   ds_textures.obj
+ 0002:0003f630       _ds_load_map_flat          00463630 f   ds_textures.obj
+ 0002:0003f830       _R_DrawColumnInCacheGL     00463830 f   ds_textures.obj
+ 0002:0003f900       _ds_load_sprite            00463900 f   ds_textures.obj
+ 0002:0003fc00       _ds_init_texture           00463c00 f   ds_textures.obj
+ 0002:0003fde0       _ds_init_flat              00463de0 f   ds_textures.obj
+ 0002:0003fe60       _ds_init_sprite            00463e60 f   ds_textures.obj
+ 0002:000400a0       _ds_load_blank_tex         004640a0 f   ds_textures.obj
+ 0002:000401c0       _add_sub_winding           004641c0 f   geometry.obj
+ 0002:00040210       _waitforit2                00464210 f   geometry.obj
+ 0002:00040280       _waitforit                 00464280 f   geometry.obj
+ 0002:000402a0       _add_line                  004642a0 f   geometry.obj
+ 0002:00040320       _add_winding               00464320 f   geometry.obj
+ 0002:000403a0       _normalize_plane           004643a0 f   geometry.obj
+ 0002:000404b0       _faces_front               004644b0 f   geometry.obj
+ 0002:000406d0       _R_PointsOnNode            004646d0 f   geometry.obj
+ 0002:00040a60       _ds_clip_to_subsector      00464a60 f   geometry.obj
+ 0002:00040d80       _ds_gen_floors_r           00464d80 f   geometry.obj
+ 0002:00041000       _ds_base_winding           00465000 f   geometry.obj
+ 0002:00041190       _ds_gen_floors             00465190 f   geometry.obj
+ 0002:00041260       _draw_floors               00465260 f   geometry.obj
+ 0002:000412c0       _draw_lines                004652c0 f   geometry.obj
+ 0002:00041330       _draw_winding_path_r       00465330 f   geometry.obj
+ 0002:00041380       _draw_gen_subs             00465380 f   geometry.obj
+ 0002:00041400       _DS_VERTEX3FV              00465400 f   glMain.obj
+ 0002:00041460       _R_AddLineGL               00465460 f   glMain.obj
+ 0002:000422c0       _R_SubsectorGL             004662c0 f   glMain.obj
+ 0002:00042650       _R_RenderBSPNodeGL         00466650 f   glMain.obj
+ 0002:00042710       _R_RenderBSPGL             00466710 f   glMain.obj
+ 0002:00042760       _R_SetupFrameGL            00466760 f   glMain.obj
+ 0002:00042a10       _R_EndFrameGL              00466a10 f   glMain.obj
+ 0002:00042a30       _R_RenderView              00466a30 f   glMain.obj
+ 0002:00042b00       _draw_sub                  00466b00 f   glMain.obj
+ 0002:00042c80       _draw_winding              00466c80 f   glMain.obj
+ 0002:00042e90       _draw_line                 00466e90 f   glMain.obj
+ 0002:00042f90       ?MapKey@@YAHH@Z            00466f90 f   glview.obj
+ 0002:00042fd0       ?IN_MouseEvent@@YAXH@Z     00466fd0 f   glview.obj
+ 0002:000430a0       ?WndProcGL@@YGJPAUHWND__@@IIJ@Z 004670a0 f   glview.obj
+ 0002:00043440       _initDisplay               00467440 f   glview.obj
+ 0002:000436b0       _frameBegin                004676b0 f   glview.obj
+ 0002:000436f0       _glRotateX                 004676f0 f   glview.obj
+ 0002:00043730       _glRotateY                 00467730 f   glview.obj
+ 0002:00043770       _glRotateZ                 00467770 f   glview.obj
+ 0002:000437b0       _glTranslate3f32           004677b0 f   glview.obj
+ 0002:000437f0       _DS_COLOR                  004677f0 f   glview.obj
+ 0002:000438a0       _DS_NORMAL                 004678a0 f   glview.obj
+ 0002:00043940       _DS_TEXCOORD2T16           00467940 f   glview.obj
+ 0002:00043990       _aDS_VERTEX3V16            00467990 f   glview.obj
+ 0002:00043a00       _frameEnd                  00467a00 f   glview.obj
+ 0002:00043a30       _ds_get_window_pos         00467a30 f   glview.obj
+ 0002:00043a60       _Key_Event                 00467a60 f   glview.obj
+ 0002:00043a80       ??0CGLWindow@@QAE@XZ       00467a80 f   GLWindow.obj
+ 0002:00043b30       ??_ECGLWindow@@UAEPAXI@Z   00467b30 f i GLWindow.obj
+ 0002:00043b30       ??_GCGLWindow@@UAEPAXI@Z   00467b30 f i GLWindow.obj
+ 0002:00043b80       ?Link@CGLWindow@@QAEHPAUHWND__@@@Z 00467b80 f   GLWindow.obj
+ 0002:00043c10       ??1CGLWindow@@UAE@XZ       00467c10 f   GLWindow.obj
+ 0002:00043c40       ?ShutDown@CGLWindow@@QAEHXZ 00467c40 f   GLWindow.obj
+ 0002:00043cc0       ?Push2D@CGLWindow@@QAEXXZ  00467cc0 f   GLWindow.obj
+ 0002:00043d50       ?Pop2D@CGLWindow@@QAEXXZ   00467d50 f   GLWindow.obj
+ 0002:00043da0       ?Size@CGLWindow@@QAEHHHHH@Z 00467da0 f   GLWindow.obj
+ 0002:00043e60       ?SetFormat@CGLWindow@@QAEHHHHH@Z 00467e60 f   GLWindow.obj
+ 0002:00044160       ?SwapBuffers@CGLWindow@@QAEHXZ 00468160 f   GLWindow.obj
+ 0002:00044190       ?GetPos@CGLWindow@@QAEXPAUtagRECT@@@Z 00468190 f   GLWindow.obj
+ 0002:00044200       _AllocWinding              00468200 f   polylib.obj
+ 0002:00044260       _CopyWinding               00468260 f   polylib.obj
+ 0002:00044300       _VertexSubtract            00468300 f   polylib.obj
+ 0002:00044330       _VertexAdd                 00468330 f   polylib.obj
+ 0002:00044360       _VertexCopy                00468360 f   polylib.obj
+ 0002:00044390       _BaseWinding               00468390 f   polylib.obj
+ 0002:00044430       _ClipWinding2              00468430 f   polylib.obj
+ 0002:00044d90       _ClipWinding               00468d90 f   polylib.obj
+ 0002:000453e0       _ChopWinding               004693e0 f   polylib.obj
+ 0002:00045440       _glEnd@0                   00469440 f   opengl32:OPENGL32.dll
+ 0002:00045446       _glVertex3fv@4             00469446 f   opengl32:OPENGL32.dll
+ 0002:0004544c       _glTexCoord2fv@4           0046944c f   opengl32:OPENGL32.dll
+ 0002:00045452       _glColor3ubv@4             00469452 f   opengl32:OPENGL32.dll
+ 0002:00045458       _glBegin@4                 00469458 f   opengl32:OPENGL32.dll
+ 0002:0004545e       _glDisable@4               0046945e f   opengl32:OPENGL32.dll
+ 0002:00045464       _glVertex3f@12             00469464 f   opengl32:OPENGL32.dll
+ 0002:0004546a       _glTexCoord2f@8            0046946a f   opengl32:OPENGL32.dll
+ 0002:00045470       _glColor4f@16              00469470 f   opengl32:OPENGL32.dll
+ 0002:00045476       _glAlphaFunc@8             00469476 f   opengl32:OPENGL32.dll
+ 0002:0004547c       _glEnable@4                0046947c f   opengl32:OPENGL32.dll
+ 0002:00045482       _glBlendFunc@8             00469482 f   opengl32:OPENGL32.dll
+ 0002:00045488       _glColor3ub@12             00469488 f   opengl32:OPENGL32.dll
+ 0002:0004548e       _glPopMatrix@0             0046948e f   opengl32:OPENGL32.dll
+ 0002:00045494       _glPushMatrix@0            00469494 f   opengl32:OPENGL32.dll
+ 0002:0004549a       _glGetIntegerv@8           0046949a f   opengl32:OPENGL32.dll
+ 0002:000454a0       _glGetDoublev@8            004694a0 f   opengl32:OPENGL32.dll
+ 0002:000454a6       _glGetFloatv@8             004694a6 f   opengl32:OPENGL32.dll
+ 0002:000454ac       _glTranslatef@12           004694ac f   opengl32:OPENGL32.dll
+ 0002:000454b2       _glLoadIdentity@0          004694b2 f   opengl32:OPENGL32.dll
+ 0002:000454b8       _glMatrixMode@4            004694b8 f   opengl32:OPENGL32.dll
+ 0002:000454be       _glShadeModel@4            004694be f   opengl32:OPENGL32.dll
+ 0002:000454c4       _glViewport@16             004694c4 f   opengl32:OPENGL32.dll
+ 0002:000454ca       _glMultMatrixf@4           004694ca f   opengl32:OPENGL32.dll
+ 0002:000454d0       _glTexParameterf@12        004694d0 f   opengl32:OPENGL32.dll
+ 0002:000454d6       _glTexImage2D@36           004694d6 f   opengl32:OPENGL32.dll
+ 0002:000454dc       _glBindTexture@8           004694dc f   opengl32:OPENGL32.dll
+ 0002:000454e2       _glGenTextures@8           004694e2 f   opengl32:OPENGL32.dll
+ 0002:000454e8       _glRotatef@16              004694e8 f   opengl32:OPENGL32.dll
+ 0002:000454ee       _glFrustum@48              004694ee f   opengl32:OPENGL32.dll
+ 0002:000454f4       _glPolygonMode@8           004694f4 f   opengl32:OPENGL32.dll
+ 0002:000454fa       _glColor3f@12              004694fa f   opengl32:OPENGL32.dll
+ 0002:00045500       _wglGetProcAddress@4       00469500 f   opengl32:OPENGL32.dll
+ 0002:00045506       _glColor3b@12              00469506 f   opengl32:OPENGL32.dll
+ 0002:0004550c       _glClear@4                 0046950c f   opengl32:OPENGL32.dll
+ 0002:00045512       _glNormal3f@12             00469512 f   opengl32:OPENGL32.dll
+ 0002:00045518       _wglDeleteContext@4        00469518 f   opengl32:OPENGL32.dll
+ 0002:0004551e       _wglMakeCurrent@8          0046951e f   opengl32:OPENGL32.dll
+ 0002:00045524       _glFinish@0                00469524 f   opengl32:OPENGL32.dll
+ 0002:0004552a       _wglGetCurrentContext@0    0046952a f   opengl32:OPENGL32.dll
+ 0002:00045530       _glClearColor@16           00469530 f   opengl32:OPENGL32.dll
+ 0002:00045536       _glDepthFunc@4             00469536 f   opengl32:OPENGL32.dll
+ 0002:0004553c       _wglCreateContext@4        0046953c f   opengl32:OPENGL32.dll
+ 0002:00045542       _gluPerspective@32         00469542 f   glu32:GLU32.dll
+ 0002:00045548       _gluOrtho2D@32             00469548 f   glu32:GLU32.dll
+ 0002:0004554e       _GetTickCount@0            0046954e f   kernel32:KERNEL32.dll
+ 0002:00045554       _GetModuleHandleA@4        00469554 f   kernel32:KERNEL32.dll
+ 0002:0004555a       _DispatchMessageA@4        0046955a f   user32:USER32.dll
+ 0002:00045560       _TranslateMessage@4        00469560 f   user32:USER32.dll
+ 0002:00045566       _GetMessageA@16            00469566 f   user32:USER32.dll
+ 0002:0004556c       _PeekMessageA@20           0046956c f   user32:USER32.dll
+ 0002:00045572       _GetKeyState@4             00469572 f   user32:USER32.dll
+ 0002:00045578       _GetWindowRect@8           00469578 f   user32:USER32.dll
+ 0002:0004557e       _DefWindowProcA@16         0046957e f   user32:USER32.dll
+ 0002:00045584       _PostQuitMessage@4         00469584 f   user32:USER32.dll
+ 0002:0004558a       _UpdateWindow@4            0046958a f   user32:USER32.dll
+ 0002:00045590       _ShowWindow@8              00469590 f   user32:USER32.dll
+ 0002:00045596       _CreateWindowExA@48        00469596 f   user32:USER32.dll
+ 0002:0004559c       _RegisterClassExA@4        0046959c f   user32:USER32.dll
+ 0002:000455a2       _LoadCursorA@8             004695a2 f   user32:USER32.dll
+ 0002:000455a8       _LoadIconA@8               004695a8 f   user32:USER32.dll
+ 0002:000455ae       _ReleaseDC@8               004695ae f   user32:USER32.dll
+ 0002:000455b4       _GetDC@4                   004695b4 f   user32:USER32.dll
+ 0002:000455ba       _GetStockObject@4          004695ba f   gdi32:GDI32.dll
+ 0002:000455c0       _SetPixelFormat@12         004695c0 f   gdi32:GDI32.dll
+ 0002:000455c6       _ChoosePixelFormat@8       004695c6 f   gdi32:GDI32.dll
+ 0002:000455cc       _SwapBuffers@4             004695cc f   gdi32:GDI32.dll
+ 0002:000455d2       _abs                       004695d2 f   MSVCRT:MSVCR100.dll
+ 0002:000455d8       _memset                    004695d8 f   MSVCRT:MSVCR100.dll
+ 0002:000455de       _memcpy                    004695de f   MSVCRT:MSVCR100.dll
+ 0002:000455e4       _fprintf                   004695e4 f   MSVCRT:MSVCR100.dll
+ 0002:000455ea       ___iob_func                004695ea f   MSVCRT:MSVCR100.dll
+ 0002:000455f0       @__security_check_cookie@4 004695f0 f   MSVCRT:secchk.obj
+ 0002:00045602       _toupper                   00469602 f   MSVCRT:MSVCR100.dll
+ 0002:00045608       _strcat                    00469608 f   MSVCRT:MSVCR100.dll
+ 0002:0004560e       _strcpy                    0046960e f   MSVCRT:MSVCR100.dll
+ 0002:00045614       _fopen                     00469614 f   MSVCRT:MSVCR100.dll
+ 0002:0004561a       _sprintf                   0046961a f   MSVCRT:MSVCR100.dll
+ 0002:00045620       _malloc                    00469620 f   MSVCRT:MSVCR100.dll
+ 0002:00045626       _strlen                    00469626 f   MSVCRT:MSVCR100.dll
+ 0002:0004562c       _printf                    0046962c f   MSVCRT:MSVCR100.dll
+ 0002:00045632       _fclose                    00469632 f   MSVCRT:MSVCR100.dll
+ 0002:00045638       _setbuf                    00469638 f   MSVCRT:MSVCR100.dll
+ 0002:0004563e       _strcmp                    0046963e f   MSVCRT:MSVCR100.dll
+ 0002:00045644       _fwrite                    00469644 f   MSVCRT:MSVCR100.dll
+ 0002:00045650       __ftol2_sse                00469650 f   MSVCRT:ftol2.obj
+ 0002:00045659       __ftol2_pentium4           00469659 f   MSVCRT:ftol2.obj
+ 0002:0004566c       __ftol2_sse_excpt          0046966c f   MSVCRT:ftol2.obj
+ 0002:00045686       __ftol2                    00469686 f   MSVCRT:ftol2.obj
+ 0002:00045726       _exit                      00469726 f   MSVCRT:MSVCR100.dll
+ 0002:0004572c       _vprintf                   0046972c f   MSVCRT:MSVCR100.dll
+ 0002:00045732       __fstat64i32               00469732 f   MSVCRT:MSVCR100.dll
+ 0002:00045738       _fread                     00469738 f   MSVCRT:MSVCR100.dll
+ 0002:0004573e       _ftell                     0046973e f   MSVCRT:MSVCR100.dll
+ 0002:00045744       _fseek                     00469744 f   MSVCRT:MSVCR100.dll
+ 0002:0004574a       _sscanf                    0046974a f   MSVCRT:MSVCR100.dll
+ 0002:00045750       _fscanf                    00469750 f   MSVCRT:MSVCR100.dll
+ 0002:00045756       _feof                      00469756 f   MSVCRT:MSVCR100.dll
+ 0002:0004575c       _sqrt                      0046975c f   MSVCRT:MSVCR100.dll
+ 0002:00045762       _atoi                      00469762 f   MSVCRT:MSVCR100.dll
+ 0002:00045768       _free                      00469768 f   MSVCRT:MSVCR100.dll
+ 0002:0004576e       _calloc                    0046976e f   MSVCRT:MSVCR100.dll
+ 0002:00045780       __alldiv                   00469780 f   MSVCRT:lldiv.obj
+ 0002:00045860       __allmul                   00469860 f   MSVCRT:llmul.obj
+ 0002:000458a2       _strncpy                   004698a2 f   MSVCRT:MSVCR100.dll
+ 0002:000458a8       __strnicmp                 004698a8 f   MSVCRT:MSVCR100.dll
+ 0002:000458ae       _realloc                   004698ae f   MSVCRT:MSVCR100.dll
+ 0002:000458b4       _strncmp                   004698b4 f   MSVCRT:MSVCR100.dll
+ 0002:000458ba       _fabs                      004698ba f   MSVCRT:MSVCR100.dll
+ 0002:000458c0       _memchr                    004698c0 f   MSVCRT:MSVCR100.dll
+ 0002:000458c6       _ceil                      004698c6 f   MSVCRT:MSVCR100.dll
+ 0002:000458cc       _floor                     004698cc f   MSVCRT:MSVCR100.dll
+ 0002:000458e0       __allshr                   004698e0 f   MSVCRT:llshr.obj
+ 0002:0004590a       _qsort                     0046990a f   MSVCRT:MSVCR100.dll
+ 0002:00045910       __alloca_probe_16          00469910 f   MSVCRT:alloca16.obj
+ 0002:00045926       __alloca_probe_8           00469926     MSVCRT:alloca16.obj
+ 0002:00045948       _cos                       00469948 f   MSVCRT:MSVCR100.dll
+ 0002:0004594e       _sin                       0046994e f   MSVCRT:MSVCR100.dll
+ 0002:00045954       _tan                       00469954 f   MSVCRT:MSVCR100.dll
+ 0002:00045960       __alloca_probe             00469960     MSVCRT:chkstk.obj
+ 0002:00045960       __chkstk                   00469960 f   MSVCRT:chkstk.obj
+ 0002:000459a0       __allshl                   004699a0 f   MSVCRT:llshl.obj
+ 0002:000459c6       __onexit                   004699c6 f   MSVCRT:atonexit.obj
+ 0002:00045a8f       _atexit                    00469a8f f   MSVCRT:atonexit.obj
+ 0002:00045aab       ??0type_info@@AAE@ABV0@@Z  00469aab f   MSVCRT:ti_inst.obj
+ 0002:00045ab8       ??_Etype_info@@UAEPAXI@Z   00469ab8 f i MSVCRT:ti_inst.obj
+ 0002:00045b17       ??4type_info@@AAEAAV0@ABV0@@Z 00469b17 f   MSVCRT:ti_inst.obj
+ 0002:00045b1c       ??3@YAXPAX@Z               00469b1c f   MSVCRT:MSVCR100.dll
+ 0002:00045b22       _NtCurrentTeb              00469b22 f i MSVCRT:crtexe.obj
+ 0002:00045eb1       _mainCRTStartup            00469eb1 f   MSVCRT:crtexe.obj
+ 0002:00045ebd       ___report_gsfailure        00469ebd f   MSVCRT:gs_report.obj
+ 0002:00046004       ___sse2_available_init     0046a004 f   MSVCRT:cpu_disp.obj
+ 0002:00046018       __unlock                   0046a018 f   MSVCRT:MSVCR100.dll
+ 0002:0004601e       ___dllonexit               0046a01e f   MSVCRT:MSVCR100.dll
+ 0002:00046024       __lock                     0046a024 f   MSVCRT:MSVCR100.dll
+ 0002:00046030       __SEH_prolog4              0046a030 f   MSVCRT:sehprolg4.obj
+ 0002:00046075       __SEH_epilog4              0046a075 f   MSVCRT:sehprolg4.obj
+ 0002:0004609f       __except_handler4          0046a09f f   MSVCRT:chandler4gs.obj
+ 0002:000460e3       ?__ArrayUnwind@@YGXPAXIHP6EX0@Z@Z 0046a0e3 f   MSVCRT:ehvecdtr.obj
+ 0002:00046158       ??_M@YGXPAXIHP6EX0@Z@Z     0046a158 f   MSVCRT:ehvecdtr.obj
+ 0002:000461d3       ?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z 0046a1d3 f   MSVCRT:unhandld.obj
+ 0002:00046225       ___CxxSetUnhandledExceptionFilter 0046a225 f   MSVCRT:unhandld.obj
+ 0002:00046236       __amsg_exit                0046a236 f   MSVCRT:MSVCR100.dll
+ 0002:0004623c       ___getmainargs             0046a23c f   MSVCRT:MSVCR100.dll
+ 0002:00046242       __RTC_Initialize           0046a242 f   MSVCRT:_initsect_.obj
+ 0002:00046271       __RTC_Terminate            0046a271 f   MSVCRT:_initsect_.obj
+ 0002:000462a0       __cexit                    0046a2a0 f   MSVCRT:MSVCR100.dll
+ 0002:000462a6       __exit                     0046a2a6 f   MSVCRT:MSVCR100.dll
+ 0002:000462ac       __XcptFilter               0046a2ac f   MSVCRT:MSVCR100.dll
+ 0002:000462c0       __ValidateImageBase        0046a2c0 f   MSVCRT:pesect.obj
+ 0002:00046310       __FindPESection            0046a310 f   MSVCRT:pesect.obj
+ 0002:00046370       __IsNonwritableInCurrentImage 0046a370 f   MSVCRT:pesect.obj
+ 0002:0004645c       __initterm                 0046a45c f   MSVCRT:MSVCR100.dll
+ 0002:00046462       __initterm_e               0046a462 f   MSVCRT:MSVCR100.dll
+ 0002:00046468       __configthreadlocale       0046a468 f   MSVCRT:MSVCR100.dll
+ 0002:0004646e       __invoke_watson_if_error   0046a46e f i MSVCRT:fp8.obj
+ 0002:00046497       __setdefaultprecision      0046a497 f   MSVCRT:fp8.obj
+ 0002:000464ca       ___setusermatherr          0046a4ca f   MSVCRT:MSVCR100.dll
+ 0002:000464d0       __matherr                  0046a4d0 f   MSVCRT:merr.obj
+ 0002:000464d3       __setargv                  0046a4d3 f   MSVCRT:dllargv.obj
+ 0002:000464d6       ___set_app_type            0046a4d6 f   MSVCRT:MSVCR100.dll
+ 0002:000464dc       ___security_init_cookie    0046a4dc f   MSVCRT:gs_support.obj
+ 0002:0004659e       __crt_debugger_hook        0046a59e f   MSVCRT:MSVCR100.dll
+ 0002:000465a4       __except_handler4_common   0046a5a4 f   MSVCRT:MSVCR100.dll
+ 0002:000465aa       ?terminate@@YAXXZ          0046a5aa f   MSVCRT:MSVCR100.dll
+ 0002:000465b0       ?_type_info_dtor_internal_method@type_info@@QAEXXZ 0046a5b0 f   MSVCRT:MSVCR100.dll
+ 0002:000465b0       ??1type_info@@UAE@XZ       0046a5b0 f   MSVCRT:MSVCR100.dll
+ 0002:000465b6       __invoke_watson            0046a5b6 f   MSVCRT:MSVCR100.dll
+ 0002:000465bc       __controlfp_s              0046a5bc f   MSVCRT:MSVCR100.dll
+ 0002:000465c2       _EncodePointer@4           0046a5c2 f   kernel32:KERNEL32.dll
+ 0002:000465c8       _DecodePointer@4           0046a5c8 f   kernel32:KERNEL32.dll
+ 0002:000465ce       _InterlockedExchange@8     0046a5ce f   kernel32:KERNEL32.dll
+ 0002:000465d4       _Sleep@4                   0046a5d4 f   kernel32:KERNEL32.dll
+ 0002:000465da       _InterlockedCompareExchange@12 0046a5da f   kernel32:KERNEL32.dll
+ 0002:000465e0       _HeapSetInformation@16     0046a5e0 f   kernel32:KERNEL32.dll
+ 0002:000465e6       _TerminateProcess@8        0046a5e6 f   kernel32:KERNEL32.dll
+ 0002:000465ec       _GetCurrentProcess@0       0046a5ec f   kernel32:KERNEL32.dll
+ 0002:000465f2       _UnhandledExceptionFilter@4 0046a5f2 f   kernel32:KERNEL32.dll
+ 0002:000465f8       _SetUnhandledExceptionFilter@4 0046a5f8 f   kernel32:KERNEL32.dll
+ 0002:000465fe       _IsDebuggerPresent@0       0046a5fe f   kernel32:KERNEL32.dll
+ 0002:00046604       _IsProcessorFeaturePresent@4 0046a604 f   kernel32:KERNEL32.dll
+ 0002:0004660a       _QueryPerformanceCounter@4 0046a60a f   kernel32:KERNEL32.dll
+ 0002:00046610       _GetCurrentThreadId@0      0046a610 f   kernel32:KERNEL32.dll
+ 0002:00046616       _GetCurrentProcessId@0     0046a616 f   kernel32:KERNEL32.dll
+ 0002:0004661c       _GetSystemTimeAsFileTime@4 0046a61c f   kernel32:KERNEL32.dll
+ 0002:00046622       __stricmp                  0046a622 f   MSVCRT:MSVCR100.dll
+ 0002:00046628       _close                     0046a628 f   MSVCRT:MSVCR100.dll
+ 0002:00046628       __close                    0046a628 f   MSVCRT:MSVCR100.dll
+ 0002:0004662e       __write                    0046a62e f   MSVCRT:MSVCR100.dll
+ 0002:0004662e       _write                     0046a62e f   MSVCRT:MSVCR100.dll
+ 0002:00046634       _open                      0046a634 f   MSVCRT:MSVCR100.dll
+ 0002:00046634       __open                     0046a634 f   MSVCRT:MSVCR100.dll
+ 0002:0004663a       _read                      0046a63a f   MSVCRT:MSVCR100.dll
+ 0002:0004663a       __read                     0046a63a f   MSVCRT:MSVCR100.dll
+ 0002:00046640       _access                    0046a640 f   MSVCRT:MSVCR100.dll
+ 0002:00046640       __access                   0046a640 f   MSVCRT:MSVCR100.dll
+ 0002:00046646       _lseek                     0046a646 f   MSVCRT:MSVCR100.dll
+ 0002:00046646       __lseek                    0046a646 f   MSVCRT:MSVCR100.dll
+ 0002:0004664c       __strupr                   0046a64c f   MSVCRT:MSVCR100.dll
+ 0003:00000000       ___xc_a                    0046e000     MSVCRT:cinitexe.obj
+ 0003:0000030c       ___xc_z                    0046e30c     MSVCRT:cinitexe.obj
+ 0003:00000410       ___xi_a                    0046e410     MSVCRT:cinitexe.obj
+ 0003:00000820       ___xi_z                    0046e820     MSVCRT:cinitexe.obj
+ 0003:0000094c       ??_C@_0BJ@JHCHEMAM@E5M9?3?5?5SKEIN?5OF?5D?8SPARIL?$AA@ 0046e94c     AM_MAP.obj
+ 0003:0000096c       ??_C@_0BK@FNCHAMNB@E5M8?3?5?5FIELD?5OF?5JUDGEMENT?$AA@ 0046e96c     AM_MAP.obj
+ 0003:0000098c       ??_C@_0BE@ODBGNMEC@E5M7?3?5?5FOETID?5MANSE?$AA@ 0046e98c     AM_MAP.obj
+ 0003:000009a4       ??_C@_0BB@GBKAEION@E5M6?3?5?5COLONNADE?$AA@ 0046e9a4     AM_MAP.obj
+ 0003:000009b8       ??_C@_0BA@HHLEHJGJ@E5M5?3?5?5HYDRATYR?$AA@ 0046e9b8     AM_MAP.obj
+ 0003:000009cc       ??_C@_0BB@JEAONPKC@E5M4?3?5?5COURTYARD?$AA@ 0046e9cc     AM_MAP.obj
+ 0003:000009e0       ??_C@_0M@DGLCAFDH@E5M3?3?5?5QUAY?$AA@ 0046e9e0     AM_MAP.obj
+ 0003:000009f0       ??_C@_0O@GDNACFPP@E5M2?3?5?5RAPIDS?$AA@ 0046e9f0     AM_MAP.obj
+ 0003:00000a00       ??_C@_0BE@DABBHOIJ@E5M1?3?5?5OCHRE?5CLIFFS?$AA@ 0046ea00     AM_MAP.obj
+ 0003:00000a18       ??_C@_0BB@GHBOAOMM@E4M9?3?5?5MAUSOLEUM?$AA@ 0046ea18     AM_MAP.obj
+ 0003:00000a2c       ??_C@_0BI@OHNMHBCP@E4M8?3?5?5SHATTERED?5BRIDGE?$AA@ 0046ea2c     AM_MAP.obj
+ 0003:00000a48       ??_C@_0BN@IGCLHMJI@E4M7?3?5?5RAMPARTS?5OF?5PERDITION?$AA@ 0046ea48     AM_MAP.obj
+ 0003:00000a6c       ??_C@_0BN@HNFNNJGL@E4M6?3?5?5HALLS?5OF?5THE?5APOSTATE?$AA@ 0046ea6c     AM_MAP.obj
+ 0003:00000a90       ??_C@_0BD@GHFGFFNM@E4M5?3?5?5GREAT?5STAIR?$AA@ 0046ea90     AM_MAP.obj
+ 0003:00000aa8       ??_C@_0BB@LIINDFNC@E4M4?3?5?5SEPULCHER?$AA@ 0046eaa8     AM_MAP.obj
+ 0003:00000abc       ??_C@_0BC@HIADLLCP@E4M3?3?5?5AMBULATORY?$AA@ 0046eabc     AM_MAP.obj
+ 0003:00000ad4       ??_C@_0BC@NBMKPLEH@E4M2?3?5?5BLOCKHOUSE?$AA@ 0046ead4     AM_MAP.obj
+ 0003:00000aec       ??_C@_0BC@BCOALPKC@E4M1?3?5?5CATAFALQUE?$AA@ 0046eaec     AM_MAP.obj
+ 0003:00000b04       ??_C@_0BD@PJDNCPPH@E3M9?3?5?5THE?5AQUIFER?$AA@ 0046eb04     AM_MAP.obj
+ 0003:00000b1c       ??_C@_0BH@MIBKJBCG@E3M8?3?5?5D?8SPARIL?8S?5KEEP?$AA@ 0046eb1c     AM_MAP.obj
+ 0003:00000b38       ??_C@_0BB@IOPCMJID@E3M7?3?5?5THE?5CHASM?$AA@ 0046eb38     AM_MAP.obj
+ 0003:00000b4c       ??_C@_0BJ@EHGJPBKN@E3M6?3?5?5THE?5HALLS?5OF?5FEAR?$AA@ 0046eb4c     AM_MAP.obj
+ 0003:00000b6c       ??_C@_0BJ@NIAKDBDK@E3M5?3?5?5THE?5OPHIDIAN?5LAIR?$AA@ 0046eb6c     AM_MAP.obj
+ 0003:00000b8c       ??_C@_0BK@MBEFJOHM@E3M4?3?5?5THE?5AZURE?5FORTRESS?$AA@ 0046eb8c     AM_MAP.obj
+ 0003:00000bac       ??_C@_0BG@OACLHNKO@E3M3?3?5?5THE?5CONFLUENCE?$AA@ 0046ebac     AM_MAP.obj
+ 0003:00000bc8       ??_C@_0BE@EJBPPPHG@E3M2?3?5?5THE?5CESSPOOL?$AA@ 0046ebc8     AM_MAP.obj
+ 0003:00000be0       ??_C@_0BG@PBPDNBMA@E3M1?3?5?5THE?5STOREHOUSE?$AA@ 0046ebe0     AM_MAP.obj
+ 0003:00000bfc       ??_C@_0BD@FMJNCFOF@E2M9?3?5?5THE?5GLACIER?$AA@ 0046ebfc     AM_MAP.obj
+ 0003:00000c14       ??_C@_0BM@JJCOEOAC@E2M8?3?5?5THE?5PORTALS?5OF?5CHAOS?$AA@ 0046ec14     AM_MAP.obj
+ 0003:00000c38       ??_C@_0BG@JDDHLIE@E2M7?3?5?5THE?5GREAT?5HALL?$AA@ 0046ec38     AM_MAP.obj
+ 0003:00000c54       ??_C@_0BF@DPMHEHMH@E2M6?3?5?5THE?5LABYRINTH?$AA@ 0046ec54     AM_MAP.obj
+ 0003:00000c70       ??_C@_0BF@COENLEAF@E2M5?3?5?5THE?5CATACOMBS?$AA@ 0046ec70     AM_MAP.obj
+ 0003:00000c8c       ??_C@_0BG@NABNGMPH@E2M4?3?5?5THE?5ICE?5GROTTO?$AA@ 0046ec8c     AM_MAP.obj
+ 0003:00000ca8       ??_C@_0BJ@EANGCAPB@E2M3?3?5?5THE?5RIVER?5OF?5FIRE?$AA@ 0046eca8     AM_MAP.obj
+ 0003:00000cc8       ??_C@_0BF@IHFENHKD@E2M2?3?5?5THE?5LAVA?5PITS?$AA@ 0046ecc8     AM_MAP.obj
+ 0003:00000ce4       ??_C@_0BC@GIGHEIMI@E2M1?3?5?5THE?5CRATER?$AA@ 0046ece4     AM_MAP.obj
+ 0003:00000cfc       ??_C@_0BF@PNBDNKGF@E1M9?3?5?5THE?5GRAVEYARD?$AA@ 0046ecfc     AM_MAP.obj
+ 0003:00000d18       ??_C@_0BC@HAOCHLBC@E1M8?3?5?5HELL?8S?5MAW?$AA@ 0046ed18     AM_MAP.obj
+ 0003:00000d30       ??_C@_0BC@MCAKHEKM@E1M7?3?5?5THE?5CRYPTS?$AA@ 0046ed30     AM_MAP.obj
+ 0003:00000d48       ??_C@_0BF@JIBFEEHM@E1M6?3?5?5THE?5CATHEDRAL?$AA@ 0046ed48     AM_MAP.obj
+ 0003:00000d64       ??_C@_0BD@MILLCNFI@E1M5?3?5?5THE?5CITADEL?$AA@ 0046ed64     AM_MAP.obj
+ 0003:00000d7c       ??_C@_0BH@HOELMGOI@E1M4?3?5?5THE?5GUARD?5TOWER?$AA@ 0046ed7c     AM_MAP.obj
+ 0003:00000d98       ??_C@_0BF@IMCKDCAA@E1M3?3?5?5THE?5GATEHOUSE?$AA@ 0046ed98     AM_MAP.obj
+ 0003:00000db4       ??_C@_0BE@NPKHGELN@E1M2?3?5?5THE?5DUNGEONS?$AA@ 0046edb4     AM_MAP.obj
+ 0003:00000dcc       ??_C@_0BB@DCMIEOGC@E1M1?3?5?5THE?5DOCKS?$AA@ 0046edcc     AM_MAP.obj
+ 0003:00000de0       ??_C@_08HCNKEDM@AUTOPAGE?$AA@ 0046ede0     AM_MAP.obj
+ 0003:00000dec       ??_C@_0BA@LPLOBE@FOLLOW?5MODE?5OFF?$AA@ 0046edec     AM_MAP.obj
+ 0003:00000e00       ??_C@_0P@OINIHKKN@FOLLOW?5MODE?5ON?$AA@ 0046ee00     AM_MAP.obj
+ 0003:00000e14       ??_C@_09JKEHCHNI@fuck?5?$CFd?5?$AN?$AA@ 0046ee14     AM_MAP.obj
+ 0003:00000e20       ??_C@_07IMMBMOPB@BLUE?3?5?5?$AA@ 0046ee20     CT_CHAT.obj
+ 0003:00000e2c       ??_C@_06BGGAMHMO@RED?3?5?5?$AA@ 0046ee2c     CT_CHAT.obj
+ 0003:00000e34       ??_C@_09HGIKGFAJ@YELLOW?3?5?5?$AA@ 0046ee34     CT_CHAT.obj
+ 0003:00000e40       ??_C@_08CIDMCMIK@GREEN?3?5?5?$AA@ 0046ee40     CT_CHAT.obj
+ 0003:00000e4c       ??_C@_07OKHDLEDJ@FONTA_S?$AA@ 0046ee4c     CT_CHAT.obj
+ 0003:00000e58       ??_C@_0CI@LIPGKNBP@THERE?5ARE?5NO?5OTHER?5PLAYERS?5IN?5TH@ 0046ee58     CT_CHAT.obj
+ 0003:00000e88       ??_C@_0P@OPKJIPOJ@?9MESSAGE?5SENT?9?$AA@ 0046ee88     CT_CHAT.obj
+ 0003:00000e9c       ??_C@_07DACBHJOC@FONTA59?$AA@ 0046ee9c     CT_CHAT.obj
+ 0003:00000ea8       ??_C@_0M@OGGPOAIA@heretic?4cfg?$AA@ 0046eea8     D_MAIN.obj
+ 0003:00000eb8       ??_C@_0L@JBILOMNI@pnames?4lmp?$AA@ 0046eeb8     D_MAIN.obj
+ 0003:00000ec8       ??_C@_0N@CFDIAPOL@texture2?4lmp?$AA@ 0046eec8     D_MAIN.obj
+ 0003:00000ed8       ??_C@_0N@KDKMHNEF@texture1?4lmp?$AA@ 0046eed8     D_MAIN.obj
+ 0003:00000ee8       ??_C@_0M@BHHGGFAO@heretic?4wad?$AA@ 0046eee8     D_MAIN.obj
+ 0003:00000ef8       ??_C@_06EOENDFCC@PAUSED?$AA@ 0046eef8     D_MAIN.obj
+ 0003:00000f00       ??_C@_01NOFIACDB@w?$AA@    0046ef00     D_MAIN.obj
+ 0003:00000f04       ??_C@_0M@CJGMEPF@debug?$CFi?4txt?$AA@ 0046ef04     D_MAIN.obj
+ 0003:00000f14       ??_C@_0L@CHPMBMEI@?9debugfile?$AA@ 0046ef14     D_MAIN.obj
+ 0003:00000f24       ??_C@_07GKGJDHDK@ADVISOR?$AA@ 0046ef24     D_MAIN.obj
+ 0003:00000f30       ??_C@_05PCCGCNNO@demo3?$AA@ 0046ef30     D_MAIN.obj
+ 0003:00000f38       ??_C@_05BIEKMFNJ@ORDER?$AA@ 0046ef38     D_MAIN.obj
+ 0003:00000f40       ??_C@_05OLDNBMJP@demo2?$AA@ 0046ef40     D_MAIN.obj
+ 0003:00000f48       ??_C@_06HDMPNANF@CREDIT?$AA@ 0046ef48     D_MAIN.obj
+ 0003:00000f50       ??_C@_05MABAEPFM@demo1?$AA@ 0046ef50     D_MAIN.obj
+ 0003:00000f58       ??_C@_05DMCAHJJE@TITLE?$AA@ 0046ef58     D_MAIN.obj
+ 0003:00000f60       ??_C@_0O@EEJEJKNB@hticsav?$CFc?4hsg?$AA@ 0046ef60     D_MAIN.obj
+ 0003:00000f70       ??_C@_0BM@DCJPAHPN@c?3?2heretic?4cd?2hticsav?$CFc?4hsg?$AA@ 0046ef70     D_MAIN.obj
+ 0003:00000f94       ??_C@_0M@FDBPDHLF@?9recordfrom?$AA@ 0046ef94     D_MAIN.obj
+ 0003:00000fa4       ??_C@_01IHBHIGKO@?0?$AA@   0046efa4     D_MAIN.obj
+ 0003:00000fa8       ??_C@_05IFKLLJBC@?5?5?5?5?5?$AA@ 0046efa8     D_MAIN.obj
+ 0003:00000fb0       ??_C@_0BE@DNAOOGCL@External?5Wadfiles?3?5?$AA@ 0046efb0     D_MAIN.obj
+ 0003:00000fc8       ??_C@_02KEGNLNML@?0?5?$AA@ 0046efc8     D_MAIN.obj
+ 0003:00000fcc       ??_C@_09FLODCJPJ@?9loadgame?$AA@ 0046efcc     D_MAIN.obj
+ 0003:00000fd8       ??_C@_07DAFDPAKP@?9record?$AA@ 0046efd8     D_MAIN.obj
+ 0003:00000fe4       ??_C@_0BL@NDNMIFOI@SB_Init?3?5Loading?5patches?4?6?$AA@ 0046efe4     D_MAIN.obj
+ 0003:00001004       ??_C@_0BO@NKHHHOIA@Checking?5network?5game?5status?4?$AA@ 0046f004     D_MAIN.obj
+ 0003:00001028       ??_C@_0CP@JMAHAGPB@D_CheckNetGame?3?5Checking?5network@ 0046f028     D_MAIN.obj
+ 0003:00001060       ??_C@_0CD@JKPPBDMJ@I_Init?3?5Setting?5up?5machine?5state@ 0046f060     D_MAIN.obj
+ 0003:0000108c       ??_C@_0BC@PPGOOKEO@Init?5game?5engine?4?$AA@ 0046f08c     D_MAIN.obj
+ 0003:000010a4       ??_C@_0BN@DDBAJJFH@P_Init?3?5Init?5Playloop?5state?4?$AA@ 0046f0a4     D_MAIN.obj
+ 0003:000010c8       ??_C@_0BB@IJNHDPB@Loading?5graphics?$AA@ 0046f0c8     D_MAIN.obj
+ 0003:000010dc       ??_C@_0CF@HLLNMCLC@R_Init?3?5Init?5Heretic?5refresh?5dae@ 0046f0dc     D_MAIN.obj
+ 0003:00001108       ??_C@_0BM@DBEIOEPK@MN_Init?3?5Init?5menu?5system?4?6?$AA@ 0046f108     D_MAIN.obj
+ 0003:0000112c       ??_C@_0CG@IBKPBPCJ@Warp?5to?5Episode?5?$CFd?0?5Map?5?$CFd?0?5Skil@ 0046f12c     D_MAIN.obj
+ 0003:0000115c       ??_C@_0O@EHHGOEOD@Respawning?4?4?4?$AA@ 0046f15c     D_MAIN.obj
+ 0003:0000116c       ??_C@_0P@HNEGIADP@No?5Monsters?4?4?4?$AA@ 0046f16c     D_MAIN.obj
+ 0003:00001180       ??_C@_0O@CPBBJJPD@DeathMatch?4?4?4?$AA@ 0046f180     D_MAIN.obj
+ 0003:00001190       ??_C@_07BMPLLLFL@LOADING?$AA@ 0046f190     D_MAIN.obj
+ 0003:0000119c       ??_C@_08JCMOPPHJ@EXTENDED?$AA@ 0046f19c     D_MAIN.obj
+ 0003:000011a8       ??_C@_04ENPDPGNA@E2M1?$AA@ 0046f1a8     D_MAIN.obj
+ 0003:000011b0       ??_C@_0P@EFJPHBEP@W_Init?3?5done?4?6?$AA@ 0046f1b0     D_MAIN.obj
+ 0003:000011c4       ??_C@_0BI@LDPDJBCN@W_Init?3?5Init?5WADfiles?4?6?$AA@ 0046f1c4     D_MAIN.obj
+ 0003:000011e0       ??_C@_0CN@OCJJKACJ@Z_Init?3?5Init?5zone?5memory?5allocat@ 0046f1e0     D_MAIN.obj
+ 0003:00001218       ??_C@_0CH@PNMNMFCJ@M_LoadDefaults?3?5Load?5system?5defa@ 0046f218     D_MAIN.obj
+ 0003:00001248       ??_C@_0BL@HKCHMDAG@V_Init?3?5allocate?5screens?4?6?$AA@ 0046f248     D_MAIN.obj
+ 0003:00001268       ??_C@_05EFCNCBMF@?9warp?$AA@ 0046f268     D_MAIN.obj
+ 0003:00001270       ??_C@_08LLLDCPJH@?9episode?$AA@ 0046f270     D_MAIN.obj
+ 0003:0000127c       ??_C@_06GBAGOPII@?9skill?$AA@ 0046f27c     D_MAIN.obj
+ 0003:00001284       ??_C@_0M@BNPMCAGD@?9deathmatch?$AA@ 0046f284     D_MAIN.obj
+ 0003:00001294       ??_C@_0BG@JJFKKIEM@Playing?5demo?5?$CFs?4lmp?4?6?$AA@ 0046f294     D_MAIN.obj
+ 0003:000012b0       ??_C@_06BCJBLBIO@?$CFs?4lmp?$AA@ 0046f2b0     D_MAIN.obj
+ 0003:000012b8       ??_C@_09LEEFHMML@?9timedemo?$AA@ 0046f2b8     D_MAIN.obj
+ 0003:000012c4       ??_C@_09BCPNILDH@?9playdemo?$AA@ 0046f2c4     D_MAIN.obj
+ 0003:000012d0       ??_C@_0BN@EENAECAD@DEVMAP?3?5Episode?5?$CFc?0?5Map?5?$CFc?4?6?$AA@ 0046f2d0     D_MAIN.obj
+ 0003:000012f4       ??_C@_0BB@OMBIJHMG@?2data?2E?$CFcM?$CFc?4wad?$AA@ 0046f2f4     D_MAIN.obj
+ 0003:00001308       ??_C@_07GJKEDFO@?9devmap?$AA@ 0046f308     D_MAIN.obj
+ 0003:00001314       ??_C@_05PMBENPHG@?9file?$AA@ 0046f314     D_MAIN.obj
+ 0003:0000131c       ??_C@_0N@FCAECCJN@heretic1?4wad?$AA@ 0046f31c     D_MAIN.obj
+ 0003:0000132c       ??_C@_02JDPG@rb?$AA@       0046f32c     D_MAIN.obj
+ 0003:00001330       ??_C@_06OHOHKFPP@?9debug?$AA@ 0046f330     D_MAIN.obj
+ 0003:00001338       ??_C@_0M@IICHMLKB@?9noartiskip?$AA@ 0046f338     D_MAIN.obj
+ 0003:00001348       ??_C@_07FEIKDHNE@?9ravpic?$AA@ 0046f348     D_MAIN.obj
+ 0003:00001354       ??_C@_08INEMDA@?9respawn?$AA@ 0046f354     D_MAIN.obj
+ 0003:00001360       ??_C@_0M@IBOPEKED@?9nomonsters?$AA@ 0046f360     D_MAIN.obj
+ 0003:00001370       ??_C@_0CL@PKKDIJIL@ExpandTics?3?5strange?5value?5?$CFi?5at?5@ 0046f370     D_NET.obj
+ 0003:000013a4       ??_C@_01EEMJAFIK@?6?$AA@   0046f3a4     D_NET.obj
+ 0003:000013a8       ??_C@_03JLNFKLOC@?$CFi?5?$AA@ 0046f3a8     D_NET.obj
+ 0003:000013ac       ??_C@_0BL@MICFNCEE@send?5?$CI?$CFi?5?$CL?5?$CFi?0?5R?5?$CFi?$CJ?5?$FL?$CFi?$FN?5?$AA@ 0046f3ac     D_NET.obj
+ 0003:000013cc       ??_C@_0CC@FEPCJHGI@Tried?5to?5transmit?5to?5another?5nod@ 0046f3cc     D_NET.obj
+ 0003:000013f4       ??_C@_0BO@FGOPNJCC@get?5?$CFi?5?$DN?5?$CI?$CFi?5?$CL?5?$CFi?0?5R?5?$CFi?$CJ?$FL?$CFi?$FN?5?$AA@ 0046f3f4     D_NET.obj
+ 0003:00001418       ??_C@_0O@DDOLPILE@setup?5packet?6?$AA@ 0046f418     D_NET.obj
+ 0003:00001428       ??_C@_0BF@LIJOEDAG@bad?5packet?5checksum?6?$AA@ 0046f428     D_NET.obj
+ 0003:00001444       ??_C@_0BG@GPGIGHMC@bad?5packet?5length?5?$CFi?6?$AA@ 0046f444     D_NET.obj
+ 0003:00001460       ??_C@_0BP@BIDOFFLL@missed?5tics?5from?5?$CFi?5?$CI?$CFi?5?9?5?$CFi?$CJ?6?$AA@ 0046f460     D_NET.obj
+ 0003:00001488       ??_C@_0BP@EONAABH@out?5of?5order?5packet?5?$CI?$CFi?5?$CL?5?$CFi?$CJ?6?$AA@ 0046f488     D_NET.obj
+ 0003:000014b0       ??_C@_0BE@GCNMHMNK@retransmit?5from?5?$CFi?6?$AA@ 0046f4b0     D_NET.obj
+ 0003:000014c8       ??_C@_0BJ@ONGJEFEO@Killed?5by?5network?5driver?$AA@ 0046f4c8     D_NET.obj
+ 0003:000014e8       ??_C@_0BH@JAHIHHMN@PLAYER?51?5LEFT?5THE?5GAME?$AA@ 0046f4e8     D_NET.obj
+ 0003:00001504       ??_C@_0CL@NILDBJIJ@NetUpdate?3?5netbuffer?9?$DOnumtics?5?$DO?5@ 0046f504     D_NET.obj
+ 0003:00001538       ??_C@_0CG@CAFKFIIH@Network?5game?5synchronization?5abo@ 0046f538     D_NET.obj
+ 0003:00001568       ??_C@_0DA@EMCCOFDG@Different?5DOOM?5versions?5cannot?5p@ 0046f568     D_NET.obj
+ 0003:000015a4       ??_C@_0BI@NMIECCI@Doomcom?5buffer?5invalid?$CB?$AA@ 0046f5a4     D_NET.obj
+ 0003:000015c0       ??_C@_0P@JMICNDKC@gametic?$DOlowtic?$AA@ 0046f5c0     D_NET.obj
+ 0003:000015d4       ??_C@_0BN@NFCJJNNP@TryRunTics?3?5lowtic?5?$DM?5gametic?$AA@ 0046f5d4     D_NET.obj
+ 0003:000015f8       ??_C@_0CG@PIEHLDJA@?$DN?$DN?$DN?$DN?$DN?$DN?$DNreal?3?5?$CFi?5?5avail?3?5?$CFi?5?5game@ 0046f5f8     D_NET.obj
+ 0003:00001628       ??_C@_0CLA@OPJICAGP@as?5the?5final?5maulotaur?5bellows?5h@ 0046f628     F_FINALE.obj
+ 0003:00001968       ??_C@_0CME@CPFAJAHM@you?5thought?5you?5would?5return?5to?5@ 0046f968     F_FINALE.obj
+ 0003:00001cc0       ??_C@_0CDB@FLLPGBFM@the?5death?5of?5d?8sparil?5has?5loosed@ 0046fcc0     F_FINALE.obj
+ 0003:00001f68       ??_C@_0CBC@ICFHEIJK@the?5mighty?5maulotaurs?5have?5prove@ 0046ff68     F_FINALE.obj
+ 0003:000021e8       ??_C@_0CAI@DKDKCEHF@with?5the?5destruction?5of?5the?5iron@ 004701e8     F_FINALE.obj
+ 0003:00002458       ??_C@_07IANJBNJC@FLOOR08?$AA@ 00470458     F_FINALE.obj
+ 0003:00002464       ??_C@_07IDFNMJPM@FLOOR28?$AA@ 00470464     F_FINALE.obj
+ 0003:00002470       ??_C@_08KDDMEGPB@FLTWAWA2?$AA@ 00470470     F_FINALE.obj
+ 0003:0000247c       ??_C@_08JDKLEFIA@FLATHUH1?$AA@ 0047047c     F_FINALE.obj
+ 0003:00002488       ??_C@_07DGPDLHLB@FLOOR25?$AA@ 00470488     F_FINALE.obj
+ 0003:00002494       ??_C@_06DNIEMCMD@FINAL2?$AA@ 00470494     F_FINALE.obj
+ 0003:0000249c       ??_C@_06BGKJJBAA@FINAL1?$AA@ 0047049c     F_FINALE.obj
+ 0003:000024a4       ??_C@_05IIJCKMKB@E2END?$AA@ 004704a4     F_FINALE.obj
+ 0003:000024ac       ??_C@_05CMNAMGDJ@E2PAL?$AA@ 004704ac     F_FINALE.obj
+ 0003:000024b4       ??_C@_04JNHNBCMK@SKY3?$AA@ 004704b4     G_GAME.obj
+ 0003:000024bc       ??_C@_04IEGGCDIL@SKY2?$AA@ 004704bc     G_GAME.obj
+ 0003:000024c4       ??_C@_04KPELHAEI@SKY1?$AA@ 004704c4     G_GAME.obj
+ 0003:000024cc       ??_C@_09DJFOAGPN@SAVE?5GAME?$AA@ 004704cc     G_GAME.obj
+ 0003:000024d8       ??_C@_08ICNKCJAN@NET?5GAME?$AA@ 004704d8     G_GAME.obj
+ 0003:000024e4       ??_C@_0CG@DNEFKFJF@consistency?5failure?5?$CI?$CFi?5should?5b@ 004704e4     G_GAME.obj
+ 0003:00002514       ??_C@_0CF@JIHFIINP@Only?5?$CFi?5deathmatch?5spots?0?54?5requ@ 00470514     G_GAME.obj
+ 0003:00002540       ??_C@_0N@MDBOIDPH@Bad?5savegame?$AA@ 00470540     G_GAME.obj
+ 0003:00002550       ??_C@_0L@KCKOOCPJ@version?5?$CFi?$AA@ 00470550     G_GAME.obj
+ 0003:00002560       ??_C@_04FJOMPALJ@?4lmp?$AA@ 00470560     G_GAME.obj
+ 0003:00002568       ??_C@_0BB@FJDHBKAP@Demo?5?$CFs?5recorded?$AA@ 00470568     G_GAME.obj
+ 0003:0000257c       ??_C@_0CN@ODOBEDNI@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 0047057c     G_GAME.obj
+ 0003:000025b4       ??_C@_0CB@CALNGJEB@timed?5?$CFi?5gametics?5in?5?$CFi?5realtics@ 004705b4     G_GAME.obj
+ 0003:000025dc       ??_C@_0L@HIMFKBFA@GAME?5SAVED?$AA@ 004705dc     G_GAME.obj
+ 0003:000025ec       ??_C@_0O@FJJBKKGJ@hticsav?$CFd?4hsg?$AA@ 004705ec     G_GAME.obj
+ 0003:000025fc       ??_C@_0BM@CPJKDHEF@c?3?2heretic?4cd?2hticsav?$CFd?4hsg?$AA@ 004705fc     G_GAME.obj
+ 0003:00002620       ??_C@_02GMLFBBN@wb?$AA@    00470620     G_GAME.obj
+ 0003:00002624       ??_C@_0BI@MJMFNFOM@Savegame?5buffer?5overrun?$AA@ 00470624     G_GAME.obj
+ 0003:00002640       __real@3fa1eb8520000000    00470640     I_IBM.obj
+ 0003:0000264c       ??_C@_05LEAEHMJB@0x?$CFx?6?$AA@ 0047064c     I_IBM.obj
+ 0003:00002654       ??_C@_0CB@DDPKKODB@INT_SetTimer0?3?5?$CFi?5is?5a?5bad?5value@ 00470654     I_IBM.obj
+ 0003:0000267c       ??_C@_0L@JNLNGPOH@S_Init?4?4?4?5?$AA@ 0047067c     I_IBM.obj
+ 0003:0000268c       ??_C@_07HDCGELAE@novideo?$AA@ 0047068c     I_IBM.obj
+ 0003:00002698       ??_C@_07KGHMIMBN@ENDTEXT?$AA@ 00470698     I_IBM.obj
+ 0003:000026a4       ??_C@_0BC@GGPBLDEE@mainzone?3?5?$CFp?5?$CFdk?6?$AA@ 004706a4     I_IBM.obj
+ 0003:000026bc       ??_C@_0BN@MONIHDJA@I_NetCmd?5when?5not?5in?5netgame?$AA@ 004706bc     I_IBM.obj
+ 0003:000026e0       _snd_prefixen              004706e0     I_SOUND.obj
+ 0003:000026ec       ??_C@_0CG@BNEHIOPE@I_StartupSound?3?5Hope?5you?5hear?5a?5@ 004706ec     I_SOUND.obj
+ 0003:0000271c       ??_C@_01CPLAODJH@S?$AA@    0047071c     IN_LUDE.obj
+ 0003:00002720       ??_C@_01DGKLNCNG@R?$AA@    00470720     IN_LUDE.obj
+ 0003:00002724       ??_C@_01DDCIFGEA@E?$AA@    00470724     IN_LUDE.obj
+ 0003:00002728       ??_C@_01OCOKONAJ@L?$AA@    00470728     IN_LUDE.obj
+ 0003:0000272c       ??_C@_01JPJNBJEM@I?$AA@    0047072c     IN_LUDE.obj
+ 0003:00002730       ??_C@_01KNKLHLMO@K?$AA@    00470730     IN_LUDE.obj
+ 0003:00002734       ??_C@_06JOINFMMA@FACEB0?$AA@ 00470734     IN_LUDE.obj
+ 0003:0000273c       ??_C@_06JMMLOCJJ@FACEA0?$AA@ 0047073c     IN_LUDE.obj
+ 0003:00002744       ??_C@_07IIOKFLOL@FONTB05?$AA@ 00470744     IN_LUDE.obj
+ 0003:00002750       ??_C@_07IJCIDBNM@FONTB15?$AA@ 00470750     IN_LUDE.obj
+ 0003:0000275c       ??_C@_07NPHCJGFK@FONTB13?$AA@ 0047075c     IN_LUDE.obj
+ 0003:00002768       ??_C@_07PIMGBLNH@FONTB_S?$AA@ 00470768     IN_LUDE.obj
+ 0003:00002774       ??_C@_07KCAFGCBP@FONTB16?$AA@ 00470774     IN_LUDE.obj
+ 0003:00002780       ??_C@_06MDOMEBPP@IN_YAH?$AA@ 00470780     IN_LUDE.obj
+ 0003:00002788       ??_C@_04CHHKDAF@IN_X?$AA@  00470788     IN_LUDE.obj
+ 0003:00002790       ??_C@_05NBFPBDKO@MAPE3?$AA@ 00470790     IN_LUDE.obj
+ 0003:00002798       ??_C@_05MIEECCOP@MAPE2?$AA@ 00470798     IN_LUDE.obj
+ 0003:000027a0       ??_C@_05ODGJHBCM@MAPE1?$AA@ 004707a0     IN_LUDE.obj
+ 0003:000027a8       ??_C@_0CO@EEGIHKGI@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 004707a8     IN_LUDE.obj
+ 0003:000027e0       ??_C@_0CM@GLHHMHLG@IN_lude?3?5?5Intermission?5state?5out@ 004707e0     IN_LUDE.obj
+ 0003:00002814       ??_C@_07BPJIFKCL@FLOOR16?$AA@ 00470814     IN_LUDE.obj
+ 0003:00002820       ??_C@_08HNJIBNHJ@FINISHED?$AA@ 00470820     IN_LUDE.obj
+ 0003:0000282c       ??_C@_0O@GGGKBGOG@NOW?5ENTERING?3?$AA@ 0047082c     IN_LUDE.obj
+ 0003:0000283c       ??_C@_04OHBONDIN@TIME?$AA@ 0047083c     IN_LUDE.obj
+ 0003:00002844       ??_C@_07MKLBEKPA@SECRETS?$AA@ 00470844     IN_LUDE.obj
+ 0003:00002850       ??_C@_05OOOHNEPI@ITEMS?$AA@ 00470850     IN_LUDE.obj
+ 0003:00002858       ??_C@_05EHJFADHN@KILLS?$AA@ 00470858     IN_LUDE.obj
+ 0003:00002860       ??_C@_06PJOKHKLP@SECRET?$AA@ 00470860     IN_LUDE.obj
+ 0003:00002868       ??_C@_05FGCEPHGB@BONUS?$AA@ 00470868     IN_LUDE.obj
+ 0003:00002870       ??_C@_07JDJAPMAH@VICTIMS?$AA@ 00470870     IN_LUDE.obj
+ 0003:0000287c       ??_C@_05GKHKKECO@TOTAL?$AA@ 0047087c     IN_LUDE.obj
+ 0003:00002884       ??_C@_01JLIPDDHJ@?3?$AA@   00470884     IN_LUDE.obj
+ 0003:00002888       ??_C@_04KLFOPECE@AMB2?$AA@ 00470888     INFO.obj
+ 0003:00002890       ??_C@_04IAHDKHOH@AMB1?$AA@ 00470890     INFO.obj
+ 0003:00002898       ??_C@_04LEPMIDDK@AMP2?$AA@ 00470898     INFO.obj
+ 0003:000028a0       ??_C@_04JPNBNAPJ@AMP1?$AA@ 004708a0     INFO.obj
+ 0003:000028a8       ??_C@_04LGLKDNGD@AMS2?$AA@ 004708a8     INFO.obj
+ 0003:000028b0       ??_C@_04JNJHGOKA@AMS1?$AA@ 004708b0     INFO.obj
+ 0003:000028b8       ??_C@_04KKJMJOBD@AMC2?$AA@ 004708b8     INFO.obj
+ 0003:000028c0       ??_C@_04IBLBMNNA@AMC1?$AA@ 004708c0     INFO.obj
+ 0003:000028c8       ??_C@_04KAACLDBJ@AMM2?$AA@ 004708c8     INFO.obj
+ 0003:000028d0       ??_C@_04ILCPOANK@AMM1?$AA@ 004708d0     INFO.obj
+ 0003:000028d8       ??_C@_04KNJFDGMP@AMG2?$AA@ 004708d8     INFO.obj
+ 0003:000028e0       ??_C@_04GCIPAGGF@CKYY?$AA@ 004708e0     INFO.obj
+ 0003:000028e8       ??_C@_04FPOPCPNF@BKYY?$AA@ 004708e8     INFO.obj
+ 0003:000028f0       ??_C@_04BIEPFFAF@AKYY?$AA@ 004708f0     INFO.obj
+ 0003:000028f8       ??_C@_04DBBFGINB@FX13?$AA@ 004708f8     INFO.obj
+ 0003:00002900       ??_C@_04CIAOFJJA@FX12?$AA@ 00470900     INFO.obj
+ 0003:00002908       ??_C@_04BENACKO@MNTR?$AA@  00470908     INFO.obj
+ 0003:00002910       ??_C@_04EMGCJMJE@FX16?$AA@ 00470910     INFO.obj
+ 0003:00002918       ??_C@_04BANDBPC@SDTH?$AA@  00470918     INFO.obj
+ 0003:00002920       ??_C@_04HFBFLDN@SOR2?$AA@  00470920     INFO.obj
+ 0003:00002928       ??_C@_04HOFEPOBG@FX14?$AA@ 00470928     INFO.obj
+ 0003:00002930       ??_C@_04NNDLHGJP@SRCR?$AA@ 00470930     INFO.obj
+ 0003:00002938       ??_C@_04LHAHGPFJ@RAXE?$AA@ 00470938     INFO.obj
+ 0003:00002940       ??_C@_04IOFJICPA@SPAX?$AA@ 00470940     INFO.obj
+ 0003:00002948       ??_C@_04KNEGCBDJ@KNIG?$AA@ 00470948     INFO.obj
+ 0003:00002950       ??_C@_04BKDIDLBC@FX10?$AA@ 00470950     INFO.obj
+ 0003:00002958       ??_C@_04DCDAKFD@FX11?$AA@  00470958     INFO.obj
+ 0003:00002960       ??_C@_04OMHDIECA@WZRD?$AA@ 00470960     INFO.obj
+ 0003:00002968       ??_C@_04JOMFPLPK@CLNK?$AA@ 00470968     INFO.obj
+ 0003:00002970       ??_C@_04FELLMHOC@FX07?$AA@ 00470970     INFO.obj
+ 0003:00002978       ??_C@_04ENKAPGKD@FX06?$AA@ 00470978     INFO.obj
+ 0003:00002980       ??_C@_04GGINKFGA@FX05?$AA@ 00470980     INFO.obj
+ 0003:00002988       ??_C@_04BINJNOJD@HEAD?$AA@ 00470988     INFO.obj
+ 0003:00002990       ??_C@_04DLNALENJ@SNFX?$AA@ 00470990     INFO.obj
+ 0003:00002998       ??_C@_04MMGEELJG@SNKE?$AA@ 00470998     INFO.obj
+ 0003:000029a0       ??_C@_04DKCJDMDO@FRB1?$AA@ 004709a0     INFO.obj
+ 0003:000029a8       ??_C@_04FHOKECKE@BEAS?$AA@ 004709a8     INFO.obj
+ 0003:000029b0       ??_C@_04GHEPMPFH@FX15?$AA@ 004709b0     INFO.obj
+ 0003:000029b8       ??_C@_04FIPIEEFB@MUMM?$AA@ 004709b8     INFO.obj
+ 0003:000029c0       ??_C@_04GKBLFKAD@CHKN?$AA@ 004709c0     INFO.obj
+ 0003:000029c8       ??_C@_04OCFFMBKP@BSKL?$AA@ 004709c8     INFO.obj
+ 0003:000029d0       ??_C@_04KJANCJAA@FDTH?$AA@ 004709d0     INFO.obj
+ 0003:000029d8       ??_C@_04MKCNCBEG@PLAY?$AA@ 004709d8     INFO.obj
+ 0003:000029e0       ??_C@_04CFPPKELC@BLOD?$AA@ 004709e0     INFO.obj
+ 0003:000029e8       ??_C@_04DANHACOG@FX03?$AA@ 004709e8     INFO.obj
+ 0003:000029f0       ??_C@_04MBGOHPGP@CRBW?$AA@ 004709f0     INFO.obj
+ 0003:000029f8       ??_C@_04MMPIKOB@WBOW?$AA@  004709f8     INFO.obj
+ 0003:00002a00       ??_C@_04MKDIOKGM@FX09?$AA@ 00470a00     INFO.obj
+ 0003:00002a08       ??_C@_04NDCDNLCN@FX08?$AA@ 00470a08     INFO.obj
+ 0003:00002a10       ??_C@_04HPJGJECB@FX04?$AA@ 00470a10     INFO.obj
+ 0003:00002a18       ??_C@_04FHAIMAGN@PHNX?$AA@ 00470a18     INFO.obj
+ 0003:00002a20       ??_C@_04HEAIBPLP@WPHX?$AA@ 00470a20     INFO.obj
+ 0003:00002a28       ??_C@_04GEHKJNLK@PUF2?$AA@ 00470a28     INFO.obj
+ 0003:00002a30       ??_C@_04GLMFJBGL@GWND?$AA@ 00470a30     INFO.obj
+ 0003:00002a38       ??_C@_04DDFDNGII@FX23?$AA@ 00470a38     INFO.obj
+ 0003:00002a40       ??_C@_04CKEIOHMJ@FX22?$AA@ 00470a40     INFO.obj
+ 0003:00002a48       ??_C@_04BGFLEAK@FX21?$AA@  00470a48     INFO.obj
+ 0003:00002a50       ??_C@_04BIHOIFEL@FX20?$AA@ 00470a50     INFO.obj
+ 0003:00002a58       ??_C@_04BLPKFBCF@FX00?$AA@ 00470a58     INFO.obj
+ 0003:00002a60       ??_C@_04NPIJJMLP@HROD?$AA@ 00470a60     INFO.obj
+ 0003:00002a68       ??_C@_04EKFFNJFN@WSKL?$AA@ 00470a68     INFO.obj
+ 0003:00002a70       ??_C@_04CJMMDDKH@FX02?$AA@ 00470a70     INFO.obj
+ 0003:00002a78       ??_C@_04EFMECDJL@MACE?$AA@ 00470a78     INFO.obj
+ 0003:00002a80       ??_C@_04CFECBDAA@WMCE?$AA@ 00470a80     INFO.obj
+ 0003:00002a88       ??_C@_04FFHJKNNF@FX17?$AA@ 00470a88     INFO.obj
+ 0003:00002a90       ??_C@_04NCOBLBBK@FX18?$AA@ 00470a90     INFO.obj
+ 0003:00002a98       ??_C@_04CMFLELHB@BLSR?$AA@ 00470a98     INFO.obj
+ 0003:00002aa0       ??_C@_04GKOFPBLM@WBLS?$AA@ 00470aa0     INFO.obj
+ 0003:00002aa8       ??_C@_04EPFHMOHJ@PUF1?$AA@ 00470aa8     INFO.obj
+ 0003:00002ab0       ??_C@_04PECLDNDD@GAUN?$AA@ 00470ab0     INFO.obj
+ 0003:00002ab8       ??_C@_04BBPOEDCH@WGNT?$AA@ 00470ab8     INFO.obj
+ 0003:00002ac0       ??_C@_04NFPBNKPN@BEAK?$AA@ 00470ac0     INFO.obj
+ 0003:00002ac8       ??_C@_04DCCADKDM@PUF4?$AA@ 00470ac8     INFO.obj
+ 0003:00002ad0       ??_C@_04HNGBKMPL@PUF3?$AA@ 00470ad0     INFO.obj
+ 0003:00002ad8       ??_C@_04NADFDMPN@STFF?$AA@ 00470ad8     INFO.obj
+ 0003:00002ae0       ??_C@_04KMAKAGAC@TELE?$AA@ 00470ae0     INFO.obj
+ 0003:00002ae8       ??_C@_04FFNKONJJ@TGLT?$AA@ 00470ae8     INFO.obj
+ 0003:00002af0       ??_C@_04KNLNLPCG@SFFI?$AA@ 00470af0     INFO.obj
+ 0003:00002af8       ??_C@_04HMLJHGIJ@VTFB?$AA@ 00470af8     INFO.obj
+ 0003:00002b00       ??_C@_04BPCDGMMP@VFBL?$AA@ 00470b00     INFO.obj
+ 0003:00002b08       ??_C@_04FKHBLFFP@VLCO?$AA@ 00470b08     INFO.obj
+ 0003:00002b10       ??_C@_04BKGPEMEF@KGZY?$AA@ 00470b10     INFO.obj
+ 0003:00002b18       ??_C@_04MOCOHDJK@KGZG?$AA@ 00470b18     INFO.obj
+ 0003:00002b20       ??_C@_04LDFJIHNP@KGZB?$AA@ 00470b20     INFO.obj
+ 0003:00002b28       ??_C@_04LHELKNOK@KGZ1?$AA@ 00470b28     INFO.obj
+ 0003:00002b30       ??_C@_04CLLEBJJC@HCOR?$AA@ 00470b30     INFO.obj
+ 0003:00002b38       ??_C@_04KABJLMBP@WTRH?$AA@ 00470b38     INFO.obj
+ 0003:00002b40       ??_C@_04NJEDBIOJ@MOS2?$AA@ 00470b40     INFO.obj
+ 0003:00002b48       ??_C@_04PCGOELCK@MOS1?$AA@ 00470b48     INFO.obj
+ 0003:00002b50       ??_C@_04EKJKOKFL@BRPL?$AA@ 00470b50     INFO.obj
+ 0003:00002b58       ??_C@_04LLCMGEE@BARL?$AA@  00470b58     INFO.obj
+ 0003:00002b60       ??_C@_04BOEJLDH@KFR1?$AA@  00470b60     INFO.obj
+ 0003:00002b68       ??_C@_04CMBBBGJM@STCL?$AA@ 00470b68     INFO.obj
+ 0003:00002b70       ??_C@_04OBELBIAC@STCS?$AA@ 00470b70     INFO.obj
+ 0003:00002b78       ??_C@_04CLBILOEA@STGL?$AA@ 00470b78     INFO.obj
+ 0003:00002b80       ??_C@_04OGECLANO@STGS?$AA@ 00470b80     INFO.obj
+ 0003:00002b88       ??_C@_04BPGABDKA@SMPL?$AA@ 00470b88     INFO.obj
+ 0003:00002b90       ??_C@_04JHILOAHK@SRTC?$AA@ 00470b90     INFO.obj
+ 0003:00002b98       ??_C@_04FDHBHPLM@CHDL?$AA@ 00470b98     INFO.obj
+ 0003:00002ba0       ??_C@_04MPNIENEK@SKH4?$AA@ 00470ba0     INFO.obj
+ 0003:00002ba8       ??_C@_04IAJJNLIN@SKH3?$AA@ 00470ba8     INFO.obj
+ 0003:00002bb0       ??_C@_04JJICOKMM@SKH2?$AA@ 00470bb0     INFO.obj
+ 0003:00002bb8       ??_C@_04LCKPLJAP@SKH1?$AA@ 00470bb8     INFO.obj
+ 0003:00002bc0       ??_C@_04FPAHKGKC@SLDG?$AA@ 00470bc0     INFO.obj
+ 0003:00002bc8       ??_C@_04KKHGAELE@LVAS?$AA@ 00470bc8     INFO.obj
+ 0003:00002bd0       ??_C@_04NLDJOHLP@SPSH?$AA@ 00470bd0     INFO.obj
+ 0003:00002bd8       ??_C@_04IGLIGFAM@AMG1?$AA@ 00470bd8     INFO.obj
+ 0003:00002be0       ??_C@_04CFBAIIHH@PPOD?$AA@ 00470be0     INFO.obj
+ 0003:00002be8       ??_C@_04NLBKMIBO@ATLP?$AA@ 00470be8     INFO.obj
+ 0003:00002bf0       ??_C@_04EFGOPAFM@XPL1?$AA@ 00470bf0     INFO.obj
+ 0003:00002bf8       ??_C@_04GFHOAGKJ@FBMB?$AA@ 00470bf8     INFO.obj
+ 0003:00002c00       ??_C@_04NPDGFAFE@TRCH?$AA@ 00470c00     INFO.obj
+ 0003:00002c08       ??_C@_04KPCGGOCK@SPHL?$AA@ 00470c08     INFO.obj
+ 0003:00002c10       ??_C@_04COBGAGE@FX01?$AA@  00470c10     INFO.obj
+ 0003:00002c18       ??_C@_04JPAPBFFC@EGGM?$AA@ 00470c18     INFO.obj
+ 0003:00002c20       ??_C@_04BIMDINM@EGGC?$AA@  00470c20     INFO.obj
+ 0003:00002c28       ??_C@_04DHIHDPFC@PWBK?$AA@ 00470c28     INFO.obj
+ 0003:00002c30       ??_C@_04LIAIOGMH@INVU?$AA@ 00470c30     INFO.obj
+ 0003:00002c38       ??_C@_04HMMMCNLD@SOAR?$AA@ 00470c38     INFO.obj
+ 0003:00002c40       ??_C@_04NCNFKLGH@PTN2?$AA@ 00470c40     INFO.obj
+ 0003:00002c48       ??_C@_04OOFCEBEB@INVS?$AA@ 00470c48     INFO.obj
+ 0003:00002c50       ??_C@_04EPJKPBJM@SPMP?$AA@ 00470c50     INFO.obj
+ 0003:00002c58       ??_C@_04HFDDGCNL@BAGH?$AA@ 00470c58     INFO.obj
+ 0003:00002c60       ??_C@_04ICCNLMEG@SHD2?$AA@ 00470c60     INFO.obj
+ 0003:00002c68       ??_C@_04PFFLDDIO@SHLD?$AA@ 00470c68     INFO.obj
+ 0003:00002c70       ??_C@_04PJPIPIKE@PTN1?$AA@ 00470c70     INFO.obj
+ 0003:00002c78       ??_C@_04NLIOKJKG@ACLO?$AA@ 00470c78     INFO.obj
+ 0003:00002c80       ??_C@_04BLJOELNG@IMPX?$AA@ 00470c80     INFO.obj
+ 0003:00002c88       ??_C@_03CCLAEDDF@Yes?$AA@  00470c88     M_MISC.obj
+ 0003:00002c8c       ??_C@_0L@IHBOGFNE@chatmacro9?$AA@ 00470c8c     M_MISC.obj
+ 0003:00002c9c       ??_C@_0BG@OPFJEFHN@I?8ll?5take?5care?5of?5it?4?$AA@ 00470c9c     M_MISC.obj
+ 0003:00002cb8       ??_C@_0L@JOAFFEJF@chatmacro8?$AA@ 00470cb8     M_MISC.obj
+ 0003:00002cc8       ??_C@_0L@LHGEJOIF@Come?5here?$CB?$AA@ 00470cc8     M_MISC.obj
+ 0003:00002cd8       ??_C@_0L@BJJNEIFK@chatmacro7?$AA@ 00470cd8     M_MISC.obj
+ 0003:00002ce8       ??_C@_0BG@HDIENKFG@Next?5time?0?5scumbag?4?4?4?$AA@ 00470ce8     M_MISC.obj
+ 0003:00002d04       ??_C@_0L@IGHJBL@chatmacro6?$AA@ 00470d04     M_MISC.obj
+ 0003:00002d14       ??_C@_09KMKJKLAJ@You?5suck?$CB?$AA@ 00470d14     M_MISC.obj
+ 0003:00002d20       ??_C@_0L@CLKLCKNI@chatmacro5?$AA@ 00470d20     M_MISC.obj
+ 0003:00002d30       ??_C@_05FFHKBLGI@Help?$CB?$AA@ 00470d30     M_MISC.obj
+ 0003:00002d38       ??_C@_0L@DCLABLJJ@chatmacro4?$AA@ 00470d38     M_MISC.obj
+ 0003:00002d48       ??_C@_0BK@MENDOCAI@I?8m?5not?5looking?5too?5good?$CB?$AA@ 00470d48     M_MISC.obj
+ 0003:00002d68       ??_C@_0L@HNPBINFO@chatmacro3?$AA@ 00470d68     M_MISC.obj
+ 0003:00002d78       ??_C@_07GHABOOKE@I?8m?5OK?4?$AA@ 00470d78     M_MISC.obj
+ 0003:00002d84       ??_C@_0L@GEOKLMBP@chatmacro2?$AA@ 00470d84     M_MISC.obj
+ 0003:00002d94       ??_C@_0BI@FMHDDNJD@I?8m?5ready?5to?5kick?5butt?$CB?$AA@ 00470d94     M_MISC.obj
+ 0003:00002db0       ??_C@_0L@EPMHOPNM@chatmacro1?$AA@ 00470db0     M_MISC.obj
+ 0003:00002dc0       ??_C@_02JINPPBEP@No?$AA@   00470dc0     M_MISC.obj
+ 0003:00002dc4       ??_C@_0L@FGNMNOJN@chatmacro0?$AA@ 00470dc4     M_MISC.obj
+ 0003:00002dd4       ??_C@_08BMJFNEKO@usegamma?$AA@ 00470dd4     M_MISC.obj
+ 0003:00002de0       ??_C@_09CGENNPOJ@snd_mport?$AA@ 00470de0     M_MISC.obj
+ 0003:00002dec       ??_C@_09PCHPPNLI@snd_sbdma?$AA@ 00470dec     M_MISC.obj
+ 0003:00002df8       ??_C@_09FNKNNDHJ@snd_sbirq?$AA@ 00470df8     M_MISC.obj
+ 0003:00002e04       ??_C@_0L@KPBCBMFB@snd_sbport?$AA@ 00470e04     M_MISC.obj
+ 0003:00002e14       ??_C@_0O@IEJIEFCP@snd_sfxdevice?$AA@ 00470e14     M_MISC.obj
+ 0003:00002e24       ??_C@_0BA@DOBJIAKI@snd_musicdevice?$AA@ 00470e24     M_MISC.obj
+ 0003:00002e38       ??_C@_0N@IIDONHCG@snd_channels?$AA@ 00470e38     M_MISC.obj
+ 0003:00002e48       ??_C@_0N@PLBCGBMD@screenblocks?$AA@ 00470e48     M_MISC.obj
+ 0003:00002e58       ??_C@_0L@CKKNKLLN@joyb_speed?$AA@ 00470e58     M_MISC.obj
+ 0003:00002e68       ??_C@_08ENCDCIIK@joyb_use?$AA@ 00470e68     M_MISC.obj
+ 0003:00002e74       ??_C@_0M@GIMHLHMF@joyb_strafe?$AA@ 00470e74     M_MISC.obj
+ 0003:00002e84       ??_C@_09BECHDJKI@joyb_fire?$AA@ 00470e84     M_MISC.obj
+ 0003:00002e90       ??_C@_0N@NPDMKIHI@use_joystick?$AA@ 00470e90     M_MISC.obj
+ 0003:00002ea0       ??_C@_0P@FCDMILPF@mouseb_forward?$AA@ 00470ea0     M_MISC.obj
+ 0003:00002eb4       ??_C@_0O@DHPPLNJD@mouseb_strafe?$AA@ 00470eb4     M_MISC.obj
+ 0003:00002ec4       ??_C@_0M@EOOMNHMN@mouseb_fire?$AA@ 00470ec4     M_MISC.obj
+ 0003:00002ed4       ??_C@_09DFHJPEJJ@use_mouse?$AA@ 00470ed4     M_MISC.obj
+ 0003:00002ee0       ??_C@_09HCBFIAPJ@key_speed?$AA@ 00470ee0     M_MISC.obj
+ 0003:00002eec       ??_C@_0L@BJCOIKGH@key_strafe?$AA@ 00470eec     M_MISC.obj
+ 0003:00002efc       ??_C@_07EKGAOCGP@key_use?$AA@ 00470efc     M_MISC.obj
+ 0003:00002f08       ??_C@_08MEEAGMJF@key_fire?$AA@ 00470f08     M_MISC.obj
+ 0003:00002f14       ??_C@_0BA@IBNIDIDL@key_useartifact?$AA@ 00470f14     M_MISC.obj
+ 0003:00002f28       ??_C@_0N@KHIHEGGK@key_invright?$AA@ 00470f28     M_MISC.obj
+ 0003:00002f38       ??_C@_0M@MFLLBPPA@key_invleft?$AA@ 00470f38     M_MISC.obj
+ 0003:00002f48       ??_C@_0P@MIECMAAD@key_lookcenter?$AA@ 00470f48     M_MISC.obj
+ 0003:00002f5c       ??_C@_0N@GNFGHLDN@key_lookdown?$AA@ 00470f5c     M_MISC.obj
+ 0003:00002f6c       ??_C@_0L@DPLBNMHC@key_lookup?$AA@ 00470f6c     M_MISC.obj
+ 0003:00002f7c       ??_C@_0O@KEEGBMD@key_flycenter?$AA@ 00470f7c     M_MISC.obj
+ 0003:00002f8c       ??_C@_0M@IIFGDGJJ@key_flydown?$AA@ 00470f8c     M_MISC.obj
+ 0003:00002f9c       ??_C@_09KMFJPFFA@key_flyup?$AA@ 00470f9c     M_MISC.obj
+ 0003:00002fa8       ??_C@_0BA@HJILGPNG@key_straferight?$AA@ 00470fa8     M_MISC.obj
+ 0003:00002fbc       ??_C@_0P@HCAMGGBN@key_strafeleft?$AA@ 00470fbc     M_MISC.obj
+ 0003:00002fd0       ??_C@_08HONEHLAJ@key_down?$AA@ 00470fd0     M_MISC.obj
+ 0003:00002fdc       ??_C@_06KJLCOIHA@key_up?$AA@ 00470fdc     M_MISC.obj
+ 0003:00002fe4       ??_C@_08IMNAODDA@key_left?$AA@ 00470fe4     M_MISC.obj
+ 0003:00002ff0       ??_C@_09DMKKOPCG@key_right?$AA@ 00470ff0     M_MISC.obj
+ 0003:00002ffc       ??_C@_0N@IINLOHBH@music_volume?$AA@ 00470ffc     M_MISC.obj
+ 0003:0000300c       ??_C@_0L@MGIANLJM@sfx_volume?$AA@ 0047100c     M_MISC.obj
+ 0003:0000301c       ??_C@_0BC@LMOPJCEK@mouse_sensitivity?$AA@ 0047101c     M_MISC.obj
+ 0003:00003034       ??_C@_0BG@IMOHPJKC@Couldn?8t?5read?5file?5?$CFs?$AA@ 00471034     M_MISC.obj
+ 0003:00003050       ??_C@_03OFAPEBGM@?$CFs?6?$AA@ 00471050     M_MISC.obj
+ 0003:00003054       ??_C@_0BH@NFCCGPDB@?$CFd?5command?9line?5args?3?6?$AA@ 00471054     M_MISC.obj
+ 0003:00003070       ??_C@_0BJ@MDNACLEI@Found?5response?5file?5?$CFs?$CB?6?$AA@ 00471070     M_MISC.obj
+ 0003:00003090       ??_C@_0BI@PBCMKFHO@?6No?5such?5response?5file?$CB?$AA@ 00471090     M_MISC.obj
+ 0003:000030ac       ??_C@_09NBBIPMK@?$CFs?7?7?$CC?$CFs?$CC?6?$AA@ 004710ac     M_MISC.obj
+ 0003:000030b8       ??_C@_07PGNBPCIC@?$CFs?7?7?$CFi?6?$AA@ 004710b8     M_MISC.obj
+ 0003:000030c4       ??_C@_02IKAHHCAI@?$CFi?$AA@ 004710c4     M_MISC.obj
+ 0003:000030c8       ??_C@_02NJNOFBBI@?$CFx?$AA@ 004710c8     M_MISC.obj
+ 0003:000030cc       ??_C@_0M@CMIONFPL@?$CF79s?5?$CF?$FL?$FO?6?$FN?6?$AA@ 004710cc     M_MISC.obj
+ 0003:000030dc       ??_C@_01KDCPPGHE@r?$AA@    004710dc     M_MISC.obj
+ 0003:000030e0       ??_C@_0BK@DHABEOGB@c?3?2heretic?4cd?2heretic?4cfg?$AA@ 004710e0     M_MISC.obj
+ 0003:00003100       ??_C@_0BC@BEOLJKOB@default?5file?3?5?$CFs?6?$AA@ 00471100     M_MISC.obj
+ 0003:00003118       ??_C@_07OOKHNANK@?9config?$AA@ 00471118     M_MISC.obj
+ 0003:00003124       ??_C@_0M@FPGGIOEA@SCREEN?5SHOT?$AA@ 00471124     M_MISC.obj
+ 0003:00003134       ??_C@_0CE@GNJGLKN@M_ScreenShot?3?5Couldn?8t?5create?5a?5@ 00471134     M_MISC.obj
+ 0003:00003160       ??_C@_0M@ODOLNPJK@HRTIC00?4pcx?$AA@ 00471160     M_MISC.obj
+ 0003:00003170       ??_C@_0CI@NNDKODFO@DO?5YOU?5WANT?5TO?5QUICKLOAD?5THE?5GAM@ 00471170     MN_MENU.obj
+ 0003:000031a0       ??_C@_0CI@JNDFLDPD@DO?5YOU?5WANT?5TO?5QUICKSAVE?5THE?5GAM@ 004711a0     MN_MENU.obj
+ 0003:000031d0       ??_C@_0CH@DFAMIIHE@ARE?5YOU?5SURE?5YOU?5WANT?5TO?5END?5THE@ 004711d0     MN_MENU.obj
+ 0003:00003200       ??_C@_0BP@NDJKNNMP@ARE?5YOU?5SURE?5YOU?5WANT?5TO?5QUIT?$DP?$AA@ 00471200     MN_MENU.obj
+ 0003:00003228       ??_C@_0N@BJPPCEFA@MUSIC?5VOLUME?$AA@ 00471228     MN_MENU.obj
+ 0003:00003238       ??_C@_0L@PMOLIING@SFX?5VOLUME?$AA@ 00471238     MN_MENU.obj
+ 0003:00003248       ??_C@_0M@KOOOKLKO@SCREEN?5SIZE?$AA@ 00471248     MN_MENU.obj
+ 0003:00003258       ??_C@_07DCGKDGDE@MORE?4?4?4?$AA@ 00471258     MN_MENU.obj
+ 0003:00003264       ??_C@_0BC@KOEMOFNC@MOUSE?5SENSITIVITY?$AA@ 00471264     MN_MENU.obj
+ 0003:0000327c       ??_C@_0M@MMPCDGEB@MESSAGES?5?3?5?$AA@ 0047127c     MN_MENU.obj
+ 0003:0000328c       ??_C@_08DKDLDHEI@END?5GAME?$AA@ 0047128c     MN_MENU.obj
+ 0003:00003298       ??_C@_0BM@OOFNJAAE@BLACK?5PLAGUE?5POSSESSES?5THEE?$AA@ 00471298     MN_MENU.obj
+ 0003:000032bc       ??_C@_0BJ@HDHEHMNC@THOU?5ART?5A?5SMITE?9MEISTER?$AA@ 004712bc     MN_MENU.obj
+ 0003:000032dc       ??_C@_0BE@JBKFMBBB@BRINGEST?5THEM?5ONETH?$AA@ 004712dc     MN_MENU.obj
+ 0003:000032f4       ??_C@_0BD@BKNCIBFH@YELLOWBELLIES?9R?9US?$AA@ 004712f4     MN_MENU.obj
+ 0003:0000330c       ??_C@_0BJ@FCHDKEJH@THOU?5NEEDETH?5A?5WET?9NURSE?$AA@ 0047130c     MN_MENU.obj
+ 0003:0000332c       ??_C@_09PHDADEIM@LOAD?5GAME?$AA@ 0047132c     MN_MENU.obj
+ 0003:00003338       ??_C@_0BF@CLGPADOG@THE?5STAGNANT?5DEMESNE?$AA@ 00471338     MN_MENU.obj
+ 0003:00003354       ??_C@_0M@JCDONEBM@THE?5OSSUARY?$AA@ 00471354     MN_MENU.obj
+ 0003:00003364       ??_C@_0BF@CBJCPMMF@THE?5DOME?5OF?5D?8SPARIL?$AA@ 00471364     MN_MENU.obj
+ 0003:00003380       ??_C@_0L@GKOJKDCH@HELL?8S?5MAW?$AA@ 00471380     MN_MENU.obj
+ 0003:00003390       ??_C@_0BD@FKHOPCOE@CITY?5OF?5THE?5DAMNED?$AA@ 00471390     MN_MENU.obj
+ 0003:000033a8       ??_C@_09KILFHBEA@QUIT?5GAME?$AA@ 004713a8     MN_MENU.obj
+ 0003:000033b4       ??_C@_04BEADLPGM@INFO?$AA@ 004713b4     MN_MENU.obj
+ 0003:000033bc       ??_C@_0L@CBIJEKNE@GAME?5FILES?$AA@ 004713bc     MN_MENU.obj
+ 0003:000033cc       ??_C@_07KDKMIPIP@OPTIONS?$AA@ 004713cc     MN_MENU.obj
+ 0003:000033d8       ??_C@_08LDDCDDJA@NEW?5GAME?$AA@ 004713d8     MN_MENU.obj
+ 0003:000033e4       ??_C@_07HCAOEJBD@M_SKL00?$AA@ 004713e4     MN_MENU.obj
+ 0003:000033f0       ??_C@_08JPOMDJF@M_SLCTR2?$AA@ 004713f0     MN_MENU.obj
+ 0003:000033fc       ??_C@_08CCNDJAFG@M_SLCTR1?$AA@ 004713fc     MN_MENU.obj
+ 0003:00003408       ??_C@_01OGPIMHDM@?$DP?$AA@ 00471408     MN_MENU.obj
+ 0003:0000340c       ??_C@_06DCGEKPOO@M_HTIC?$AA@ 0047140c     MN_MENU.obj
+ 0003:00003414       ??_C@_03CCKOKKND@rb?$CL?$AA@ 00471414     MN_MENU.obj
+ 0003:00003418       ??_C@_07CPLJIHLG@M_FSLOT?$AA@ 00471418     MN_MENU.obj
+ 0003:00003424       ??_C@_03MPPIHBHJ@OFF?$AA@  00471424     MN_MENU.obj
+ 0003:00003428       ??_C@_02BFICIOJL@ON?$AA@   00471428     MN_MENU.obj
+ 0003:0000342c       ??_C@_0CC@JMAKKGBH@YOU?5CAN?8T?5LOAD?5A?5GAME?5IN?5NETPLAY@ 0047142c     MN_MENU.obj
+ 0003:00003454       ??_C@_0CH@FCEFPCIA@YOU?5CAN?8T?5START?5A?5NEW?5GAME?5IN?5NE@ 00471454     MN_MENU.obj
+ 0003:00003484       ??_C@_0N@LHIPIMIP@MESSAGES?5OFF?$AA@ 00471484     MN_MENU.obj
+ 0003:00003494       ??_C@_0M@GFLGNKND@MESSAGES?5ON?$AA@ 00471494     MN_MENU.obj
+ 0003:000034a4       ??_C@_0CJ@ODLILHBN@ONLY?5AVAILABLE?5IN?5THE?5REGISTERED@ 004714a4     MN_MENU.obj
+ 0003:000034d8       ??_C@_0BI@NAHHMILL@CHOOSE?5A?5QUICKLOAD?5SLOT?$AA@ 004714d8     MN_MENU.obj
+ 0003:000034f4       ??_C@_0BI@BOBJPKMK@CHOOSE?5A?5QUICKSAVE?5SLOT?$AA@ 004714f4     MN_MENU.obj
+ 0003:00003510       ??_C@_0BB@CHBIFDJP@QUICKLOADING?4?4?4?4?$AA@ 00471510     MN_MENU.obj
+ 0003:00003524       ??_C@_0BA@MACNHIBD@QUICKSAVING?4?4?4?4?$AA@ 00471524     MN_MENU.obj
+ 0003:00003538       ??_C@_07EADHCBCJ@M_SLDKB?$AA@ 00471538     MN_MENU.obj
+ 0003:00003544       ??_C@_07EPFIAMAB@M_SLDRT?$AA@ 00471544     MN_MENU.obj
+ 0003:00003550       ??_C@_08IOGENIFC@M_SLDMD2?$AA@ 00471550     MN_MENU.obj
+ 0003:0000355c       ??_C@_08KFEJILJB@M_SLDMD1?$AA@ 0047155c     MN_MENU.obj
+ 0003:00003568       ??_C@_07FJOAICHL@M_SLDLT?$AA@ 00471568     MN_MENU.obj
+ 0003:00003574       ??_C@_0CH@OCKKIMNC@YOU?5NEED?5A?5GREEN?5KEY?5TO?5OPEN?5THI@ 00471574     P_DOORS.obj
+ 0003:000035a4       ??_C@_0CI@KKOEEAHH@YOU?5NEED?5A?5YELLOW?5KEY?5TO?5OPEN?5TH@ 004715a4     P_DOORS.obj
+ 0003:000035d4       ??_C@_0CG@DGOLIGME@YOU?5NEED?5A?5BLUE?5KEY?5TO?5OPEN?5THIS@ 004715d4     P_DOORS.obj
+ 0003:00003604       ??_C@_0BF@MFPPBLPB@Too?5many?5boss?5spots?4?$AA@ 00471604     P_ENEMY.obj
+ 0003:00003620       ??_C@_0CF@BCEGMOGL@P_NewChaseDir?3?5called?5with?5no?5ta@ 00471620     P_ENEMY.obj
+ 0003:00003650       __real@4104000000000000    00471650     P_ENEMY.obj
+ 0003:0000365c       ??_C@_0BI@OJLJONBK@P_GiveAmmo?3?5bad?5type?5?$CFi?$AA@ 0047165c     P_INTER.obj
+ 0003:00003678       ??_C@_0CH@ILOENEGF@P_SpecialThing?3?5Unknown?5gettable@ 00471678     P_INTER.obj
+ 0003:000036a8       ??_C@_0BN@JGMPMGBG@GAUNTLETS?5OF?5THE?5NECROMANCER?$AA@ 004716a8     P_INTER.obj
+ 0003:000036cc       ??_C@_0M@GNCBEDGN@PHOENIX?5ROD?$AA@ 004716cc     P_INTER.obj
+ 0003:000036dc       ??_C@_09EOJBGLMB@HELLSTAFF?$AA@ 004716dc     P_INTER.obj
+ 0003:000036e8       ??_C@_0M@PFAAOBIB@DRAGON?5CLAW?$AA@ 004716e8     P_INTER.obj
+ 0003:000036f8       ??_C@_0BC@NEEJIKM@ETHEREAL?5CROSSBOW?$AA@ 004716f8     P_INTER.obj
+ 0003:00003710       ??_C@_08BFGKAACC@FIREMACE?$AA@ 00471710     P_INTER.obj
+ 0003:0000371c       ??_C@_0M@PIIHEFKH@INFERNO?5ORB?$AA@ 0047171c     P_INTER.obj
+ 0003:0000372c       ??_C@_09IHMIONFO@FLAME?5ORB?$AA@ 0047172c     P_INTER.obj
+ 0003:00003738       ??_C@_0O@NBNHFFE@GREATER?5RUNES?$AA@ 00471738     P_INTER.obj
+ 0003:00003748       ??_C@_0N@KNABNLDJ@LESSER?5RUNES?$AA@ 00471748     P_INTER.obj
+ 0003:00003758       ??_C@_0L@DFPONMKA@ENERGY?5ORB?$AA@ 00471758     P_INTER.obj
+ 0003:00003768       ??_C@_08NMONPFIF@CLAW?5ORB?$AA@ 00471768     P_INTER.obj
+ 0003:00003774       ??_C@_0BK@DDLPHGKI@QUIVER?5OF?5ETHEREAL?5ARROWS?$AA@ 00471774     P_INTER.obj
+ 0003:00003794       ??_C@_0BA@IMMIGPNO@ETHEREAL?5ARROWS?$AA@ 00471794     P_INTER.obj
+ 0003:000037a8       ??_C@_0BF@HNFGEOPC@PILE?5OF?5MACE?5SPHERES?$AA@ 004717a8     P_INTER.obj
+ 0003:000037c4       ??_C@_0N@BJIDEGKB@MACE?5SPHERES?$AA@ 004717c4     P_INTER.obj
+ 0003:000037d4       ??_C@_0O@EJPJOJAC@CRYSTAL?5GEODE?$AA@ 004717d4     P_INTER.obj
+ 0003:000037e4       ??_C@_0N@JALLMKOE@WAND?5CRYSTAL?$AA@ 004717e4     P_INTER.obj
+ 0003:000037f4       ??_C@_0N@ENDBGPEB@CHAOS?5DEVICE?$AA@ 004717f4     P_INTER.obj
+ 0003:00003804       ??_C@_0BK@LFOPKIGO@TIME?5BOMB?5OF?5THE?5ANCIENTS?$AA@ 00471804     P_INTER.obj
+ 0003:00003824       ??_C@_05CIPJOKJI@TORCH?$AA@ 00471824     P_INTER.obj
+ 0003:0000382c       ??_C@_0L@DCJJDHFP@MYSTIC?5URN?$AA@ 0047182c     P_INTER.obj
+ 0003:0000383c       ??_C@_0L@IELKKADN@MORPH?5OVUM?$AA@ 0047183c     P_INTER.obj
+ 0003:0000384c       ??_C@_0N@JEDHHFPE@SHADOWSPHERE?$AA@ 0047184c     P_INTER.obj
+ 0003:0000385c       ??_C@_0O@JDNPDIOK@TOME?5OF?5POWER?$AA@ 0047185c     P_INTER.obj
+ 0003:0000386c       ??_C@_0BG@ELABILMC@RING?5OF?5INVINCIBILITY?$AA@ 0047186c     P_INTER.obj
+ 0003:00003888       ??_C@_0P@HNELICON@WINGS?5OF?5WRATH?$AA@ 00471888     P_INTER.obj
+ 0003:0000389c       ??_C@_0N@BEFAEJGB@QUARTZ?5FLASK?$AA@ 0047189c     P_INTER.obj
+ 0003:000038ac       ??_C@_09OOFHEGOF@GREEN?5KEY?$AA@ 004718ac     P_INTER.obj
+ 0003:000038b8       ??_C@_0L@JKLICCDG@YELLOW?5KEY?$AA@ 004718b8     P_INTER.obj
+ 0003:000038c8       ??_C@_08CJCEBDLD@BLUE?5KEY?$AA@ 004718c8     P_INTER.obj
+ 0003:000038d4       ??_C@_0L@EMOBHOMA@MAP?5SCROLL?$AA@ 004718d4     P_INTER.obj
+ 0003:000038e4       ??_C@_0P@KEDPPCPM@BAG?5OF?5HOLDING?$AA@ 004718e4     P_INTER.obj
+ 0003:000038f8       ??_C@_0BB@KOFNBGMO@ENCHANTED?5SHIELD?$AA@ 004718f8     P_INTER.obj
+ 0003:0000390c       ??_C@_0O@NCJPMONA@SILVER?5SHIELD?$AA@ 0047190c     P_INTER.obj
+ 0003:0000391c       ??_C@_0N@EDAJFMHB@CRYSTAL?5VIAL?$AA@ 0047191c     P_INTER.obj
+ 0003:0000392c       ??_C@_0BP@FLCONLAH@PTR_SlideTraverse?3?5not?5a?5line?$DP?$AA@ 0047192c     P_MAP.obj
+ 0003:00003954       ??_C@_0CN@MOJLMNNG@P_SpawnMapThing?3?5Unknown?5type?5?$CFi@ 00471954     P_MOBJ.obj
+ 0003:0000398c       ??_C@_0CA@IMAJDLGA@P_AddActivePlat?3?5no?5more?5plats?$CB?$AA@ 0047198c     P_PLATS.obj
+ 0003:000039b4       ??_C@_0CF@FMODNIHN@P_RemoveActivePlat?3?5can?8t?5find?5p@ 004719b4     P_PLATS.obj
+ 0003:000039e0       ??_C@_0BF@BNGJBFJF@Too?5many?5mace?5spots?4?$AA@ 004719e0     P_PSPR.obj
+ 0003:00003a00       __real@40f8000000000000    00471a00     P_PSPR.obj
+ 0003:00003a10       __real@40fccccccccccccd    00471a10     P_PSPR.obj
+ 0003:00003a20       __real@40f0000000000000    00471a20     P_SETUP.obj
+ 0003:00003a2c       ??_C@_0BJ@KPGIHEEF@P_GroupLines?3?5miscounted?$AA@ 00471a2c     P_SETUP.obj
+ 0003:00003a4c       ??_C@_06FCDBBPFH@?9timer?$AA@ 00471a4c     P_SETUP.obj
+ 0003:00003a54       ??_C@_03JMGAKCCH@END?$AA@  00471a54     P_SPEC.obj
+ 0003:00003a58       ??_C@_08EHNCJJPF@FLTSLUD1?$AA@ 00471a58     P_SPEC.obj
+ 0003:00003a64       ??_C@_08FJLMIAAP@FLTLAVA1?$AA@ 00471a64     P_SPEC.obj
+ 0003:00003a70       ??_C@_08KAKANPHP@FLTFLWW1?$AA@ 00471a70     P_SPEC.obj
+ 0003:00003a7c       ??_C@_08IIBBBFDC@FLTWAWA1?$AA@ 00471a7c     P_SPEC.obj
+ 0003:00003a88       ??_C@_0CI@NPDMFJCJ@P_InitPicAnims?3?5bad?5cycle?5from?5?$CF@ 00471a88     P_SPEC.obj
+ 0003:00003ab8       ??_C@_0CM@OOALIHEC@P_PlayerInSpecialSector?3?5unknown@ 00471ab8     P_SPEC.obj
+ 0003:00003aec       ??_C@_08DAOOFMNO@texture2?$AA@ 00471aec     P_SPEC.obj
+ 0003:00003af8       ??_C@_0CB@GPBMOMJP@Too?5many?5ambient?5sound?5sequences@ 00471af8     P_SPEC.obj
+ 0003:00003b20       ??_C@_0CC@HIACMEAC@P_AmbientSound?3?5Unknown?5afxcmd?5?$CF@ 00471b20     P_SPEC.obj
+ 0003:00003b48       ??_C@_03OKMGHDAC@ONE?$AA@  00471b48     P_SWITCH.obj
+ 0003:00003b4c       ??_C@_0CF@IHJNEHOP@P_StartButton?3?5no?5button?5slots?5l@ 00471b4c     P_SWITCH.obj
+ 0003:00003b78       ??_C@_0BO@NOMELOCF@Unknown?5tclass?5?$CFi?5in?5savegame?$AA@ 00471b78     P_TICK.obj
+ 0003:00003b9c       ??_C@_0DC@IJBHHDPH@P_UnarchiveSpecials?3Unknown?5tcla@ 00471b9c     P_TICK.obj
+ 0003:00003bd8       ??_C@_0CN@LNGGMCE@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 00471bd8     R_DATA.obj
+ 0003:00003c10       ??_C@_0CF@PNGJONCH@R_GenerateLookup?3?5texture?5?$CFi?5is?5@ 00471c10     R_DATA.obj
+ 0003:00003c3c       ??_C@_0CP@DBNLBMDK@R_GenerateLookup?3?5column?5without@ 00471c3c     R_DATA.obj
+ 0003:00003c74       ??_C@_0CM@OBJMHGHH@R_InitTextures?3?5Missing?5patch?5in@ 00471c74     R_DATA.obj
+ 0003:00003ca8       ??_C@_0CG@FHPELPAC@R_InitTextures?3?5bad?5texture?5dire@ 00471ca8     R_DATA.obj
+ 0003:00003cd8       ??_C@_07EBCHADGJ@S_START?$AA@ 00471cd8     R_DATA.obj
+ 0003:00003ce4       ??_C@_05DMLPPONL@S_END?$AA@ 00471ce4     R_DATA.obj
+ 0003:00003cec       ??_C@_0BB@EACAOMJI@num?5textures?5?$CFd?6?$AA@ 00471cec     R_DATA.obj
+ 0003:00003d00       ??_C@_08NKMGEGFL@TEXTURE2?$AA@ 00471d00     R_DATA.obj
+ 0003:00003d0c       ??_C@_08PBOLBFJI@TEXTURE1?$AA@ 00471d0c     R_DATA.obj
+ 0003:00003d18       ??_C@_0BC@CAMBJAPP@patchlookup?5?$DN?$DN?50?6?$AA@ 00471d18     R_DATA.obj
+ 0003:00003d30       ??_C@_06JPDOBCIP@PNAMES?$AA@ 00471d30     R_DATA.obj
+ 0003:00003d38       ??_C@_05GPKEGNPD@F_END?$AA@ 00471d38     R_DATA.obj
+ 0003:00003d40       ??_C@_07HFHMDMCG@F_START?$AA@ 00471d40     R_DATA.obj
+ 0003:00003d4c       ??_C@_08JDLPAFIO@COLORMAP?$AA@ 00471d4c     R_DATA.obj
+ 0003:00003d58       ??_C@_0BD@LAPMNLPF@R_InitSpriteLumps?5?$AA@ 00471d58     R_DATA.obj
+ 0003:00003d70       ??_C@_0N@NJPJJNNB@R_InitFlats?6?$AA@ 00471d70     R_DATA.obj
+ 0003:00003d80       ??_C@_0BB@KHIBPEIH@?6R_InitTextures?5?$AA@ 00471d80     R_DATA.obj
+ 0003:00003d94       ??_C@_0BP@KBBHICPO@R_FlatNumForName?3?5?$CFs?5not?5found?$AA@ 00471d94     R_DATA.obj
+ 0003:00003dbc       ??_C@_0CC@DKPMGEJI@R_TextureNumForName?3?5?$CFs?5not?5foun@ 00471dbc     R_DATA.obj
+ 0003:00003de4       ??_C@_06COAGKCEK@F_SKY1?$AA@ 00471de4     R_MAIN.obj
+ 0003:00003dec       ??_C@_0O@BKNMNKAH@R_InitSkyMap?6?$AA@ 00471dec     R_MAIN.obj
+ 0003:00003dfc       ??_C@_0BD@CBCAMLEB@R_InitLightTables?5?$AA@ 00471dfc     R_MAIN.obj
+ 0003:00003e14       ??_C@_0O@LFDEBPEG@R_InitPlanes?6?$AA@ 00471e14     R_MAIN.obj
+ 0003:00003e24       ??_C@_0O@MDJGJNJK@R_InitTables?5?$AA@ 00471e24     R_MAIN.obj
+ 0003:00003e34       ??_C@_0BE@LEMPBJDM@R_InitPointToAngle?6?$AA@ 00471e34     R_MAIN.obj
+ 0003:00003e4c       ??_C@_0M@JGPGEJOM@R_InitData?5?$AA@ 00471e4c     R_MAIN.obj
+ 0003:00003e5c       ??_C@_0DO@FAGDAFED@R_InitSprites?3?5Sprite?5?$CFs?5?3?5?$CFc?5?3?5@ 00471e5c     R_THINGS.obj
+ 0003:00003ea8       ??_C@_0EB@IKLOHGBF@R_InitSprites?3?5Sprite?5?$CFs?5frame?5?$CF@ 00471ea8     R_THINGS.obj
+ 0003:00003ef8       ??_C@_0DI@OLCAPIOP@R_InitSprites?3?5Sprite?5?$CFs?5frame?5?$CF@ 00471ef8     R_THINGS.obj
+ 0003:00003f3c       ??_C@_0DF@OHOHBPIA@R_InstallSpriteLump?3?5Bad?5frame?5c@ 00471f3c     R_THINGS.obj
+ 0003:00003f7c       ??_C@_0DH@GIDDGAAK@R_InitSprites?3?5Sprite?5?$CFs?5frame?5?$CF@ 00471f7c     R_THINGS.obj
+ 0003:00003fc0       ??_C@_0DA@PAENPMKN@R_InitSprites?3?5No?5patches?5found?5@ 00471fc0     R_THINGS.obj
+ 0003:00003ffc       ??_C@_0CM@NHDNLFAB@R_InitSprites?3?5No?5lumps?5found?5fo@ 00471ffc     R_THINGS.obj
+ 0003:00004030       ??_C@_06MGHKLCPM@SPFLY0?$AA@ 00472030     SB_BAR.obj
+ 0003:00004038       ??_C@_07DPKBEEOM@SPINBK0?$AA@ 00472038     SB_BAR.obj
+ 0003:00004044       ??_C@_07FLMOFAHC@PLAYPAL?$AA@ 00472044     SB_BAR.obj
+ 0003:00004050       ??_C@_08KEAKMBMC@SMALLIN0?$AA@ 00472050     SB_BAR.obj
+ 0003:0000405c       ??_C@_06JHIKMDDO@NEGNUM?$AA@ 0047205c     SB_BAR.obj
+ 0003:00004064       ??_C@_03JNOFKBGN@IN0?$AA@  00472064     SB_BAR.obj
+ 0003:00004068       ??_C@_09GNIOICNG@CHAINBACK?$AA@ 00472068     SB_BAR.obj
+ 0003:00004074       ??_C@_08KDBAKBLD@ARMCLEAR?$AA@ 00472074     SB_BAR.obj
+ 0003:00004080       ??_C@_07CINGCCJL@BLACKSQ?$AA@ 00472080     SB_BAR.obj
+ 0003:0000408c       ??_C@_08HOKNJBPN@INVGEMR2?$AA@ 0047208c     SB_BAR.obj
+ 0003:00004098       ??_C@_08FFIAMCDO@INVGEMR1?$AA@ 00472098     SB_BAR.obj
+ 0003:000040a4       ??_C@_08GIBFBPIH@INVGEML2?$AA@ 004720a4     SB_BAR.obj
+ 0003:000040b0       ??_C@_08EDDIEMEE@INVGEML1?$AA@ 004720b0     SB_BAR.obj
+ 0003:000040bc       ??_C@_09MOLEPNCI@SELECTBOX?$AA@ 004720bc     SB_BAR.obj
+ 0003:000040c8       ??_C@_07BJAENNDN@RTFCTOP?$AA@ 004720c8     SB_BAR.obj
+ 0003:000040d4       ??_C@_07HADFPOCE@LTFCTOP?$AA@ 004720d4     SB_BAR.obj
+ 0003:000040e0       ??_C@_08IONBBNCO@LIFEGEM0?$AA@ 004720e0     SB_BAR.obj
+ 0003:000040ec       ??_C@_08LMOHHPKM@LIFEGEM2?$AA@ 004720ec     SB_BAR.obj
+ 0003:000040f8       ??_C@_07LEKGLBEB@LIFEBAR?$AA@ 004720f8     SB_BAR.obj
+ 0003:00004104       ??_C@_07FHLBOBEC@STATBAR?$AA@ 00472104     SB_BAR.obj
+ 0003:00004110       ??_C@_05JNGLNOIK@CHAIN?$AA@ 00472110     SB_BAR.obj
+ 0003:00004118       ??_C@_06PJMJAJML@INVBAR?$AA@ 00472118     SB_BAR.obj
+ 0003:00004120       ??_C@_07DCJFKDBB@BARBACK?$AA@ 00472120     SB_BAR.obj
+ 0003:0000412c       ??_C@_06EKAPIIJG@RTFACE?$AA@ 0047212c     SB_BAR.obj
+ 0003:00004134       ??_C@_06HNOOGPAF@LTFACE?$AA@ 00472134     SB_BAR.obj
+ 0003:0000413c       ??_C@_04IKJKLFLN@GOD2?$AA@ 0047213c     SB_BAR.obj
+ 0003:00004144       ??_C@_04KBLHOGHO@GOD1?$AA@ 00472144     SB_BAR.obj
+ 0003:0000414c       ??_C@_02DPKJAMEF@?$CFd?$AA@ 0047214c     SB_BAR.obj
+ 0003:00004150       ??_C@_02DKCKIIND@?$CFs?$AA@ 00472150     SB_BAR.obj
+ 0003:00004154       ??_C@_06MHNHNDP@?9?9?9?9?9?9?$AA@ 00472154     SB_BAR.obj
+ 0003:0000415c       ??_C@_04MCJPOJGF@DIST?$AA@ 0047215c     SB_BAR.obj
+ 0003:00004164       ??_C@_03FLDFCBND@PRI?$AA@  00472164     SB_BAR.obj
+ 0003:00004168       ??_C@_02OLOABKKD@ID?$AA@   00472168     SB_BAR.obj
+ 0003:0000416c       ??_C@_04DGDFBIG@MO?4Y?$AA@ 0047216c     SB_BAR.obj
+ 0003:00004174       ??_C@_04BKHIGAMH@MO?4X?$AA@ 00472174     SB_BAR.obj
+ 0003:0000417c       ??_C@_04LGMNCPML@MO?4T?$AA@ 0047217c     SB_BAR.obj
+ 0003:00004184       ??_C@_04IPKHEEB@NAME?$AA@  00472184     SB_BAR.obj
+ 0003:0000418c       ??_C@_0BJ@HABNHFBM@?$CK?$CK?$CK?5SOUND?5DEBUG?5INFO?5?$CK?$CK?$CK?$AA@ 0047218c     SB_BAR.obj
+ 0003:000041ac       ??_C@_08BGAFEGDA@bkeyicon?$AA@ 004721ac     SB_BAR.obj
+ 0003:000041b8       ??_C@_08FMJCADHP@gkeyicon?$AA@ 004721b8     SB_BAR.obj
+ 0003:000041c4       ??_C@_08DIJAJKJM@ykeyicon?$AA@ 004721c4     SB_BAR.obj
+ 0003:000041d0       ??_C@_08MHJEGKCI@useartia?$AA@ 004721d0     SB_BAR.obj
+ 0003:000041dc       ??_C@_04HCDKCHCB@LAME?$AA@ 004721dc     SB_BAR.obj
+ 0003:000041e4       ??_C@_07DBOFOHLF@ARTIBOX?$AA@ 004721e4     SB_BAR.obj
+ 0003:000041f0       ??_C@_0N@LLHNOPII@GOD?5MODE?5OFF?$AA@ 004721f0     SB_BAR.obj
+ 0003:00004200       ??_C@_0M@CBMOOFBI@GOD?5MODE?5ON?$AA@ 00472200     SB_BAR.obj
+ 0003:00004210       ??_C@_0BA@PNPLAACL@NO?5CLIPPING?5OFF?$AA@ 00472210     SB_BAR.obj
+ 0003:00004224       ??_C@_0P@MOJPDPLH@NO?5CLIPPING?5ON?$AA@ 00472224     SB_BAR.obj
+ 0003:00004238       ??_C@_0M@GIOLHMJP@ALL?5WEAPONS?$AA@ 00472238     SB_BAR.obj
+ 0003:00004248       ??_C@_08NFCDKNGD@POWER?5ON?$AA@ 00472248     SB_BAR.obj
+ 0003:00004254       ??_C@_09HMFOKKHE@POWER?5OFF?$AA@ 00472254     SB_BAR.obj
+ 0003:00004260       ??_C@_0M@NIPOFKFB@FULL?5HEALTH?$AA@ 00472260     SB_BAR.obj
+ 0003:00004270       ??_C@_08FLDIOLHD@ALL?5KEYS?$AA@ 00472270     SB_BAR.obj
+ 0003:0000427c       ??_C@_0BA@OGECONDH@SOUND?5DEBUG?5OFF?$AA@ 0047227c     SB_BAR.obj
+ 0003:00004290       ??_C@_0P@HGNHFIOC@SOUND?5DEBUG?5ON?$AA@ 00472290     SB_BAR.obj
+ 0003:000042a4       ??_C@_0L@CKKPKABK@TICKER?5OFF?$AA@ 004722a4     SB_BAR.obj
+ 0003:000042b4       ??_C@_09JHONOAFG@TICKER?5ON?$AA@ 004722b4     SB_BAR.obj
+ 0003:000042c0       ??_C@_0BN@MMEFLEA@CHOOSE?5AN?5ARTIFACT?5?$CI?5A?5?9?5J?5?$CJ?$AA@ 004722c0     SB_BAR.obj
+ 0003:000042e4       ??_C@_0BD@JAKHJBJ@HOW?5MANY?5?$CI?51?5?9?59?5?$CJ?$AA@ 004722e4     SB_BAR.obj
+ 0003:000042fc       ??_C@_09JNIAGEPO@BAD?5INPUT?$AA@ 004722fc     SB_BAR.obj
+ 0003:00004308       ??_C@_0L@IKBGIMJE@YOU?5GOT?5IT?$AA@ 00472308     SB_BAR.obj
+ 0003:00004318       ??_C@_0L@KIJDGMJI@LEVEL?5WARP?$AA@ 00472318     SB_BAR.obj
+ 0003:00004328       ??_C@_0L@MIMIFNMH@CHICKEN?5ON?$AA@ 00472328     SB_BAR.obj
+ 0003:00004338       ??_C@_0M@KNPICGHF@CHICKEN?5OFF?$AA@ 00472338     SB_BAR.obj
+ 0003:00004348       ??_C@_08EFDPIDLF@MASSACRE?$AA@ 00472348     SB_BAR.obj
+ 0003:00004354       ??_C@_0CE@HIHCLOIB@CHEATER?5?9?5YOU?5DON?8T?5DESERVE?5WEAP@ 00472354     SB_BAR.obj
+ 0003:00004380       ??_C@_0CD@CEDEIBPN@TRYING?5TO?5CHEAT?0?5EH?$DP?5?5NOW?5YOU?5DI@ 00472380     SB_BAR.obj
+ 0003:000043ac       ??_C@_0CO@DNDPAIOP@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 004723ac     soundst.obj
+ 0003:000043e4       ??_C@_08CDHOABEF@SNDCURVE?$AA@ 004723e4     soundst.obj
+ 0003:000043f0       ??_C@_0P@EHIMDPAE@Error?5fstating?$AA@ 004723f0     W_WAD.obj
+ 0003:00004404       ??_C@_0BN@HDCEBNNP@Filename?5base?5of?5?$CFs?5?$DO8?5chars?$AA@ 00472404     W_WAD.obj
+ 0003:00004428       ??_C@_0BK@OGFJNHBD@Couldn?8t?5realloc?5lumpinfo?$AA@ 00472428     W_WAD.obj
+ 0003:00004448       ??_C@_0CE@DPEONMCE@Wad?5file?5?$CFs?5fileinfo?5malloc?5fail@ 00472448     W_WAD.obj
+ 0003:00004474       ??_C@_0CK@IMFJDFI@Wad?5file?5?$CFs?5doesn?8t?5have?5IWAD?5or@ 00472474     W_WAD.obj
+ 0003:000044a8       ??_C@_04LCFJJNME@PWAD?$AA@ 004724a8     W_WAD.obj
+ 0003:000044b0       ??_C@_04NPKJGIDH@IWAD?$AA@ 004724b0     W_WAD.obj
+ 0003:000044b8       ??_C@_03GANHLHHC@wad?$AA@  004724b8     W_WAD.obj
+ 0003:000044bc       ??_C@_0N@DHMLKEAG@opening?3?5?$CFs?6?$AA@ 004724bc     W_WAD.obj
+ 0003:000044cc       ??_C@_0BM@OLLBONOF@Couldn?8t?5allocate?5lumpcache?$AA@ 004724cc     W_WAD.obj
+ 0003:000044f0       ??_C@_0BM@GBIKAEBE@W_InitFiles?3?5no?5files?5found?$AA@ 004724f0     W_WAD.obj
+ 0003:00004514       ??_C@_0BP@COOHDNEN@W_GetNumForName?3?5?$CFs?5not?5found?$CB?$AA@ 00472514     W_WAD.obj
+ 0003:0000453c       ??_C@_0BN@EDACHEJG@W_LumpLength?3?5?$CFi?5?$DO?$DN?5numlumps?$AA@ 0047253c     W_WAD.obj
+ 0003:00004560       ??_C@_0CK@HFJKDBJE@W_ReadLump?3?5only?5read?5?$CFi?5of?5?$CFi?5o@ 00472560     W_WAD.obj
+ 0003:00004594       ??_C@_0BL@HBOHBNCH@W_ReadLump?3?5?$CFi?5?$DO?$DN?5numlumps?$AA@ 00472594     W_WAD.obj
+ 0003:000045b4       ??_C@_0CM@BJMHBCCG@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 004725b4     W_WAD.obj
+ 0003:000045e8       ??_C@_0BP@BJDOEDJF@W_CacheLumpNum?3?5?$CFi?5?$DO?$DN?5numlumps?$AA@ 004725e8     W_WAD.obj
+ 0003:00004610       ??_C@_0CH@OJFIIOIA@Z_Free?3?5freed?5a?5pointer?5without?5@ 00472610     Z_ZONE.obj
+ 0003:00004640       ??_C@_0DD@MJJDHHFN@Z_Malloc?3?5an?5owner?5is?5required?5f@ 00472640     Z_ZONE.obj
+ 0003:00004680       ??_C@_0CL@FLAFPDCH@Z_Malloc?3?5failed?5on?5allocation?5o@ 00472680     Z_ZONE.obj
+ 0003:000046b4       ??_C@_0CE@BLFCFJMN@ERROR?3?5two?5consecutive?5free?5bloc@ 004726b4     Z_ZONE.obj
+ 0003:000046e0       ??_C@_0DB@INBMMEOG@ERROR?3?5next?5block?5doesn?8t?5have?5p@ 004726e0     Z_ZONE.obj
+ 0003:0000471c       ??_C@_0DB@EJEJBDEF@ERROR?3?5block?5size?5does?5not?5touch@ 0047271c     Z_ZONE.obj
+ 0003:00004758       ??_C@_0CM@IHDHPOFO@block?3?$CFp?5?5?5?5size?3?$CF7i?5?5?5?5user?3?$CFp?5@ 00472758     Z_ZONE.obj
+ 0003:0000478c       ??_C@_0BF@BCHJJIJD@tag?5range?3?5?$CFi?5to?5?$CFi?6?$AA@ 0047278c     Z_ZONE.obj
+ 0003:000047a8       ??_C@_0BN@DBGKJAGK@zone?5size?3?5?$CFi?5?5location?3?5?$CFp?6?$AA@ 004727a8     Z_ZONE.obj
+ 0003:000047cc       ??_C@_0CK@MHBJLLKL@Z_CheckHeap?3?5two?5consecutive?5fre@ 004727cc     Z_ZONE.obj
+ 0003:00004800       ??_C@_0DH@DHOAKNHO@Z_CheckHeap?3?5next?5block?5doesn?8t?5@ 00472800     Z_ZONE.obj
+ 0003:00004844       ??_C@_0DH@PDLFHKNN@Z_CheckHeap?3?5block?5size?5does?5not@ 00472844     Z_ZONE.obj
+ 0003:00004888       ??_C@_0DG@LAHBBECL@Z_ChangeTag?3?5an?5owner?5is?5require@ 00472888     Z_ZONE.obj
+ 0003:000048c8       ??_C@_0CM@GJACDPGK@Z_ChangeTag?3?5freed?5a?5pointer?5wit@ 004728c8     Z_ZONE.obj
+ 0003:000049e8       __real@00000000            004729e8     ds_render.obj
+ 0003:000049f0       __real@0000000000000000    004729f0     ds_render.obj
+ 0003:000049fc       __real@c37f0000            004729fc     ds_render.obj
+ 0003:00004a00       __real@3f20401a            00472a00     ds_render.obj
+ 0003:00004a08       __real@c000000000000000    00472a08     ds_render.obj
+ 0003:00004a18       __real@4056800000000000    00472a18     ds_render.obj
+ 0003:00004a28       __real@4160000000000000    00472a28     ds_render.obj
+ 0003:00004a34       __real@437f0000            00472a34     ds_render.obj
+ 0003:00004a38       __real@3f800000            00472a38     ds_render.obj
+ 0003:00004a40       __real@3fe0000000000000    00472a40     ds_render.obj
+ 0003:00004a4c       __real@3c23d70a            00472a4c     ds_render.obj
+ 0003:00004a50       __real@3ff0000000000000    00472a50     ds_render.obj
+ 0003:00004a5c       ??_C@_0CO@PBBKNDFK@R_ProjectSprite?3?5Missing?5spritef@ 00472a5c     ds_render.obj
+ 0003:00004a98       __real@3f70101020000000    00472a98     ds_render.obj
+ 0003:00004aa4       __real@3dcccccd            00472aa4     ds_render.obj
+ 0003:00004aa8       __real@3e4ccccd            00472aa8     ds_render.obj
+ 0003:00004aac       __real@3ea8f5c3            00472aac     ds_render.obj
+ 0003:00004ab0       __real@3f000000            00472ab0     ds_render.obj
+ 0003:00004ab8       __real@4066800000000000    00472ab8     ds_render.obj
+ 0003:00004ac8       __real@400921fb54b95997    00472ac8     ds_render.obj
+ 0003:00004ad4       __real@c60f59ec            00472ad4     ds_render.obj
+ 0003:00004ad8       __real@4070000000000000    00472ad8     ds_render.obj
+ 0003:00004ae8       __real@4050000000000000    00472ae8     ds_render.obj
+ 0003:00004af8       __real@3ff99999a0000000    00472af8     ds_render.obj
+ 0003:00004b08       __real@3f747ae140000000    00472b08     ds_render.obj
+ 0003:00004b18       __real@c056800000000000    00472b18     ds_render.obj
+ 0003:00004b28       __real@4070e00000000000    00472b28     ds_render.obj
+ 0003:00004b38       __real@40c0000000000000    00472b38     ds_render.obj
+ 0003:00004b48       __real@4076800000000000    00472b48     ds_render.obj
+ 0003:00004b54       __real@bf800000            00472b54     ds_render.obj
+ 0003:00004b58       __real@4000000000000000    00472b58     ds_render.obj
+ 0003:00004b68       __real@400921fb54442d18    00472b68     ds_render.obj
+ 0003:00004b74       ??_C@_0CB@IJPFNFNP@tex?5?$CFd?3?5used?3?5?$CFd?5in?3?5?$CFd?5all?3?5?$CFd?6@ 00472b74     ds_textures.obj
+ 0003:00004b9c       __real@46180000            00472b9c     ds_textures.obj
+ 0003:00004ba0       __real@4030000000000000    00472ba0     ds_textures.obj
+ 0003:00004bac       ??_C@_0DC@OOJINLGM@Z_CT?5at?5c?3?2devl?2cheretic?2heretic@ 00472bac     ds_textures.obj
+ 0003:00004be8       ??_C@_06GAOLIIF@done?4?6?$AA@ 00472be8     geometry.obj
+ 0003:00004bf0       ??_C@_0BA@GMALLIHK@?6press?5space?4?4?4?$AA@ 00472bf0     geometry.obj
+ 0003:00004c04       ??_C@_08DPELGHLE@add?3?5?$CFd?6?$AA@ 00472c04     geometry.obj
+ 0003:00004c10       ??_C@_0P@DLKIEOEJ@?7f?3?5?$CF4d?5b?3?5?$CFd?6?$AA@ 00472c10     geometry.obj
+ 0003:00004c24       ??_C@_0M@CCAMMIHL@sub?3?5?$CFd?5?$CFd?6?$AA@ 00472c24     geometry.obj
+ 0003:00004c34       __real@43480000            00472c34     geometry.obj
+ 0003:00004c38       __real@c2b40000            00472c38     glMain.obj
+ 0003:00004c3c       __real@42b40000            00472c3c     glMain.obj
+ 0003:00004c40       __real@3da00000            00472c40     glMain.obj
+ 0003:00004c44       __real@40160000            00472c44     glMain.obj
+ 0003:00004c48       __real@c0160000            00472c48     glMain.obj
+ 0003:00004c50       __real@bff0000000000000    00472c50     glMain.obj
+ 0003:00004c60       __real@3f747ae147ae147b    00472c60     glMain.obj
+ 0003:00004c70       __real@4044000000000000    00472c70     glMain.obj
+ 0003:00004c7c       ??_C@_0BH@BOJKFCPE@q?3?5?$CFd?5t?3?5?$CFd?5?9?5all?3?5?$CFd?6?$AA@ 00472c7c     glMain.obj
+ 0003:00004c98       __real@4014000000000000    00472c98     glMain.obj
+ 0003:00004ca8       __real@4051133333333333    00472ca8     glview.obj
+ 0003:00004cb8       __real@3ff5555560000000    00472cb8     glview.obj
+ 0003:00004cc4       ??_C@_0BC@OLJBJOOM@glMTexCoord2fSGIS?$AA@ 00472cc4     glview.obj
+ 0003:00004cdc       ??_C@_0BD@IKCKKKNH@glActiveTextureARB?$AA@ 00472cdc     glview.obj
+ 0003:00004cf4       ??_C@_0BF@GFGCIEPA@glMultiTexCoord2fARB?$AA@ 00472cf4     glview.obj
+ 0003:00004d10       ??_C@_06PGBDOMGH@cquake?$AA@ 00472d10     glview.obj
+ 0003:00004d18       __real@403f000000000000    00472d18     glview.obj
+ 0003:00004d28       __real@4080000000000000    00472d28     glview.obj
+ 0003:00004d38       __real@40b0000000000000    00472d38     glview.obj
+ 0003:00004d48       ??_7CGLWindow@@6B@         00472d48     GLWindow.obj
+ 0003:00004d50       __real@c014000000000000    00472d50     GLWindow.obj
+ 0003:00004d60       __real@40c3880000000000    00472d60     GLWindow.obj
+ 0003:00004d6c       ??_C@_0BD@IINOPBDD@wglSwapIntervalEXT?$AA@ 00472d6c     GLWindow.obj
+ 0003:00004d88       ??_7type_info@@6B@         00472d88     MSVCRT:ti_inst.obj
+ 0003:00004d9c       ?ProcessDetach@NativeDll@<CrtImplementationDetails>@@0IB 00472d9c     MSVCRT:unhandld.obj
+ 0003:00004da0       ?ProcessAttach@NativeDll@<CrtImplementationDetails>@@0IB 00472da0     MSVCRT:unhandld.obj
+ 0003:00004da4       ?ThreadAttach@NativeDll@<CrtImplementationDetails>@@0IB 00472da4     MSVCRT:unhandld.obj
+ 0003:00004da8       ?ThreadDetach@NativeDll@<CrtImplementationDetails>@@0IB 00472da8     MSVCRT:unhandld.obj
+ 0003:00004dac       ?ProcessVerifier@NativeDll@<CrtImplementationDetails>@@0IB 00472dac     MSVCRT:unhandld.obj
+ 0003:0000522c       ??_R4CGLWindow@@6B@        0047322c     GLWindow.obj
+ 0003:00005244       ??_R3CGLWindow@@8          00473244     GLWindow.obj
+ 0003:00005258       ??_R2CGLWindow@@8          00473258     GLWindow.obj
+ 0003:00005260       ??_R1A@?0A@EA@CGLWindow@@8 00473260     GLWindow.obj
+ 0003:00005284       ??_R4type_info@@6B@        00473284     MSVCRT:ti_inst.obj
+ 0003:0000529c       ??_R3type_info@@8          0047329c     MSVCRT:ti_inst.obj
+ 0003:000052b0       ??_R2type_info@@8          004732b0     MSVCRT:ti_inst.obj
+ 0003:000052b8       ??_R1A@?0A@EA@type_info@@8 004732b8     MSVCRT:ti_inst.obj
+ 0003:000053dc       ___rtc_iaa                 004733dc     MSVCRT:_initsect_.obj
+ 0003:000054e0       ___rtc_izz                 004734e0     MSVCRT:_initsect_.obj
+ 0003:000055e4       ___rtc_taa                 004735e4     MSVCRT:_initsect_.obj
+ 0003:000056e8       ___rtc_tzz                 004736e8     MSVCRT:_initsect_.obj
+ 0004:00000000       _LevelNames                00474000     AM_MAP.obj
+ 0004:00000138       _CT_FromPlrText            00474138     CT_CHAT.obj
+ 0004:00000150       _wadfiles                  00474150     D_MAIN.obj
+ 0004:000001a0       _basedefault               004741a0     D_MAIN.obj
+ 0004:000001b4       _e1text                    004741b4     F_FINALE.obj
+ 0004:000001b8       _e2text                    004741b8     F_FINALE.obj
+ 0004:000001bc       _e3text                    004741bc     F_FINALE.obj
+ 0004:000001c0       _e4text                    004741c0     F_FINALE.obj
+ 0004:000001c4       _e5text                    004741c4     F_FINALE.obj
+ 0004:000001d0       _MonsterMissileInfo        004741d0     G_GAME.obj
+ 0004:00000284       _precache                  00474284     G_GAME.obj
+ 0004:00000288       _forwardmove               00474288     G_GAME.obj
+ 0004:00000290       _sidemove                  00474290     G_GAME.obj
+ 0004:00000298       _angleturn                 00474298     G_GAME.obj
+ 0004:000002a4       _mousebuttons              004742a4     G_GAME.obj
+ 0004:000002a8       _joybuttons                004742a8     G_GAME.obj
+ 0004:000002ac       _usearti                   004742ac     G_GAME.obj
+ 0004:0000030c       ?__LINE__Var@?1??G_CheckDemoStatus@@9@9 0047430c     G_GAME.obj
+ 0004:00000310       _scantokey                 00474310     I_IBM.obj
+ 0004:000004dc       ?__LINE__Var@?1??IN_UnloadPics@@9@9 004744dc     IN_LUDE.obj
+ 0004:000004e0       _sprnames                  004744e0     INFO.obj
+ 0004:000006e8       _states                    004746e8     INFO.obj
+ 0004:00008ab8       _mobjinfo                  0047cab8     INFO.obj
+ 0004:0000ed80       _rndtable                  00482d80     M_MISC.obj
+ 0004:0000ee80       _defaults                  00482e80     M_MISC.obj
+ 0004:0000f788       _QuitEndMsg                00483788     MN_MENU.obj
+ 0004:0000f870       _xspeed                    00483870     P_ENEMY.obj
+ 0004:0000f890       _yspeed                    00483890     P_ENEMY.obj
+ 0004:0000f8b0       _opposite                  004838b0     P_ENEMY.obj
+ 0004:0000f8d4       _diags                     004838d4     P_ENEMY.obj
+ 0004:0000f958       _WeaponValue               00483958     P_INTER.obj
+ 0004:0000f97c       _maxammo                   0048397c     P_INTER.obj
+ 0004:0000fb78       _wpnlev1info               00483b78     P_PSPR.obj
+ 0004:0000fc78       _wpnlev2info               00483c78     P_PSPR.obj
+ 0004:0000fde8       _AmbSndSeqInit             00483de8     P_SPEC.obj
+ 0004:0000fdec       _AmbSndSeq1                00483dec     P_SPEC.obj
+ 0004:0000fdf8       _AmbSndSeq2                00483df8     P_SPEC.obj
+ 0004:0000fe04       _AmbSndSeq5                00483e04     P_SPEC.obj
+ 0004:0000fe40       _AmbSndSeq3                00483e40     P_SPEC.obj
+ 0004:0000fed4       _AmbSndSeq7                00483ed4     P_SPEC.obj
+ 0004:0000fee0       _AmbSndSeq4                00483ee0     P_SPEC.obj
+ 0004:0000ff78       _AmbSndSeq6                00483f78     P_SPEC.obj
+ 0004:0000ffc0       _AmbSndSeq8                00483fc0     P_SPEC.obj
+ 0004:0000ffe0       _AmbSndSeq9                00483fe0     P_SPEC.obj
+ 0004:00010050       _AmbSndSeq10               00484050     P_SPEC.obj
+ 0004:000100e8       _AmbientSfx                004840e8     P_SPEC.obj
+ 0004:00010110       _animdefs                  00484110     P_SPEC.obj
+ 0004:0001020c       _TerrainTypeDefs           0048420c     P_SPEC.obj
+ 0004:0001031c       _alphSwitchList            0048431c     P_SWITCH.obj
+ 0004:00010364       _WeaponInShareware         00484364     P_USER.obj
+ 0004:00010390       ?__LINE__Var@?1??R_GenerateComposite@@9@9 00484390     R_DATA.obj
+ 0004:00010394       _validcount                00484394     R_MAIN.obj
+ 0004:00010398       _finecosine                00484398     R_MAIN.obj
+ 0004:000105c8       _patcharti                 004845c8     SB_BAR.obj
+ 0004:00010638       _ammopic                   00484638     SB_BAR.obj
+ 0004:00010674       _SB_state                  00484674     SB_BAR.obj
+ 0004:00010730       _S_music                   00484730     SOUNDS.obj
+ 0004:00010998       _S_sfx                     00484998     SOUNDS.obj
+ 0004:00011f60       _mus_song                  00485f60     soundst.obj
+ 0004:00011f64       ?__LINE__Var@?1??S_StartSong@@9@9 00485f64     soundst.obj
+ 0004:00011f68       _finetangent               00485f68     TABLES.obj
+ 0004:00015f68       _finesine                  00489f68     TABLES.obj
+ 0004:0001ff68       _tantoangle                00493f68     TABLES.obj
+ 0004:000252a0       _gammatable                004992a0     V_VIDEO.obj
+ 0004:000258a0       ?__LINE__Var@?1??W_CacheLumpNum@@9@9 004998a0     W_WAD.obj
+ 0004:000258a4       _viewwidth                 004998a4     ds_render.obj
+ 0004:000258a8       _viewheight                004998a8     ds_render.obj
+ 0004:000258ac       _lightDistance             004998ac     ds_render.obj
+ 0004:000258b8       _ds_blank_texture2         004998b8     ds_textures.obj
+ 0004:000258f8       _ds_blank_tex              004998f8     ds_textures.obj
+ 0004:00025910       _ds_texture_width          00499910     ds_textures.obj
+ 0004:00025914       _ds_texture_height         00499914     ds_textures.obj
+ 0004:0002592c       ?__LINE__Var@?1??ds_load_map_flat@@9@9 0049992c     ds_textures.obj
+ 0004:00025930       _DS_FLOAT_VAL              00499930     glMain.obj
+ 0004:00025934       _draw_windings             00499934     glMain.obj
+ 0004:00025940       ?scantokey@@3PAEA          00499940     glview.obj
+ 0004:000259dc       ??_R0?AVCGLWindow@@@8      004999dc     GLWindow.obj
+ 0004:000259f8       ___security_cookie         004999f8     MSVCRT:gs_cookie.obj
+ 0004:000259fc       ___security_cookie_complement 004999fc     MSVCRT:gs_cookie.obj
+ 0004:00025a00       ??_R0?AVtype_info@@@8      00499a00     MSVCRT:ti_inst.obj
+ 0004:00025a20       ___native_dllmain_reason   00499a20     MSVCRT:natstart.obj
+ 0004:00025a24       ___native_vcclrit_reason   00499a24     MSVCRT:natstart.obj
+ 0004:00025a2c       ___globallocalestatus      00499a2c     MSVCRT:xthdloc.obj
+ 0004:00025a30       ___defaultmatherr          00499a30     MSVCRT:merr.obj
+ 0004:00025c28       _automapactive             00499c28     AM_MAP.obj
+ 0004:00025c78       _shareware                 00499c78     D_MAIN.obj
+ 0004:00025c7c       _ExtendedWAD               00499c7c     D_MAIN.obj
+ 0004:00025c80       _eventhead                 00499c80     D_MAIN.obj
+ 0004:00025c84       _eventtail                 00499c84     D_MAIN.obj
+ 0004:00025ca0       _DisplayTicker             00499ca0     I_IBM.obj
+ 0004:00025dbc       _rndindex                  00499dbc     M_MISC.obj
+ 0004:00025dc0       _prndindex                 00499dc0     M_MISC.obj
+ 0004:000260b0       _playerkeys                0049a0b0     SB_BAR.obj
+ 0004:00026294       _yaw                       0049a294     ds_render.obj
+ 0004:000262a0       _viewwindowx               0049a2a0     ds_render.obj
+ 0004:000262a4       _viewwindowy               0049a2a4     ds_render.obj
+ 0004:000262a8       _num_gl_walls              0049a2a8     ds_render.obj
+ 0004:000262ac       _num_gl_sprites            0049a2ac     ds_render.obj
+ 0004:000262b8       _ds_blank_texture          0049a2b8     ds_textures.obj
+ 0004:00026304       _num_lines                 0049a304     geometry.obj
+ 0004:00026308       _floor_count               0049a308     geometry.obj
+ 0004:0002630c       _sub_count                 0049a30c     geometry.obj
+ 0004:00026310       _draw_gen_floors           0049a310     geometry.obj
+ 0004:00026314       _draw_gen_sub              0049a314     geometry.obj
+ 0004:0002631c       _r_framecount              0049a31c     glMain.obj
+ 0004:00026320       _openGL                    0049a320     glview.obj
+ 0004:00026328       ?frame_time@@3NA           0049a328     glview.obj
+ 0004:00026330       ?gl@@3VCGLWindow@@A        0049a330     glview.obj
+ 0004:00026378       ?wglSwapIntervalEXT@@3P6GXI@ZA 0049a378     GLWindow.obj
+ 0004:0002637c       ?glMTexCoord2fSGIS@@3P6GXIMM@ZA 0049a37c     GLWindow.obj
+ 0004:00026380       ?glSelectTextureSGIS@@3P6GXI@ZA 0049a380     GLWindow.obj
+ 0004:00026834       __dowildcard               0049a834     MSVCRT:wildcard.obj
+ 0004:00026838       __newmode                  0049a838     MSVCRT:_newmode.obj
+ 0004:0002683c       __commode                  0049a83c     MSVCRT:xncommod.obj
+ 0004:00026840       __fmode                    0049a840     MSVCRT:xtxtmode.obj
+ 0004:00026844       _ds_quads                  0049a844     <common>
+ 0004:00026854       _vy                        0049a854     <common>
+ 0004:00026858       _vx                        0049a858     <common>
+ 0004:0002685c       _vz                        0049a85c     <common>
+ 0004:00026860       _ds_triangles              0049a860     <common>
+ 0004:00026864       _floors_ds3                0049a864     <common>
+ 0004:00026880       _lines_ds                  0049a880     <common>
+ 0004:00026890       _floors_ds                 0049a890     <common>
+ 0004:00026894       _floors_ds2                0049a894     <common>
+ 0004:000268a0       _ds_textures3              0049a8a0     <common>
+ 0004:00026ae8       _DS_TEXTURE_BASE4          0049aae8     <common>
+ 0004:00026b00       _ds_textures               0049ab00     <common>
+ 0004:00026f00       _texnums3                  0049af00     <common>
+ 0004:00026f20       _texnums4                  0049af20     <common>
+ 0004:00026f40       _ds_textures2              0049af40     <common>
+ 0004:00027040       _DS_TEXTURE_BASE           0049b040     <common>
+ 0004:00027044       _DS_TEXTURE_BASE2          0049b044     <common>
+ 0004:00027048       _host_basepal              0049b048     <common>
+ 0004:00027060       _ds_blocks                 0049b060     <common>
+ 0004:000270e0       _texnums                   0049b0e0     <common>
+ 0004:000271e0       _ds_textures4              0049b1e0     <common>
+ 0004:000273e0       _DS_TEXTURE_BASE3          0049b3e0     <common>
+ 0004:00027400       _texnums2                  0049b400     <common>
+ 0004:00027440       _c_occludedSprites         0049b440     <common>
+ 0004:0002d874       _numSectorPlanes           004a1874     <common>
+ 0004:0002d878       _viewheightfrac            004a1878     <common>
+ 0004:0002d87c       _failCount                 004a187c     <common>
+ 0004:0002d880       _glView                    004a1880     <common>
+ 0004:0002d8a0       _gl_walls                  004a18a0     <common>
+ 0004:000478a0       _skyIsVisible              004bb8a0     <common>
+ 0004:000478c0       _sectorPlanes              004bb8c0     <common>
+ 0004:0004a8c0       _glMVPmatrix               004be8c0     <common>
+ 0004:0004a900       _sky_mask_polyid           004be900     <common>
+ 0004:0004a910       _lightingVector            004be910     <common>
+ 0004:0004a920       _occlusion                 004be920     <common>
+ 0004:0004aa40       _glMVPmatrixd              004bea40     <common>
+ 0004:0004aac0       _gl_sprites                004beac0     <common>
+ 0004:0004ccc0       _c_sectors                 004c0cc0     <common>
+ 0004:0004cce0       _glPJPmatrixd              004c0ce0     <common>
+ 0004:0004cd60       _dsMat                     004c0d60     <common>
+ 0004:0004cda0       _c_subsectors              004c0da0     <common>
+ 0004:0004cda4       _MallocFailureOk           004c0da4     <common>
+ 0004:0004cdb4       _mainzone                  004c0db4     <common>
+ 0004:0004cdb8       _lumpinfo                  004c0db8     <common>
+ 0004:0004cdc8       _numlumps                  004c0dc8     <common>
+ 0004:0004cdcc       _lumpcache                 004c0dcc     <common>
+ 0004:0004cdd0       _screen                    004c0dd0     <common>
+ 0004:0004cde0       _usegamma                  004c0de0     <common>
+ 0004:0004cdf0       _dirtybox                  004c0df0     <common>
+ 0004:0004ce00       _soundCurve                004c0e00     <common>
+ 0004:0004ce10       _mus_sndptr                004c0e10     <common>
+ 0004:0004ce14       _mus_lumpnum               004c0e14     <common>
+ 0004:0004ce18       _AmbChan                   004c0e18     <common>
+ 0004:0004ce1c       _inventory                 004c0e1c     <common>
+ 0004:0004ce50       _PatchLIFEGEM              004c0e50     <common>
+ 0004:0004ce54       _PatchINVLFGEM2            004c0e54     <common>
+ 0004:0004ce58       _PatchLTFACE               004c0e58     <common>
+ 0004:0004ce5c       _PatchCHAINBACK            004c0e5c     <common>
+ 0004:0004ce60       _PatchRTFCTOP              004c0e60     <common>
+ 0004:0004ce64       _PatchBARBACK              004c0e64     <common>
+ 0004:0004ce68       _PatchINVLFGEM1            004c0e68     <common>
+ 0004:0004ce6c       _ArtifactFlash             004c0e6c     <common>
+ 0004:0004ce70       _PatchNEGATIVE             004c0e70     <common>
+ 0004:0004ce74       _PatchSELECTBOX            004c0e74     <common>
+ 0004:0004ce78       _PatchINVRTGEM1            004c0e78     <common>
+ 0004:0004ce7c       _DebugSound                004c0e7c     <common>
+ 0004:0004ce80       _PatchINVBAR               004c0e80     <common>
+ 0004:0004ce84       _PatchLTFCTOP              004c0e84     <common>
+ 0004:0004ce88       _FontBNumBase              004c0e88     <common>
+ 0004:0004cea0       _PatchINumbers             004c0ea0     <common>
+ 0004:0004cec8       _curpos                    004c0ec8     <common>
+ 0004:0004cecc       _spinbooklump              004c0ecc     <common>
+ 0004:0004ced0       _PatchINVRTGEM2            004c0ed0     <common>
+ 0004:0004ced4       _PatchRTFACE               004c0ed4     <common>
+ 0004:0004ced8       _PatchBLACKSQ              004c0ed8     <common>
+ 0004:0004cedc       _PatchCHAIN                004c0edc     <common>
+ 0004:0004cee0       _PatchSTATBAR              004c0ee0     <common>
+ 0004:0004cee4       _inv_ptr                   004c0ee4     <common>
+ 0004:0004cf00       _PatchSmNumbers            004c0f00     <common>
+ 0004:0004cf28       _playpalette               004c0f28     <common>
+ 0004:0004cf2c       _spinflylump               004c0f2c     <common>
+ 0004:0004cf30       _PatchARMCLEAR             004c0f30     <common>
+ 0004:0004cf34       _pspritescale              004c0f34     <common>
+ 0004:0004d0d8       _pspriteiscale             004c10d8     <common>
+ 0004:0004d0e0       _negonearray               004c10e0     <common>
+ 0004:0004d360       _numsprites                004c1360     <common>
+ 0004:0004d364       _maxframe                  004c1364     <common>
+ 0004:0004d368       _spritelights              004c1368     <common>
+ 0004:0004d36c       _sprites                   004c136c     <common>
+ 0004:0004d380       _sprtemp                   004c1380     <common>
+ 0004:0004d660       _screenheightarray         004c1660     <common>
+ 0004:0004d8e0       _spritename                004c18e0     <common>
+ 0004:0004d8e4       _projection                004c18e4     <common>
+ 0004:0004efd0       _colfunc                   004c2fd0     <common>
+ 0004:0004efd4       _fuzzcolfunc               004c2fd4     <common>
+ 0004:0004efd8       _framecount                004c2fd8     <common>
+ 0004:0004efdc       _viewy                     004c2fdc     <common>
+ 0004:0004efe0       _viewz                     004c2fe0     <common>
+ 0004:0004efe4       _detailshift               004c2fe4     <common>
+ 0004:0004efe8       _skytexturemid             004c2fe8     <common>
+ 0004:0004efec       _sscount                   004c2fec     <common>
+ 0004:0004eff0       _spanfunc                  004c2ff0     <common>
+ 0004:0004eff4       _skyflatnum                004c2ff4     <common>
+ 0004:0004f000       _scalelightfixed           004c3000     <common>
+ 0004:0004f0c0       _viewangleoffset           004c30c0     <common>
+ 0004:0004f0c4       _skytexture                004c30c4     <common>
+ 0004:0004f0c8       _centery                   004c30c8     <common>
+ 0004:0004f0cc       _extralight                004c30cc     <common>
+ 0004:0004f0e0       _xtoviewangle              004c30e0     <common>
+ 0004:0004f5e4       _fixedcolormap             004c35e4     <common>
+ 0004:0004f5e8       _transcolfunc              004c35e8     <common>
+ 0004:0004f5ec       _linecount                 004c35ec     <common>
+ 0004:0004f5f0       _detailLevel               004c35f0     <common>
+ 0004:0004f5f4       _BorderTopRefresh          004c35f4     <common>
+ 0004:0004f5f8       _clipangle                 004c35f8     <common>
+ 0004:0004f5fc       _skyiscale                 004c35fc     <common>
+ 0004:0004f600       _scalelight                004c3600     <common>
+ 0004:00050200       _screenblocks              004c4200     <common>
+ 0004:00050220       _viewangletox              004c4220     <common>
+ 0004:00054220       _setdetail                 004c8220     <common>
+ 0004:00054224       _centerxfrac               004c8224     <common>
+ 0004:00054228       _loopcount                 004c8228     <common>
+ 0004:0005422c       _viewcos                   004c822c     <common>
+ 0004:00054230       _centeryfrac               004c8230     <common>
+ 0004:00054234       _setsizeneeded             004c8234     <common>
+ 0004:00054238       _viewangle                 004c8238     <common>
+ 0004:0005423c       _setblocks                 004c823c     <common>
+ 0004:00054240       _basecolfunc               004c8240     <common>
+ 0004:00054260       _zlight                    004c8260     <common>
+ 0004:00056260       _centerx                   004ca260     <common>
+ 0004:00056264       _viewplayer                004ca264     <common>
+ 0004:00056268       _viewx                     004ca268     <common>
+ 0004:0005626c       _viewsin                   004ca26c     <common>
+ 0004:00056270       _firstflat                 004ca270     <common>
+ 0004:00056294       _firstpatch                004ca294     <common>
+ 0004:00056298       _textures_ds               004ca298     <common>
+ 0004:0005629c       _spriteheight              004ca29c     <common>
+ 0004:000562a0       _lastpatch                 004ca2a0     <common>
+ 0004:000562a4       _textures                  004ca2a4     <common>
+ 0004:000562a8       _spritememory              004ca2a8     <common>
+ 0004:000562ac       _sprites_ds                004ca2ac     <common>
+ 0004:000562b0       _texturememory             004ca2b0     <common>
+ 0004:000562b4       _flats_ds                  004ca2b4     <common>
+ 0004:000562b8       _lastflat                  004ca2b8     <common>
+ 0004:000562bc       _texturecomposite          004ca2bc     <common>
+ 0004:000562c0       _colormaps                 004ca2c0     <common>
+ 0004:000562c4       _numspritelumps            004ca2c4     <common>
+ 0004:000562c8       _numpatches                004ca2c8     <common>
+ 0004:000562cc       _lastspritelump            004ca2cc     <common>
+ 0004:000562d0       _spritewidth               004ca2d0     <common>
+ 0004:000562d4       _flatmemory                004ca2d4     <common>
+ 0004:000562d8       _flattranslation           004ca2d8     <common>
+ 0004:000562dc       _numtextures               004ca2dc     <common>
+ 0004:000562e0       _spritetopoffset           004ca2e0     <common>
+ 0004:000562e4       _textureheight             004ca2e4     <common>
+ 0004:000562e8       _firstspritelump           004ca2e8     <common>
+ 0004:000562ec       _texturecolumnofs          004ca2ec     <common>
+ 0004:000562f0       _texturewidthmask          004ca2f0     <common>
+ 0004:000562f4       _numflats                  004ca2f4     <common>
+ 0004:000562f8       _spriteoffset              004ca2f8     <common>
+ 0004:000562fc       _texturecompositesize      004ca2fc     <common>
+ 0004:00056300       _texturecolumnlump         004ca300     <common>
+ 0004:00056304       _texturetranslation        004ca304     <common>
+ 0004:00056308       _newtorch                  004ca308     <common>
+ 0004:00056318       _onground                  004ca318     <common>
+ 0004:0005631c       _newtorchdelta             004ca31c     <common>
+ 0004:00056320       _thinkercap                004ca320     <common>
+ 0004:00056338       _leveltime                 004ca338     <common>
+ 0004:0005633c       _TimerGame                 004ca33c     <common>
+ 0004:00056340       _specials_e                004ca340     <common>
+ 0004:00056360       _buttonlist                004ca360     <common>
+ 0004:00056538       _numswitches               004ca538     <common>
+ 0004:00056540       _switchlist                004ca540     <common>
+ 0004:000566d0       _AmbSfxCount               004ca6d0     <common>
+ 0004:000567bc       _lastanim                  004ca7bc     <common>
+ 0004:000567c0       _TerrainTypes              004ca7c0     <common>
+ 0004:000567c4       _numlinespecials           004ca7c4     <common>
+ 0004:000567e0       _anims                     004ca7e0     <common>
+ 0004:00056a60       _AmbSfxPtr                 004caa60     <common>
+ 0004:00056a64       _AmbSfxVolume              004caa64     <common>
+ 0004:00056a68       _AmbSfxTics                004caa68     <common>
+ 0004:00056a80       _LevelAmbientSfx           004caa80     <common>
+ 0004:00056aa0       _linespeciallist           004caaa0     <common>
+ 0004:00056ba0       _LavaInflictor             004caba0     <common>
+ 0004:00056c48       _topslope                  004cac48     <common>
+ 0004:00056c58       _sightzstart               004cac58     <common>
+ 0004:00056c60       _sightcounts               004cac60     <common>
+ 0004:00056c6c       _bottomslope               004cac6c     <common>
+ 0004:00056c70       _numnodes                  004cac70     <common>
+ 0004:00056cac       _numsectors                004cacac     <common>
+ 0004:00056cb0       _subsectors                004cacb0     <common>
+ 0004:00056cb4       _segs                      004cacb4     <common>
+ 0004:00056cb8       _blocklinks                004cacb8     <common>
+ 0004:00056cbc       _bmapheight                004cacbc     <common>
+ 0004:00056cc0       _bmaporgx                  004cacc0     <common>
+ 0004:00056cc4       _numsubsectors             004cacc4     <common>
+ 0004:00056cc8       _rejectmatrix              004cacc8     <common>
+ 0004:00056ccc       _sides                     004caccc     <common>
+ 0004:00056ce0       _playerstarts              004cace0     <common>
+ 0004:00056d08       _vertexes                  004cad08     <common>
+ 0004:00056d0c       _bmapwidth                 004cad0c     <common>
+ 0004:00056d10       _bmaporgy                  004cad10     <common>
+ 0004:00056d14       _numvertexes               004cad14     <common>
+ 0004:00056d18       _nodes                     004cad18     <common>
+ 0004:00056d1c       _sectors                   004cad1c     <common>
+ 0004:00056d20       _blockmap                  004cad20     <common>
+ 0004:00056d40       _deathmatchstarts          004cad40     <common>
+ 0004:00056da4       _numsegs                   004cada4     <common>
+ 0004:00056da8       _numsides                  004cada8     <common>
+ 0004:00056dac       _numlines                  004cadac     <common>
+ 0004:00056db0       _lines                     004cadb0     <common>
+ 0004:00056db4       _blockmaplump              004cadb4     <common>
+ 0004:00056db8       _deathmatch_p              004cadb8     <common>
+ 0004:00056dbc       _bulletslope               004cadbc     <common>
+ 0004:00056de0       _activeplats               004cade0     <common>
+ 0004:00056e78       _MissileMobj               004cae78     <common>
+ 0004:00056e88       _PuffType                  004cae88     <common>
+ 0004:00056e8c       _opentop                   004cae8c     <common>
+ 0004:00056fe0       _trace                     004cafe0     <common>
+ 0004:00056ff0       _lowfloor                  004caff0     <common>
+ 0004:00057000       _intercepts                004cb000     <common>
+ 0004:00057600       _intercept_p               004cb600     <common>
+ 0004:00057604       _earlyout                  004cb604     <common>
+ 0004:00057608       _ptflags                   004cb608     <common>
+ 0004:0005760c       _openbottom                004cb60c     <common>
+ 0004:00057610       _openrange                 004cb610     <common>
+ 0004:00057614       _linetarget                004cb614     <common>
+ 0004:00057644       _la_damage                 004cb644     <common>
+ 0004:00057648       _bombspot                  004cb648     <common>
+ 0004:0005764c       _tmx                       004cb64c     <common>
+ 0004:00057650       _secondslideline           004cb650     <common>
+ 0004:00057654       _crushchange               004cb654     <common>
+ 0004:00057658       _attackrange               004cb658     <common>
+ 0004:0005765c       _nofit                     004cb65c     <common>
+ 0004:00057660       _tmthing                   004cb660     <common>
+ 0004:00057664       _onmobj                    004cb664     <common>
+ 0004:00057668       _secondslidefrac           004cb668     <common>
+ 0004:0005766c       _slidemo                   004cb66c     <common>
+ 0004:00057670       _floatok                   004cb670     <common>
+ 0004:00057674       _tmfloorz                  004cb674     <common>
+ 0004:00057678       _tmy                       004cb678     <common>
+ 0004:0005767c       _tmdropoffz                004cb67c     <common>
+ 0004:00057680       _shootz                    004cb680     <common>
+ 0004:00057684       _tmceilingz                004cb684     <common>
+ 0004:00057688       _bombsource                004cb688     <common>
+ 0004:000576a0       _spechit                   004cb6a0     <common>
+ 0004:000576c0       _usething                  004cb6c0     <common>
+ 0004:000576c4       _bombdamage                004cb6c4     <common>
+ 0004:000576c8       _tmxmove                   004cb6c8     <common>
+ 0004:000576cc       _numspechit                004cb6cc     <common>
+ 0004:000576d0       _bestslideline             004cb6d0     <common>
+ 0004:000576d4       _aimslope                  004cb6d4     <common>
+ 0004:000576e0       _tmbbox                    004cb6e0     <common>
+ 0004:000576f0       _bestslidefrac             004cb6f0     <common>
+ 0004:000576f4       _ceilingline               004cb6f4     <common>
+ 0004:000576f8       _tmflags                   004cb6f8     <common>
+ 0004:000576fc       _shootthing                004cb6fc     <common>
+ 0004:00057700       _tmymove                   004cb700     <common>
+ 0004:00057704       _ultimatemsg               004cb704     <common>
+ 0004:00057720       _bodyque                   004cb720     <common>
+ 0004:000577c4       _soundtarget               004cb7c4     <common>
+ 0004:000577c8       _bodyqueslot               004cb7c8     <common>
+ 0004:000577e0       _activeceilings            004cb7e0     <common>
+ 0004:00057878       _askforquit                004cb878     <common>
+ 0004:00057888       _messageson                004cb888     <common>
+ 0004:0005788c       _typeofask                 004cb88c     <common>
+ 0004:00057890       _MenuActive                004cb890     <common>
+ 0004:00057894       _InfoType                  004cb894     <common>
+ 0004:00057898       _usejoystick               004cb898     <common>
+ 0004:000578ac       _usemouse                  004cb8ac     <common>
+ 0004:000578b0       _numdefaults               004cb8b0     <common>
+ 0004:000578b4       _myargc                    004cb8b4     <common>
+ 0004:000578b8       _mouseSensitivity          004cb8b8     <common>
+ 0004:000578bc       _defaultfile               004cb8bc     <common>
+ 0004:000578c0       _myargv                    004cb8c0     <common>
+ 0004:000578c4       _intermission              004cb8c4     <common>
+ 0004:000578d0       _snd_MusicVolume           004cb8d0     <common>
+ 0004:000578e4       _snd_DesiredSfxDevice      004cb8e4     <common>
+ 0004:000578e8       _snd_SfxDevice             004cb8e8     <common>
+ 0004:000578ec       _snd_SBirq                 004cb8ec     <common>
+ 0004:000578f0       _snd_SBdma                 004cb8f0     <common>
+ 0004:000578f4       _snd_MaxVolume             004cb8f4     <common>
+ 0004:000578f8       _snd_DesiredMusicDevice    004cb8f8     <common>
+ 0004:000578fc       _snd_SBport                004cb8fc     <common>
+ 0004:00057900       _snd_Channels              004cb900     <common>
+ 0004:00057904       _snd_Mport                 004cb904     <common>
+ 0004:00057908       _snd_MusicDevice           004cb908     <common>
+ 0004:0005790c       _basejoyy                  004cb90c     <common>
+ 0004:00057934       _pcscreen                  004cb934     <common>
+ 0004:00057938       _joystickpresent           004cb938     <common>
+ 0004:0005793c       _joyxl                     004cb93c     <common>
+ 0004:00057940       _basejoyx                  004cb940     <common>
+ 0004:00057944       _joyyh                     004cb944     <common>
+ 0004:00057948       _joyxh                     004cb948     <common>
+ 0004:0005794c       _ticcount                  004cb94c     <common>
+ 0004:00057950       _joyyl                     004cb950     <common>
+ 0004:00057954       _mousepresent              004cb954     <common>
+ 0004:00057958       _kbdtail                   004cb958     <common>
+ 0004:00057960       _keyboardque               004cb960     <common>
+ 0004:000579a0       _UpdateState               004cb9a0     <common>
+ 0004:000579a4       _grmode                    004cb9a4     <common>
+ 0004:000579a8       _kbdhead                   004cb9a8     <common>
+ 0004:000579ac       _novideo                   004cb9ac     <common>
+ 0004:000579b0       _destview                  004cb9b0     <common>
+ 0004:000579b4       _destscreen                004cb9b4     <common>
+ 0004:000579b8       _viewactive                004cb9b8     <common>
+ 0004:00057ca0       _timingdemo                004cbca0     <common>
+ 0004:00057ca4       _demoplayback              004cbca4     <common>
+ 0004:00057cc0       _players                   004cbcc0     <common>
+ 0004:00058400       _gamemap                   004cc400     <common>
+ 0004:00058404       _gameaction                004cc404     <common>
+ 0004:00058408       _joyymove                  004cc408     <common>
+ 0004:0005840c       _key_strafe                004cc40c     <common>
+ 0004:00058410       _consoleplayer             004cc410     <common>
+ 0004:00058414       _starttime                 004cc414     <common>
+ 0004:00058418       _gamestate                 004cc418     <common>
+ 0004:0005841c       _key_right                 004cc41c     <common>
+ 0004:00058420       _demoname                  004cc420     <common>
+ 0004:00058440       _key_invleft               004cc440     <common>
+ 0004:00058444       _paused                    004cc444     <common>
+ 0004:00058448       _dclickstate2              004cc448     <common>
+ 0004:0005844c       _displayplayer             004cc44c     <common>
+ 0004:00058450       _lookheld                  004cc450     <common>
+ 0004:00058460       _consistancy               004cc460     <common>
+ 0004:000584c0       _key_down                  004cc4c0     <common>
+ 0004:000584c4       _joybuse                   004cc4c4     <common>
+ 0004:000584c8       _prevmap                   004cc4c8     <common>
+ 0004:000584cc       _key_flyup                 004cc4cc     <common>
+ 0004:000584e0       _gamekeydown               004cc4e0     <common>
+ 0004:000588e0       _inventoryTics             004cc8e0     <common>
+ 0004:000588f0       _mousearray                004cc8f0     <common>
+ 0004:00058900       _savebuffer                004cc900     <common>
+ 0004:00058904       _key_flydown               004cc904     <common>
+ 0004:00058908       _joyxmove                  004cc908     <common>
+ 0004:0005890c       _dclicktime                004cc90c     <common>
+ 0004:00058910       _joybstrafe                004cc910     <common>
+ 0004:00058914       _key_lookcenter            004cc914     <common>
+ 0004:00058920       _savename                  004cc920     <common>
+ 0004:00058a20       _save_p                    004cca20     <common>
+ 0004:00058a24       _key_invright              004cca24     <common>
+ 0004:00058a28       _mousey                    004cca28     <common>
+ 0004:00058a2c       _key_flycenter             004cca2c     <common>
+ 0004:00058a30       _joybspeed                 004cca30     <common>
+ 0004:00058a34       _key_speed                 004cca34     <common>
+ 0004:00058a38       _key_useartifact           004cca38     <common>
+ 0004:00058a3c       _sendsave                  004cca3c     <common>
+ 0004:00058a40       _key_straferight           004cca40     <common>
+ 0004:00058a44       _dclicktime2               004cca44     <common>
+ 0004:00058a48       _turnheld                  004cca48     <common>
+ 0004:00058a4c       _SaveGameType              004cca4c     <common>
+ 0004:00058a50       _netgame                   004cca50     <common>
+ 0004:00058a54       _deathmatch                004cca54     <common>
+ 0004:00058a58       _d_episode                 004cca58     <common>
+ 0004:00058a5c       _d_map                     004cca5c     <common>
+ 0004:00058a60       _savegameslot              004cca60     <common>
+ 0004:00058a70       _playeringame              004cca70     <common>
+ 0004:00058a80       _key_fire                  004cca80     <common>
+ 0004:00058aa0       _joyarray                  004ccaa0     <common>
+ 0004:00058ab4       _mousex                    004ccab4     <common>
+ 0004:00058ab8       _gameskill                 004ccab8     <common>
+ 0004:00058abc       _respawnmonsters           004ccabc     <common>
+ 0004:00058ac0       _mousebforward             004ccac0     <common>
+ 0004:00058ac4       _defdemoname               004ccac4     <common>
+ 0004:00058ac8       _d_skill                   004ccac8     <common>
+ 0004:00058acc       _usergame                  004ccacc     <common>
+ 0004:00058ad0       _dclickstate               004ccad0     <common>
+ 0004:00058ae0       _savedescription           004ccae0     <common>
+ 0004:00058b00       _dclicks                   004ccb00     <common>
+ 0004:00058b04       _key_left                  004ccb04     <common>
+ 0004:00058b08       _sendpause                 004ccb08     <common>
+ 0004:00058b0c       _gametic                   004ccb0c     <common>
+ 0004:00058b10       _SaveGameFP                004ccb10     <common>
+ 0004:00058b14       _key_strafeleft            004ccb14     <common>
+ 0004:00058b18       _totalitems                004ccb18     <common>
+ 0004:00058b1c       _joybfire                  004ccb1c     <common>
+ 0004:00058b20       _singledemo                004ccb20     <common>
+ 0004:00058b24       _totalkills                004ccb24     <common>
+ 0004:00058b28       _demobuffer                004ccb28     <common>
+ 0004:00058b2c       _demo_p                    004ccb2c     <common>
+ 0004:00058b30       _gameepisode               004ccb30     <common>
+ 0004:00058b34       _key_up                    004ccb34     <common>
+ 0004:00058b38       _key_lookdown              004ccb38     <common>
+ 0004:00058b3c       _key_lookup                004ccb3c     <common>
+ 0004:00058b40       _mousebfire                004ccb40     <common>
+ 0004:00058b44       _demorecording             004ccb44     <common>
+ 0004:00058b48       _mousebstrafe              004ccb48     <common>
+ 0004:00058b4c       _dclicks2                  004ccb4c     <common>
+ 0004:00058b50       _key_use                   004ccb50     <common>
+ 0004:00058b54       _secretexit                004ccb54     <common>
+ 0004:00058b58       _totalsecret               004ccb58     <common>
+ 0004:00058b5c       _levelstarttic             004ccb5c     <common>
+ 0004:00058b60       _finalestage               004ccb60     <common>
+ 0004:00058b70       _finaletext                004ccb70     <common>
+ 0004:00058b74       _finaleflat                004ccb74     <common>
+ 0004:00058b78       _FontABaseLump             004ccb78     <common>
+ 0004:00058b7c       _finalecount               004ccb7c     <common>
+ 0004:00058b80       _gametime                  004ccb80     <common>
+ 0004:00058cb8       _frameon                   004cccb8     <common>
+ 0004:00058cc0       _resendto                  004cccc0     <common>
+ 0004:00058ce0       _skiptics                  004ccce0     <common>
+ 0004:00058cf0       _frameskip                 004cccf0     <common>
+ 0004:00058d00       _ticdup                    004ccd00     <common>
+ 0004:00058d20       _netcmds                   004ccd20     <common>
+ 0004:00059020       _nodeforplayer             004cd020     <common>
+ 0004:00059030       _reboundpacket             004cd030     <common>
+ 0004:00059040       _remoteresend              004cd040     <common>
+ 0004:00059060       _doomcom                   004cd060     <common>
+ 0004:00059064       _maketic                   004cd064     <common>
+ 0004:00059068       _maxsend                   004cd068     <common>
+ 0004:0005906c       _lastnettic                004cd06c     <common>
+ 0004:00059080       _localcmds                 004cd080     <common>
+ 0004:00059140       _reboundstore              004cd140     <common>
+ 0004:00059220       _resendcount               004cd220     <common>
+ 0004:00059240       _exitmsg                   004cd240     <common>
+ 0004:00059290       _frametics                 004cd290     <common>
+ 0004:000592a0       _nodeingame                004cd2a0     <common>
+ 0004:000592c0       _nettics                   004cd2c0     <common>
+ 0004:000592e0       _oldnettics                004cd2e0     <common>
+ 0004:000592e4       _netbuffer                 004cd2e4     <common>
+ 0004:00059300       _tmsg                      004cd300     <common>
+ 0004:00059580       _debugfile                 004cd580     <common>
+ 0004:00059584       _noartiskip                004cd584     <common>
+ 0004:000595a0       _events                    004cd5a0     <common>
+ 0004:000599a0       _singletics                004cd9a0     <common>
+ 0004:000599a4       _cdrom                     004cd9a4     <common>
+ 0004:000599c0       _exrnwads2                 004cd9c0     <common>
+ 0004:00059a10       _advancedemo               004cda10     <common>
+ 0004:00059a14       _debugmode                 004cda14     <common>
+ 0004:00059a18       _ravpic                    004cda18     <common>
+ 0004:00059a1c       _startmap                  004cda1c     <common>
+ 0004:00059a20       _thermMax                  004cda20     <common>
+ 0004:00059a24       _hscreen                   004cda24     <common>
+ 0004:00059a28       _startepisode              004cda28     <common>
+ 0004:00059a40       _exrnwads                  004cda40     <common>
+ 0004:00059a90       _thermCurrent              004cda90     <common>
+ 0004:00059aa0       _smsg                      004cdaa0     <common>
+ 0004:00059af0       _pagename                  004cdaf0     <common>
+ 0004:00059af4       _respawnparm               004cdaf4     <common>
+ 0004:00059af8       _demosequence              004cdaf8     <common>
+ 0004:00059afc       _startskill                004cdafc     <common>
+ 0004:00059b00       _pagetic                   004cdb00     <common>
+ 0004:00059b04       _startup                   004cdb04     <common>
+ 0004:00059b08       _BorderNeedRefresh         004cdb08     <common>
+ 0004:00059b0c       _autostart                 004cdb0c     <common>
+ 0004:00059b10       _nomonsters                004cdb10     <common>
+ 0004:00059b20       _plr_lastmsg               004cdb20     <common>
+ 0004:00059e50       _altdown                   004cde50     <common>
+ 0004:00059e54       _shiftdown                 004cde54     <common>
+ 0004:00059e58       _head                      004cde58     <common>
+ 0004:00059e60       _msgptr                    004cde60     <common>
+ 0004:00059e80       _chat_msg                  004cde80     <common>
+ 0004:0005a080       _cheated                   004ce080     <common>
+ 0004:0005a084       _tail                      004ce084     <common>
+ 0004:0005a088       _chatmodeon                004ce088     <common>
+ 0004:0005a090       _chat_dest                 004ce090     <common>
+ 0004:0005a0a0       _msglen                    004ce0a0     <common>
+ 0004:0005a0c0       _ChatQueue                 004ce0c0     <common>
+ 0004:0005a140       _chat_macros               004ce140     <common>
+ 0004:0005a180       _triangle_guy              004ce180     <common>
+ 0004:0005a240       _keysquare                 004ce240     <common>
+ 0004:0005a2c0       _thintriangle_guy          004ce2c0     <common>
+ 0004:0005a300       _cheat_player_arrow        004ce300     <common>
+ 0004:0005a400       _KeyPoints                 004ce400     <common>
+ 0004:0005a420       _player_arrow              004ce420     <common>
+ 0004:0005a4c0       ___native_startup_state    004ce4c0     <common>
+ 0004:0005a4d0       ___native_startup_lock     004ce4d0     <common>
+ 0004:0005a4d4       ___sse2_available          004ce4d4     <common>
+ 0004:0005a4e0       __NoHeapEnableTerminationOnCorruption 004ce4e0     <common>
+ 0004:0005a4e4       ___dyn_tls_init_callback   004ce4e4     <common>
+ 0004:0005a4e8       ___onexitend               004ce4e8     <common>
+ 0004:0005a4f8       ___onexitbegin             004ce4f8     <common>
+ 0005:00000000       __IMPORT_DESCRIPTOR_OPENGL32 004cf000     opengl32:OPENGL32.dll
+ 0005:00000014       __IMPORT_DESCRIPTOR_GLU32  004cf014     glu32:GLU32.dll
+ 0005:00000028       __IMPORT_DESCRIPTOR_KERNEL32 004cf028     kernel32:KERNEL32.dll
+ 0005:0000003c       __IMPORT_DESCRIPTOR_USER32 004cf03c     user32:USER32.dll
+ 0005:00000050       __IMPORT_DESCRIPTOR_GDI32  004cf050     gdi32:GDI32.dll
+ 0005:00000064       __IMPORT_DESCRIPTOR_MSVCR100 004cf064     MSVCRT:MSVCR100.dll
+ 0005:00000078       __NULL_IMPORT_DESCRIPTOR   004cf078     opengl32:OPENGL32.dll
+ 0005:00000478       __imp__ChoosePixelFormat@8 004cf478     gdi32:GDI32.dll
+ 0005:0000047c       __imp__SetPixelFormat@12   004cf47c     gdi32:GDI32.dll
+ 0005:00000480       __imp__GetStockObject@4    004cf480     gdi32:GDI32.dll
+ 0005:00000484       __imp__SwapBuffers@4       004cf484     gdi32:GDI32.dll
+ 0005:00000488       \177GDI32_NULL_THUNK_DATA  004cf488     gdi32:GDI32.dll
+ 0005:000004b4       __imp__gluPerspective@32   004cf4b4     glu32:GLU32.dll
+ 0005:000004b8       __imp__gluOrtho2D@32       004cf4b8     glu32:GLU32.dll
+ 0005:000004bc       \177GLU32_NULL_THUNK_DATA  004cf4bc     glu32:GLU32.dll
+ 0005:000004e8       __imp__GetSystemTimeAsFileTime@4 004cf4e8     kernel32:KERNEL32.dll
+ 0005:000004ec       __imp__GetCurrentProcessId@0 004cf4ec     kernel32:KERNEL32.dll
+ 0005:000004f0       __imp__GetCurrentThreadId@0 004cf4f0     kernel32:KERNEL32.dll
+ 0005:000004f4       __imp__QueryPerformanceCounter@4 004cf4f4     kernel32:KERNEL32.dll
+ 0005:000004f8       __imp__IsProcessorFeaturePresent@4 004cf4f8     kernel32:KERNEL32.dll
+ 0005:000004fc       __imp__IsDebuggerPresent@0 004cf4fc     kernel32:KERNEL32.dll
+ 0005:00000500       __imp__SetUnhandledExceptionFilter@4 004cf500     kernel32:KERNEL32.dll
+ 0005:00000504       __imp__GetTickCount@0      004cf504     kernel32:KERNEL32.dll
+ 0005:00000508       __imp__GetCurrentProcess@0 004cf508     kernel32:KERNEL32.dll
+ 0005:0000050c       __imp__TerminateProcess@8  004cf50c     kernel32:KERNEL32.dll
+ 0005:00000510       __imp__HeapSetInformation@16 004cf510     kernel32:KERNEL32.dll
+ 0005:00000514       __imp__InterlockedCompareExchange@12 004cf514     kernel32:KERNEL32.dll
+ 0005:00000518       __imp__Sleep@4             004cf518     kernel32:KERNEL32.dll
+ 0005:0000051c       __imp__InterlockedExchange@8 004cf51c     kernel32:KERNEL32.dll
+ 0005:00000520       __imp__DecodePointer@4     004cf520     kernel32:KERNEL32.dll
+ 0005:00000524       __imp__EncodePointer@4     004cf524     kernel32:KERNEL32.dll
+ 0005:00000528       __imp__UnhandledExceptionFilter@4 004cf528     kernel32:KERNEL32.dll
+ 0005:0000052c       __imp__GetModuleHandleA@4  004cf52c     kernel32:KERNEL32.dll
+ 0005:00000530       \177KERNEL32_NULL_THUNK_DATA 004cf530     kernel32:KERNEL32.dll
+ 0005:00000568       __imp_?_type_info_dtor_internal_method@type_info@@QAEXXZ 004cf568     MSVCRT:MSVCR100.dll
+ 0005:0000056c       __imp___except_handler4_common 004cf56c     MSVCRT:MSVCR100.dll
+ 0005:00000570       __imp___crt_debugger_hook  004cf570     MSVCRT:MSVCR100.dll
+ 0005:00000574       __imp____set_app_type      004cf574     MSVCRT:MSVCR100.dll
+ 0005:00000578       __imp___fmode              004cf578     MSVCRT:MSVCR100.dll
+ 0005:0000057c       __imp___commode            004cf57c     MSVCRT:MSVCR100.dll
+ 0005:00000580       __imp____setusermatherr    004cf580     MSVCRT:MSVCR100.dll
+ 0005:00000584       __imp___open               004cf584     MSVCRT:MSVCR100.dll
+ 0005:00000588       __imp___initterm_e         004cf588     MSVCRT:MSVCR100.dll
+ 0005:0000058c       __imp___initterm           004cf58c     MSVCRT:MSVCR100.dll
+ 0005:00000590       __imp____initenv           004cf590     MSVCRT:MSVCR100.dll
+ 0005:00000594       __imp___XcptFilter         004cf594     MSVCRT:MSVCR100.dll
+ 0005:00000598       __imp___exit               004cf598     MSVCRT:MSVCR100.dll
+ 0005:0000059c       __imp___cexit              004cf59c     MSVCRT:MSVCR100.dll
+ 0005:000005a0       __imp____getmainargs       004cf5a0     MSVCRT:MSVCR100.dll
+ 0005:000005a4       __imp___amsg_exit          004cf5a4     MSVCRT:MSVCR100.dll
+ 0005:000005a8       __imp___invoke_watson      004cf5a8     MSVCRT:MSVCR100.dll
+ 0005:000005ac       __imp___controlfp_s        004cf5ac     MSVCRT:MSVCR100.dll
+ 0005:000005b0       __imp__strcmpi             004cf5b0     MSVCRT:MSVCR100.dll
+ 0005:000005b0       __imp___stricmp            004cf5b0     MSVCRT:MSVCR100.dll
+ 0005:000005b4       __imp___close              004cf5b4     MSVCRT:MSVCR100.dll
+ 0005:000005b8       __imp_?terminate@@YAXXZ    004cf5b8     MSVCRT:MSVCR100.dll
+ 0005:000005bc       __imp___write              004cf5bc     MSVCRT:MSVCR100.dll
+ 0005:000005c0       __imp___onexit             004cf5c0     MSVCRT:MSVCR100.dll
+ 0005:000005c4       __imp___lock               004cf5c4     MSVCRT:MSVCR100.dll
+ 0005:000005c8       __imp____dllonexit         004cf5c8     MSVCRT:MSVCR100.dll
+ 0005:000005cc       __imp___unlock             004cf5cc     MSVCRT:MSVCR100.dll
+ 0005:000005d0       __imp_??3@YAXPAX@Z         004cf5d0     MSVCRT:MSVCR100.dll
+ 0005:000005d4       __imp__tan                 004cf5d4     MSVCRT:MSVCR100.dll
+ 0005:000005d8       __imp__sin                 004cf5d8     MSVCRT:MSVCR100.dll
+ 0005:000005dc       __imp__cos                 004cf5dc     MSVCRT:MSVCR100.dll
+ 0005:000005e0       __imp__qsort               004cf5e0     MSVCRT:MSVCR100.dll
+ 0005:000005e4       __imp__floor               004cf5e4     MSVCRT:MSVCR100.dll
+ 0005:000005e8       __imp__ceil                004cf5e8     MSVCRT:MSVCR100.dll
+ 0005:000005ec       __imp__memchr              004cf5ec     MSVCRT:MSVCR100.dll
+ 0005:000005f0       __imp__fabs                004cf5f0     MSVCRT:MSVCR100.dll
+ 0005:000005f4       __imp__strncmp             004cf5f4     MSVCRT:MSVCR100.dll
+ 0005:000005f8       __imp__realloc             004cf5f8     MSVCRT:MSVCR100.dll
+ 0005:000005fc       __imp___strnicmp           004cf5fc     MSVCRT:MSVCR100.dll
+ 0005:00000600       __imp__strncpy             004cf600     MSVCRT:MSVCR100.dll
+ 0005:00000604       __imp___read               004cf604     MSVCRT:MSVCR100.dll
+ 0005:00000608       __imp___access             004cf608     MSVCRT:MSVCR100.dll
+ 0005:0000060c       __imp___lseek              004cf60c     MSVCRT:MSVCR100.dll
+ 0005:00000610       __imp___configthreadlocale 004cf610     MSVCRT:MSVCR100.dll
+ 0005:00000614       __imp__sprintf             004cf614     MSVCRT:MSVCR100.dll
+ 0005:00000618       __imp__abs                 004cf618     MSVCRT:MSVCR100.dll
+ 0005:0000061c       __imp__memset              004cf61c     MSVCRT:MSVCR100.dll
+ 0005:00000620       __imp__memcpy              004cf620     MSVCRT:MSVCR100.dll
+ 0005:00000624       __imp__fprintf             004cf624     MSVCRT:MSVCR100.dll
+ 0005:00000628       __imp____iob_func          004cf628     MSVCRT:MSVCR100.dll
+ 0005:0000062c       __imp__toupper             004cf62c     MSVCRT:MSVCR100.dll
+ 0005:00000630       __imp__strcat              004cf630     MSVCRT:MSVCR100.dll
+ 0005:00000634       __imp__strcpy              004cf634     MSVCRT:MSVCR100.dll
+ 0005:00000638       __imp__fopen               004cf638     MSVCRT:MSVCR100.dll
+ 0005:0000063c       __imp___strupr             004cf63c     MSVCRT:MSVCR100.dll
+ 0005:0000063c       __imp__strupr              004cf63c     MSVCRT:MSVCR100.dll
+ 0005:00000640       __imp__malloc              004cf640     MSVCRT:MSVCR100.dll
+ 0005:00000644       __imp__strlen              004cf644     MSVCRT:MSVCR100.dll
+ 0005:00000648       __imp__printf              004cf648     MSVCRT:MSVCR100.dll
+ 0005:0000064c       __imp__fclose              004cf64c     MSVCRT:MSVCR100.dll
+ 0005:00000650       __imp__setbuf              004cf650     MSVCRT:MSVCR100.dll
+ 0005:00000654       __imp__strcmp              004cf654     MSVCRT:MSVCR100.dll
+ 0005:00000658       __imp__fwrite              004cf658     MSVCRT:MSVCR100.dll
+ 0005:0000065c       __imp__exit                004cf65c     MSVCRT:MSVCR100.dll
+ 0005:00000660       __imp__vprintf             004cf660     MSVCRT:MSVCR100.dll
+ 0005:00000664       __imp___fstat64i32         004cf664     MSVCRT:MSVCR100.dll
+ 0005:00000668       __imp__fread               004cf668     MSVCRT:MSVCR100.dll
+ 0005:0000066c       __imp__ftell               004cf66c     MSVCRT:MSVCR100.dll
+ 0005:00000670       __imp__fseek               004cf670     MSVCRT:MSVCR100.dll
+ 0005:00000674       __imp__sscanf              004cf674     MSVCRT:MSVCR100.dll
+ 0005:00000678       __imp__fscanf              004cf678     MSVCRT:MSVCR100.dll
+ 0005:0000067c       __imp__feof                004cf67c     MSVCRT:MSVCR100.dll
+ 0005:00000680       __imp__sqrt                004cf680     MSVCRT:MSVCR100.dll
+ 0005:00000684       __imp__atoi                004cf684     MSVCRT:MSVCR100.dll
+ 0005:00000688       __imp__free                004cf688     MSVCRT:MSVCR100.dll
+ 0005:0000068c       __imp__calloc              004cf68c     MSVCRT:MSVCR100.dll
+ 0005:00000690       \177MSVCR100_NULL_THUNK_DATA 004cf690     MSVCRT:MSVCR100.dll
+ 0005:000006f4       __imp__glPolygonMode@8     004cf6f4     opengl32:OPENGL32.dll
+ 0005:000006f8       __imp__glVertex3fv@4       004cf6f8     opengl32:OPENGL32.dll
+ 0005:000006fc       __imp__glTexCoord2fv@4     004cf6fc     opengl32:OPENGL32.dll
+ 0005:00000700       __imp__glColor3ubv@4       004cf700     opengl32:OPENGL32.dll
+ 0005:00000704       __imp__glBegin@4           004cf704     opengl32:OPENGL32.dll
+ 0005:00000708       __imp__glDisable@4         004cf708     opengl32:OPENGL32.dll
+ 0005:0000070c       __imp__glVertex3f@12       004cf70c     opengl32:OPENGL32.dll
+ 0005:00000710       __imp__glTexCoord2f@8      004cf710     opengl32:OPENGL32.dll
+ 0005:00000714       __imp__glColor4f@16        004cf714     opengl32:OPENGL32.dll
+ 0005:00000718       __imp__glAlphaFunc@8       004cf718     opengl32:OPENGL32.dll
+ 0005:0000071c       __imp__glEnable@4          004cf71c     opengl32:OPENGL32.dll
+ 0005:00000720       __imp__glBlendFunc@8       004cf720     opengl32:OPENGL32.dll
+ 0005:00000724       __imp__glColor3ub@12       004cf724     opengl32:OPENGL32.dll
+ 0005:00000728       __imp__glPopMatrix@0       004cf728     opengl32:OPENGL32.dll
+ 0005:0000072c       __imp__glPushMatrix@0      004cf72c     opengl32:OPENGL32.dll
+ 0005:00000730       __imp__glGetIntegerv@8     004cf730     opengl32:OPENGL32.dll
+ 0005:00000734       __imp__glGetDoublev@8      004cf734     opengl32:OPENGL32.dll
+ 0005:00000738       __imp__wglCreateContext@4  004cf738     opengl32:OPENGL32.dll
+ 0005:0000073c       __imp__glDepthFunc@4       004cf73c     opengl32:OPENGL32.dll
+ 0005:00000740       __imp__glClearColor@16     004cf740     opengl32:OPENGL32.dll
+ 0005:00000744       __imp__wglGetCurrentContext@0 004cf744     opengl32:OPENGL32.dll
+ 0005:00000748       __imp__glFinish@0          004cf748     opengl32:OPENGL32.dll
+ 0005:0000074c       __imp__wglMakeCurrent@8    004cf74c     opengl32:OPENGL32.dll
+ 0005:00000750       __imp__wglDeleteContext@4  004cf750     opengl32:OPENGL32.dll
+ 0005:00000754       __imp__glNormal3f@12       004cf754     opengl32:OPENGL32.dll
+ 0005:00000758       __imp__glClear@4           004cf758     opengl32:OPENGL32.dll
+ 0005:0000075c       __imp__glColor3b@12        004cf75c     opengl32:OPENGL32.dll
+ 0005:00000760       __imp__wglGetProcAddress@4 004cf760     opengl32:OPENGL32.dll
+ 0005:00000764       __imp__glColor3f@12        004cf764     opengl32:OPENGL32.dll
+ 0005:00000768       __imp__glEnd@0             004cf768     opengl32:OPENGL32.dll
+ 0005:0000076c       __imp__glFrustum@48        004cf76c     opengl32:OPENGL32.dll
+ 0005:00000770       __imp__glRotatef@16        004cf770     opengl32:OPENGL32.dll
+ 0005:00000774       __imp__glGenTextures@8     004cf774     opengl32:OPENGL32.dll
+ 0005:00000778       __imp__glBindTexture@8     004cf778     opengl32:OPENGL32.dll
+ 0005:0000077c       __imp__glTexImage2D@36     004cf77c     opengl32:OPENGL32.dll
+ 0005:00000780       __imp__glTexParameterf@12  004cf780     opengl32:OPENGL32.dll
+ 0005:00000784       __imp__glMultMatrixf@4     004cf784     opengl32:OPENGL32.dll
+ 0005:00000788       __imp__glViewport@16       004cf788     opengl32:OPENGL32.dll
+ 0005:0000078c       __imp__glShadeModel@4      004cf78c     opengl32:OPENGL32.dll
+ 0005:00000790       __imp__glMatrixMode@4      004cf790     opengl32:OPENGL32.dll
+ 0005:00000794       __imp__glLoadIdentity@0    004cf794     opengl32:OPENGL32.dll
+ 0005:00000798       __imp__glTranslatef@12     004cf798     opengl32:OPENGL32.dll
+ 0005:0000079c       __imp__glGetFloatv@8       004cf79c     opengl32:OPENGL32.dll
+ 0005:000007a0       \177OPENGL32_NULL_THUNK_DATA 004cf7a0     opengl32:OPENGL32.dll
+ 0005:000007ec       __imp__DispatchMessageA@4  004cf7ec     user32:USER32.dll
+ 0005:000007f0       __imp__TranslateMessage@4  004cf7f0     user32:USER32.dll
+ 0005:000007f4       __imp__GetMessageA@16      004cf7f4     user32:USER32.dll
+ 0005:000007f8       __imp__PeekMessageA@20     004cf7f8     user32:USER32.dll
+ 0005:000007fc       __imp__GetKeyState@4       004cf7fc     user32:USER32.dll
+ 0005:00000800       __imp__GetWindowRect@8     004cf800     user32:USER32.dll
+ 0005:00000804       __imp__DefWindowProcA@16   004cf804     user32:USER32.dll
+ 0005:00000808       __imp__PostQuitMessage@4   004cf808     user32:USER32.dll
+ 0005:0000080c       __imp__UpdateWindow@4      004cf80c     user32:USER32.dll
+ 0005:00000810       __imp__ShowWindow@8        004cf810     user32:USER32.dll
+ 0005:00000814       __imp__CreateWindowExA@48  004cf814     user32:USER32.dll
+ 0005:00000818       __imp__RegisterClassExA@4  004cf818     user32:USER32.dll
+ 0005:0000081c       __imp__LoadCursorA@8       004cf81c     user32:USER32.dll
+ 0005:00000820       __imp__LoadIconA@8         004cf820     user32:USER32.dll
+ 0005:00000824       __imp__ReleaseDC@8         004cf824     user32:USER32.dll
+ 0005:00000828       __imp__GetDC@4             004cf828     user32:USER32.dll
+ 0005:0000082c       \177USER32_NULL_THUNK_DATA 004cf82c     user32:USER32.dll
+
+ entry point at        0002:00000ba9
+

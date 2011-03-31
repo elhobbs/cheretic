@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cheretic_win32", "cheretic_win32.vcproj", "{8804FACB-AB45-4D64-BCF3-8370656DD574}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8804FACB-AB45-4D64-BCF3-8370656DD574}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8804FACB-AB45-4D64-BCF3-8370656DD574}.Debug|Win32.Build.0 = Debug|Win32
+		{8804FACB-AB45-4D64-BCF3-8370656DD574}.Release|Win32.ActiveCfg = Release|Win32
+		{8804FACB-AB45-4D64-BCF3-8370656DD574}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="cheretic">
+</Property><Property Name="Solution File" Value="D:\devl\cheretic\cheretic.sln">
+</Property><Property Name="User Options File" Value="D:\devl\cheretic\cheretic.suo">
+</Property><Property Name="Date" Value="Tuesday, October 19, 2010">
+</Property><Property Name="Time" Value="20:16 PM">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="cheretic.sln" Description="File successfully backed up as D:\devl\cheretic\cheretic.sln.old">
+</Event><Event ErrorLevel="0" Project="" Source="cheretic.suo" Description="File successfully backed up as D:\devl\cheretic\cheretic.suo.old">
+</Event><Event ErrorLevel="0" Project="cheretic" Source="cheretic.vcproj" Description="Converting project file 'D:\devl\cheretic\cheretic.vcproj'.">
+</Event><Event ErrorLevel="1" Project="cheretic" Source="cheretic.vcproj" Description="VCConvertEngine could not convert attribute CompileAsManaged =  under Tool VCNMakeTool.">
+</Event><Event ErrorLevel="1" Project="cheretic" Source="cheretic.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="0" Project="cheretic" Source="cheretic.vcproj" Description="Done converting to new project file 'D:\devl\cheretic\cheretic.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="cheretic" Source="cheretic.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="cheretic.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="cheretic.sln" Description="Converted">
+</Event></UpgradeLog>

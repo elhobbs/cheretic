@@ -60,6 +60,7 @@ typedef struct winding_s
 	int			numpoints;
 	float	dist;
 	int		sub;
+	short	texmin[2];
 	vertex_t	p[1];		// variable sized
 } winding_t;
 

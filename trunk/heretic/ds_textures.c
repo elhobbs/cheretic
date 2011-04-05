@@ -652,9 +652,10 @@ int ds_load_sprite(int name)
 	w = spritewidth[name]>>FRACBITS;
 	h = spriteheight[name]>>FRACBITS;
 	size = w * h;
+	size = (size+3)&(~3L);
 	ds_size = ds->block_width * ds->block_height;
 
-    src = (byte *)Z_Malloc (size+ds_size,PU_STATIC,0);
+    src = (byte *)Z_Malloc (size+ds_size+16,PU_STATIC,0);
 	dst = src + size;
 	memset(dst,0,ds_size);
 
@@ -672,7 +673,15 @@ int ds_load_sprite(int name)
 		}
 	}
 	addr = ds_scale_texture(ds,w,h,src,dst);
-	texnum = ds_load_texture(ds,addr,1,TEXGEN_TEXCOORD);
+	/*for(i=0;i<ds->width;i++) {
+		addr[i] = 15;
+		addr[ds->block_width*(ds->height-1) + i] = 9*16;
+	}
+	for(i=0;i<ds->height;i++) {
+		addr[i*ds->block_width] = 15;
+		addr[i*ds->block_width + ds->width - 1] = 9*16;
+	}*/
+	texnum = ds_load_texture(ds,addr,1,TEXGEN_TEXCOORD|GL_TEXTURE_WRAP_S|GL_TEXTURE_WRAP_T);
 
 	Z_Free(src);
 

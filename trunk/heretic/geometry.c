@@ -220,6 +220,7 @@ winding_t *ds_clip_to_subsector(unsigned short num,winding_t *floor)
 	fixed_t dist;
 	int i,j,count;
 	int div;
+	int min[2] = {0x7fffffff,0x7fffffff};
 	winding_t *floor2,*fw,*bw,*parent = floor;
 	int depth = 0;
 	vertex_t a,b;
@@ -242,6 +243,19 @@ winding_t *ds_clip_to_subsector(unsigned short num,winding_t *floor)
 
 	do
 	{
+		if(line->v1->x < min[0]) {
+			min[0] = line->v1->x;
+		}
+		if(line->v2->x < min[0]) {
+			min[0] = line->v2->x;
+		}
+		if(line->v1->y < min[1]) {
+			min[1] = line->v1->y;
+		}
+		if(line->v2->y < min[1]) {
+			min[1] = line->v2->y;
+		}
+
 		normal[0] = line->v2->y - line->v1->y;
 		normal[1] = -(line->v2->x - line->v1->x);
 		normalize_fixed(normal);
@@ -258,7 +272,7 @@ winding_t *ds_clip_to_subsector(unsigned short num,winding_t *floor)
 
 		//line->linedef->sidenum
 
-		printf("\tf: %4d b: %d\n",frontsector-sectors,backsector != 0 ? (backsector - sectors) : -1);
+		//printf("\tf: %4d b: %d\n",frontsector-sectors,backsector != 0 ? (backsector - sectors) : -1);
 	
 #if 1
 		// reject empty lines used for triggers and special events
@@ -332,7 +346,13 @@ skip:
 
 	//if(div == 1)
 	//	GL_SubdivideSurface(floor);
+	min[0] >>= 16;
+	min[1] >>= 16;
+	min[0] &= (~63);
+	min[1] &= (~63);
 
+	floor->texmin[0] = min[0];
+	floor->texmin[1] = min[1];
 	floor->parent = parent;
 	floor->children[0] = 0;
 	floor->children[1] = 0;

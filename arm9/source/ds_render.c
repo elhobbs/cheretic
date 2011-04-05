@@ -159,8 +159,16 @@ boolean	skyIsVisible;
 // used during debugging to isolate incorrect culling
 int		failCount;
 
+#ifdef WIN32
 float	lightDistance = 10.0f;	// in prBoom MAP_SCALE units, increasing this makes things get dimmer faster
 #define MAX_LIGHT_DROP	96
+#endif
+
+#ifdef ARM9
+float	lightDistance = (10.0f);	// in prBoom MAP_SCALE units, increasing this makes things get dimmer faster
+#define MAX_LIGHT_DROP	(96)
+#endif
+
 float	lightingVector[3];	// transform and scale [ x y 1 ] to get color units to subtract
 static int FadedLighting( float x, float y, int sectorLightLevel ) {
 	// Ramp down the lightover lightDistance world units.
@@ -171,7 +179,7 @@ static int FadedLighting( float x, float y, int sectorLightLevel ) {
 	// A proportional drop in lighting sounds like a better idea, but
 	// this linear drop seems to look nicer.  It's not like Doom's
 	// lighting is realistic in any case...
-	
+#ifdef WIN32
 	int	idist = x * lightingVector[0] + y * lightingVector[1] + lightingVector[2];
 	if ( idist < 0 ) {
 		idist = 0;
@@ -179,6 +187,7 @@ static int FadedLighting( float x, float y, int sectorLightLevel ) {
 		idist = MAX_LIGHT_DROP;
 	}
 	sectorLightLevel -= idist;	
+#endif
 	if ( sectorLightLevel < 0 ) {
 		sectorLightLevel = 0;
 	}
@@ -353,9 +362,9 @@ static void IR_ProjectSprite (mobj_t* thing, int lightlevel)
 	}
 	else
 	{*/
-		sprite.x=-MAP_COORD(pSpr->x);
-		sprite.y= MAP_COORD(pSpr->z);
-		sprite.z= MAP_COORD(pSpr->y);
+		sprite.x=-(pSpr->x);
+		sprite.y= (pSpr->z);
+		sprite.z= (pSpr->y);
 	//}
 
 #ifdef ARM9
@@ -385,12 +394,12 @@ static void IR_ProjectSprite (mobj_t* thing, int lightlevel)
 		sprite.ur=0.0f;
 	}
 #endif
-	hoff=MAP_COORD(leftoffset);
-	voff=MAP_COORD(topoffset);
-	sprite.x1=hoff-MAP_COORD(width);
-	sprite.x2=hoff;
-	sprite.y1=voff;
-	sprite.y2=voff-MAP_COORD(height);
+	hoff=(leftoffset);
+	voff=(topoffset);
+	sprite.x1=(hoff-width);
+	sprite.x2=(hoff);
+	sprite.y1=(voff);
+	sprite.y2=(voff-height);
 	
 	// JDC: don't let sprites poke below the ground level.
 	// Software rendering Doom didn't use depth buffering, 
@@ -411,6 +420,7 @@ static void IR_ProjectSprite (mobj_t* thing, int lightlevel)
 	*/
 	if(num_gl_sprites < 128) 
 	{
+		//printf("%d %f %f\n",num_gl_sprites,(float)width/65536.0f,(float)hoff/65536.0f);
 		gl_sprites[num_gl_sprites++] = sprite;
 	}
 
@@ -1629,7 +1639,7 @@ void IR_RenderWalls(void) {
 				sky_mask_polyid = ds_anti_alias_id;
 				glPolyFmt(POLY_ALPHA(30) | POLY_CULL_NONE | POLY_ID(2) | BIT(13));
 			} else {
-				glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(13));
+				glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(13) | POLY_FOG);
 			}
 			ds_anti_alias_id++;
 			ds_anti_alias_id &= (63);
@@ -1768,7 +1778,7 @@ void IR_RenderSprites(player_t* player)
 		name = ds_load_sprite(sprite->name);
 #ifdef ARM9
 		GFX_TEX_FORMAT = name;
-		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(11));
+		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(11) | POLY_FOG);
 		ds_anti_alias_id ++;
 		ds_anti_alias_id &= 63;
 #endif
@@ -1782,6 +1792,7 @@ void IR_RenderSprites(player_t* player)
 		}
 		else
 		{
+#ifdef WIN32
 			float	flight = (float)sprite->light*(1.0f/255);
 			
 			// We could do the distance-lighting here, but leaving the sprites
@@ -1792,33 +1803,48 @@ void IR_RenderSprites(player_t* player)
 			if (player->fixedcolormap) {
 				flight = 1.0;	// light amp goggles
 			}
-#ifdef WIN32
 			glColor4f(flight, flight, flight, 1.0f );
+#endif
+#ifdef ARM9
+			int light = ((int)sprite->light)>>3;
+			if (player->fixedcolormap) {
+				light = 31;	// light amp goggles
+			}
+			DS_COLOR(RGB15(light,light,light));
 #endif
 		}
 #ifdef WIN32
 		glBegin(GL_QUADS);
 		glTexCoord2f(sprite->ul, sprite->vt); 
-		glVertex3f(sprite->x + sprite->x1 * yawc, sprite->y + sprite->y1, sprite->z + sprite->x1 * yaws );
+		glVertex3f(MAP_COORD(sprite->x + sprite->x1 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x1 * yaws) );
+
 		glTexCoord2f(sprite->ur, sprite->vt); 
-		glVertex3f(sprite->x + sprite->x2 * yawc, sprite->y + sprite->y1, sprite->z + sprite->x2 * yaws );
+		glVertex3f(MAP_COORD(sprite->x + sprite->x2 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x2 * yaws) );
+
 		glTexCoord2f(sprite->ur, sprite->vb); 
-		glVertex3f(sprite->x + sprite->x2 * yawc, sprite->y + sprite->y2, sprite->z + sprite->x2 * yaws );
+		glVertex3f(MAP_COORD(sprite->x + sprite->x2 * yawc), MAP_COORD(sprite->y + sprite->y2), MAP_COORD(sprite->z + sprite->x2 * yaws) );
+
 		glTexCoord2f(sprite->ul, sprite->vb); 
-		glVertex3f(sprite->x + sprite->x1 * yawc, sprite->y + sprite->y2, sprite->z + sprite->x1 * yaws );
+		glVertex3f(MAP_COORD(sprite->x + sprite->x1 * yawc), MAP_COORD(sprite->y + sprite->y2), MAP_COORD(sprite->z + sprite->x1 * yaws) );
 		glEnd();
 #endif
 #ifdef ARM9
 		//iprintf(".");
+		//printf("%f %f %f\n",MAP_COORD(sprite->x + sprite->x1 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x1 * yaws));
+		//printf("%f %f %f\n",MAP_COORD(sprite->x + sprite->x2 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x2 * yaws));
+
 		glBegin(GL_QUADS);
 		dsTexCoord2f(sprite->ul, sprite->vt); 
-		dsVertex3f(sprite->x + sprite->x1 * yawc, sprite->y + sprite->y1, sprite->z + sprite->x1 * yaws );
+		dsVertex3f(MAP_COORD(sprite->x + sprite->x1 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x1 * yaws) );
+
 		dsTexCoord2f(sprite->ur, sprite->vt); 
-		dsVertex3f(sprite->x + sprite->x2 * yawc, sprite->y + sprite->y1, sprite->z + sprite->x2 * yaws );
+		dsVertex3f(MAP_COORD(sprite->x + sprite->x2 * yawc), MAP_COORD(sprite->y + sprite->y1), MAP_COORD(sprite->z + sprite->x2 * yaws) );
+
 		dsTexCoord2f(sprite->ur, sprite->vb); 
-		dsVertex3f(sprite->x + sprite->x2 * yawc, sprite->y + sprite->y2, sprite->z + sprite->x2 * yaws );
+		dsVertex3f(MAP_COORD(sprite->x + sprite->x2 * yawc), MAP_COORD(sprite->y + sprite->y2), MAP_COORD(sprite->z + sprite->x2 * yaws) );
+
 		dsTexCoord2f(sprite->ul, sprite->vb); 
-		dsVertex3f(sprite->x + sprite->x1 * yawc, sprite->y + sprite->y2, sprite->z + sprite->x1 * yaws );
+		dsVertex3f(MAP_COORD(sprite->x + sprite->x1 * yawc), MAP_COORD(sprite->y + sprite->y2), MAP_COORD(sprite->z + sprite->x1 * yaws) );
 		glEnd();
 #endif
 		if(sprite->shadow)
@@ -1992,9 +2018,33 @@ void IR_RenderPlayerView (player_t* player) {
 
 	// setup the vector for calculating light fades, which is just a scale
 	// of the forward vector
+#ifdef WIN32
 	lightingVector[0] = lightDistance * glMVPmatrix[2];
 	lightingVector[1] = lightDistance * glMVPmatrix[10];
 	lightingVector[2] = lightDistance * glMVPmatrix[14];
+	printf("vpn: %f %f %f\n",(float)glMVPmatrix[2],(float)glMVPmatrix[10],(float)glMVPmatrix[14]);
+#else
+	lightingVector[0] = (float)dsMat[8]/4096.0f;
+	lightingVector[1] = (float)dsMat[10]/4096.0f;
+	lightingVector[2] = lightingVector[0]*-xCamera + lightingVector[1]*-yCamera;
+	
+	lightingVector[0] *= lightDistance;
+	lightingVector[1] *= lightDistance;
+	lightingVector[2] *= lightDistance;
+
+	//printf("vpn: %f %f %f\n",(float)dsMat[8]/4096.0f,(float)dsMat[10]/4096.0f,(float)dsMat[11]/4096.0f);
+#endif
+
+	//printf("light: %f %f %f\n",lightingVector[0],lightingVector[1],lightingVector[2]);
+	//printf("yaw: %f\n",yaw);
+	//printf("pos: %f %f %f\n",(xCamera), (trY), (yCamera));
+	//while(1);
+	//printf("1: %f %f %f %f\n",(float)dsMat[1]/4096.0f,(float)dsMat[5]/4096.0f,(float)dsMat[9]/4096.0f,(float)dsMat[13]/4096.0f);
+	//printf("2: %f %f %f %f\n",(float)dsMat[2]/4096.0f,(float)dsMat[6]/4096.0f,(float)dsMat[10]/4096.0f,(float)dsMat[14]/4096.0f);
+	//for(i=0;i<16;i++) {
+	//	printf("%d: %f\n",i,(float)dsMat[i]/4096.0f);
+	//}
+	//printf("\n");
 	
 	
 	/*rendermarker++;
@@ -2034,7 +2084,7 @@ void IR_RenderPlayerView (player_t* player) {
 		// Note that these texcoords would have to be corrected
 		// for different screen aspect ratios or fields of view!
 		s = ((yaw+90.0f)/90.0f)*256;
-		y = (1 - 2 * 128.0 / 200)*32;
+		y = -32;//(1 - 2 * 128.0 / 200)*32;
 		
 		// With identity matricies, the vertex coordinates
 		// can just be in the 0-1 range.
@@ -2065,7 +2115,7 @@ void IR_RenderPlayerView (player_t* player) {
 		glLoadIdentity();
 		
 		GFX_TEX_FORMAT = 0;
-		glPolyFmt(POLY_ALPHA(1) | POLY_CULL_NONE | POLY_ID(1));
+		glPolyFmt(POLY_ALPHA(1) | POLY_CULL_NONE | POLY_ID(1) | POLY_FOG);
 
 		GFX_COLOR = RGB5(0,0,0);
 		glBegin(GL_TRIANGLE_STRIP);
@@ -2106,6 +2156,11 @@ void IR_RenderPlayerView (player_t* player) {
 		float p[3];
 		float p1[3];
 		float p2[3];
+		short t[2];
+		short t1[2];
+		short t2[2];
+		int color[3];
+		int texmin[2];
 		//unsigned l = ((((unsigned)floor)>>2)&0xff);
 
 		//ds_triangles += ((count-2)*2);
@@ -2124,7 +2179,7 @@ void IR_RenderPlayerView (player_t* player) {
 #ifdef ARM9
 			ds_anti_alias_id++;
 			ds_anti_alias_id &= (63);
-			glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(13) | BIT(11));
+			glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(13) | POLY_FOG);
 			//if(texname)
 			GFX_TEX_FORMAT = name;
 			//printf("tex: %d\n",texname);
@@ -2136,15 +2191,17 @@ void IR_RenderPlayerView (player_t* player) {
 		while(floor)
 		{
 			count = floor->numpoints;
+			texmin[0] = floor->texmin[0];
+			texmin[1] = floor->texmin[1];
 			//glBindTexture(GL_TEXTURE_2D,0);
 			glBegin(GL_TRIANGLES);
 #ifdef WIN32
 			glColor3ub( light, light, light);
 #endif
 
-#ifdef ARM9
+#ifdef ARM99
 			light >>= 3;
-			//light = 31;
+			light = 31;
 			DS_COLOR(RGB5(light,light,light));
 #endif
 			//glColor3b( l, l, l);
@@ -2154,15 +2211,25 @@ void IR_RenderPlayerView (player_t* player) {
 			p[0] = -MAP_COORD(floor->p[0].x);
 			p[2] = MAP_COORD(floor->p[0].y);
 			p[1] = dist;
+			color[0] = FadedLighting( p[0], p[2], light );
+			t[0] = (-floor->p[0].x>>16) + texmin[0];
+			t[1] = (floor->p[0].y>>16) - texmin[1];
+
 			p1[0] = -MAP_COORD(floor->p[1].x);
 			p1[2] = MAP_COORD(floor->p[1].y);
 			p1[1] = dist;
+			color[1] = FadedLighting( p1[0], p1[2], light );
+			t1[0] = (-floor->p[1].x>>16) + texmin[0];
+			t1[1] = (floor->p[1].y>>16) - texmin[1];
 
 			for(j=2;j<count;j++)
 			{
 				p2[0] = -MAP_COORD(floor->p[j].x);
 				p2[2] = MAP_COORD(floor->p[j].y);
 				p2[1] = dist;
+				color[2] = FadedLighting( p2[0], p2[2], light );
+				t2[0] = (-floor->p[j].x>>16) + texmin[0];
+				t2[1] = (floor->p[j].y>>16) - texmin[1];
 				
 #ifdef WIN32
 				glTexCoord2f(p[0]*2.0f,p[2]*2.0f);
@@ -2176,19 +2243,28 @@ void IR_RenderPlayerView (player_t* player) {
 #endif
 
 #ifdef ARM9
-				dsTexCoord2f(p[0]/4.0f,p[2]/4.0f);
+				DS_COLOR(RGB5(color[0],color[0],color[0]));
+				//dsTexCoord2f(p[0]/4.0f,p[2]/4.0f);
+				DS_TEXCOORD2T16(t[0],t[1]);
 				dsVertex3fv(p);
 
-				dsTexCoord2f(p1[0]/4.0f,p1[2]/4.0f);
+				DS_COLOR(RGB5(color[1],color[1],color[1]));
+				//dsTexCoord2f(p1[0]/4.0f,p1[2]/4.0f);
+				DS_TEXCOORD2T16(t1[0],t1[1]);
 				dsVertex3fv(p1);
 
-				dsTexCoord2f(p2[0]/4.0f,p2[2]/4.0f);
+				DS_COLOR(RGB5(color[2],color[2],color[2]));
+				//dsTexCoord2f(p2[0]/4.0f,p2[2]/4.0f);
+				DS_TEXCOORD2T16(t2[0],t2[1]);
 				dsVertex3fv(p2);
 #endif
 
 				p1[0] = p2[0];
 				p1[1] = p2[1];
 				p1[2] = p2[2];
+				t1[0] = t2[0];
+				t1[1] = t2[1];
+				color[1] = color[2];
 			}	
 			glEnd();
 			floor = floor->next;

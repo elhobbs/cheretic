@@ -160,7 +160,16 @@ Wifi_InitDefault(true);
 
 #endif
 	
-	
+	glEnable(GL_FOG);
+	glFogShift(10);
+	glFogColor(0,0,0,31);
+	glFogDensity(0,0);
+	for(x=1;x<16;x++)
+		glFogDensity(x,x*8);
+	for(;x<32;x++)
+		glFogDensity(x,127);
+	glFogOffset(0);
+
 	soundEnable();
 
 	defaultExceptionHandler();

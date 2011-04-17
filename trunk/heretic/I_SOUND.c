@@ -1,6 +1,6 @@
 
 // I_SOUND.C
-
+#if 0
 #include <stdio.h>
 #include "doomdef.h"
 //#include "dmx.h"
@@ -398,3 +398,4 @@ void I_SetChannels(int channels)
 {
   //WAV_PlayMode(channels, SND_SAMPLERATE);
 }
+#endif

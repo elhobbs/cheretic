@@ -1,3 +1,5 @@
+#if 0
+
 #include "DoomDef.h"
 #include "P_local.h"
 #include "soundst.h"
@@ -593,3 +595,5 @@ void S_ShutDown(void)
 	}
 #endif
 }
+
+#endif

@@ -1719,7 +1719,7 @@ byte *I_ZoneBase (int *size)
 
 #ifdef ARM9
 	if(__dsimode) {
-		*size = 15*1024*1024;
+		*size = 14*1024*1024;
 	} else {
 		*size = 2*1024*1024;
 	}

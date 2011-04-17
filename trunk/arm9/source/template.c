@@ -184,12 +184,6 @@ int main(int argc, char **argv) {
 
 	Sys_Init();
 
-	//consoleDemoInit();  //setup the sub screen for printing
-
-	iprintf("\n\n\tHello DS dev'rs\n");
-	iprintf("\twww.drunkencoders.com\n");
-	iprintf("\twww.devkitpro.org");
-
 	//enable timers for keeping track of a normal time value every frame.
 	TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;
 	TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;

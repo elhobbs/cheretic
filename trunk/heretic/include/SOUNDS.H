@@ -95,6 +95,8 @@ typedef struct
 	long handle;
 	long pitch;
 	int priority;
+	int end;
+	int pos;
 } channel_t;
 
 typedef struct

@@ -126,19 +126,25 @@ void R_InstallSpriteLump (int lump, unsigned frame, unsigned rotation, boolean f
 void R_InitSpriteDefs (char **namelist)
 {
 	char		**check;
-	int		i, l, intname, frame, rotation;
+	int		i, l/*, intname*/, frame, rotation;
 	int		start, end;
 
 // count the number of sprite names
 	check = namelist;
-	while (*check != NULL)
+	while (*check != NULL) {
+		///printf("%d: %x %s\n",check-namelist,*check,*check);
+		//if(((unsigned int)*check)& 0x01) {
+		//	printf("bad\n");
+		//	while(1);
+		//}
 		check++;
+	}
 	numsprites = check-namelist;
 
 	if (!numsprites)
 		return;
 
-	sprites = Z_Malloc(numsprites *sizeof(*sprites), PU_STATIC, NULL);
+	sprites = (spritedef_t *)Z_Malloc(numsprites *sizeof(*sprites), PU_STATIC, NULL);
 
 	start = firstspritelump-1;
 	end = lastspritelump+1;
@@ -152,7 +158,7 @@ void R_InitSpriteDefs (char **namelist)
 		memset (sprtemp,-1, sizeof(sprtemp));
 
 		maxframe = -1;
-		intname = *(int *)namelist[i];
+		//intname = *(int *)namelist[i];
 
 		//
 		// scan the lumps, filling in the frames for whatever is found
@@ -160,7 +166,8 @@ void R_InitSpriteDefs (char **namelist)
 		for (l=start+1 ; l<end ; l++)
 		{
 			//printf("s: %p %d %p %d\n",namelist[i],*(int *)namelist[i],lumpinfo[l].name,*(int *)lumpinfo[l].name);
-			if (*(int *)lumpinfo[l].name == intname)
+			//if (*(int *)lumpinfo[l].name == intname)
+			if (strncmp(lumpinfo[l].name,spritename,4) == 0)
 			{
 				frame = lumpinfo[l].name[4] - 'A';
 				rotation = lumpinfo[l].name[5] - '0';
@@ -211,8 +218,10 @@ void R_InitSpriteDefs (char **namelist)
 		//
 		sprites[i].numframes = maxframe;
 		sprites[i].spriteframes =
-			Z_Malloc (maxframe * sizeof(spriteframe_t), PU_STATIC, NULL);
+			(spriteframe_t *)Z_Malloc (maxframe * sizeof(spriteframe_t), PU_STATIC, NULL);
 		memcpy (sprites[i].spriteframes, sprtemp, maxframe*sizeof(spriteframe_t));
+		//printf("sprites: %x %d %d\n",sprites,sizeof(*sprites),sizeof(spriteframe_t));
+		//while(1);
 	}
 
 }

@@ -954,12 +954,12 @@ void D_DoomMain(void)
 
 	CT_Init();
 
-	tprintf("R_Init: Init Heretic refresh daemon.",1);
+	tprintf("R_Init: Init Heretic refresh daemon.\n",1);
 	hgotoxy(17,7);
 	hprintf("Loading graphics",0x3f);
 	R_Init();
 
-	tprintf("P_Init: Init Playloop state.",1);
+	tprintf("P_Init: Init Playloop state.\n",1);
 	hgotoxy(17,8);
 	hprintf("Init game engine.",0x3f);
 	P_Init();

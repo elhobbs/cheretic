@@ -536,7 +536,7 @@ default_t defaults[] =
 
 	{ "screenblocks", &screenblocks, 10 },
 
-#ifndef __NeXT__
+#if 0  //ndef __NeXT__
 	{ "snd_channels", &snd_Channels, 3 },
 	{ "snd_musicdevice", &snd_DesiredMusicDevice, 0 },
 	{ "snd_sfxdevice", &snd_DesiredSfxDevice, 0 },

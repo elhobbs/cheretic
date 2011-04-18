@@ -25,7 +25,11 @@ int snd_Channels;
 int			soundtime;		// sample PAIRS
 int   		paintedtime; 	// sample PAIRS
 
-byte snd_Buffer[4096];
+#define SND_SAMPLES (4096)
+byte c_snd_Buffer_left[SND_SAMPLES];
+byte c_snd_Buffer_right[SND_SAMPLES];
+byte *snd_Buffer_left;
+byte *snd_Buffer_right;
 
 byte *soundCurve;
 
@@ -69,7 +73,7 @@ void S_Init(void)
 
 	S_InitScaletable();
 
-	snd_Samples = 4096;
+	snd_Samples = SND_SAMPLES;
 	snd_Speed = 11025;
 
 	TIMER_DATA(2) = 0x10000 - (0x1000000 / snd_Speed) * 2;
@@ -77,13 +81,25 @@ void S_Init(void)
 	TIMER_DATA(3) = 0;
 	TIMER_CR(3) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
 
-	memset(snd_Buffer,0,sizeof(snd_Buffer));
-	soundPlaySample(snd_Buffer,
+	snd_Buffer_left  = (byte *) memUncached(c_snd_Buffer_left);
+	snd_Buffer_right = (byte *) memUncached(c_snd_Buffer_right);
+
+	memset(snd_Buffer_left,0,SND_SAMPLES);
+	memset(snd_Buffer_right,0,SND_SAMPLES);
+	soundPlaySample(c_snd_Buffer_left,
 		SoundFormat_8Bit,
 		snd_Samples,
 		snd_Speed,
 		127,
-		64,
+		0,
+		true,
+		0);
+	soundPlaySample(c_snd_Buffer_right,
+		SoundFormat_8Bit,
+		snd_Samples,
+		snd_Speed,
+		127,
+		127,
 		true,
 		0);
 	ds_sound_start = ds_time();
@@ -171,6 +187,108 @@ boolean S_StopSoundID(int sound_id, int priority)
 	return(true);
 }
 
+
+// when to clip out sounds
+// Does not fit the large outdoor areas.
+
+#define S_CLIPPING_DIST (1200 * FRACUNIT)
+
+// Distance tp origin when sounds should be maxed out.
+// This should relate to movement clipping resolution
+// (see BLOCKMAP handling).
+// In the source code release: (160*FRACUNIT).  Changed back to the 
+// Vanilla value of 200 (why was this changed?)
+
+#define S_CLOSE_DIST (160 * FRACUNIT)
+
+// The range over which sound attenuates
+
+#define S_ATTENUATOR ((S_CLIPPING_DIST - S_CLOSE_DIST) >> FRACBITS)
+
+// Stereo separation
+
+#define S_STEREO_SWING (96 * FRACUNIT)
+
+#define NORM_PITCH 128
+#define NORM_PRIORITY 64
+#define NORM_SEP 128
+
+//
+// Changes volume and stereo-separation variables
+//  from the norm of a sound effect to be played.
+// If the sound is not audible, returns a 0.
+// Otherwise, modifies parameters and returns 1.
+//
+
+static int S_AdjustSoundParams(mobj_t *listener, mobj_t *source,
+                               int *vol, int *sep,int *dist)
+{
+    fixed_t        approx_dist;
+    fixed_t        adx;
+    fixed_t        ady;
+    angle_t        angle;
+
+    // calculate the distance to sound origin
+    //  and clip it if necessary
+    adx = abs(listener->x - source->x);
+    ady = abs(listener->y - source->y);
+
+    // From _GG1_ p.428. Appox. eucledian distance fast.
+    approx_dist = adx + ady - ((adx < ady ? adx : ady)>>1);
+    
+    if (gamemap != 8 && approx_dist > S_CLIPPING_DIST)
+    {
+        return 0;
+    }
+    
+    // angle of source to listener
+    angle = R_PointToAngle2(listener->x,
+                            listener->y,
+                            source->x,
+                            source->y);
+
+    if (angle > listener->angle)
+    {
+        angle = angle - listener->angle;
+    }
+    else
+    {
+        angle = angle + (0xffffffff - listener->angle);
+    }
+
+    angle >>= ANGLETOFINESHIFT;
+
+    // stereo separation
+    *sep = 128 - (FixedMul(S_STEREO_SWING, finesine[angle]) >> FRACBITS);
+	*dist = approx_dist>>FRACBITS;
+
+    // volume calculation
+    if (approx_dist < S_CLOSE_DIST)
+    {
+        *vol = snd_MaxVolume;
+    }
+    else if (gamemap == 8)
+    {
+        if (approx_dist > S_CLIPPING_DIST)
+        {
+            approx_dist = S_CLIPPING_DIST;
+        }
+
+        *vol = 15+ ((snd_MaxVolume-15)
+                    *((S_CLIPPING_DIST - approx_dist)>>FRACBITS))
+            / S_ATTENUATOR;
+    }
+    else
+    {
+        // distance effect
+        *vol = (snd_MaxVolume
+                * ((S_CLIPPING_DIST - approx_dist)>>FRACBITS))
+            / S_ATTENUATOR; 
+    }
+    
+    return (*vol > 0);
+}
+
 void S_StartSound(mobj_t *origin, int sound_id)
 {
 	int dist, vol;
@@ -188,7 +306,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	static int sndcount = 0;
 	int chan;
 
-	iprintf("1\n");
+	//iprintf("1\n");
 	if(sound_id==0 || snd_MaxVolume == 0)
 		return;
 	if(origin == NULL)
@@ -196,6 +314,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 		origin = players[consoleplayer].mo;
 	}
 
+#if 0
 // calculate the distance before other stuff so that we can throw out
 // sounds that are beyond the hearing range.
 	absx = abs(origin->x-players[consoleplayer].mo->x);
@@ -213,13 +332,23 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	{
 		dist = 0;
 	}
+#else
+	if(origin == players[consoleplayer].mo)
+	{
+		sep = 128;
+		dist = 0;
+		vol = snd_MaxVolume;
+	} else if(!S_AdjustSoundParams(players[consoleplayer].mo,origin,&vol,&sep,&dist)) {
+		return;
+	}
+#endif
 	priority = S_sfx[sound_id].priority;
 	priority *= (10 - (dist/160));
 	if(!S_StopSoundID(sound_id, priority))
 	{
 		return; // other sounds have greater priority
 	}
-	iprintf("2\n");
+	//iprintf("2\n");
 	for(i=0; i<snd_Channels; i++)
 	{
 		if(origin->player)
@@ -233,7 +362,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 			break;
 		}
 	}
-	iprintf("3\n");
+	//iprintf("3\n");
 	if(i >= snd_Channels)
 	{
 		if(sound_id >= sfx_wind)
@@ -297,7 +426,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 			}
 		}
 	}
-	iprintf("4\n");
+	//iprintf("4\n");
 	if(S_sfx[sound_id].lumpnum == 0)
 	{
 		S_sfx[sound_id].lumpnum = I_GetSfxLumpNum(&S_sfx[sound_id]);
@@ -308,6 +437,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 			PU_SOUND);
 	}
 
+#if 0
 	// calculate the volume based upon the distance from the sound origin.
 //      vol = (snd_MaxVolume*16 + dist*(-snd_MaxVolume*16)/MAX_SND_DIST)>>9;
 	vol = soundCurve[dist];
@@ -327,7 +457,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 		if(sep > 192)
 			sep = 512-sep;
 	}
-
+#endif
 	data = (byte *)S_sfx[sound_id].snd_ptr;
 	lumplen = W_LumpLength(S_sfx[sound_id].lumpnum);
 	if (lumplen < 8 || data[0] != 0x03 || data[1] != 0x00) {
@@ -346,7 +476,9 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	channel[i].priority = priority;
 	channel[i].end = paintedtime + len;
 	channel[i].pos = 0;
-	iprintf("play: %d v:%d s:%d\n",sound_id,vol,sep);
+	channel[i].left = ((254 - sep) * vol) / 127;
+	channel[i].right = ((sep) * vol) / 127;
+	iprintf("play: %d v:%d %d s:%d\n",sound_id,channel[i].left,channel[i].right,sep);
 	if(sound_id >= sfx_wind)
 	{
 		AmbChan = i;
@@ -363,6 +495,65 @@ void S_StartSound(mobj_t *origin, int sound_id)
 
 void S_StartSoundAtVolume(mobj_t *origin, int sound_id, int volume)
 {
+	int dist;
+	int i;
+	int sep;
+
+	static int sndcount;
+	int chan;
+
+	return;
+
+	if(sound_id == 0 || snd_MaxVolume == 0)
+		return;
+	if(origin == NULL)
+	{
+		origin = players[consoleplayer].mo;
+	}
+
+	if(volume == 0)
+	{
+		return;
+	}
+	volume = (volume*(snd_MaxVolume+1)*8)>>7;
+
+// no priority checking, as ambient sounds would be the LOWEST.
+	for(i=0; i<snd_Channels; i++)
+	{
+		if(channel[i].mo == NULL)
+		{
+			break;
+		}
+	}
+	if(i >= snd_Channels)
+	{
+		return;
+	}
+	if(S_sfx[sound_id].lumpnum == 0)
+	{
+		S_sfx[sound_id].lumpnum = I_GetSfxLumpNum(&S_sfx[sound_id]);
+	}
+	if(S_sfx[sound_id].snd_ptr == NULL)
+	{
+		S_sfx[sound_id].snd_ptr = W_CacheLumpNum(S_sfx[sound_id].lumpnum,
+			PU_SOUND);
+	}
+	channel[i].pitch = (byte)(127-(M_Random()&3)+(M_Random()&3));
+	channel[i].handle = 1;//I_StartSound(sound_id, S_sfx[sound_id].snd_ptr, volume, 128, channel[i].pitch, 0);
+	channel[i].mo = origin;
+	channel[i].sound_id = sound_id;
+	channel[i].priority = 1; //super low priority.
+	channel[i].left = volume;
+	channel[i].right = volume;
+	iprintf("play: %d v:%d\n",sound_id,volume);
+	if(S_sfx[sound_id].usefulness == -1)
+	{
+		S_sfx[sound_id].usefulness = 1;
+	}
+	else
+	{
+		S_sfx[sound_id].usefulness++;
+	}
 }
 
 void S_StopSound(mobj_t *origin)
@@ -429,9 +620,6 @@ void S_UpdateSounds(mobj_t *listener)
 						sizeof(memblock_t)))->id == 0x1d4a11)
 					{ // taken directly from the Z_ChangeTag macro
 						Z_ChangeTag2(lumpcache[S_sfx[i].lumpnum], PU_CACHE);
-						#ifdef __WATCOMC__
-							_dpmi_unlockregion(S_sfx[i].snd_ptr, lumpinfo[S_sfx[i].lumpnum].size);
-						#endif
 					}
 				}
 				S_sfx[i].usefulness = -1;
@@ -465,6 +653,17 @@ void S_UpdateSounds(mobj_t *listener)
 		{
 			continue;
 		}
+#if 1
+		else if(!S_AdjustSoundParams(players[consoleplayer].mo,channel[i].mo,&vol,&sep,&dist)) {
+			S_StopSound(channel[i].mo);
+			continue;
+		}
+		priority = S_sfx[channel[i].sound_id].priority;
+		priority *= (10 - (dist>>8));
+		channel[i].priority = priority;
+		channel[i].left = ((254 - sep) * vol) / 127;
+		channel[i].right = ((sep) * vol) / 127;
+#else
 		else
 		{
 			absx = abs(channel[i].mo->x-players[consoleplayer].mo->x);
@@ -498,6 +697,7 @@ void S_UpdateSounds(mobj_t *listener)
 			priority *= (10 - (dist>>8));
 			channel[i].priority = priority;
 		}
+#endif
 	}
 	S_Update_();
 }
@@ -575,16 +775,25 @@ void S_TransferPaintBuffer(int endtime)
 	snd_vol = 255;//volume.value*256;
 
 
-	unsigned char *out = snd_Buffer;
+	byte *outl = snd_Buffer_left;
+	byte *outr = snd_Buffer_right;
 	while (count--)
 	{
 		val = (*p * snd_vol) >> 8;
-		p+= step;
+		p+= 1;//step;
 		if (val > 0x7fff)
 			val = 0x7fff;
 		else if (val < (short)0x8000)
 			val = (short)0x8000;
-		out[out_idx] = (val>>8);// + 128;
+		outl[out_idx] = (val>>8);// + 128;
+
+		val = (*p * snd_vol) >> 8;
+		p+= 1;//step;
+		if (val > 0x7fff)
+			val = 0x7fff;
+		else if (val < (short)0x8000)
+			val = (short)0x8000;
+		outr[out_idx] = (val>>8);// + 128;
 		out_idx = (out_idx + 1) & out_mask;
 	}
 
@@ -596,13 +805,13 @@ void SND_PaintChannelFrom8 (channel_t *ch, byte *sfx, int count)
 	int		*lscale, *rscale;
 	int		i;
 
-	/*if (ch->leftvol > 255)
-		ch->leftvol = 255;
-	if (ch->rightvol > 255)
-		ch->rightvol = 255;*/
+	if (ch->left > 255)
+		ch->left = 255;
+	if (ch->right > 255)
+		ch->right = 255;
 		
-	lscale = snd_scaletable[255 >> 3];
-	rscale = snd_scaletable[255 >> 3];
+	lscale = snd_scaletable[ch->left >> 3];
+	rscale = snd_scaletable[ch->right >> 3];
 	sfx = sfx + 24 + ch->pos;
 
 	for (i=0 ; i<count ; i++)

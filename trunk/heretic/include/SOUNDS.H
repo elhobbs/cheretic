@@ -97,6 +97,7 @@ typedef struct
 	int priority;
 	int end;
 	int pos;
+	int left,right;
 } channel_t;
 
 typedef struct

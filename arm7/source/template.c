@@ -28,8 +28,20 @@ distribution.
 #ifdef ARM7
 #include <nds.h>
 #include <stdio.h>
-#include <dswifi7.h>
+//#include <dswifi7.h>
 //#include <maxmod7.h>
+
+
+#define FIFO_ADLIB FIFO_USER_01
+
+extern void 	PutAdLibBuffer(int);
+extern void 	AdlibEmulator();
+
+//---------------------------------------------------------------------------------
+void AdLibHandler(u32 value, void * userdata) {
+//---------------------------------------------------------------------------------
+	PutAdLibBuffer(value);
+}
 
 //---------------------------------------------------------------------------------
 void VblankHandler(void) {
@@ -75,12 +87,20 @@ int main() {
 
 	installSystemFIFO();
 
+	fifoSetValue32Handler(FIFO_ADLIB, AdLibHandler, 0);
+
+	TIMER0_CR = 0;
 	irqSet(IRQ_VCOUNT, VcountHandler);
-	irqSet(IRQ_VBLANK, VblankHandler);
+	//irqSet(IRQ_VBLANK, VblankHandler);
 
 	irqEnable( IRQ_VBLANK | IRQ_VCOUNT | IRQ_NETWORK);
 
+	REG_SOUNDCNT = SOUND_ENABLE;
+	REG_MASTER_VOLUME = 127;
+
 	setPowerButtonCB(powerButtonCB);   
+
+	AdlibEmulator();		// We never return from here
 
 	// Keep the ARM7 mostly idle
 	while (!exitflag) {

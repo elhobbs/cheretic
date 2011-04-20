@@ -73,7 +73,7 @@ typedef enum
 
 typedef struct
 {
-	char name[8];
+	char name[12];
 	int p1;
 } musicinfo_t;
 

@@ -3,6 +3,9 @@
 #include "soundst.h"
 #include "map.h"
 
+#ifdef WIN32
+#define iprintf printf
+#endif
 /*
 ===============================================================================
 
@@ -41,6 +44,17 @@ extern fixed_t		viewx, viewy, viewz;
 
 extern void **lumpcache;
 
+int		snd_scaletable[32][256];
+
+void S_InitScaletable (void)
+{
+	int		i, j;
+	
+	for (i=0 ; i<32 ; i++)
+		for (j=0 ; j<256 ; j++)
+			snd_scaletable[i][j] = ((signed char)j) * i * 8;
+}
+
 #ifdef ARM9
 
 long long ds_sound_start;
@@ -55,17 +69,6 @@ long long ds_time()
 	}
 	last = time1;
 	return (t + time1);
-}
-
-int		snd_scaletable[32][256];
-
-void S_InitScaletable (void)
-{
-	int		i, j;
-	
-	for (i=0 ; i<32 ; i++)
-		for (j=0 ; j<256 ; j++)
-			snd_scaletable[i][j] = ((signed char)j) * i * 8;
 }
 
 void S_Init(void)
@@ -111,6 +114,14 @@ void S_Init(void)
 #else
 void S_Init(void)
 {
+	S_InitScaletable();
+
+	snd_Samples = SND_SAMPLES;
+	snd_Speed = 11025;
+	snd_Buffer_left  = (byte *) (c_snd_Buffer_left);
+	snd_Buffer_right = (byte *) (c_snd_Buffer_right);
+	snd_Channels = MAX_CHANNELS;
+	snd_MaxVolume = 127;
 }
 #endif
 
@@ -183,6 +194,7 @@ boolean S_StopSoundID(int sound_id, int priority)
 			S_sfx[channel[i].sound_id].usefulness--;
 		}
 		channel[lp].mo = NULL;
+		channel[lp].handle = 0;
 	}
 	return(true);
 }
@@ -478,7 +490,11 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	channel[i].pos = 0;
 	channel[i].left = ((254 - sep) * vol) / 127;
 	channel[i].right = ((sep) * vol) / 127;
-	iprintf("play: %d v:%d %d s:%d\n",sound_id,channel[i].left,channel[i].right,sep);
+	iprintf("play: %d v:%d %d %8s\n",sound_id,channel[i].left,channel[i].right,S_sfx[sound_id].name);
+	for(i=0;i<16;i++) {
+		iprintf("%2x",data[24+i]);
+	}
+	iprintf("\n");
 	if(sound_id >= sfx_wind)
 	{
 		AmbChan = i;
@@ -502,7 +518,7 @@ void S_StartSoundAtVolume(mobj_t *origin, int sound_id, int volume)
 	static int sndcount;
 	int chan;
 
-	return;
+	//return;
 
 	if(sound_id == 0 || snd_MaxVolume == 0)
 		return;
@@ -545,7 +561,7 @@ void S_StartSoundAtVolume(mobj_t *origin, int sound_id, int volume)
 	channel[i].priority = 1; //super low priority.
 	channel[i].left = volume;
 	channel[i].right = volume;
-	iprintf("play: %d v:%d\n",sound_id,volume);
+	iprintf("play: %d v:%d %8s\n",sound_id,volume,S_sfx[sound_id].name);
 	if(S_sfx[sound_id].usefulness == -1)
 	{
 		S_sfx[sound_id].usefulness = 1;
@@ -766,6 +782,8 @@ void S_TransferPaintBuffer(int endtime)
 	int 	step;
 	int		val;
 	int		snd_vol;
+	byte *outl;
+	byte *outr;
 	
 	p = (int *) paintbuffer;
 	count = (endtime - paintedtime);// * shm->channels;
@@ -775,8 +793,8 @@ void S_TransferPaintBuffer(int endtime)
 	snd_vol = 255;//volume.value*256;
 
 
-	byte *outl = snd_Buffer_left;
-	byte *outr = snd_Buffer_right;
+	outl = snd_Buffer_left;
+	outr = snd_Buffer_right;
 	while (count--)
 	{
 		val = (*p * snd_vol) >> 8;
@@ -799,6 +817,29 @@ void S_TransferPaintBuffer(int endtime)
 
 }
 
+void SND_PaintChannelFrom8__ (channel_t *ch,  byte *sfx, int count)
+{
+	int data;
+	int left, right;
+	int leftvol, rightvol;
+	int	i;
+
+	leftvol = ch->left;
+	rightvol = ch->right;
+	sfx = sfx + 24 + ch->pos;
+
+	for (i=0 ; i<count ; i++)
+	{
+		data = sfx[i]-128;
+		left = (data * leftvol) >> 8;
+		right = (data * rightvol) >> 8;
+		paintbuffer[i].left += left;
+		paintbuffer[i].right += right;
+	}
+
+	ch->pos += count;
+}
+
 void SND_PaintChannelFrom8 (channel_t *ch, byte *sfx, int count)
 {
 	int 	data;
@@ -816,7 +857,8 @@ void SND_PaintChannelFrom8 (channel_t *ch, byte *sfx, int count)
 
 	for (i=0 ; i<count ; i++)
 	{
-		data = (int)(sfx[i]-128);
+		data = (int)( (unsigned char)(sfx[i]) - 128);
+		//data = (int)(sfx[i]-128);
 		paintbuffer[i].left += lscale[data];
 		paintbuffer[i].right += rscale[data];
 	}
@@ -851,6 +893,10 @@ void S_PaintChannels(int endtime)
 				//iprintf("no handle\n");
 				continue;
 			}
+			if (!ch->mo) {
+				iprintf("no mo\n");
+				continue;
+			}
 		/*if(!I_SoundIsPlaying(channel[i].handle))
 		{
 			if(S_sfx[channel[i].sound_id].usefulness > 0)
@@ -865,8 +911,8 @@ void S_PaintChannels(int endtime)
 				AmbChan = -1;
 			}
 		}*/
-			//if (!ch->leftvol && !ch->rightvol)
-			//	continue;
+			if (ch->left < 32 && ch->right < 32)
+				continue;
 			//sc = S_LoadSound (ch->sfx);
 			//if (!sc)
 			if(!S_sfx[ch->sound_id].snd_ptr) {

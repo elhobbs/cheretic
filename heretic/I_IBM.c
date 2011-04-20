@@ -754,7 +754,8 @@ void   I_StartTic (void)
 			ev.type = ev_keyup;
 		else
 			ev.type = ev_keydown;
-		k &= 0x7f;
+		k &= 0x7f;*/
+#if 0
 		switch (k)
 		{
 		case SC_UPARROW:
@@ -772,7 +773,8 @@ void   I_StartTic (void)
 		default:
 			ev.data1 = scantokey[k];
 			break;
-		}*/
+		}
+#endif
 		if (k&(1<<9))
 			ev.type = ev_keyup;
 		else

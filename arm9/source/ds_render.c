@@ -2022,7 +2022,7 @@ void IR_RenderPlayerView (player_t* player) {
 	lightingVector[0] = lightDistance * glMVPmatrix[2];
 	lightingVector[1] = lightDistance * glMVPmatrix[10];
 	lightingVector[2] = lightDistance * glMVPmatrix[14];
-	printf("vpn: %f %f %f\n",(float)glMVPmatrix[2],(float)glMVPmatrix[10],(float)glMVPmatrix[14]);
+	//printf("vpn: %f %f %f\n",(float)glMVPmatrix[2],(float)glMVPmatrix[10],(float)glMVPmatrix[14]);
 #else
 	lightingVector[0] = (float)dsMat[8]/4096.0f;
 	lightingVector[1] = (float)dsMat[10]/4096.0f;

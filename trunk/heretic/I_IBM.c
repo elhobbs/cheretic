@@ -241,9 +241,12 @@ byte        scantokey[128] =
 // Returns time in 1/35th second tics.
 //
 //--------------------------------------------------------------------------
+extern volatile int ds_timer_ticks;
+
 #ifdef ARM9
 int DS_GetH2Tics(void) {
-	return ((TIMER1_DATA*(1<<16))+TIMER0_DATA)/914;
+	return ds_timer_ticks>>2;
+	//return ((TIMER1_DATA*(1<<16))+TIMER0_DATA)/914;
 }
 #endif
 

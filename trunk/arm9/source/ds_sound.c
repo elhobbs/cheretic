@@ -110,6 +110,7 @@ void S_Init(void)
 	snd_Channels = MAX_CHANNELS;
 	snd_MaxVolume = 127;
 	soundEnable();
+	mus_init_music();
 }
 #else
 void S_Init(void)
@@ -127,10 +128,31 @@ void S_Init(void)
 
 void S_Start(void)
 {
+	int i;
+
+	S_StartSong((gameepisode-1)*9 + gamemap-1, true);
+
+	//stop all sounds
+	for(i=0; i < snd_Channels; i++)
+	{
+		if(channel[i].handle)
+		{
+			S_StopSound(channel[i].mo);
+		}
+	}
+	memset(channel, 0, 8*sizeof(channel_t));
 }
+
+void mus_play_music(char *name);
 
 void S_StartSong(int song, boolean loop)
 {
+	printf("song: %d\n",song);
+	if(song < mus_e1m1 || song > NUMMUSIC)
+	{
+		return;
+	}
+	mus_play_music(S_music[song].name);
 }
 
 // Gets lump nums of the named sound.  Returns pointer which will be

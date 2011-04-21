@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arm9\source\ds_sound.c" />
+    <ClCompile Include="arm9\source\musplay.c" />
     <ClCompile Include="arm9\source\template.c" />
     <ClCompile Include="arm7\source\template.c" />
     <ClCompile Include="heretic\AM_MAP.c" />

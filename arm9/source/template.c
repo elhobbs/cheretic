@@ -20,6 +20,15 @@ int ds_bg_sub = 0;
 int ds_bg_main = 0;
 int ds_bg_text = 0;
 
+volatile int ds_timer_ticks = 0;
+void mus_play_timer(void);
+
+void ds_140_timer() {
+	ds_timer_ticks++;
+	mus_play_timer();
+	//iprintf(".");
+}
+
 void Sys_Init()
 {
 	bool ret;
@@ -148,8 +157,9 @@ Wifi_InitDefault(true);
 
 	//setup timer for Sys_FloatTime;
 #if 1
-	TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;
-	TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;
+	timerStart( 0, ClockDivider_1024, TIMER_FREQ_1024( 140 ), ds_140_timer );
+	//TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;
+	//TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;
 #else
 	TIMER_DATA(0) = 0x10000 - (0x1000000 / 11025) * 2;
 	TIMER_CR(0) = TIMER_ENABLE | TIMER_DIV_1;
@@ -185,8 +195,8 @@ int main(int argc, char **argv) {
 	Sys_Init();
 
 	//enable timers for keeping track of a normal time value every frame.
-	TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;
-	TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;
+	//TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;
+	//TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;
 
 	ret = ibm_main(argc,argv);
 

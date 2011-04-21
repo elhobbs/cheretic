@@ -171,6 +171,9 @@
     <ClCompile Include="arm9\source\ds_sound.c">
       <Filter>arm9\heretic</Filter>
     </ClCompile>
+    <ClCompile Include="arm9\source\musplay.c">
+      <Filter>arm9\source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heretic\include\AM_DATA.H">

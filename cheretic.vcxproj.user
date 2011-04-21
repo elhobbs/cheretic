@@ -10,5 +10,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LocalDebuggerCommandArguments>$(ProjectDir)$(ProjectName).nds</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>

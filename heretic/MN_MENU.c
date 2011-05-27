@@ -1583,7 +1583,7 @@ static void DrawSlider(Menu_t *menu, int item, int width, int slot)
 	V_DrawPatch(x-32, y, W_CacheLumpName("M_SLDLT", PU_CACHE));
 	for(x2 = x, count = width; count--; x2 += 8)
 	{
-		V_DrawPatch(x2, y, W_CacheLumpName(count&1 ? "M_SLDMD1"
+		V_DrawPatch(x2, y, W_CacheLumpName(((count&1)!=0) ? "M_SLDMD1"
 			: "M_SLDMD2", PU_CACHE));
 	}
 	V_DrawPatch(x2, y, W_CacheLumpName("M_SLDRT", PU_CACHE));

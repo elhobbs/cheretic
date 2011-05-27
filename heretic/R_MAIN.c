@@ -565,12 +565,35 @@ void R_SetViewSize (int blocks, int detail)
 }
 
 /*
+================
+=
+= R_InitBuffer
+=
+=================
+*/
+
+void R_InitBuffer (int width, int height)
+{
+	int		i;
+	
+	viewwindowx = (DS_SCREEN_WIDTH-width) >> 1;
+
+	if (width == DS_SCREEN_WIDTH)
+		viewwindowy = 0;
+	else
+		viewwindowy = (DS_SCREEN_HEIGHT-SBARHEIGHT-height) >> 1;
+}
+
+
+/*
 ==============
 =
 = R_ExecuteSetViewSize
 =
 ==============
 */
+extern fixed_t		pspritescale, pspriteiscale;
+int scaledviewwidth;
 
 void R_ExecuteSetViewSize (void)
 {
@@ -581,12 +604,12 @@ void R_ExecuteSetViewSize (void)
 
 	if (setblocks == 11)
 	{
-		//scaledviewwidth = SCREENWIDTH;
+		scaledviewwidth = DS_SCREEN_WIDTH;
 		viewheight = DS_SCREEN_HEIGHT;
 	}
 	else
 	{
-		//scaledviewwidth = setblocks*32;
+		scaledviewwidth = setblocks*25;
 		viewheight = (setblocks*158/10);
 	}
 
@@ -600,6 +623,13 @@ void R_ExecuteSetViewSize (void)
 	viewheightfrac = viewheight<<FRACBITS;
 	projection = centerxfrac;
 
+//
+// psprite scales
+//
+	pspritescale = FRACUNIT*viewwidth/DS_SCREEN_WIDTH;
+	pspriteiscale = FRACUNIT*DS_SCREEN_WIDTH/viewwidth;
+	
+	R_InitBuffer (scaledviewwidth, viewheight);
 #if 0
 	if (!detailshift)
 	{

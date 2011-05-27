@@ -725,6 +725,7 @@ void draw_gen_subs();
 void R_RenderView() {
 	ds_quads = ds_triangles = 0;
 	R_SetupFrameGL();
+#ifdef DEBUG_FLOORS
 	if(draw_gen_sub)
 	{
 #ifdef WIN32
@@ -743,6 +744,7 @@ void R_RenderView() {
 		draw_lines();
 	}
 	else
+#endif
 	{
 		R_RenderBSPGL();
 	}

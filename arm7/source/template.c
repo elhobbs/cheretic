@@ -29,7 +29,7 @@ distribution.
 #include <nds.h>
 #include <stdio.h>
 //#include <dswifi7.h>
-//#include <maxmod7.h>
+#include <maxmod7.h>
 
 
 #define FIFO_ADLIB FIFO_USER_01
@@ -76,7 +76,7 @@ int main() {
 	initClockIRQ();
 	fifoInit();
 
-	//mmInstall(FIFO_MAXMOD);
+	mmInstall(FIFO_MAXMOD);
 
 	SetYtrigger(80);
 

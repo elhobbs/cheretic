@@ -481,9 +481,18 @@ extern int screenblocks;
 #ifdef WIN32
 extern void Win32_WindowUpdate(void);
 #endif
-
+#ifdef ARM9
+extern u16		*ds_display_bottom;
+#endif
 void I_Update (void)
 {
+	int w,h;
+#ifdef ARM9
+	for(h=0;h<192;h++) {
+		memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
+	}
+	memset(screen,0,SCREENWIDTH*SCREENHEIGHT);
+#endif
 #if 0
 	int i;
 	byte *dest;
@@ -1068,8 +1077,8 @@ K_NDS_F1};*/
 uint32 ds_keys[] = {
 	KEY_RCTRL,
 	' ',
-	KEY_UPARROW,
-	KEY_UPARROW,
+	KEY_ESCAPE,
+	KEY_ENTER,
 	KEY_RIGHTARROW,
 	KEY_LEFTARROW,
 	KEY_UPARROW,

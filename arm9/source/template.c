@@ -119,7 +119,7 @@ Wifi_InitDefault(true);
 
 	// Specify the Clear Color and Depth 
 	// setup the rear plane
-	glClearColor(0,0,0,30); // BG must be opaque for AA to work
+	glClearColor(0,0,0,1); // BG must be opaque for AA to work
 	glClearPolyID(63); // BG must have a unique polygon ID for AA to work
 	//glClearDepth(0x7FFF);
 

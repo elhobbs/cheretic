@@ -12,24 +12,29 @@ void R_RenderView();
 winding_t	*CopyWinding (winding_t *w);
 
 winding_t **floors_ds;
+#ifdef DEBUG_FLOORS
 winding_t **floors_ds2;
 winding_t **floors_ds3;
 
 vertex_t lines_ds[2][1];//20000];
 int num_lines = 0;
+#endif
 
 int floor_count = 0;
 
 int sub_count = 0;
 
+#ifdef DEBUG_FLOORS
 void add_sub_winding(winding_t * w)
 {
 	w->sub = -1;
 	floors_ds3[sub_count++] = w;
 }
+#endif
 
 void waitforit2()
 {
+#ifdef DEBUG_FLOORS
 #ifdef WIN32
 	printf("\npress space...");
 	while(GetKeyState(VK_SPACE) == 0)
@@ -56,11 +61,14 @@ void waitforit2()
 	}
 	printf("done.\n");
 #endif
+#endif
 }
 void waitforit()
 {
 
 }
+
+#ifdef DEBUG_FLOORS
 void add_line(vertex_t a,vertex_t b)
 {
 	return;
@@ -79,6 +87,7 @@ void add_winding(winding_t *w,float dist,int sub) {
 	floors_ds2[floor_count++] = c;
 	printf("add: %d\n",sub);
 }
+#endif
 void normalize_plane (normal_t normal,fixed_t *dist)
 {
 	fixed_t	ax, ay;
@@ -239,7 +248,7 @@ winding_t *ds_clip_to_subsector(unsigned short num,winding_t *floor)
     line = &segs[sub->firstline];
 	count = sub->numlines;
 	i = 0;
-	printf("sub: %d %d\n",num,sub->sector-sectors);
+	//printf("sub: %d %d\n",num,sub->sector-sectors);
 
 	do
 	{
@@ -408,8 +417,9 @@ void ds_gen_floors_r(unsigned short bspnum,winding_t *floor,int depth)
 	b.x = a.x + bsp->dx;
 	b.y = a.y + bsp->dy;
 
+#ifdef DEBUG_FLOORS
 	add_line(a,b);
-
+#endif
 
 	//make a plane from the bsp node plane
 	normal[0] = bsp->dy;
@@ -518,7 +528,9 @@ void ds_gen_floors()
     floors_ds = Z_Malloc (numsubsectors*sizeof(winding_t *),PU_LEVEL,0);
 	memset(floors_ds,0,numsubsectors*sizeof(winding_t *));
 	basewinding = ds_base_winding();//BaseWinding();
+#ifdef DEBUG_FLOORS
 	floors_ds2 = (winding_t **)malloc(5000*sizeof(winding_t *));
+#endif
 	ds_gen_floors_r(numnodes-1,basewinding,0);
 	draw_gen_floors = 0;
 	waitforit2();
@@ -529,6 +541,8 @@ void ds_gen_floors()
 	draw_gen_sub = 0;
 	waitforit2();*/
 }
+
+#ifdef DEBUG_FLOORS
 
 void draw_floors()
 {
@@ -579,3 +593,4 @@ void draw_gen_subs()
 		floor->dist = temp;
 	}
 }
+#endif

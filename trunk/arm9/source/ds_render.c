@@ -22,6 +22,8 @@ int ds_anti_alias_id = 0;
 #include "ds_textures.h"
 #include <limits.h>
 
+void IR_DrawPlayerSprites (void);
+
 void glRotateZ(float x);
 void glRotateX(float x);
 void glRotateY(float x);
@@ -1874,7 +1876,8 @@ void IR_RenderPlayerView (player_t* player) {
 	
 	int	start = 0;
 	int height;
-	int i,last_name = -1;;
+	int i,last_name = -1;
+	int texname;
 	
 	
 	/*if ( showRenderTime ) {
@@ -2271,10 +2274,10 @@ void IR_RenderPlayerView (player_t* player) {
 		}
 	}
 
-
 	IR_RenderSprites(player);
 
 
+	texname = ds_load_sky_texture(skytexture,TEXGEN_TEXCOORD);
 #ifdef ARM9
 	//-----------------------------------------
 	// draw the sky if needed
@@ -2283,7 +2286,6 @@ void IR_RenderPlayerView (player_t* player) {
 	{
 		float	s;
 		float	y;
-		int texname;
 		
 		// Note that these texcoords would have to be corrected
 		// for different screen aspect ratios or fields of view!
@@ -2318,36 +2320,15 @@ void IR_RenderPlayerView (player_t* player) {
 		glPushMatrix();
 		glLoadIdentity();
 		
-		texname = ds_load_map_texture(skytexture,TEXGEN_TEXCOORD);
 		GFX_TEX_FORMAT = texname;
 		glPolyFmt(POLY_ALPHA(30) | POLY_CULL_NONE | POLY_ID(1));
-#if 0
-		if(0) {
-			int x,y,z,w;
-			PosTest(32, 32 , 32);
-			x = (PosTestXresult());
-			y = (PosTestYresult());
-			z = (PosTestZresult());
-			w = (PosTestWresult());
-			printf("%x %x %x %x\n",x,y,z,w);
-
-			PosTest(32, 32 , 32);
-			x = (PosTestXresult());
-			y = (PosTestYresult());
-			z = (PosTestZresult());
-			w = (PosTestWresult());
-			printf("%x %x %x %x\n",x,y,z,w);
-
-			while(1);
-		}
-#endif
 
 		GFX_COLOR = RGB5(31,31,31);
 		glBegin(GL_TRIANGLE_STRIP);
 		dsTexCoord2f( s, 128 ); dsVertex3f(-32,y,31);
-		dsTexCoord2f( s, 0 ); dsVertex3f(-32,32,31);
+		dsTexCoord2f( s, 32 ); dsVertex3f(-32,32,31);
 		dsTexCoord2f( s+256, 128 ); dsVertex3f(32,y,31);
-		dsTexCoord2f( s+256, 0 ); dsVertex3f(32,32,31);
+		dsTexCoord2f( s+256, 32 ); dsVertex3f(32,32,31);
 		glEnd();
 
 		// back to the normal drawing matrix
@@ -2356,6 +2337,8 @@ void IR_RenderPlayerView (player_t* player) {
 		glPopMatrix(1);
 	}
 #endif
+
+	IR_DrawPlayerSprites();
 
 #ifdef WIN32
 	frameEnd();
@@ -2366,7 +2349,7 @@ void IR_RenderPlayerView (player_t* player) {
 
 #ifdef ARM9
 	glFlush(3);
-	displayOcclusionBuffer();
+	//displayOcclusionBuffer();
 #endif
 	/*printf("view: %f %f %f\n",
 		player->mo->x/65536.0f,
@@ -2381,4 +2364,382 @@ void IR_RenderPlayerView (player_t* player) {
 		int end = SysIphoneMicroseconds();
 		printf( "%i usec\n", end - start );
 	}*/
+}
+
+/*
+========================
+=
+= R_DrawPSprite
+=
+========================
+*/
+
+int PSpriteSY[NUMWEAPONS] =
+{
+	0,				// staff
+	13*FRACUNIT,		// goldwand
+	31*FRACUNIT,	// crossbow
+	31*FRACUNIT,	// blaster
+	31*FRACUNIT,	// skullrod
+	31*FRACUNIT,	// phoenix rod
+	31*FRACUNIT,	// mace
+	31*FRACUNIT,	// gauntlets
+	31*FRACUNIT		// beak
+};
+
+extern fixed_t		pspritescale, pspriteiscale;
+extern int				centerx, centery;
+#define	DSBASEYCENTER			(192/2)
+
+void IR_DrawPSprite (pspdef_t *psp)
+{
+	fixed_t		tx;
+	int			x1, x2;
+	spritedef_t	*sprdef;
+	spriteframe_t	*sprframe;
+	int			lump;
+	boolean		flip;
+	//vissprite_t	*vis, avis;
+
+	int tempangle;
+
+	int name;
+	int v_texturemid,v_x1,v_x2,v_flip,v_y1,v_y2,h;
+	int v_vt,v_vb,v_ul,v_ur;
+	dstex_t *ds;
+	float scale;
+
+//
+// decide which patch to use
+//
+#ifdef RANGECHECK
+	if ( (unsigned)psp->state->sprite >= numsprites)
+		I_Error ("R_ProjectSprite: invalid sprite number %i "
+		, psp->state->sprite);
+#endif
+	sprdef = &sprites[psp->state->sprite];
+#ifdef RANGECHECK
+	if ( (psp->state->frame & FF_FRAMEMASK)  >= sprdef->numframes)
+		I_Error ("R_ProjectSprite: invalid sprite frame %i : %i "
+		, psp->state->sprite, psp->state->frame);
+#endif
+	sprframe = &sprdef->spriteframes[ psp->state->frame & FF_FRAMEMASK ];
+
+	lump = sprframe->lump[0];
+	flip = (boolean)sprframe->flip[0];
+
+//
+// calculate edges of the shape
+//
+	tx = psp->sx-160*FRACUNIT;
+	//printf("tx: %x\n",tx);
+
+	tx -= spriteoffset[lump];
+	if(viewangleoffset)
+	{
+		tempangle = ((centerxfrac/1024)*(viewangleoffset>>ANGLETOFINESHIFT));
+	}
+	else
+	{
+		tempangle = 0;
+	}
+	x1 = (centerxfrac + FixedMul (tx,pspritescale)+tempangle ) >>FRACBITS;
+	if (x1 > viewwidth)
+		return;		// off the right side
+	//tx +=  spritewidth[lump];
+	//x2 = ((centerxfrac + FixedMul (tx, pspritescale)+tempangle ) >>FRACBITS) - 1;
+	x2 = x1 + (FixedMul(pspritescale,spritewidth[lump])>>FRACBITS);
+	if (x2 < 0)
+		return;		// off the left side
+
+	ds = &sprites_ds[lump];
+	v_texturemid = (BASEYCENTER<<FRACBITS)+FRACUNIT/2-(psp->sy-spritetopoffset[lump]);
+	//printf("v_texturemid: %f\n",(float)(v_texturemid/65536.0));
+	//v_texturemid -= (8<<FRACBITS);
+	if(viewheight != DS_SCREEN_HEIGHT)
+	{
+		v_texturemid -= PSpriteSY[players[consoleplayer].readyweapon];
+	}
+
+	v_x1 = x1 < 0 ? 0 : x1;
+	v_x2 = x2 >= viewwidth ? viewwidth-1 : x2;
+	scale = ((float)pspritescale/(float)FRACUNIT);
+	//v_y1=viewwindowy+centery-(int)(((float)v_texturemid/(float)FRACUNIT)*scale);
+	v_y1=viewwindowy+centery-(int)(((float)v_texturemid/(float)FRACUNIT)*scale);
+	h = spriteheight[lump]>>FRACBITS;
+	v_y2=v_y1+(int)((float)h*scale)+1;
+	
+	v_vt=0;
+	v_vb=(ds->height);
+	if (flip)
+	{
+		v_ul=(ds->width);
+		v_ur=0;
+	}
+	else
+	{
+		v_ul=0;
+		v_ur=(ds->width);
+	}
+#if 1
+//
+// store information in a vissprite
+//
+	/*vis = &avis;
+	vis->mobjflags = 0;
+	vis->psprite = true;
+	vis->texturemid = (BASEYCENTER<<FRACBITS)+FRACUNIT/2-(psp->sy-spritetopoffset[lump]);
+	if(viewheight == SCREENHEIGHT)
+	{
+		vis->texturemid -= PSpriteSY[players[consoleplayer].readyweapon];
+	}
+	vis->x1 = x1 < 0 ? 0 : x1;
+	vis->x2 = x2 >= viewwidth ? viewwidth-1 : x2;
+	vis->scale = pspritescale<<detailshift;
+	if (flip)
+	{
+		vis->xiscale = -pspriteiscale;
+		vis->startfrac = spritewidth[lump]-1;
+	}
+	else
+	{
+		vis->xiscale = pspriteiscale;
+		vis->startfrac = 0;
+	}
+	if (vis->x1 > x1)
+		vis->startfrac += vis->xiscale*(vis->x1-x1);
+	vis->patch = lump;
+
+	if(viewplayer->powers[pw_invisibility] > 4*32 ||
+	viewplayer->powers[pw_invisibility] & 8)
+	{
+		// Invisibility
+		vis->colormap = spritelights[MAXLIGHTSCALE-1];
+		vis->mobjflags |= MF_SHADOW;
+	}
+	else if(fixedcolormap)
+	{
+		// Fixed color
+		vis->colormap = fixedcolormap;
+	}
+	else if(psp->state->frame & FF_FULLBRIGHT)
+	{
+		// Full bright
+		vis->colormap = colormaps;
+	}
+	else
+	{
+		// local light
+		vis->colormap = spritelights[MAXLIGHTSCALE-1];
+	}
+	//R_DrawVisSprite(vis, vis->x1, vis->x2);*/
+
+	name = ds_load_sprite(lump);
+#ifdef ARM9
+	GFX_TEX_FORMAT = name;
+	glPolyFmt(POLY_ALPHA(30) | POLY_CULL_NONE | POLY_ID(56));
+
+	GFX_COLOR = RGB5(31,31,31);
+	glBegin(GL_TRIANGLE_STRIP);
+	
+	dsTexCoord2f( v_ul, v_vt ); dsVertex3f(v_x1,v_y1,0);
+	dsTexCoord2f( v_ul, v_vb ); dsVertex3f(v_x1,v_y2,0);
+	dsTexCoord2f( v_ur, v_vt ); dsVertex3f(v_x2,v_y1,0);
+	dsTexCoord2f( v_ur, v_vb); dsVertex3f(v_x2,v_y2,0);
+	glEnd();
+#endif
+#else
+	// ------------ gld_AddSprite ----------
+	{
+	//mobj_t *pSpr= thing;
+	GLSprite sprite;
+	float voff,hoff;
+	
+	//sprite.scale= FixedDiv(projectiony, tz);
+	//if (pSpr->frame & FF_FULLBRIGHT)
+		sprite.light = 255;
+	//else
+	//	sprite.light = pSpr->subsector->sector->lightlevel+(extralight<<5);
+	//sprite.cm=CR_LIMIT+(int)((pSpr->flags & MF_TRANSLATION) >> (MF_TRANSSHIFT));
+	sprite.name=lump;//gltexture=gld_RegisterPatch(lump+firstspritelump,sprite.cm);
+	//if (!sprite.gltexture)
+	//	return;
+	sprite.shadow = 0;//(pSpr->flags & MF_SHADOW) != 0;
+	//sprite.trans  = (pSpr->flags & MF_TRANSLUCENT) != 0;
+	/*if (movement_smooth)
+	{
+		sprite.x = (float)(-pSpr->PrevX + FixedMul (tic_vars.frac, -pSpr->x - (-pSpr->PrevX)))/MAP_SCALE;
+		sprite.y = (float)(pSpr->PrevZ + FixedMul (tic_vars.frac, pSpr->z - pSpr->PrevZ))/MAP_SCALE;
+		sprite.z = (float)(pSpr->PrevY + FixedMul (tic_vars.frac, pSpr->y - pSpr->PrevY))/MAP_SCALE;
+	}
+	else
+	{*/
+		sprite.x= 0;//-(pSpr->x);
+		sprite.y= 128;//(pSpr->z);
+		sprite.z= 0;//(pSpr->y);
+	//}
+
+#ifdef ARM9
+	sprite.vt=0;
+	sprite.vb=(ds->height);
+	if (flip)
+	{
+		sprite.ul=0;
+		sprite.ur=(ds->width);
+	}
+	else
+	{
+		sprite.ul=(ds->width);
+		sprite.ur=0;
+	}
+#else
+	sprite.vt=0.0f;
+	sprite.vb=(float)ds->height/(float)ds->block_height;
+	if (flip)
+	{
+		sprite.ul=0.0f;
+		sprite.ur=(float)ds->width/(float)ds->block_width;
+	}
+	else
+	{
+		sprite.ul=(float)ds->width/(float)ds->block_width;
+		sprite.ur=0.0f;
+	}
+#endif
+	//hoff=(leftoffset);
+	//voff=(topoffset);
+	sprite.x1=v_x1;//(hoff-width);
+	sprite.x2=v_x2;//(hoff);
+	sprite.y1=v_y1;//(voff);
+	sprite.y2=v_y2;//(voff-height);
+	
+	// JDC: don't let sprites poke below the ground level.
+	// Software rendering Doom didn't use depth buffering, 
+	// so sprites always got drawn on top of the flat they
+	// were on, but in GL they tend to get a couple pixel
+	// rows clipped off.
+	if ( sprite.y2 < 0 ) {
+		sprite.y1 -= sprite.y2;
+		sprite.y2 = 0;
+	}
+	
+	if(num_gl_sprites < 128) 
+	{
+		//printf("%d %f %f\n",num_gl_sprites,(float)width/65536.0f,(float)hoff/65536.0f);
+		gl_sprites[num_gl_sprites++] = sprite;
+	}
+
+	}
+
+#endif
+}
+
+/*
+========================
+=
+= R_DrawPlayerSprites
+=
+========================
+*/
+
+void IR_DrawPlayerSprites (void)
+{
+	int			i, lightnum;
+	pspdef_t	*psp;
+/*
+//
+// get light level
+//
+	lightnum = (viewplayer->mo->subsector->sector->lightlevel >> LIGHTSEGSHIFT)
+		+extralight;
+	if (lightnum < 0)
+		spritelights = scalelight[0];
+	else if (lightnum >= LIGHTLEVELS)
+		spritelights = scalelight[LIGHTLEVELS-1];
+	else
+		spritelights = scalelight[lightnum];
+//
+// clip to screen bounds
+//
+*/
+#ifdef ARM9
+	{
+		float w = 0.01f;
+		int left = 0;
+		int right = DS_SCREEN_WIDTH;//(int)(((float)SCREEN_WIDTH)/w);
+		int bottom = DS_SCREEN_HEIGHT;//(int)(((float)SCREEN_HEIGHT)/w);
+		int top = 0;
+		int zNear = -1 << 12;
+		int zFar = 1<<12;
+		
+		// With identity matricies, the vertex coordinates
+		// can just be in the 0-1 range.
+		glMatrixMode( GL_MODELVIEW );
+		glPushMatrix();
+		glLoadIdentity();				 // reset
+
+		MATRIX_MULT4x4 = divf32(floattof32(2.0*w), right - left);
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = 0;
+
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = divf32(floattof32(2.0*w), top - bottom);
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = 0;
+
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = 0;
+		MATRIX_MULT4x4 = divf32(-floattof32(2.0*w), zFar - zNear);
+		MATRIX_MULT4x4 = 0;
+
+		MATRIX_MULT4x4 = -floattof32(w);//-divf32(right + left, right - left);//0;
+		MATRIX_MULT4x4 = floattof32(w);//-divf32(top + bottom, top - bottom); //0;
+		MATRIX_MULT4x4 = -divf32(zFar + zNear, zFar - zNear);//0;
+		MATRIX_MULT4x4 = floattof32(w);
+
+
+
+		glMatrixMode( GL_PROJECTION );
+		glPushMatrix();
+		glLoadIdentity();
+
+//
+// add all active psprites
+//
+		for (i=0, psp=viewplayer->psprites ; i<NUMPSPRITES ; i++,psp++) {
+			if (psp->state) {
+				IR_DrawPSprite (psp);
+			}
+		}
+
+		// back to the normal drawing matrix
+		glPopMatrix(1);
+		glMatrixMode( GL_MODELVIEW );
+		glPopMatrix(1);
+	}
+#endif
+#ifdef WIN32
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(73.74, 256.0 / 192.0, 0.005, 40.0);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+//
+// add all active psprites
+//
+	for (i=0, psp=viewplayer->psprites ; i<NUMPSPRITES ; i++,psp++) {
+		if (psp->state) {
+			IR_DrawPSprite (psp);
+		}
+	}
+
+	glPopMatrix();
+	glMatrixMode( GL_MODELVIEW );
+	glPopMatrix();
+
+#endif
 }

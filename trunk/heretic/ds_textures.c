@@ -477,6 +477,58 @@ void R_DrawColumnInCacheGL
   int		originy,
   int		cacheheight );
 
+int ds_load_sky_texture(int name,int flags)
+{
+	column_t *column;
+	texture_t		*texture = textures[name];
+	dstex_t			*ds = &textures_ds[name];
+	ds_texture_bank_t *bank = &ds_blocks[ds->zone];
+	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
+	byte *src,*addr,*dst,*scol,*dcol,mask[512],col[512];
+
+#ifdef WIN32
+	ds_texture_width = ds->width*16.0f;
+	ds_texture_height = ds->height*16.0f;
+#endif
+
+	block = ds_is_texture_resident(ds);
+	if(block != -1)
+	{
+#ifdef WIN32
+		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
+#endif
+		bank->textures[block].visframe = r_framecount;
+		return bank->textures[block].texnum;
+	}
+	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
+
+	size = texture->width * texture->height;
+	w = texture->width;
+	h = texture->height;
+	ds_size = ds->block_width * ds->block_height;
+
+    src = (byte *)Z_Malloc (size+ds_size,PU_STATIC,0);
+	dst = src + size;
+	memset(dst,0xff,ds_size);
+
+	for(i=0;i<w;i++)
+	{
+		scol = R_GetColumn(name,i)+72;
+		dcol = &src[i];
+		for(j=0;j<h;j++)
+		{
+			*dcol = *scol++;
+			dcol += w;
+		}
+	}
+	addr = ds_scale_texture(ds,w,h,src,dst);
+	texnum = ds_load_texture(ds,addr,1,flags|GL_TEXTURE_WRAP_S|GL_TEXTURE_WRAP_T);
+
+	Z_Free(src);
+
+	return texnum;
+}
+
 int ds_load_map_texture(int name,int flags)
 {
 	column_t *column;
@@ -513,7 +565,7 @@ int ds_load_map_texture(int name,int flags)
 
 	for(i=0;i<w;i++)
 	{
-		if(texturecolumnlump[name][i] > 0) {
+		if(name != skytexture && texturecolumnlump[name][i] > 0) {
 			memset(col,0xff,h);
 			column = (column_t *)((byte *)R_GetColumn(name,i) - 3);
 			R_DrawColumnInCacheGL(column,col,0,texture->height);

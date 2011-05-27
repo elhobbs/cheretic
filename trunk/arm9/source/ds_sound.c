@@ -3,9 +3,15 @@
 #include "soundst.h"
 #include "map.h"
 
+#ifdef ARM9
+#include <maxmod9.h>
+#endif
+
 #ifdef WIN32
 #define iprintf printf
 #endif
+void S_Update_(void);
+
 /*
 ===============================================================================
 
@@ -13,6 +19,8 @@
 
 ===============================================================================
 */
+static int		snd_scaletable[32][256];
+
 static channel_t channel[MAX_CHANNELS];
 
 int mus_song = -1;
@@ -44,7 +52,6 @@ extern fixed_t		viewx, viewy, viewz;
 
 extern void **lumpcache;
 
-int		snd_scaletable[32][256];
 
 void S_InitScaletable (void)
 {
@@ -54,6 +61,14 @@ void S_InitScaletable (void)
 		for (j=0 ; j<256 ; j++)
 			snd_scaletable[i][j] = ((signed char)j) * i * 8;
 }
+
+#define	PAINTBUFFER_SIZE	512
+typedef struct
+{
+	int left;
+	int right;
+} portable_samplepair_t;
+portable_samplepair_t paintbuffer[PAINTBUFFER_SIZE];
 
 #ifdef ARM9
 
@@ -71,6 +86,154 @@ long long ds_time()
 	return (t + time1);
 }
 
+void on_stream_request_transfer(byte *dest,int len)
+{
+	int 	out_idx;
+	int 	count,count1,count2,pos;
+	int 	out_mask;
+	int 	*p;
+	int 	step;
+	int		val;
+	int		snd_vol;
+	byte *outl;
+	byte *outr;
+	
+	p = (int *) paintbuffer;
+	count = len;
+	snd_vol = 255;//volume.value*256;
+
+
+	//outl = snd_Buffer_left;
+	//outr = snd_Buffer_right;
+	while (count--) {
+		val = (*p * snd_vol) >> 8;
+		p+= 1;//step;
+		if (val > 0x7fff)
+			val = 0x7fff;
+		else if (val < (short)0x8000)
+			val = (short)0x8000;
+		*dest++ = (val>>8);// + 128;
+
+		val = (*p * snd_vol) >> 8;
+		p+= 1;//step;
+		if (val > 0x7fff)
+			val = 0x7fff;
+		else if (val < (short)0x8000)
+			val = (short)0x8000;
+		*dest++ = (val>>8);// + 128;
+	}
+
+}
+
+//void S_PaintChannels(int endtime)
+mm_word on_stream_request( mm_word length, mm_addr pdest, mm_stream_formats format ) {
+	int 	i;
+	int 	end;
+	channel_t *ch;
+	//channel_t	*sc;
+	int		ltime, count,mixed=0;
+	byte *dest = (byte *)pdest;
+	int endtime;
+
+	if(length > 1200) return;
+	//paintedtime = mmStreamGetPosition();
+	endtime = paintedtime + length;
+
+	iprintf("onstream: %d %d %d\n",length,paintedtime,endtime);
+
+	while (paintedtime < endtime)
+	{
+	// if paintbuffer is smaller than DMA buffer
+		end = endtime;
+		if (endtime - paintedtime > PAINTBUFFER_SIZE)
+			end = paintedtime + PAINTBUFFER_SIZE;
+
+	// clear the paint buffer
+		memset(paintbuffer, 0, (end - paintedtime) * sizeof(portable_samplepair_t));
+
+	// paint in the channels.
+		ch = channel;
+		for (i=0; i<snd_Channels ; i++, ch++)
+		{
+			//if(mixed) break;
+			if (!ch->handle) {
+				//iprintf("no handle\n");
+				continue;
+			}
+			if (!ch->mo) {
+				iprintf("no mo\n");
+				continue;
+			}
+		/*if(!I_SoundIsPlaying(channel[i].handle))
+		{
+			if(S_sfx[channel[i].sound_id].usefulness > 0)
+			{
+				S_sfx[channel[i].sound_id].usefulness--;
+			}
+			channel[i].handle = 0;
+			channel[i].mo = NULL;
+			channel[i].sound_id = 0;
+			if(AmbChan == i)
+			{
+				AmbChan = -1;
+			}
+		}*/
+			if (!ch->left < 0 && !ch->right)
+				continue;
+			//sc = S_LoadSound (ch->sfx);
+			//if (!sc)
+			if(!S_sfx[ch->sound_id].snd_ptr) {
+				iprintf("no snd_ptr\n");
+				continue;
+			}
+
+			ltime = paintedtime;
+
+			while (ltime < end)
+			{	// paint up to end
+				if (ch->end < end)
+					count = ch->end - ltime;
+				else
+					count = end - ltime;
+
+				if (count > 0)
+				{	
+					//if (sc->width == 1)
+						SND_PaintChannelFrom8(ch, (byte *)S_sfx[ch->sound_id].snd_ptr, count);
+					//else
+					//	SND_PaintChannelFrom16(ch, sc, count);
+					mixed++;
+					ltime += count;
+				}
+
+			// if at end of loop, restart
+				if (ltime >= ch->end)
+				{
+					if(S_sfx[channel[i].sound_id].usefulness > 0)
+					{
+						S_sfx[channel[i].sound_id].usefulness--;
+					}
+					channel[i].handle = 0;
+					channel[i].mo = NULL;
+					channel[i].sound_id = 0;
+					if(AmbChan == i)
+					{
+						AmbChan = -1;
+					}
+					break;
+				}
+			}
+															  
+		}
+
+	// transfer out according to DMA format
+		on_stream_request_transfer(dest,end-paintedtime);
+		dest += (end-paintedtime);
+		iprintf("sound: %d %d %d\n",mixed,paintedtime,end);
+		paintedtime = end;
+	}
+	printf("end\n");
+}
 void S_Init(void)
 {
 
@@ -78,8 +241,9 @@ void S_Init(void)
 
 	snd_Samples = SND_SAMPLES;
 	snd_Speed = 11025;
-
-	TIMER_DATA(2) = 0x10000 - (0x1000000 / snd_Speed) * 2;
+	paintedtime = 0;
+#ifndef USE_MAXMOD
+	TIMER_DATA(2) = TIMER_FREQ(snd_Speed);//0x10000 - (0x1000000 / snd_Speed) * 2;
 	TIMER_CR(2) = TIMER_ENABLE | TIMER_DIV_1;
 	TIMER_DATA(3) = 0;
 	TIMER_CR(3) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
@@ -106,6 +270,29 @@ void S_Init(void)
 		true,
 		0);
 	ds_sound_start = ds_time();
+#else
+	//----------------------------------------------------------------
+	// initialize maxmod without any soundbank (unusual setup)
+	//----------------------------------------------------------------
+	mm_ds_system sys;
+	sys.mod_count 			= 0;
+	sys.samp_count			= 0;
+	sys.mem_bank			= 0;
+	sys.fifo_channel		= FIFO_MAXMOD;
+	mmInit( &sys );
+	
+	//----------------------------------------------------------------
+	// open stream
+	//----------------------------------------------------------------
+	mm_stream mystream;
+	mystream.sampling_rate	= snd_Speed;					// sampling rate = 25khz
+	mystream.buffer_length	= 1200;						// buffer length = 1200 samples
+	mystream.callback		= on_stream_request;		// set callback function
+	mystream.format			= MM_STREAM_8BIT_STEREO;	// format = stereo 8-bit
+	mystream.timer			= MM_TIMER2;				// use hardware timer 0
+	mystream.manual			= false;						// use manual filling
+	mmStreamOpen( &mystream );
+#endif
 	soundCurve = (byte *)Z_Malloc(MAX_SND_DIST, PU_STATIC, NULL);
 	snd_Channels = MAX_CHANNELS;
 	snd_MaxVolume = 127;
@@ -140,19 +327,20 @@ void S_Start(void)
 			S_StopSound(channel[i].mo);
 		}
 	}
-	memset(channel, 0, 8*sizeof(channel_t));
+	memset(channel, 0, sizeof(channel));
+	S_Update_();
 }
 
 void mus_play_music(char *name);
 
 void S_StartSong(int song, boolean loop)
 {
-	printf("song: %d\n",song);
+	//printf("song: %d\n",song);
 	if(song < mus_e1m1 || song > NUMMUSIC)
 	{
 		return;
 	}
-	mus_play_music(S_music[song].name);
+	//mus_play_music(S_music[song].name );
 }
 
 // Gets lump nums of the named sound.  Returns pointer which will be
@@ -513,10 +701,10 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	channel[i].left = ((254 - sep) * vol) / 127;
 	channel[i].right = ((sep) * vol) / 127;
 	iprintf("play: %d v:%d %d %8s\n",sound_id,channel[i].left,channel[i].right,S_sfx[sound_id].name);
-	for(i=0;i<16;i++) {
-		iprintf("%2x",data[24+i]);
-	}
-	iprintf("\n");
+	//for(i=0;i<16;i++) {
+	//	iprintf("%2x",data[24+i]);
+	//}
+	//iprintf("\n");
 	if(sound_id >= sfx_wind)
 	{
 		AmbChan = i;
@@ -549,11 +737,14 @@ void S_StartSoundAtVolume(mobj_t *origin, int sound_id, int volume)
 		origin = players[consoleplayer].mo;
 	}
 
-	if(volume == 0)
+	if(volume < 1)
 	{
 		return;
 	}
 	volume = (volume*(snd_MaxVolume+1)*8)>>7;
+	if(volume > snd_MaxVolume) {
+		volume = snd_MaxVolume;
+	}
 
 // no priority checking, as ambient sounds would be the LOWEST.
 	for(i=0; i<snd_Channels; i++)
@@ -630,7 +821,6 @@ void S_ResumeSound(void)
 }
 
 static int nextcleanup;
-void S_Update_(void);
 
 void S_UpdateSounds(mobj_t *listener)
 {
@@ -787,13 +977,6 @@ void GetSoundtime(void)
 	soundtime = SND_SamplePos();
 }
 
-#define	PAINTBUFFER_SIZE	512
-typedef struct
-{
-	int left;
-	int right;
-} portable_samplepair_t;
-portable_samplepair_t paintbuffer[PAINTBUFFER_SIZE];
 
 void S_TransferPaintBuffer(int endtime)
 {
@@ -877,12 +1060,46 @@ void SND_PaintChannelFrom8 (channel_t *ch, byte *sfx, int count)
 	rscale = snd_scaletable[ch->right >> 3];
 	sfx = sfx + 24 + ch->pos;
 
+	/*if(ch->left < 0) {
+		iprintf("================\n%s: %d\n",S_sfx[ch->sound_id].name,ch->left);
+	}
+	if(ch->right < 0) {
+		iprintf("================\n%s: %d\n",S_sfx[ch->sound_id].name,ch->right);
+	}
+
+	if(ch->left < 8) {
+		iprintf("left(%d): ",ch->left);
+		for (i=0 ; i<32 ; i++)
+			iprintf("%d ",lscale[i]);
+		iprintf("\n");
+	}
+	if(ch->right < 8) {
+		iprintf("right(%d): ",ch->right);
+		for (i=0 ; i<32 ; i++)
+			iprintf("%d ",rscale[i]);
+		iprintf("\n");
+	}*/
+
 	for (i=0 ; i<count ; i++)
 	{
-		data = (int)( (unsigned char)(sfx[i]) - 128);
+		//data = ((int)sfx[i]) - 128;
+		data = (int)( (unsigned char)(sfx[i] - 128));
+		/*if(data < 0 || data > 255) {
+			printf("\n%s: (%d %d) %02x %d\n",
+				S_sfx[ch->sound_id].name,
+				ch->left,
+				ch->right,
+				sfx[i],data);
+		}*/
 		//data = (int)(sfx[i]-128);
 		paintbuffer[i].left += lscale[data];
 		paintbuffer[i].right += rscale[data];
+		/*if(ch->left < 8 && i < 16) {
+			iprintf("left(%d): %d %d\n",ch->left,lscale[data],paintbuffer[i].left);
+		}
+		if(ch->right < 8) {
+			iprintf("right(%d): %d %d\n",ch->right,rscale[data],paintbuffer[i].right);
+		}*/
 	}
 	
 	ch->pos += count;
@@ -933,7 +1150,7 @@ void S_PaintChannels(int endtime)
 				AmbChan = -1;
 			}
 		}*/
-			if (ch->left < 32 && ch->right < 32)
+			if (!ch->left < 0 && !ch->right)
 				continue;
 			//sc = S_LoadSound (ch->sfx);
 			//if (!sc)
@@ -991,6 +1208,10 @@ void S_PaintChannels(int endtime)
 
 void S_Update_(void)
 {
+#ifdef USE_MAXMOD
+	//paintedtime = mmStreamGetPosition();
+	//mmStreamUpdate();
+#else
 	unsigned        endtime;
 	int				samps;
 	
@@ -1001,7 +1222,7 @@ void S_Update_(void)
 // check to make sure that we haven't overshot
 	if (paintedtime < soundtime)
 	{
-		//Con_Printf ("S_Update_ : overflow\n");
+		iprintf ("S_Update_ : overflow\n");
 		paintedtime = soundtime;
 	}
 
@@ -1013,4 +1234,5 @@ void S_Update_(void)
 
 	//iprintf("paint: %d\n",endtime);
 	S_PaintChannels (endtime);
+#endif
 }

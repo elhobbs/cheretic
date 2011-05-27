@@ -32,7 +32,7 @@ byte gammatable[5][256] =
 
 void V_DrawPatch(int x, int y, patch_t *patch)
 {
-#if 0
+#if 1
 	int count;
 	int col;
 	column_t *column;
@@ -46,7 +46,10 @@ void V_DrawPatch(int x, int y, patch_t *patch)
 	if(x < 0 || x+SHORT(patch->width) > SCREENWIDTH || y < 0
 		|| y+SHORT(patch->height) > SCREENHEIGHT)
 	{
-		I_Error("Bad V_DrawPatch");
+		printf("x: %d y: %d\n",x,y);
+		printf("w: %d h: %d\n",patch->width,patch->height);
+		//I_Error("Bad V_DrawPatch");
+		return;
 	}
 	col = 0;
 	desttop = screen+y*SCREENWIDTH+x;
@@ -136,7 +139,7 @@ void V_DrawFuzzPatch (int x, int y, patch_t *patch)
 
 void V_DrawShadowedPatch(int x, int y, patch_t *patch)
 {
-#if 0
+#if 1
 	int			count,col;
 	column_t	*column;
 	byte		*desttop, *dest, *source;
@@ -169,8 +172,8 @@ void V_DrawShadowedPatch(int x, int y, patch_t *patch)
 			
 			while (count--)
 			{
-				*dest2 = tinttable[((*dest2)<<8)];
-				dest2 += SCREENWIDTH;
+				//*dest2 = tinttable[((*dest2)<<8)];
+				//dest2 += SCREENWIDTH;
 				*dest = *source++;
 				dest += SCREENWIDTH;
 

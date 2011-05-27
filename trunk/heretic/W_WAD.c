@@ -416,7 +416,7 @@ byte *ptr;
 	if (!lumpcache[lump])
 	{	// read the lump in
 //printf ("cache miss on lump %i %d\n",lump,W_LumpLength (lump));
-		ptr = Z_Malloc (W_LumpLength (lump), tag, &lumpcache[lump]);
+		ptr = (byte *)Z_Malloc (W_LumpLength (lump), tag, &lumpcache[lump]);
 		W_ReadLump (lump, lumpcache[lump]);
 	}
 	else

@@ -477,8 +477,8 @@ static int mus_load_instruments(void)
 
 byte* mus_load_music(char *name)
 {
-	printf("mus: %s\n",name);
-	while((keysCurrent() & KEY_A) == 0);
+	//printf("mus: %s\n",name);
+	//while((keysCurrent() & KEY_A) == 0);
     byte *lump = (byte *)W_CacheLumpName(name, PU_STATIC);
 	mus_header_t *header = (mus_header_t *)lump;
 

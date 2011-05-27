@@ -39,6 +39,7 @@ typedef struct dstex_s
 void ds_init_textures();
 void ds_init_texture(int name,texture_t *tx,dstex_t *ds);
 int ds_load_map_texture(int name,int flags);
+int ds_load_sky_texture(int name,int flags);
 
 void ds_init_flat(int name,dstex_t *ds);
 int ds_load_map_flat(int name);

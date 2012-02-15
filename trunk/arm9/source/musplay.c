@@ -38,6 +38,7 @@ typedef unsigned int u32;
 #define iprintf printf
 #endif
 
+extern int snd_MusicVolume;
 
 volatile int freeze_all = 0;
 
@@ -498,7 +499,6 @@ byte* mus_load_music(char *name)
 
     return lump + header->scoreStart;
 }
-
 void mus_init_music() {
 	if(mus_load_instruments()) {
 		iprintf("instruments loaded\n");
@@ -629,7 +629,8 @@ int mus_occupy_channel(s16 i, s16 channel, byte note, int volume, byte *instr,s1
 	} else {
 		channelLastVolume[channel] = volume;
 	}
-    volume = channelVolume[channel] * (Adlibvolume[i] = volume) / 127;
+	Adlibvolume[i] = volume;
+    volume = channelVolume[channel] * volume * snd_MusicVolume / (127*127);
     if (instr[0] & 1) {
 		note = instr[3];
 	} else if (channel == PERCUSSION) {
@@ -657,8 +658,8 @@ int mus_occupy_channel(s16 i, s16 channel, byte note, int volume, byte *instr,s1
 	}
     Adlibnote[i] = note;
 
-
-    mus_write_instrument(i, Adlibinstr[i] = instr);
+	Adlibinstr[i] = instr;
+    mus_write_instrument(i, instr);
     if (channelFlags[channel] & CH_VIBRATO) {
 		mus_write_modulation(i, instr, 1);
 	}
@@ -771,7 +772,7 @@ void mus_change_control(byte channel, byte controller, int value)
 						}
 					}
 				}
-				mus_write_volume(i, Adlibinstr[i], value * Adlibvolume[i] / 127);
+				mus_write_volume(i, Adlibinstr[i], value * Adlibvolume[i] * snd_MusicVolume / (127*127));
 			}
 		}
 	    break;
@@ -781,7 +782,7 @@ void mus_change_control(byte channel, byte controller, int value)
 			if (((Adlibchannel[i] >> 8) & 0x7F) == channel)
 			{
 				Adlibtime[i] = MUStime;
-				mus_write_volume(i, Adlibinstr[i], value * Adlibvolume[i] / 127);
+				mus_write_volume(i, Adlibinstr[i], value * Adlibvolume[i] * snd_MusicVolume / (127*127));
 			}
 		}
 	    break;
@@ -931,6 +932,15 @@ void mus_setup_timer() {
 }
 
 #endif
+
+void mus_update_volume() {
+	int i;
+	for(i = 0; i < 9; i++) {
+		if (Adlibchannel[i] != -1) {
+			mus_write_volume(i, Adlibinstr[i], Adlibvolume[i] * snd_MusicVolume / 127);
+		}
+	}
+}
 
 void mus_play_music(char *name)
 {

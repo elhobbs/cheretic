@@ -578,7 +578,7 @@ void R_InitBuffer (int width, int height)
 	
 	viewwindowx = (DS_SCREEN_WIDTH-width) >> 1;
 
-	if (width == DS_SCREEN_WIDTH)
+	if (width == (DS_SCREEN_WIDTH-1))
 		viewwindowy = 0;
 	else
 		viewwindowy = (DS_SCREEN_HEIGHT-SBARHEIGHT-height) >> 1;
@@ -604,17 +604,23 @@ void R_ExecuteSetViewSize (void)
 
 	if (setblocks == 11)
 	{
-		scaledviewwidth = DS_SCREEN_WIDTH;
-		viewheight = DS_SCREEN_HEIGHT;
+		scaledviewwidth = DS_SCREEN_WIDTH-1;
+		viewheight = DS_SCREEN_HEIGHT-1;
+	}
+	else if (setblocks == 10)
+	{
+		scaledviewwidth = DS_SCREEN_WIDTH-1;
+		viewheight = DS_SCREEN_HEIGHT-SBARHEIGHT+8;
 	}
 	else
 	{
 		scaledviewwidth = setblocks*25;
-		viewheight = (setblocks*158/10);
+		//viewheight = (setblocks*158/10);
+		viewheight = (setblocks*150/10);
 	}
 
 	detailshift = setdetail;
-	//viewwidth = scaledviewwidth>>detailshift;
+	viewwidth = scaledviewwidth;//>>detailshift;
 
 	centery = viewheight/2;
 	centerx = viewwidth/2;

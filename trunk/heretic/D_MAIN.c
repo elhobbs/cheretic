@@ -190,6 +190,8 @@ void D_Display(void)
 		break;
 	}
 
+	S_Update_();
+
 	if(paused && !MenuActive && !askforquit)
 	{
 		if(!netgame)

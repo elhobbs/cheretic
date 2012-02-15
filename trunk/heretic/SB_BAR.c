@@ -704,7 +704,7 @@ void SB_Drawer(void)
 		DrawSoundInfo();
 	}
 	CPlayer = &players[consoleplayer];
-	if(viewheight == 256 && !automapactive)
+	if(viewheight == 191 && !automapactive)
 	{
 		DrawFullScreenStuff();
 		SB_state = -1;
@@ -1068,11 +1068,11 @@ void DrawFullScreenStuff(void)
 	UpdateState |= I_FULLSCRN;
 	if(CPlayer->mo->health > 0)
 	{
-		DrBNumber(CPlayer->mo->health, 5, 180);
+		DrBNumber(CPlayer->mo->health, 34, 171);
 	}
 	else
 	{
-		DrBNumber(0, 5, 180);
+		DrBNumber(0, 34, 171);
 	}
 	if(deathmatch)
 	{
@@ -1084,7 +1084,7 @@ void DrawFullScreenStuff(void)
 				temp += CPlayer->frags[i];
 			}
 		}
-		DrINumber(temp, 45, 185);
+		DrINumber(temp, 45, 192-15);
 	}
 	if(!inventory)
 	{
@@ -1112,7 +1112,7 @@ void DrawFullScreenStuff(void)
 				DrSmallNumber(CPlayer->inventory[x+i].count, 69+i*31, 190);
 			}
 		}
-		V_DrawPatch(50+curpos*31, 197, PatchSELECTBOX);
+		V_DrawPatch(50+curpos*31, 191-3, PatchSELECTBOX);
 		if(x != 0)
 		{
 			V_DrawPatch(38, 167, !(leveltime&4) ? PatchINVLFGEM1 :

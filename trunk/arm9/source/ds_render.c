@@ -23,6 +23,7 @@ int ds_anti_alias_id = 0;
 #include <limits.h>
 
 void IR_DrawPlayerSprites (void);
+void ds_texture_cache_load();
 
 void glRotateZ(float x);
 void glRotateX(float x);
@@ -1924,15 +1925,26 @@ void IR_RenderPlayerView (player_t* player) {
 	
 	//gld_SetPalette(-1);
 	
-	if (screenblocks == 11)
-		height = DS_SCREEN_HEIGHT;
+	/*if (screenblocks == 11)
+		height = DS_SCREEN_HEIGHT-1;
 	else if (screenblocks == 10)
-		height = DS_SCREEN_HEIGHT;
+		height = DS_SCREEN_HEIGHT-2;
 	else
-		height = (screenblocks*DS_SCREEN_HEIGHT/10) & ~7;
+		height = (screenblocks*DS_SCREEN_HEIGHT/10) & ~7;*/
+
+	height = viewheight;
 	
 
-	glViewport(viewwindowx, DS_SCREEN_HEIGHT-(height+viewwindowy-((height-viewheight)/2)), viewwidth-1, height-1);
+	//glViewport(viewwindowx, DS_SCREEN_HEIGHT-(height+viewwindowy-((height-viewheight)/2)), viewwidth, height);
+#ifdef WIN32
+	glViewport(viewwindowx, DS_SCREEN_HEIGHT-(viewheight+viewwindowy), viewwidth, viewheight);
+#endif
+
+#ifdef ARM9
+	glViewport(viewwindowx, DS_SCREEN_HEIGHT-(viewheight+viewwindowy), viewwidth+viewwindowx, DS_SCREEN_HEIGHT-(viewwindowy)-1);
+	//printf("v: %d %d %d %d\n",viewwindowx, viewwindowy, viewwidth, viewheight);
+	//printf("c: %d %d %d %d\n",viewwindowx, DS_SCREEN_HEIGHT-(viewheight+viewwindowy), viewwidth, DS_SCREEN_HEIGHT-(viewwindowy)-1);
+#endif
 	//glScissor(viewwindowx, DS_SCREEN_HEIGHT-(viewheight+viewwindowy), viewwidth, viewheight);
 	//glEnable(GL_SCISSOR_TEST);
 #ifdef WIN32
@@ -2117,10 +2129,11 @@ void IR_RenderPlayerView (player_t* player) {
 		glPushMatrix();
 		glLoadIdentity();
 		
+		texname = ds_load_sky_texture(skytexture,TEXGEN_TEXCOORD);
 		GFX_TEX_FORMAT = 0;
 		glPolyFmt(POLY_ALPHA(1) | POLY_CULL_NONE | POLY_ID(1) | POLY_FOG);
 
-		GFX_COLOR = RGB5(0,0,0);
+		GFX_COLOR = RGB5(15,15,15);
 		glBegin(GL_TRIANGLE_STRIP);
 		dsTexCoord2f( s, 128 ); dsVertex3f(-32,y,31);
 		dsTexCoord2f( s, 0 ); dsVertex3f(-32,32,31);
@@ -2286,11 +2299,15 @@ void IR_RenderPlayerView (player_t* player) {
 	{
 		float	s;
 		float	y;
+		int		v0;
 		
 		// Note that these texcoords would have to be corrected
 		// for different screen aspect ratios or fields of view!
 		s = ((yaw+90.0f)/90.0f)*256;
-		y = (1 - 2 * 128.0 / 200)*32;
+		y = -20;//(1.0f - 2 * 128.0 / 200)*32;
+		v0 = (int)(20.0*192*0.5/32.0);
+		y = -32;//(1.0f - 2 * 128.0 / 200)*32;
+		v0 = 28;//(int)(100 - 192*0.5);
 		
 		// With identity matricies, the vertex coordinates
 		// can just be in the 0-1 range.
@@ -2322,13 +2339,22 @@ void IR_RenderPlayerView (player_t* player) {
 		
 		GFX_TEX_FORMAT = texname;
 		glPolyFmt(POLY_ALPHA(30) | POLY_CULL_NONE | POLY_ID(1));
+		//glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1));
 
 		GFX_COLOR = RGB5(31,31,31);
-		glBegin(GL_TRIANGLE_STRIP);
-		dsTexCoord2f( s, 128 ); dsVertex3f(-32,y,31);
-		dsTexCoord2f( s, 32 ); dsVertex3f(-32,32,31);
-		dsTexCoord2f( s+256, 128 ); dsVertex3f(32,y,31);
-		dsTexCoord2f( s+256, 32 ); dsVertex3f(32,32,31);
+		//glBegin(GL_TRIANGLE_STRIP);
+		//dsTexCoord2f( s, textures_ds[skytexture].height ); dsVertex3f(-32,y,31);
+		//dsTexCoord2f( s, 0 ); dsVertex3f(-32,32,31);
+		//dsTexCoord2f( s+256, textures_ds[skytexture].height ); dsVertex3f(32,y,31);
+		//dsTexCoord2f( s+256, 0 ); dsVertex3f(32,32,31);
+		//glEnd();
+		glBegin(GL_QUADS);
+		//dsTexCoord2f( s, textures_ds[skytexture].height + v0 ); dsVertex3f(-32,y,31);
+		dsTexCoord2f( s, SCREEN_HEIGHT + v0 ); dsVertex3f(-32,y,31);
+		dsTexCoord2f( s, v0 ); dsVertex3f(-32,32,31);
+		dsTexCoord2f( s+256, v0 ); dsVertex3f(32,32,31);
+		//dsTexCoord2f( s+256, textures_ds[skytexture].height + v0 ); dsVertex3f(32,y,31);
+		dsTexCoord2f( s+256, SCREEN_HEIGHT + v0 ); dsVertex3f(32,y,31);
 		glEnd();
 
 		// back to the normal drawing matrix
@@ -2346,6 +2372,7 @@ void IR_RenderPlayerView (player_t* player) {
 
 	//printf("s: %d w: %d t:%d\n",numSectorPlanes,num_gl_walls,num_gl_sprites);
 	//ds_print_blocks();
+	ds_texture_cache_load();
 
 #ifdef ARM9
 	glFlush(3);
@@ -2364,6 +2391,8 @@ void IR_RenderPlayerView (player_t* player) {
 		int end = SysIphoneMicroseconds();
 		printf( "%i usec\n", end - start );
 	}*/
+
+
 }
 
 /*
@@ -2540,12 +2569,17 @@ void IR_DrawPSprite (pspdef_t *psp)
 	glPolyFmt(POLY_ALPHA(30) | POLY_CULL_NONE | POLY_ID(56));
 
 	GFX_COLOR = RGB5(31,31,31);
-	glBegin(GL_TRIANGLE_STRIP);
+	glBegin(GL_QUAD);
+	
+	//dsTexCoord2f( v_ul, v_vt ); dsVertex3f(v_x1,v_y1,0);
+	//dsTexCoord2f( v_ul, v_vb ); dsVertex3f(v_x1,v_y2,0);
+	//dsTexCoord2f( v_ur, v_vt ); dsVertex3f(v_x2,v_y1,0);
+	//dsTexCoord2f( v_ur, v_vb); dsVertex3f(v_x2,v_y2,0);
 	
 	dsTexCoord2f( v_ul, v_vt ); dsVertex3f(v_x1,v_y1,0);
 	dsTexCoord2f( v_ul, v_vb ); dsVertex3f(v_x1,v_y2,0);
-	dsTexCoord2f( v_ur, v_vt ); dsVertex3f(v_x2,v_y1,0);
 	dsTexCoord2f( v_ur, v_vb); dsVertex3f(v_x2,v_y2,0);
+	dsTexCoord2f( v_ur, v_vt ); dsVertex3f(v_x2,v_y1,0);
 	glEnd();
 #endif
 #else

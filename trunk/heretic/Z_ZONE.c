@@ -147,7 +147,7 @@ void Z_Free (void *ptr)
 void *Z_Malloc (int size, int tag, void *user)
 {
 	int		extra;
-	memblock_t	*start, *rover, *new, *base;
+	memblock_t	*start, *rover, *newb, *base;
 
 //
 // scan through the block list looking for the first free block
@@ -203,14 +203,14 @@ void *Z_Malloc (int size, int tag, void *user)
 	extra = base->size - size;
 	if (extra >  MINFRAGMENT)
 	{	// there will be a free fragment after the allocated block
-		new = (memblock_t *) ((byte *)base + size );
-		new->size = extra;
-		new->user = NULL;		// free block
-		new->tag = 0;
-		new->prev = base;
-		new->next = base->next;
-		new->next->prev = new;
-		base->next = new;
+		newb = (memblock_t *) ((byte *)base + size );
+		newb->size = extra;
+		newb->user = NULL;		// free block
+		newb->tag = 0;
+		newb->prev = base;
+		newb->next = base->next;
+		newb->next->prev = newb;
+		base->next = newb;
 		base->size = size;
 	}
 	

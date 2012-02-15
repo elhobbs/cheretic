@@ -32,8 +32,15 @@ typedef struct dstex_s
 	int			name;
 	short		width, height;
 	short		block_width, block_height;
+#if 0
 	short		zone,block;
+#else
+	short		zone,block;
+	unsigned int	addr;
+	int				visframe;
+#endif
 	int			width_scale,height_scale;
+	void		*data;
 } dstex_t;
 
 void ds_init_textures();

@@ -29,6 +29,27 @@ void ds_140_timer() {
 	//iprintf(".");
 }
 
+#ifdef ARM9
+void memcpy32(void *dst, const void *src, uint wdcount) ITCM_CODE;
+#endif
+volatile int hblank_timer_ticks = 0;
+void hblank_timer() {
+	hblank_timer_ticks++;
+}
+long long ds_time2()
+{
+	static u16 last;
+	static long long t;
+	u16 time1 = TIMER1_DATA;
+	u16 time = TIMER2_DATA;
+	if(time < last) {
+		t += (1<<32);
+	}
+	last = time;
+	return (t + (time << 16) + time1);
+}
+
+byte hblank_buffer[256*256*2] ALIGN(32);
 void Sys_Init()
 {
 	bool ret;
@@ -99,7 +120,6 @@ void Sys_Init()
 	
 
 
-	//irqSet(IRQ_VBLANK, VID_loadPal);
 
 #ifdef USE_WIFI
 Wifi_InitDefault(true);
@@ -170,6 +190,47 @@ Wifi_InitDefault(true);
 
 #endif
 	
+
+	if (0) {
+		int t1,t2;
+		int v1,v2;
+
+		for(x=0;x<(256*256*2);x++) {
+			hblank_buffer[x] = (byte)(x & 0x000000ff);
+		}
+		vramSetBankA(VRAM_A_LCD);
+		irqSet(IRQ_HBLANK, hblank_timer);
+		irqEnable(IRQ_HBLANK);
+
+		swiWaitForVBlank();
+		v1 = REG_VCOUNT;
+		t1 = ds_timer_ticks;
+		x = hblank_timer_ticks;
+		dmaCopyWords(2,(uint32*)hblank_buffer, (uint32*)VRAM_A , (256*256));
+		v2 = REG_VCOUNT;
+		t2 = ds_timer_ticks;
+		y = hblank_timer_ticks;
+
+		printf("dmaCopyWords ticks: %d %d %d\n",y-x,t2-t1,v2 - v1);
+		printf("%d %d %d %d %d %d\n",x,y,t1,t2,v1,v2);
+
+		swiWaitForVBlank();
+		v1 = REG_VCOUNT;
+		t1 = ds_timer_ticks;
+		x = hblank_timer_ticks;
+		//memcpy32(VRAM_A,hblank_buffer,(256*256*2)/4);
+		memcpy32(VRAM_A,hblank_buffer,(256*256)/4);
+		v2 = REG_VCOUNT;
+		t2 = ds_timer_ticks;
+		y = hblank_timer_ticks;
+		printf("memcpy32 ticks: %d %d %d\n",y-x,t2-t1,v2-v1);
+		printf("%d %d %d %d %d %d\n",x,y,t1,t2,v1,v2);
+		
+		while(1);
+	}
+
+
+
 	glEnable(GL_FOG);
 	glFogShift(10);
 	glFogColor(0,0,0,31);

@@ -85,9 +85,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arm9\source\ds_sound.c" />
+    <ClCompile Include="arm9\source\ds_textures2.c" />
+    <ClCompile Include="arm9\source\ds_textures3.c" />
+    <ClCompile Include="arm9\source\ds_textures4.c" />
     <ClCompile Include="arm9\source\musplay.c" />
     <ClCompile Include="arm9\source\template.c" />
-    <ClCompile Include="arm7\source\template.c" />
+    <ClCompile Include="arm7\source\template.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="heretic\AM_MAP.c" />
     <ClCompile Include="heretic\CT_CHAT.c" />
     <ClCompile Include="heretic\D_MAIN.c" />

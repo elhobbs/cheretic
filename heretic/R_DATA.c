@@ -474,10 +474,10 @@ void R_InitSpriteLumps (void)
 	firstspritelump = W_GetNumForName ("S_START") + 1;
 	lastspritelump = W_GetNumForName ("S_END") - 1;
 	numspritelumps = lastspritelump - firstspritelump + 1;
-	spritewidth = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spriteheight = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spriteoffset = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spritetopoffset = Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+	spritewidth = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+	spriteheight = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+	spriteoffset = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
+	spritetopoffset = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
 	sprites_ds = (dstex_t *)Z_Malloc (numspritelumps*sizeof(dstex_t), PU_STATIC, 0);
 
 	for (i=0 ; i< numspritelumps ; i++)
@@ -488,7 +488,7 @@ void R_InitSpriteLumps (void)
 		#else
 		IncThermo();
 		#endif
-		patch = W_CacheLumpNum (firstspritelump+i, PU_CACHE);
+		patch = (patch_t *)W_CacheLumpNum (firstspritelump+i, PU_CACHE);
 		spritewidth[i] = SHORT(patch->width)<<FRACBITS;
 		spriteheight[i] = SHORT(patch->height)<<FRACBITS;
 		spriteoffset[i] = SHORT(patch->leftoffset)<<FRACBITS;

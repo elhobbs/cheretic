@@ -486,14 +486,20 @@ extern u16		*ds_display_bottom;
 #endif
 void I_Update (void)
 {
+#if 1
 	int w,h;
 #ifdef ARM9
 	for(h=0;h<192;h++) {
 		memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
 	}
-	memset(screen,0,SCREENWIDTH*SCREENHEIGHT);
+	if(screenblocks == 11) {
+		memset(screen,0,SCREENHEIGHT*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
+	} else {
+		memset(screen,0,(SCREENHEIGHT-42)*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
+	}
 #endif
-#if 0
+#else
+	int h;
 	int i;
 	byte *dest;
 	int tics;
@@ -502,7 +508,7 @@ void I_Update (void)
 //
 // blit screen to video
 //
-	if(DisplayTicker)
+	/*if(DisplayTicker)
 	{
 		if(screenblocks > 9 || UpdateState&(I_FULLSCRN|I_MESSAGES))
 		{
@@ -528,14 +534,20 @@ void I_Update (void)
 			*dest = 0x00;
 			dest += 2;
 		}
-	}
+	}*/
 	if(UpdateState == I_NOUPDATE)
 	{
+		memset(screen,0,(SCREENHEIGHT-42)*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
 		return;
 	}
 	if(UpdateState&I_FULLSCRN)
 	{
-		memcpy(pcscreen, screen, SCREENWIDTH*SCREENHEIGHT);
+#ifdef ARM9
+		for(h=0;h<192;h++) {
+			memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
+		}
+#endif
+		//memcpy(pcscreen, screen, SCREENWIDTH*SCREENHEIGHT);
 		UpdateState = I_NOUPDATE; // clear out all draw types
 	}
 	if(UpdateState&I_FULLVIEW)
@@ -545,7 +557,8 @@ void I_Update (void)
 			for(i = 0; i <
 				(viewwindowy+viewheight)*SCREENWIDTH; i += SCREENWIDTH)
 			{
-				memcpy(pcscreen+i, screen+i, SCREENWIDTH);
+				//memcpy(pcscreen+i, screen+i, SCREENWIDTH);
+				//memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
 			}
 			UpdateState &= ~(I_FULLVIEW|I_MESSAGES);
 		}
@@ -554,24 +567,34 @@ void I_Update (void)
 			for(i = viewwindowy*SCREENWIDTH+viewwindowx; i <
 				(viewwindowy+viewheight)*SCREENWIDTH; i += SCREENWIDTH)
 			{
-				memcpy(pcscreen+i, screen+i, viewwidth);
+				//memcpy(pcscreen+i, screen+i, viewwidth);
 			}
 			UpdateState &= ~I_FULLVIEW;
 		}
 	}
 	if(UpdateState&I_STATBAR)
 	{
-		memcpy(pcscreen+SCREENWIDTH*(SCREENHEIGHT-SBARHEIGHT),
-			screen+SCREENWIDTH*(SCREENHEIGHT-SBARHEIGHT),
-			SCREENWIDTH*SBARHEIGHT);
+#ifdef ARM9
+		for(h=192-SBARHEIGHT;h<192;h++) {
+			memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
+		}
+#endif
+		//memcpy(pcscreen+SCREENWIDTH*(SCREENHEIGHT-SBARHEIGHT),
+		//	screen+SCREENWIDTH*(SCREENHEIGHT-SBARHEIGHT),
+		//	SCREENWIDTH*SBARHEIGHT);
 		UpdateState &= ~I_STATBAR;
 	}
 	if(UpdateState&I_MESSAGES)
 	{
-		memcpy(pcscreen, screen, SCREENWIDTH*28);
+		//memcpy(pcscreen, screen, SCREENWIDTH*28);
 		UpdateState &= ~I_MESSAGES;
 	}
 
+	if(screenblocks == 11) {
+		memset(screen,0,SCREENHEIGHT*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
+	} else {
+		memset(screen,0,(SCREENHEIGHT-42)*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
+	}
 //  memcpy(pcscreen, screen, SCREENHEIGHT*SCREENWIDTH);
 #endif
 }
@@ -1059,6 +1082,7 @@ void I_ShutdownMouse (void)
 #define	KEY_DOWNARROW		0xaf
 #define	KEY_ESCAPE			27
 #define	KEY_ENTER			13
+#define	KEY_TAB				9
 #define	KEY_RCTRL			(0x80+0x1d)
 /*u32 nds_keys[] = {
 K_NDS_A,
@@ -1083,8 +1107,8 @@ uint32 ds_keys[] = {
 	KEY_LEFTARROW,
 	KEY_UPARROW,
 	KEY_DOWNARROW,
-	KEY_UPARROW,
-	KEY_UPARROW,
+	KEY_TAB,
+	KEY_RCTRL,
 	KEY_UPARROW,
 	KEY_UPARROW
 };
@@ -1142,8 +1166,8 @@ void I_ReadMouse (void)
 		g_currentTouch.px <<= 7;
 		g_currentTouch.py <<= 7;
 
-		dx = (g_currentTouch.px - g_lastTouch.px) >> 6;
-		dy = (g_currentTouch.py - g_lastTouch.py) >> 6;
+		dx = (g_currentTouch.px - g_lastTouch.px) >> 4;
+		dy = (g_currentTouch.py - g_lastTouch.py) >> 4;
 
 		ev.type = ev_mouse;
 		ev.data1 = 0;

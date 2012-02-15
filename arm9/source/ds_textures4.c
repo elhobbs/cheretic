@@ -1,4 +1,4 @@
-#if 0
+#if 1
 
 #include "DoomDef.h"
 #include "ds_textures.h"
@@ -93,6 +93,36 @@ ds_texture_t ds_textures3[NUM_TEXTURE_BLOCKS3];
 ds_texture_t ds_textures4[NUM_TEXTURE_BLOCKS4];
 ds_texture_t ds_textures5[NUM_TEXTURE_BLOCKS5];
 
+byte ds_texture_cache[256*256*2*2];
+int		ds_texture_cache_offset = 0;
+int		ds_texture_cache_frame = 0;
+byte	*ds_texture_cache_base;
+
+void ds_texture_cache_load() {
+
+#ifdef ARM9
+	DC_FlushAll();
+
+	if(ds_texture_cache_frame == 0) {
+		vramSetBankA(VRAM_A_LCD);
+		vramSetBankB(VRAM_B_LCD);
+		dmaCopyWords(0,(uint32*)ds_texture_cache, (uint32*)ds_texture_cache_base, ds_texture_cache_offset);
+		vramSetBankA(VRAM_A_TEXTURE);
+		vramSetBankB(VRAM_B_TEXTURE);
+	} else {
+		vramSetBankC(VRAM_C_LCD);
+		vramSetBankD(VRAM_D_LCD);
+		dmaCopyWords(0,(uint32*)ds_texture_cache, (uint32*)ds_texture_cache_base, ds_texture_cache_offset);
+		vramSetBankC(VRAM_C_TEXTURE);
+		vramSetBankD(VRAM_D_TEXTURE);
+	}
+#endif
+
+	ds_texture_cache_base = DS_TEXTURE_BASE + (ds_texture_cache_frame == 0 ? (256*256*2*2) : 0);
+	ds_texture_cache_frame = !ds_texture_cache_frame;
+	ds_texture_cache_offset = 0;
+}
+
 typedef struct ds_texture_bank_s
 {
 	byte			*start;
@@ -128,6 +158,8 @@ void ds_init_textures()
 #ifdef ARM9
 	DS_TEXTURE_BASE = (byte*)VRAM_A;
 #endif
+
+	ds_texture_cache_base = DS_TEXTURE_BASE;
 
 	DS_TEXTURE_BASE2 = DS_TEXTURE_BASE + TEXTURE_SIZE;
 	DS_TEXTURE_BASE3 = DS_TEXTURE_BASE2 + TEXTURE_SIZE2;
@@ -496,17 +528,18 @@ int ds_tex_parameters(	int sizeX, int sizeY,
 int ds_load_texture(dstex_t *ds,byte *buf,int trans,int flags)
 {
 	ds_texture_bank_t *bank = &ds_blocks[ds->zone];
-	int block;
+	int block,ofs;
 	byte *addr;
 	int w=ds->block_width, h = ds->block_height;
 
-	block = ds_find_free_block(ds->zone,ds->name);
-	if(block == -1)
+	ds->visframe = r_framecount;
+	ofs = ds_texture_cache_offset;
+	if((ds_texture_cache_offset + (w * h)) > (256*256*2*2)) {
 		return 0;
+	}
+	ds_texture_cache_offset += (w * h);
 
-	addr = ds_load_block(ds->zone,block,buf,w*h);
-	ds->block = block;
-#ifdef WIN32
+#ifdef WIN322
 	if(bank->texnums[block] == 0) {
 		glGenTextures(1,&bank->texnums[block]);
 	}
@@ -532,14 +565,17 @@ int ds_load_texture(dstex_t *ds,byte *buf,int trans,int flags)
 	}
 #endif
 
-#ifdef ARM9
-	bank->textures[block].texnum = ds_tex_parameters(ds_tex_size(w),ds_tex_size(h),
-		addr,GL_RGB256,flags|(trans  ? GL_TEXTURE_COLOR0_TRANSPARENT : 0));
+#ifdef WIN32
+	memcpy(ds_texture_cache+ofs,buf,w*h);
 #endif
 
-	bank->textures[block].name = ds->name;
-	bank->textures[block].visframe = r_framecount;
-	return bank->textures[block].texnum;
+#ifdef ARM9
+	memcpy32(ds_texture_cache+ofs,buf,(w*h)/4);
+	ds->addr = ds_tex_parameters(ds_tex_size(w),ds_tex_size(h),
+		ds_texture_cache_base+ofs,GL_RGB256,flags|(trans  ? GL_TEXTURE_COLOR0_TRANSPARENT : 0));
+#endif
+
+	return ds->addr;
 }
 
 byte *R_GetColumn (int tex, int col);
@@ -560,25 +596,9 @@ int ds_load_sky_texture(int name,int flags)
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
 	byte *src,*addr,*dst,*scol,*dcol,mask[512],col[512];
 
-#ifdef WIN32
-	ds_texture_width = ds->width*16.0f;
-	ds_texture_height = ds->height*16.0f;
-#endif
-
-	block = ds_is_texture_resident(ds);
-	if(block != -1)
-	{
-#ifdef WIN32
-		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
-#endif
-		if(bank->textures[block].visframe != r_framecount) {
-			ds_size = ds->block_width * ds->block_height;
-			tex_cb_walls += ds_size;
-		}
-		bank->textures[block].visframe = r_framecount;
-		return bank->textures[block].texnum;
+	if(ds->visframe == r_framecount) {
+		return ds->addr;
 	}
-	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
 
 	size = texture->width * texture->height;
 	w = texture->width;
@@ -618,27 +638,10 @@ int ds_load_map_texture(int name,int flags)
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
 	byte *src,*addr,*dst,*scol,*dcol,mask[512],col[512];
 
-	//int cb_free = Z_FreeMemory();
-#ifdef WIN32
-	ds_texture_width = ds->width*16.0f;
-	ds_texture_height = ds->height*16.0f;
-#endif
-
-	block = ds_is_texture_resident(ds);
-	if(block != -1)
-	{
-#ifdef WIN32
-		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
-#endif
-		if(bank->textures[block].visframe != r_framecount) {
-			ds_size = ds->block_width * ds->block_height;
-			tex_cb_walls += ds_size;
-		}
-		bank->textures[block].visframe = r_framecount;
-		return bank->textures[block].texnum;
+	if(ds->visframe == r_framecount) {
+		return ds->addr;
 	}
-	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
-
+	ds->visframe = r_framecount;
  	size = texture->width * texture->height;
 	w = texture->width;
 	h = texture->height;
@@ -689,25 +692,10 @@ int ds_load_map_flat(int name)
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
 	byte *src,*addr,*dst,*scol,*dcol,mask[512],col[512];
 
-#ifdef WIN32
-	ds_texture_width = ds->width*16.0f;
-	ds_texture_height = ds->height*16.0f;
-#endif
 
-	block = ds_is_texture_resident(ds);
-	if(block != -1)
-	{
-#ifdef WIN32
-		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
-#endif
-		if(bank->textures[block].visframe != r_framecount) {
-			ds_size = ds->block_width * ds->block_height;
-			tex_cb_flats += ds_size;
-		}
-		bank->textures[block].visframe = r_framecount;
-		return bank->textures[block].texnum;
+	if(ds->visframe == r_framecount) {
+		return ds->addr;
 	}
-	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
 
 	size = 64 * 64;
 	w = 64;
@@ -728,8 +716,6 @@ int ds_load_map_flat(int name)
 		addr = (byte *)ds->data;
 	}
 	texnum = ds_load_texture(ds,addr,0,TEXGEN_TEXCOORD|GL_TEXTURE_WRAP_S|GL_TEXTURE_WRAP_T);
-
-
 
 	return texnum;
 }
@@ -789,25 +775,9 @@ int ds_load_sprite(int name)
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
 	byte *src,*addr,*dst,*scol,*dcol,col[512];
 
-#ifdef WIN32
-	ds_texture_width = ds->width*16.0f;
-	ds_texture_height = ds->height*16.0f;
-#endif
-
-	block = ds_is_texture_resident(ds);
-	if(block != -1)
-	{
-#ifdef WIN32
-		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
-#endif
-		if(bank->textures[block].visframe != r_framecount) {
-			ds_size = ds->block_width * ds->block_height;
-			tex_cb_sprites += ds_size;
-		}
-		bank->textures[block].visframe = r_framecount;
-		return bank->textures[block].texnum;
+	if(ds->visframe == r_framecount) {
+		return ds->addr;
 	}
-	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
 
 	w = spritewidth[name]>>FRACBITS;
 	h = spriteheight[name]>>FRACBITS;
@@ -1026,6 +996,8 @@ int ds_load_blank_tex()
 	ds_texture_width = ds->width*16.0f;
 	ds_texture_height = ds->height*16.0f;
 #endif
+
+	return 0;
 
 	block = ds_is_texture_resident(ds);
 	if(block != -1)

@@ -36,7 +36,7 @@ int snd_Channels;
 int			soundtime;		// sample PAIRS
 int   		paintedtime; 	// sample PAIRS
 
-#define SND_SAMPLES (4096)
+#define SND_SAMPLES (2048)
 byte c_snd_Buffer_left[SND_SAMPLES];
 byte c_snd_Buffer_right[SND_SAMPLES];
 byte *snd_Buffer_left;
@@ -78,12 +78,13 @@ long long ds_time()
 {
 	static u16 last;
 	static long long t;
-	u16 time1 = TIMER3_DATA;
-	if(time1 < last) {
-		t += (1LL<<16);
+	u16 time1 = TIMER2_DATA;
+	u16 time = TIMER3_DATA;
+	if(time < last) {
+		t += (1<<32);
 	}
-	last = time1;
-	return (t + time1);
+	last = time;
+	return (t + (time << 16) + time1);
 }
 
 void on_stream_request_transfer(byte *dest,int len)
@@ -243,10 +244,17 @@ void S_Init(void)
 	snd_Speed = 11025;
 	paintedtime = 0;
 #ifndef USE_MAXMOD
-	TIMER_DATA(2) = TIMER_FREQ(snd_Speed);//0x10000 - (0x1000000 / snd_Speed) * 2;
-	TIMER_CR(2) = TIMER_ENABLE | TIMER_DIV_1;
+	TIMER_DATA(1) = 0x10000 - (0x1000000 / snd_Speed) * 2;
+	TIMER_CR(1) = TIMER_ENABLE | TIMER_DIV_1;
+	TIMER_DATA(2) = 0;
+	TIMER_CR(2) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
 	TIMER_DATA(3) = 0;
 	TIMER_CR(3) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
+
+	//TIMER_DATA(2) = TIMER_FREQ(snd_Speed);//0x10000 - (0x1000000 / snd_Speed) * 2;
+	//TIMER_CR(2) = TIMER_ENABLE | TIMER_DIV_1;
+	//TIMER_DATA(3) = 0;
+	//TIMER_CR(3) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
 
 	snd_Buffer_left  = (byte *) memUncached(c_snd_Buffer_left);
 	snd_Buffer_right = (byte *) memUncached(c_snd_Buffer_right);
@@ -295,7 +303,7 @@ void S_Init(void)
 #endif
 	soundCurve = (byte *)Z_Malloc(MAX_SND_DIST, PU_STATIC, NULL);
 	snd_Channels = MAX_CHANNELS;
-	snd_MaxVolume = 127;
+	//snd_MaxVolume = 127;
 	soundEnable();
 	mus_init_music();
 }
@@ -340,7 +348,7 @@ void S_StartSong(int song, boolean loop)
 	{
 		return;
 	}
-	//mus_play_music(S_music[song].name );
+	mus_play_music(S_music[song].name );
 }
 
 // Gets lump nums of the named sound.  Returns pointer which will be
@@ -700,7 +708,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	channel[i].pos = 0;
 	channel[i].left = ((254 - sep) * vol) / 127;
 	channel[i].right = ((sep) * vol) / 127;
-	iprintf("play: %d v:%d %d %8s\n",sound_id,channel[i].left,channel[i].right,S_sfx[sound_id].name);
+	//iprintf("play: %d v:%d %d %8s\n",sound_id,channel[i].left,channel[i].right,S_sfx[sound_id].name);
 	//for(i=0;i<16;i++) {
 	//	iprintf("%2x",data[24+i]);
 	//}
@@ -774,7 +782,7 @@ void S_StartSoundAtVolume(mobj_t *origin, int sound_id, int volume)
 	channel[i].priority = 1; //super low priority.
 	channel[i].left = volume;
 	channel[i].right = volume;
-	iprintf("play: %d v:%d %8s\n",sound_id,volume,S_sfx[sound_id].name);
+	//iprintf("play: %d v:%d %8s\n",sound_id,volume,S_sfx[sound_id].name);
 	if(S_sfx[sound_id].usefulness == -1)
 	{
 		S_sfx[sound_id].usefulness = 1;
@@ -951,8 +959,11 @@ void S_SetMaxVolume(boolean fullprocess)
 	}
 }
 
+void mus_update_volume();
+
 void S_SetMusicVolume(void)
 {
+	mus_update_volume();
 }
 
 void S_ShutDown(void)
@@ -1053,8 +1064,12 @@ void SND_PaintChannelFrom8 (channel_t *ch, byte *sfx, int count)
 
 	if (ch->left > 255)
 		ch->left = 255;
+	else if (ch->left < 0)
+		ch->left = 0;
 	if (ch->right > 255)
 		ch->right = 255;
+	else if (ch->right < 0)
+		ch->right = 0;
 		
 	lscale = snd_scaletable[ch->left >> 3];
 	rscale = snd_scaletable[ch->right >> 3];
@@ -1150,7 +1165,7 @@ void S_PaintChannels(int endtime)
 				AmbChan = -1;
 			}
 		}*/
-			if (!ch->left < 0 && !ch->right)
+			if (ch->left <= 0 && ch->right <= 0)
 				continue;
 			//sc = S_LoadSound (ch->sfx);
 			//if (!sc)

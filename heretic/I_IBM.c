@@ -359,7 +359,7 @@ uint32 nextPBlock = (uint32)0;
 
 
 //---------------------------------------------------------------------------------
-inline uint32 aalignVal( uint32 val, uint32 to ) {
+uint32 aalignVal( uint32 val, uint32 to ) {
 	return (val & (to-1))? (val & ~(to-1)) + to : val;
 }
 
@@ -1107,10 +1107,10 @@ uint32 ds_keys[] = {
 	KEY_LEFTARROW,
 	KEY_UPARROW,
 	KEY_DOWNARROW,
-	KEY_TAB,
-	KEY_RCTRL,
-	KEY_UPARROW,
-	KEY_UPARROW
+	'.',
+	',',
+	'z',
+	'y'
 };
 #endif
 

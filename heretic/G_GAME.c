@@ -767,7 +767,7 @@ boolean G_Responder(event_t *ev)
 	extern boolean MenuActive;
 
 	plr = &players[consoleplayer];
-	plr->cheats |= CF_GODMODE;
+	//plr->cheats |= CF_GODMODE;
 	//plr->cheats |= CF_NOMOMENTUM;
 	//plr->cheats |= CF_NOCLIP;
 	if(ev->type == ev_keyup && ev->data1 == key_useartifact)
@@ -869,7 +869,7 @@ boolean G_Responder(event_t *ev)
 			}
 			if(ev->data1 < NUMKEYS)
 			{
-				//iprintf("gamekey down %x\n",ev->data1);
+				//printf("gamekey down %x %x\n",ev->data1, key_right);
 				gamekeydown[ev->data1] = true;
 			}
 			return(true); // eat key down events
@@ -877,7 +877,7 @@ boolean G_Responder(event_t *ev)
 		case ev_keyup:
 			if(ev->data1 < NUMKEYS)
 			{
-				//iprintf("gamekey up %x\n",ev->data1);
+				//printf("gamekey up %x %x\n",ev->data1, key_right);
 				gamekeydown[ev->data1] = false;
 			}
 			return(false); // always let key up events filter down

@@ -299,7 +299,7 @@ boolean P_UseSpecialLine ( mobj_t *thing, line_t *line)
 				P_ChangeSwitchTexture(line,0);
 			break;
 		case 29:		// Raise Door
-			if (EV_DoDoor(line,normal,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_normal,VDOORSPEED))
 				P_ChangeSwitchTexture(line,0);
 			break;
 		case 41:		// Lower Ceiling to Floor
@@ -315,7 +315,7 @@ boolean P_UseSpecialLine ( mobj_t *thing, line_t *line)
 				P_ChangeSwitchTexture(line,0);
 			break;
 		case 50:		// Close Door
-			if (EV_DoDoor(line,close,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_close,VDOORSPEED))
 				P_ChangeSwitchTexture(line,0);
 			break;
 		case 51:		// Secret EXIT
@@ -335,14 +335,14 @@ boolean P_UseSpecialLine ( mobj_t *thing, line_t *line)
 				P_ChangeSwitchTexture(line,0);
 			break;
 		case 103:		// Open Door
-			if (EV_DoDoor(line,open,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_open,VDOORSPEED))
 				P_ChangeSwitchTexture(line,0);
 			break;
 		//===============================================
 		//	BUTTONS
 		//===============================================
 		case 42:		// Close Door
-			if (EV_DoDoor(line,close,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_close,VDOORSPEED))
 				P_ChangeSwitchTexture(line,1);
 			break;
 		case 43:		// Lower Ceiling to Floor
@@ -358,7 +358,7 @@ boolean P_UseSpecialLine ( mobj_t *thing, line_t *line)
 				P_ChangeSwitchTexture(line,1);
 			break;
 		case 61:		// Open Door
-			if (EV_DoDoor(line,open,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_open,VDOORSPEED))
 				P_ChangeSwitchTexture(line,1);
 			break;
 		case 62:		// PlatDownWaitUpStay
@@ -366,7 +366,7 @@ boolean P_UseSpecialLine ( mobj_t *thing, line_t *line)
 				P_ChangeSwitchTexture(line,1);
 			break;
 		case 63:		// Raise Door
-			if (EV_DoDoor(line,normal,VDOORSPEED))
+			if (EV_DoDoor(line,vldoor_normal,VDOORSPEED))
 				P_ChangeSwitchTexture(line,1);
 			break;
 		case 64:		// Raise Floor to ceiling

@@ -1051,6 +1051,7 @@ boolean MN_Responder(event_t *event)
 		return(false);
 	}
 	key = event->data1;
+	//iprintf("key: %x\n", key);
 	if(InfoType)
 	{
 		if(shareware)

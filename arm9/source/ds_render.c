@@ -403,6 +403,7 @@ static void IR_ProjectSprite (mobj_t* thing, int lightlevel)
 	sprite.x2=(hoff);
 	sprite.y1=(voff);
 	sprite.y2=(voff-height);
+	sprite.scale = xscale;
 	
 	// JDC: don't let sprites poke below the ground level.
 	// Software rendering Doom didn't use depth buffering, 
@@ -1741,8 +1742,8 @@ void IR_RenderSprites(player_t* player)
 	GLSprite *sprite;
 	int i,k,name;
 	// get the screen space vector for sprites
-	float	yaws = -sin( yaw * 3.141592657 / 180.0 );
-	float	yawc = -cos( yaw * 3.141592657 / 180.0  );
+	float	yaws = -sin(yaw * 3.141592657 / 180.0);
+	float	yawc = -cos(yaw * 3.141592657 / 180.0);
 
 #ifdef WIN32
 	glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
@@ -1766,6 +1767,7 @@ void IR_RenderSprites(player_t* player)
 			}
 		}
 		if ( k == -1 ) {
+			//iprintf("break\n");
 			break;
 		}
 		
@@ -1779,9 +1781,13 @@ void IR_RenderSprites(player_t* player)
 		
 		//gld_BindPatch(sprite->gltexture,sprite->cm);
 		name = ds_load_sprite(sprite->name);
+		//iprintf("sprite: %x\n", name);
 #ifdef ARM9
 		GFX_TEX_FORMAT = name;
-		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(11) | POLY_FOG);
+		glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(50) | BIT(11) | POLY_FOG);
+
+		//glPolyFmt(POLY_ALPHA(31) | POLY_CULL_NONE | POLY_ID(1) | BIT(13) | POLY_FOG);
+
 		ds_anti_alias_id ++;
 		ds_anti_alias_id &= 63;
 #endif
@@ -1809,7 +1815,7 @@ void IR_RenderSprites(player_t* player)
 			glColor4f(flight, flight, flight, 1.0f );
 #endif
 #ifdef ARM9
-			int light = ((int)sprite->light)>>3;
+			int light = 31;// ((int)sprite->light) >> 3;
 			if (player->fixedcolormap) {
 				light = 31;	// light amp goggles
 			}

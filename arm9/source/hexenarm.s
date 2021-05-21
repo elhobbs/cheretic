@@ -10,9 +10,13 @@
 @Math Functions
 @==========================================================================
 	.global HexenDivInt
+	.type HexenDivInt STT_FUNC
 	.global	FixedMul
+	.type FixedMul STT_FUNC
 	.global	FixedDiv
+	.type FixedDiv STT_FUNC
 	.global	FixedDiv2
+	.type FixedDiv2 STT_FUNC
 
 @=====================================
 @HexenDivInt/HexenDivIntU

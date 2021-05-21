@@ -17,11 +17,15 @@
 #ifdef ARM9
 #include <alloca.h>
 #include <unistd.h>
+#include <string.h>
 #endif
 #include <sys/stat.h>
 #endif
 
 #include "DoomDef.h"
+#ifdef WIN32
+#define strcasecmp strcmpi
+#endif
 
 //===============
 //   TYPES
@@ -152,7 +156,7 @@ void W_AddFile (char *filename)
 
 	startlump = numlumps;
 	
-	if (strcmpi (filename+strlen(filename)-3 , "wad" ) )
+	if (strcasecmp(filename+strlen(filename)-3 , "wad" ) )
 	{
 	// single lump file
 		fileinfo = &singleinfo;

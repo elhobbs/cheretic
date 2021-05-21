@@ -105,6 +105,7 @@ void D_ProcessEvents(void)
 	for(; eventtail != eventhead; eventtail = (++eventtail)&(MAXEVENTS-1))
 	{
 		ev = &events[eventtail];
+		//printf("event: %d %d\n", ev->type, ev->data1);
 		if(F_Responder(ev))
 		{
 			continue;

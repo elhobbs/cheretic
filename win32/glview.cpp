@@ -275,6 +275,7 @@ LRESULT CALLBACK WndProcGL(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 				draw_windings = !draw_windings;
 			}
 			ibm_handlewinkey(MapH2Key(wParam), 0);
+			//printf("keydown: %d\n", wParam);
 		//Key_Event (MapKey(lParam), true);
 		break;
 		

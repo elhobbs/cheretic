@@ -5,7 +5,7 @@
 #define __SOUNDSH__
 
 #define MAX_SND_DIST 	1600
-#define MAX_CHANNELS	16
+#define MAX_CHANNELS	8
 
 // Music identifiers
 

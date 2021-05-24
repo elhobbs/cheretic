@@ -367,6 +367,15 @@ void mus_write_instrument(byte channel, byte data[16])
 }
 
 void adlib_init(Bit32u samplerate);
+
+void adlib_stop() {
+	int i;
+
+	for (i = 0; i < 9; i++) {
+		adlib_write_channel(0x40, i, 0x3F, 0x3F);	// turn off volume
+		adlib_write_value(0xB0, i, 0);			// KEY-OFF
+	}
+}
 /*
  * Initialize hardware upon startup
  */
@@ -382,11 +391,8 @@ void adlib_init_hw()
 	adlib_write_reg(0x01, 0x20);		// enable Waveform Select
 	adlib_write_reg(0x08, 0x40);		// turn off CSW mode
 	adlib_write_reg(0xBD, 0x00);		// set vibrato/tremolo depth to low, set melodic mode
-
-	for(i = 0; i < 9; i++) {
-		adlib_write_channel(0x40, i, 0x3F, 0x3F);	// turn off volume
-		adlib_write_value(0xB0, i, 0);			// KEY-OFF
-    }
+	
+	adlib_stop();
 }
 
 #ifdef __GNUC__
@@ -475,12 +481,20 @@ static int mus_load_instruments(void)
     return 1;
 }
 
+static byte *last_mus_lump = 0;
 
 byte* mus_load_music(char *name)
 {
+	byte *lump = W_CacheLumpName(name, PU_MUSIC);
+
+	if (last_mus_lump != 0 && last_mus_lump != lump) {
+		Z_ChangeTag(last_mus_lump, PU_CACHE);
+	}
+	last_mus_lump = lump;
+
 	//printf("mus: %s\n",name);
 	//while((keysCurrent() & KEY_A) == 0);
-    byte *lump = (byte *)W_CacheLumpName(name, PU_STATIC);
+    //byte *lump = (byte *)W_CacheLumpName(name, PU_STATIC);
 	mus_header_t *header = (mus_header_t *)lump;
 
 	if(lump == 0) {
@@ -947,11 +961,20 @@ void mus_play_music(char *name)
     int lasttime;
     int i;
 
-    memset(Adlibchannel, 0xFF, sizeof(Adlibchannel));
-    for (i = 0; i < CHANNELS; i++) {
-		channelVolume[i] = 127; 	// default volume 127 (full volume)
-		channelLastVolume[i] = 100;
-    }
+    memset(Adlibchannel, 0, sizeof(Adlibchannel));
+    //for (i = 0; i < CHANNELS; i++) {
+	//	channelVolume[i] = 127; 	// default volume 127 (full volume)
+	//	channelLastVolume[i] = 100;
+    //}
+
+	adlib_stop();
+#ifdef ARM9
+	for (i = 0; i < 10; i++) {
+		swiWaitForVBlank();
+	}
+#endif
+	MUSdata = 0;
+
 
     score = MUSdata = mus_load_music(name);
     MUSticks = 0;

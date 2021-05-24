@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="debug x86|Win32">
-      <Configuration>debug x86</Configuration>
+    <ProjectConfiguration Include="Debug x86|Win32">
+      <Configuration>Debug x86</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,7 +20,7 @@
     <Keyword>MakeFileProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
@@ -35,7 +35,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
@@ -61,15 +61,15 @@
     </NMakeAssemblySearchPath>
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     </NMakeForcedUsingAssemblies>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">$(Configuration)\</IntDir>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <ReferencePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <ExcludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\devl\cheretic\win32;C:\devl\cheretic\heretic\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -90,17 +90,19 @@
     <ClCompile Include="arm9\source\ds_sound.c" />
     <ClCompile Include="arm9\source\ds_textures2.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="arm9\source\ds_textures3.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="arm9\source\ds_textures4.c" />
+    <ClCompile Include="arm9\source\ds_textures5.c" />
     <ClCompile Include="arm9\source\musplay.c" />
     <ClCompile Include="arm9\source\template.c" />
     <ClCompile Include="arm7\source\template.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='debug x86|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="arm9\source\v_zone.c" />
     <ClCompile Include="heretic\AM_MAP.c" />
     <ClCompile Include="heretic\CT_CHAT.c" />
     <ClCompile Include="heretic\D_MAIN.c" />
@@ -150,6 +152,7 @@
     <ClCompile Include="heretic\polylib.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arm9\include\v_zone.h" />
     <ClInclude Include="heretic\include\AM_DATA.H" />
     <ClInclude Include="heretic\include\AM_MAP.H" />
     <ClInclude Include="heretic\include\DOOMDATA.H" />

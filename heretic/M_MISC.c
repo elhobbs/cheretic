@@ -374,6 +374,8 @@ extern  int         joybstrafe;
 extern  int         joybuse;
 extern  int         joybspeed;
 
+extern int          key_weaponprev, key_weaponnext;
+
 extern  int     viewwidth, viewheight;
 
 int mouseSensitivity;
@@ -471,6 +473,8 @@ default_t defaults[] =
 	{ "key_down", &key_down, KEY_DOWNARROW },
 	{ "key_strafeleft", &key_strafeleft, ',' },
 	{ "key_straferight", &key_straferight, '.' },
+	{ "key_weaponprev", &key_weaponprev, '{' },
+	{ "key_weaponnext", &key_weaponnext, '}' },
 	//Sektor end
 	
 	//{ "key_jump", &key_jump, '/'},

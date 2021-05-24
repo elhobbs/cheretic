@@ -482,7 +482,8 @@ extern int screenblocks;
 extern void Win32_WindowUpdate(void);
 #endif
 #ifdef ARM9
-extern u16		*ds_display_bottom;
+extern u16* ds_display_bottom;
+extern u16* ds_display_top;
 #endif
 void I_Update (void)
 {
@@ -490,7 +491,7 @@ void I_Update (void)
 	int w,h;
 #ifdef ARM9
 	for(h=0;h<192;h++) {
-		memcpy(ds_display_bottom+h*128, screen+h*SCREENWIDTH + 32, 256);
+		memcpy(ds_display_bottom +h*128, screen+h*SCREENWIDTH + 32, 256);
 	}
 	if(screenblocks == 11) {
 		memset(screen,0,SCREENHEIGHT*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
@@ -1110,7 +1111,21 @@ uint32 ds_keys[] = {
 	'.',
 	',',
 	'z',
-	'y'
+	'o'
+};
+uint32 ds_keys_alt[] = {
+	KEY_RCTRL,
+	' ',
+	KEY_ESCAPE,
+	KEY_ENTER,
+	'}',
+	'{',
+	']',
+	'[',
+	'.',
+	KEY_TAB,
+	'z',
+	'o'
 };
 #endif
 
@@ -1129,17 +1144,44 @@ void I_ReadMouse (void)
 	event_t ev;
 	u32 keys = keysCurrent();
 	u32 key_mask=1;
+	int alt = 0;
+	static int last_alt = 0;
 
+	if ((keys & KEY_X) != 0) {
+		alt = 1;
+	}
+
+	//send a key up event for keys held when alt state changes
+	if (last_alt != alt) {
+		key_mask = 1;
+		for (i = 0; i < 12; i++, key_mask <<= 1) {
+			if (i == KEY_X) {
+				continue;
+			}
+			if ((keys_last & key_mask) != 0) {
+				ev.type = ev_keyup;
+				ev.data1 = last_alt ? ds_keys_alt[i] : ds_keys[i];;
+				D_PostEvent(&ev);
+			}
+		}
+		keys_last = 0;
+		last_alt = alt;
+	}
+
+	key_mask = 1;
 	for(i=0;i<12;i++,key_mask<<=1) {
+		if (i == KEY_X) {
+			continue;
+		}
 		if( (keys & key_mask) != 0 && (keys_last & key_mask) == 0) {
 			//iprintf("pressed start\n");
 			ev.type = ev_keydown;
-			ev.data1 = ds_keys[i];
+			ev.data1 = alt ? ds_keys_alt[i] : ds_keys[i];
 			D_PostEvent (&ev);
 		} else if( (keys & key_mask) == 0 && (keys_last & key_mask) != 0) {
 			//iprintf("released start\n");
 			ev.type = ev_keyup;
-			ev.data1 = ds_keys[i];
+			ev.data1 = alt ? ds_keys_alt[i] : ds_keys[i];
 			D_PostEvent (&ev);
 		}
 	}
@@ -1759,11 +1801,24 @@ byte *I_ZoneBase (int *size)
 	if(__dsimode) {
 		*size = 14*1024*1024;
 	} else {
-		*size = 2*1024*1024;
+		*size = 2800*1024;
 	}
 #else
 	*size = 2*1024*1024;
 #endif
+#if 0
+	int cb_malloc = 4 * 1024 * 1024;
+	byte* buf_malloc = 0;
+	while (cb_malloc > 0) {
+		buf_malloc = malloc(cb_malloc);
+		if (buf_malloc)
+			break;
+		cb_malloc -= 1024;
+	}
+	iprintf("alloced: %d\n", cb_malloc);
+	while(1);
+#endif
+
 	ptr = malloc(*size);
 	printf("mainzone: %p %dk\n",ptr,	*size/1024);
 	memset(ptr,0,*size);

@@ -144,6 +144,7 @@ void Z_Free (void *ptr)
 
 #define MINFRAGMENT	64
 
+
 void *Z_Malloc (int size, int tag, void *user)
 {
 	int		extra;
@@ -233,6 +234,11 @@ void *Z_Malloc (int size, int tag, void *user)
 	return (void *) ((byte *)base + sizeof(memblock_t));
 }
 
+void* Z_Calloc(int size, int tag, void* user) {
+	void* buf = Z_Malloc(size, tag, user);
+	memset(buf, 0, size);
+	return buf;
+}
 
 /*
 ========================

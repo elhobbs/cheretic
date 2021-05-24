@@ -124,6 +124,8 @@ int             joybstrafe;
 int             joybuse;
 int             joybspeed;
 
+int             key_weaponprev, key_weaponnext;
+
 
 
 #define MAXPLMOVE       0x32
@@ -334,6 +336,53 @@ void G_BuildTiccmd (ticcmd_t *cmd)
 	{
 		look = TOCENTER;
 	}
+	if (gamekeydown[key_weaponprev])
+	{
+		int curWeapon;
+		player_t* pl;
+
+		pl = &players[consoleplayer];
+		curWeapon = pl->readyweapon;
+		for (curWeapon = (curWeapon - 1) & 7; curWeapon != pl->readyweapon;
+			curWeapon = (curWeapon - 1) & 7)
+		{
+			if (pl->weaponowned[curWeapon])
+			{
+				if (curWeapon >= wp_goldwand && curWeapon <= wp_mace &&
+					!pl->ammo[wpnlev1info[curWeapon].ammo])
+				{ // weapon that requires ammo is empty
+					continue;
+				}
+				break;
+			}
+		}
+		cmd->buttons |= BT_CHANGE;
+		cmd->buttons |= curWeapon << BT_WEAPONSHIFT;
+	}
+	if (gamekeydown[key_weaponnext])
+	{
+		int curWeapon;
+		player_t* pl;
+
+		pl = &players[consoleplayer];
+		curWeapon = pl->readyweapon;
+		for (curWeapon = (curWeapon + 1) & 7; curWeapon != pl->readyweapon;
+			curWeapon = (curWeapon + 1) & 7)
+		{
+			if (pl->weaponowned[curWeapon])
+			{
+				if (curWeapon >= wp_goldwand && curWeapon <= wp_mace &&
+					!pl->ammo[wpnlev1info[curWeapon].ammo])
+				{ // weapon that requires ammo is empty
+					continue;
+				}
+				break;
+			}
+		}
+		cmd->buttons |= BT_CHANGE;
+		cmd->buttons |= curWeapon << BT_WEAPONSHIFT;
+	}
+
 #endif
 
 #ifdef __WATCOMC__

@@ -1088,6 +1088,7 @@ boolean MN_Responder(event_t *event)
 		switch(key)
 		{
 			case 'y':
+			case KEY_RCTRL:
 				if(askforquit)
 				{
 					switch(typeofask)

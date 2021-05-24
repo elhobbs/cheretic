@@ -144,7 +144,7 @@ void R_InitSpriteDefs (char **namelist)
 	if (!numsprites)
 		return;
 
-	sprites = (spritedef_t *)Z_Malloc(numsprites *sizeof(*sprites), PU_STATIC, NULL);
+	sprites = (spritedef_t *)Z_Calloc(numsprites *sizeof(*sprites), PU_STATIC, NULL);
 
 	start = firstspritelump-1;
 	end = lastspritelump+1;
@@ -218,8 +218,8 @@ void R_InitSpriteDefs (char **namelist)
 		//
 		sprites[i].numframes = maxframe;
 		sprites[i].spriteframes =
-			(spriteframe_t *)Z_Malloc (maxframe * sizeof(spriteframe_t), PU_STATIC, NULL);
-		memcpy (sprites[i].spriteframes, sprtemp, maxframe*sizeof(spriteframe_t));
+			(spriteframe_t *)Z_Malloc(maxframe * sizeof(spriteframe_t), PU_STATIC, NULL);
+		memcpy(sprites[i].spriteframes, sprtemp, maxframe * sizeof(spriteframe_t));
 		//printf("sprites: %x %d %d\n",sprites,sizeof(*sprites),sizeof(spriteframe_t));
 		//while(1);
 	}

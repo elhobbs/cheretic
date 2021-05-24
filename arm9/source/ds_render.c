@@ -352,6 +352,7 @@ static void IR_ProjectSprite (mobj_t* thing, int lightlevel)
 	else
 		sprite.light = pSpr->subsector->sector->lightlevel+(extralight<<5);
 	//sprite.cm=CR_LIMIT+(int)((pSpr->flags & MF_TRANSLATION) >> (MF_TRANSSHIFT));
+	//iprintf("project: %d\n", lump);
 	sprite.name=lump;//gltexture=gld_RegisterPatch(lump+firstspritelump,sprite.cm);
 	//if (!sprite.gltexture)
 	//	return;

@@ -177,6 +177,8 @@
     <ClCompile Include="arm9\source\ds_textures2.c" />
     <ClCompile Include="arm9\source\ds_textures3.c" />
     <ClCompile Include="arm9\source\ds_textures4.c" />
+    <ClCompile Include="arm9\source\ds_textures5.c" />
+    <ClCompile Include="arm9\source\v_zone.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heretic\include\AM_DATA.H">
@@ -252,5 +254,6 @@
     <ClInclude Include="heretic\include\geometry.h" />
     <ClInclude Include="win32\GLWindow.h" />
     <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
+    <ClInclude Include="arm9\include\v_zone.h" />
   </ItemGroup>
 </Project>

@@ -59,8 +59,6 @@ void Sys_Init()
 
 	//put 3D on top
 	lcdMainOnTop();
-	
-	videoSetModeSub(MODE_5_2D | DISPLAY_BG0_ACTIVE | DISPLAY_BG2_ACTIVE);
 
     vramSetMainBanks(VRAM_A_TEXTURE, VRAM_B_TEXTURE, VRAM_C_TEXTURE, VRAM_D_TEXTURE);
 	vramSetBankE(VRAM_E_MAIN_BG);
@@ -68,15 +66,18 @@ void Sys_Init()
 	vramSetBankG(VRAM_G_MAIN_BG_0x06010000);
 	vramSetBankH(VRAM_H_SUB_BG); 
 	vramSetBankI(VRAM_I_SUB_BG_0x06208000); 
+	
+	videoSetModeSub(MODE_5_2D | DISPLAY_BG2_ACTIVE);
+
 
 	// Subscreen as a console
-	//setup stdout on sub 0
-	consoleInit(0,0, BgType_Text4bpp, BgSize_T_256x256, 4,0, false,true);
+	//setup stdout on main 0
+	consoleInit(0,0, BgType_Text4bpp, BgSize_T_256x256, 31,3, true,true);
 	
 	//setup 8bit background on 2
-	ds_bg_sub = bgInitSub(2,BgType_Bmp8,BgSize_B8_256x256,5,0);
-	bgScroll(ds_bg_sub,0,-100);bgUpdate();
-	ds_display_top = BG_MAP_RAM_SUB(5);
+	ds_bg_sub = bgInitSub(2,BgType_Bmp8,BgSize_B8_256x256,0,0);
+	//bgScroll(ds_bg_sub,0,-100);bgUpdate();
+	ds_display_top = BG_MAP_RAM_SUB(0);
 	/*for (y=0; y < 192; y++)
 	{
 		for (x=0; x < 128; x++)
@@ -91,17 +92,17 @@ void Sys_Init()
 		ds_display_top[x] = 0;
 	}*/
 
-	bgSetPriority(0+4,0);
-	bgSetPriority(2+4,1);
+	//bgSetPriority(0+4,1);
+	bgSetPriority(2+4,0);
 
 
-	videoSetMode(MODE_3_3D | DISPLAY_BG0_ACTIVE | DISPLAY_BG2_ACTIVE | DISPLAY_BG3_ACTIVE);
+	videoSetMode(MODE_3_3D | DISPLAY_BG0_ACTIVE | DISPLAY_BG3_ACTIVE);
 
 	//setup text layer for fps, center print, and Con_Printf temp overlay
-	ds_bg_text = bgInit(2,BgType_Text4bpp,BgSize_T_256x256,4,0);
+	//ds_bg_text = bgInit(2,BgType_Text4bpp,BgSize_T_256x256,4,0);
 
 	//setup top bitmap for console
-	ds_bg_main = bgInit(3,BgType_Bmp8,BgSize_B8_256x256,0/*5*/,0);
+	ds_bg_main = bgInit(3,BgType_Bmp8,BgSize_B8_256x256,0,0);
 	
 	ds_display_bottom_height = 192;
 	ds_display_bottom = bgGetGfxPtr(ds_bg_main);
@@ -109,7 +110,7 @@ void Sys_Init()
 
 	bgSetPriority(3,0);
 	bgSetPriority(0,1);
-	bgSetPriority(2,2);
+	//bgSetPriority(2,2);
 	
 	BG_PALETTE[0x20] = RGB5(31,0,0);
 
@@ -260,16 +261,6 @@ int main(int argc, char **argv) {
 	//TIMER1_CR = TIMER_ENABLE|TIMER_CASCADE;
 
 	ret = ibm_main(argc,argv);
-
-	printf("done: %d\n",ret);
-	while(1) {
-
-		//touchRead(&touch);
-		//iprintf("\x1b[10;0HTouch x = %04i, %04i\n", touch.rawx, touch.px);
-		//iprintf("Touch y = %04i, %04i\n", touch.rawy, touch.py);
-
-		swiWaitForVBlank();
-	}
 
 	return 0;
 }

@@ -74,10 +74,8 @@ will have new column_ts generated.
 void R_DrawColumnInCache (column_t *patch, byte *cache, int originy, int cacheheight)
 {
 	int		count, position;
-	byte	*source, *dest;
-	
-	dest = (byte *)cache + 3;
-	
+	byte	*source;
+		
 	while (patch->topdelta != 0xff)
 	{
 		source = (byte *)patch + 3;
@@ -119,7 +117,7 @@ void R_GenerateComposite (int texnum)
 	unsigned short *colofs;
 	
 	texture = textures[texnum];
-	block = Z_Malloc (texturecompositesize[texnum], PU_STATIC, 
+	block = Z_Calloc (texturecompositesize[texnum], PU_STATIC, 
 		&texturecomposite[texnum]);	
 	collump = texturecolumnlump[texnum];
 	colofs = texturecolumnofs[texnum];
@@ -335,14 +333,14 @@ void R_InitTextures (void)
 		InitThermo(spramount + numtextures + 6);
 	}
 
-	textures = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	textures_ds = Z_Malloc (numtextures*sizeof(*textures_ds), PU_STATIC, 0);
-	texturecolumnlump = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	texturecolumnofs = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	texturecomposite = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	texturecompositesize = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	texturewidthmask = Z_Malloc (numtextures*4, PU_STATIC, 0);
-	textureheight = Z_Malloc (numtextures*4, PU_STATIC, 0);
+	textures = Z_Calloc (numtextures*4, PU_STATIC, 0);
+	textures_ds = Z_Calloc(numtextures*sizeof(*textures_ds), PU_STATIC, 0);
+	texturecolumnlump = Z_Calloc(numtextures*4, PU_STATIC, 0);
+	texturecolumnofs = Z_Calloc(numtextures*4, PU_STATIC, 0);
+	texturecomposite = Z_Calloc(numtextures*4, PU_STATIC, 0);
+	texturecompositesize = Z_Calloc(numtextures*4, PU_STATIC, 0);
+	texturewidthmask = Z_Calloc(numtextures*4, PU_STATIC, 0);
+	textureheight = Z_Calloc(numtextures*4, PU_STATIC, 0);
 
 	totalwidth = 0;
 
@@ -365,7 +363,7 @@ void R_InitTextures (void)
 		if (offset > maxoff)
 			I_Error ("R_InitTextures: bad texture directory");
 		mtexture = (maptexture_t *) ( (byte *)maptex + offset);
-		texture = textures[i] = Z_Malloc (sizeof(texture_t) 
+		texture = textures[i] = Z_Calloc (sizeof(texture_t) 
 			+ sizeof(texpatch_t)*(SHORT(mtexture->patchcount)-1), PU_STATIC,
 			0);
 		texture->width = SHORT(mtexture->width);
@@ -390,8 +388,8 @@ void R_InitTextures (void)
 				I_Error (
 				"R_InitTextures: Missing patch in texture %s",texture->name);
 		}		
-		texturecolumnlump[i] = Z_Malloc (texture->width*2, PU_STATIC,0);
-		texturecolumnofs[i] = Z_Malloc (texture->width*2, PU_STATIC,0);
+		texturecolumnlump[i] = Z_Calloc (texture->width*2, PU_STATIC,0);
+		texturecolumnofs[i] = Z_Calloc (texture->width*2, PU_STATIC,0);
 		j = 1;
 		while (j*2 <= texture->width)
 			j<<=1;
@@ -418,7 +416,7 @@ void R_InitTextures (void)
 //
 // translation table for global animation
 //
-	texturetranslation = Z_Malloc ((numtextures+1)*4, PU_STATIC, 0);
+	texturetranslation = Z_Calloc ((numtextures+1)*4, PU_STATIC, 0);
 	for (i=0 ; i<numtextures ; i++)
 		texturetranslation[i] = i;
 
@@ -443,9 +441,9 @@ void R_InitFlats (void)
 	lastflat = W_GetNumForName ("F_END") - 1;
 	numflats = lastflat - firstflat + 1;
 	
-	flats_ds = Z_Malloc (numflats*sizeof(*textures_ds), PU_STATIC, 0);
+	flats_ds = Z_Calloc (numflats*sizeof(*textures_ds), PU_STATIC, 0);
 // translation table for global animation
-	flattranslation = Z_Malloc ((numflats+1)*4, PU_STATIC, 0);
+	flattranslation = Z_Calloc ((numflats+1)*4, PU_STATIC, 0);
 	for (i=0 ; i<numflats ; i++)
 	{
 		flattranslation[i] = i;
@@ -474,11 +472,11 @@ void R_InitSpriteLumps (void)
 	firstspritelump = W_GetNumForName ("S_START") + 1;
 	lastspritelump = W_GetNumForName ("S_END") - 1;
 	numspritelumps = lastspritelump - firstspritelump + 1;
-	spritewidth = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spriteheight = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spriteoffset = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	spritetopoffset = (fixed_t *)Z_Malloc (numspritelumps*4, PU_STATIC, 0);
-	sprites_ds = (dstex_t *)Z_Malloc (numspritelumps*sizeof(dstex_t), PU_STATIC, 0);
+	spritewidth = (fixed_t *)Z_Calloc(numspritelumps*4, PU_STATIC, 0);
+	spriteheight = (fixed_t *)Z_Calloc(numspritelumps*4, PU_STATIC, 0);
+	spriteoffset = (fixed_t *)Z_Calloc(numspritelumps*4, PU_STATIC, 0);
+	spritetopoffset = (fixed_t *)Z_Calloc(numspritelumps*4, PU_STATIC, 0);
+	sprites_ds = (dstex_t *)Z_Calloc(numspritelumps*sizeof(dstex_t), PU_STATIC, 0);
 
 	for (i=0 ; i< numspritelumps ; i++)
 	{
@@ -516,7 +514,7 @@ void R_InitColormaps (void)
 //
 	lump = W_GetNumForName("COLORMAP");
 	length = W_LumpLength (lump) + 255;
-	colormaps = Z_Malloc (length, PU_STATIC, 0);
+	colormaps = Z_Calloc(length, PU_STATIC, 0);
 	colormaps = (byte *)( ((int)colormaps + 255)&~0xff);
 	W_ReadLump (lump,colormaps);
 }

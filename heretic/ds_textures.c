@@ -1,4 +1,4 @@
-#if 0
+#if 1
 
 #include "DoomDef.h"
 #include "ds_textures.h"
@@ -419,43 +419,11 @@ byte* ds_load_block(int zone,int block,byte *texture,int size)
 #endif
 
 #ifdef ARM9
-	{
-		int ofs = 0;
-		int cb;
-		int i;
-		vu16 vcount,v1,v2;
-	
-		//DC_FlushRange((uint32*)texture, size);
-		DC_FlushAll();
-		v1 = REG_VCOUNT;
-		i=0;
-		do {
-			while(REG_VCOUNT > 260);
-
-			//if(REG_VCOUNT < 191 || REG_VCOUNT > 213) {
-				cb = MIN(512,size);
-				while((REG_DISPSTAT&DISP_IN_HBLANK) != 0);
-				while((REG_DISPSTAT&DISP_IN_HBLANK) == 0);
-			//} else {
-			//	cb = MIN(4096,size);
-			//}
-			
-			vcount = REG_VCOUNT;
-			ds_unlock_bank(addr+ofs);
-			//memcpy32(addr+ofs,texture+ofs,cb/4);
-			//vramSetMainBanks(VRAM_A_LCD, VRAM_B_LCD, VRAM_C_LCD, VRAM_D_LCD);
-			dmaCopyWords(0,(uint32*)(texture+ofs), (uint32*)(addr+ofs) , cb);
-			//vramSetMainBanks(VRAM_A_TEXTURE, VRAM_B_TEXTURE, VRAM_C_TEXTURE, VRAM_D_TEXTURE);
-			ds_lock_bank(addr+ofs);
-			if(vcount != REG_VCOUNT) {
-				iprintf("%d %d %d missed blanking period\n",vcount,REG_VCOUNT,cb);
-			}
-
-			ofs += cb;
-			i++;
-		} while(ofs < size);
-		v2 = REG_VCOUNT;
-		iprintf("blk: %d %d %d %d\n",r_framecount,size,v2-v1,i);
+	{	
+		DC_FlushRange((uint32*)texture, size);
+		ds_unlock_bank(addr);
+		dmaCopyWords(3,(uint32*)(texture), (uint32*)(addr) , size);
+		ds_lock_bank(addr);
 	}
 #endif
 	
@@ -616,7 +584,8 @@ int ds_load_map_texture(int name,int flags)
 	dstex_t			*ds = &textures_ds[name];
 	ds_texture_bank_t *bank = &ds_blocks[ds->zone];
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
-	byte *src,*addr,*dst,*scol,*dcol,mask[512],col[512];
+	byte* src, * addr, * dst, * scol, * dcol;
+	static byte col[512];
 
 	//int cb_free = Z_FreeMemory();
 #ifdef WIN32
@@ -745,9 +714,6 @@ R_DrawColumnInCacheGL
     int		count;
     int		position;
     byte*	source;
-    byte*	dest;
-	
-    dest = (byte *)cache + 3;
 	
     while (patch->topdelta != 0xff)
     {
@@ -783,43 +749,47 @@ extern int		firstspritelump, lastspritelump, numspritelumps;
 int ds_load_sprite(int name)
 {
 	column_t *column;
-	patch_t *patch = (patch_t *)W_CacheLumpNum (firstspritelump+name, PU_CACHE);
 	dstex_t			*ds = &sprites_ds[name];
 	ds_texture_bank_t *bank = &ds_blocks[ds->zone];
 	int handle, length, size,ds_size, block, w, h, i, j,lump, texnum;
-	byte *src,*addr,*dst,*scol,*dcol,col[512];
+	byte* src, * addr, * dst, *scol, *dcol;
+	static byte col[1024];
 
 #ifdef WIN32
 	ds_texture_width = ds->width*16.0f;
 	ds_texture_height = ds->height*16.0f;
 #endif
 
-	block = ds_is_texture_resident(ds);
-	if(block != -1)
-	{
+	if (ds->data) {
+		block = ds_is_texture_resident(ds);
+		if (block != -1)
+		{
 #ifdef WIN32
-		glBindTexture(GL_TEXTURE_2D,bank->texnums[block]);
+			glBindTexture(GL_TEXTURE_2D, bank->texnums[block]);
 #endif
-		if(bank->textures[block].visframe != r_framecount) {
-			ds_size = ds->block_width * ds->block_height;
-			tex_cb_sprites += ds_size;
+			if (bank->textures[block].visframe != r_framecount) {
+				ds_size = ds->block_width * ds->block_height;
+				tex_cb_sprites += ds_size;
+			}
+			bank->textures[block].visframe = r_framecount;
+			return bank->textures[block].texnum;
 		}
-		bank->textures[block].visframe = r_framecount;
-		return bank->textures[block].texnum;
 	}
-	//Con_DPrintf("%s %d %d\n",texture->ds.name,texture->ds.width,texture->ds.height);
 
 	w = spritewidth[name]>>FRACBITS;
 	h = spriteheight[name]>>FRACBITS;
 	size = w * h;
-	size = (size+3)&(~3L);
+	size = (size+15)&(~15L);
 	ds_size = ds->block_width * ds->block_height;
+	
+	//iprintf("sprite1 %d %d %d %x\n",name, w, h, ds->data);
 
 	tex_cb_sprites += ds_size;
 
 	if(ds->data == 0) {
 		src = (byte *)Z_Malloc (size+16,PU_STATIC,0);
 		dst = (byte *)Z_Malloc (ds_size+16,PU_STATIC,&(ds->data));
+		patch_t* patch = (patch_t*)W_CacheLumpNum(firstspritelump + name, PU_CACHE);
 		//dst = src + size;
 		memset(dst,0,ds_size);
 
@@ -850,6 +820,7 @@ int ds_load_sprite(int name)
 	} else {
 		addr = (byte *)ds->data;
 	}
+	//iprintf("sprite2 %d %d %d %x %x\n", name, w, h, ds->data, addr);
 	texnum = ds_load_texture(ds,addr,1,TEXGEN_TEXCOORD|GL_TEXTURE_WRAP_S|GL_TEXTURE_WRAP_T);
 
 
@@ -1041,6 +1012,9 @@ int ds_load_blank_tex()
 	texnum = ds_load_texture(ds,&ds_blank_texture[0][0],1,TEXGEN_TEXCOORD|GL_TEXTURE_WRAP_S|GL_TEXTURE_WRAP_T);
 
 	return texnum;
+}
+
+void ds_texture_cache_load() {
 }
 
 #endif

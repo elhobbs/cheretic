@@ -336,6 +336,8 @@ void S_Start(void)
 		}
 	}
 	memset(channel, 0, sizeof(channel));
+	memset(snd_Buffer_left, 0, SND_SAMPLES);
+	memset(snd_Buffer_right, 0, SND_SAMPLES);
 	S_Update_();
 }
 
@@ -663,8 +665,7 @@ void S_StartSound(mobj_t *origin, int sound_id)
 	}
 	if(S_sfx[sound_id].snd_ptr == NULL)
 	{
-		S_sfx[sound_id].snd_ptr = W_CacheLumpNum(S_sfx[sound_id].lumpnum,
-			PU_SOUND);
+		S_sfx[sound_id].snd_ptr = W_CacheLumpNum(S_sfx[sound_id].lumpnum,PU_SOUND);
 	}
 
 #if 0
@@ -1237,7 +1238,7 @@ void S_Update_(void)
 // check to make sure that we haven't overshot
 	if (paintedtime < soundtime)
 	{
-		iprintf ("S_Update_ : overflow\n");
+		//iprintf ("S_Update_ : overflow\n");
 		paintedtime = soundtime;
 	}
 

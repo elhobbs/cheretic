@@ -653,6 +653,11 @@ void P_SetupLevel (int episode, int map, int playermask, skill_t skill)
 	char	lumpname[9];
 	int		lumpnum;
 	mobj_t	*mobj;
+
+	extern byte* host_basepal;
+	host_basepal = (byte*)W_CacheLumpName("PLAYPAL", PU_STATIC);
+	I_SetPalette(host_basepal);
+
 	
 	totalkills = totalitems = totalsecret = 0;
 	for (i=0 ; i<MAXPLAYERS ; i++)

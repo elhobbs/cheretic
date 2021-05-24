@@ -217,6 +217,8 @@ void D_Display(void)
 
 	// Flush buffered stuff to screen
 	I_Update();
+
+	S_Update_();
 }
 
 //---------------------------------------------------------------------------

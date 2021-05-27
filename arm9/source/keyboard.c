@@ -517,7 +517,7 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 			x += 8;
 		}
 	}
-	else if (region->type == 2)
+	else if (region->type == 5)
 	{
 		for (j = 0; j<12; j++)
 		{
@@ -529,7 +529,7 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 			screen += 256;
 		}
 	}
-	else if (region->type == 3)
+	else if (region->type == 2)
 	{
 		for (j = 0; j<12; j++)
 		{
@@ -541,7 +541,7 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 			screen += 256;
 		}
 	}
-	else if (region->type == 4)
+	else if (region->type == 3)
 	{
 		for (j = 0; j<12; j++)
 		{
@@ -553,7 +553,7 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 			screen += 256;
 		}
 	}
-	else if (region->type == 5)
+	else if (region->type == 4)
 	{
 		for (j = 0; j<12; j++)
 		{

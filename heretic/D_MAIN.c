@@ -1056,5 +1056,7 @@ void D_DoomMain(void)
 #ifdef __WATCOMC__
 	_settextcursor(0x0607); // bring the cursor back
 #endif
+	extern int keyboard_visible;
+	keyboard_visible = 2;
 	D_DoomLoop(); // Never returns
 }

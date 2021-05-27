@@ -8,6 +8,7 @@
 #ifdef ARM9
 #include <nds.h>
 #include <stdio.h>
+#include "keyboard.h"
 
 int ibm_main(int argc, char **argv);
 
@@ -19,6 +20,7 @@ u16		*ds_display_menu;
 int ds_bg_sub = 0;
 int ds_bg_main = 0;
 int ds_bg_text = 0;
+byte* ds_bottom_screen = 0;
 
 volatile int ds_timer_ticks = 0;
 void mus_play_timer(void);
@@ -49,7 +51,7 @@ long long ds_time2()
 	return (t + (time << 16) + time1);
 }
 
-byte hblank_buffer[256*256*2] ALIGN(32);
+//byte hblank_buffer[256*256*2] ALIGN(32);
 void Sys_Init()
 {
 	bool ret;
@@ -72,7 +74,6 @@ void Sys_Init()
 
 	// Subscreen as a console
 	//setup stdout on main 0
-	consoleInit(0,0, BgType_Text4bpp, BgSize_T_256x256, 31,3, true,true);
 	
 	//setup 8bit background on 2
 	ds_bg_sub = bgInitSub(2,BgType_Bmp8,BgSize_B8_256x256,0,0);
@@ -96,7 +97,8 @@ void Sys_Init()
 	bgSetPriority(2+4,0);
 
 
-	videoSetMode(MODE_3_3D | DISPLAY_BG0_ACTIVE | DISPLAY_BG3_ACTIVE);
+	videoSetMode(MODE_3_3D | DISPLAY_BG1_ACTIVE | DISPLAY_BG3_ACTIVE);
+	consoleInit(0,1, BgType_Text4bpp, BgSize_T_256x256, 31,3, true,true);
 
 	//setup text layer for fps, center print, and Con_Printf temp overlay
 	//ds_bg_text = bgInit(2,BgType_Text4bpp,BgSize_T_256x256,4,0);
@@ -107,10 +109,14 @@ void Sys_Init()
 	ds_display_bottom_height = 192;
 	ds_display_bottom = bgGetGfxPtr(ds_bg_main);
 	ds_display_menu = ds_display_bottom;
+	ds_bottom_screen = (byte*)malloc(256 * 192);
+	memset(ds_bottom_screen, 0, 256 * 192);
 
-	bgSetPriority(3,0);
-	bgSetPriority(0,1);
+	bgSetPriority(0, 2);
+	bgSetPriority(3, 1);
+	bgSetPriority(1, 3);
 	//bgSetPriority(2,2);
+	bgUpdate();
 	
 	BG_PALETTE[0x20] = RGB5(31,0,0);
 
@@ -118,7 +124,7 @@ void Sys_Init()
 	{
 		ds_display_bottom[x] = 0;//0x2020;
 	}
-	
+	keyboard_init();
 
 
 
@@ -191,7 +197,7 @@ Wifi_InitDefault(true);
 
 #endif
 	
-
+#if 0
 	if (0) {
 		int t1,t2;
 		int v1,v2;
@@ -229,7 +235,7 @@ Wifi_InitDefault(true);
 		
 		while(1);
 	}
-
+#endif
 
 
 	glEnable(GL_FOG);
@@ -244,8 +250,70 @@ Wifi_InitDefault(true);
 
 	soundEnable();
 
-	defaultExceptionHandler();
+	//defaultExceptionHandler();
 	//cygprofile_begin();
+}
+
+static const char* registerNames[] =
+{ "r0","r1","r2","r3","r4","r5","r6","r7",
+	"r8 ","r9 ","r10","r11","r12","sp ","lr ","pc " };
+
+extern const char __itcm_start[];
+
+u32 getExceptionAddress(u32 opcodeAddress, u32 thumbState);
+
+//---------------------------------------------------------------------------------
+void exceptionDump() {
+	//---------------------------------------------------------------------------------
+	/*consoleDemoInit();
+
+	BG_PALETTE_SUB[0] = RGB15(31, 0, 0);
+	BG_PALETTE_SUB[255] = RGB15(31, 31, 31);*/
+	
+	bgSetPriority(1, 0);
+	bgUpdate();
+
+	iprintf("\x1b[5CGuru Meditation Error!\n");
+	u32	currentMode = getCPSR() & 0x1f;
+	u32 thumbState = ((*(u32*)0x02FFFD90) & 0x20);
+
+	u32 codeAddress, exceptionAddress = 0;
+
+	int offset = 8;
+
+	if (currentMode == 0x17) {
+		iprintf("\x1b[10Cdata abort!\n\n");
+		codeAddress = exceptionRegisters[15] - offset;
+		if ((codeAddress > 0x02000000 && codeAddress < 0x02400000) ||
+			(codeAddress > (u32)__itcm_start && codeAddress < (u32)(__itcm_start + 32768)))
+			exceptionAddress = getExceptionAddress(codeAddress, thumbState);
+		else
+			exceptionAddress = codeAddress;
+
+	}
+	else {
+		if (thumbState)
+			offset = 2;
+		else
+			offset = 4;
+		iprintf("\x1b[5Cundefined instruction!\n\n");
+		codeAddress = exceptionRegisters[15] - offset;
+		exceptionAddress = codeAddress;
+	}
+
+	iprintf("  pc: %08lX addr: %08lX\n\n", codeAddress, exceptionAddress);
+
+	int i;
+	for (i = 0; i < 8; i++) {
+		iprintf("  %s: %08lX   %s: %08lX\n",
+			registerNames[i], exceptionRegisters[i],
+			registerNames[i + 8], exceptionRegisters[i + 8]);
+	}
+	iprintf("\n");
+	u32* stack = (u32*)exceptionRegisters[13];
+	for (i = 0; i < 10; i++) {
+		iprintf("\x1b[%d;2H%08lX:  %08lX %08lX", i + 14, (u32)&stack[i * 2], stack[i * 2], stack[(i * 2) + 1]);
+	}
 }
 
 //---------------------------------------------------------------------------------
@@ -255,6 +323,8 @@ int main(int argc, char **argv) {
 	int ret;
 
 	Sys_Init();
+
+	setExceptionHandler(exceptionDump);
 
 	//enable timers for keeping track of a normal time value every frame.
 	//TIMER0_CR = TIMER_ENABLE|TIMER_DIV_1024;

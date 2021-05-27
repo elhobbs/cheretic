@@ -7,6 +7,7 @@
 #include "DoomDef.h"
 #include "R_local.h"
 #include "sounds.h"
+#include "keyboard.h"
 #elif defined WIN32
 #include <stdlib.h>
 #include <stdarg.h>
@@ -484,6 +485,7 @@ extern void Win32_WindowUpdate(void);
 #ifdef ARM9
 extern u16* ds_display_bottom;
 extern u16* ds_display_top;
+extern byte* ds_bottom_screen;
 #endif
 void I_Update (void)
 {
@@ -498,6 +500,8 @@ void I_Update (void)
 	} else {
 		memset(screen,0,(SCREENHEIGHT-42)*SCREENWIDTH);//SCREENWIDTH*SCREENHEIGHT);
 	}
+	keyboard_draw();
+	memcpy(ds_display_top, ds_bottom_screen, 256 * 192);
 #endif
 #else
 	int h;
@@ -1186,6 +1190,22 @@ void I_ReadMouse (void)
 		}
 	}
 
+	if ((keys & (KEY_L | KEY_R)) == (KEY_L | KEY_R)) {
+		keys |= BIT(15);
+	}
+	if ((keys & BIT(15)) != 0 && (keys_last & BIT(15)) == 0) {
+		//iprintf("pressed start\n");
+		ev.type = ev_keydown;
+		ev.data1 = 'z';
+		D_PostEvent(&ev);
+	}
+	else if ((keys & BIT(15)) == 0 && (keys_last & BIT(15)) != 0) {
+		//iprintf("released start\n");
+		ev.type = ev_keyup;
+		ev.data1 = 'z';
+		D_PostEvent(&ev);
+	}
+
 	keys_last = keys;
 
 #endif
@@ -1195,6 +1215,7 @@ void I_ReadMouse (void)
 	event_t ev;
 	int dx,dy;
 	scanKeys();
+	keyboard_input();
 	if (keysDown() & KEY_TOUCH)
 	{
 		touchRead(&g_lastTouch);// = touchReadXY();
@@ -1259,6 +1280,7 @@ void I_ReadMouse (void)
 		// some simple averaging / smoothing through weightened (.5 + .5) accumulation
 		g_lastTouch.px = (g_lastTouch.px + g_currentTouch.px) / 2;
 		g_lastTouch.py = (g_lastTouch.py + g_currentTouch.py) / 2;
+
 	}
 	}
 #endif

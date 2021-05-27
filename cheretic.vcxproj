@@ -53,7 +53,7 @@
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">make clean &amp;&amp; make -r 2&gt;&amp;1 | sed -e %27s/\(.[a-zA-Z]\+\):\([0-9]\+\):/\1(\2):/</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">make clean</NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName).nds</NMakeOutput>
-    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ARM9;_HAVE_STDC</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ARM9;ARM7;_HAVE_STDC</NMakePreprocessorDefinitions>
     <NMakeIncludeSearchPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\devl\cheretic\heretic\include;c:\devkitPro\libnds\include;C:\devkitPro\devkitARM\arm-eabi\include</NMakeIncludeSearchPath>
     <NMakeForcedIncludes Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     </NMakeForcedIncludes>
@@ -97,6 +97,7 @@
     </ClCompile>
     <ClCompile Include="arm9\source\ds_textures4.c" />
     <ClCompile Include="arm9\source\ds_textures5.c" />
+    <ClCompile Include="arm9\source\keyboard.c" />
     <ClCompile Include="arm9\source\musplay.c" />
     <ClCompile Include="arm9\source\template.c" />
     <ClCompile Include="arm7\source\template.c">
@@ -152,6 +153,7 @@
     <ClCompile Include="heretic\polylib.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arm9\include\keyboard.h" />
     <ClInclude Include="arm9\include\v_zone.h" />
     <ClInclude Include="heretic\include\AM_DATA.H" />
     <ClInclude Include="heretic\include\AM_MAP.H" />

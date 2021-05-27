@@ -44,7 +44,9 @@ volatile int freeze_all = 0;
 
 byte adlib_write_reg(byte reg, byte data) {
 #ifdef ARM9
-	fifoSendValue32( FIFO_USER_01, ( reg << 8 ) | data ); 
+#ifdef MUSPLAY
+	fifoSendValue32( FIFO_USER_01, ( reg << 8 ) | data );
+#endif
 #endif
 	return 0;
 }

@@ -179,6 +179,7 @@
     <ClCompile Include="arm9\source\ds_textures4.c" />
     <ClCompile Include="arm9\source\ds_textures5.c" />
     <ClCompile Include="arm9\source\v_zone.c" />
+    <ClCompile Include="arm9\source\keyboard.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heretic\include\AM_DATA.H">
@@ -255,5 +256,6 @@
     <ClInclude Include="win32\GLWindow.h" />
     <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
     <ClInclude Include="arm9\include\v_zone.h" />
+    <ClInclude Include="arm9\include\keyboard.h" />
   </ItemGroup>
 </Project>

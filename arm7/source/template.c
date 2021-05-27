@@ -34,6 +34,7 @@
 #endif
 #include <maxmod7.h>
 
+#ifdef MUSPLAY
 #define FIFO_ADLIB FIFO_USER_01
 
 extern void 	PutAdLibBuffer(int);
@@ -44,6 +45,8 @@ void AdLibHandler(u32 value, void* userdata) {
 	//---------------------------------------------------------------------------------
 	PutAdLibBuffer(value);
 }
+#endif
+
 //---------------------------------------------------------------------------------
 void VblankHandler(void) {
 	//---------------------------------------------------------------------------------
@@ -97,7 +100,9 @@ int main() {
 
 	installSystemFIFO();
 
+#ifdef MUSPLAY
 	fifoSetValue32Handler(FIFO_ADLIB, AdLibHandler, 0);
+#endif
 
 	irqSet(IRQ_VCOUNT, VcountHandler);
 	irqSet(IRQ_VBLANK, VblankHandler);
@@ -106,8 +111,9 @@ int main() {
 
 	setPowerButtonCB(powerButtonCB);
 
+#ifdef MUSPLAY
 	AdlibEmulator();		// We never return from here
-
+#endif
 	// Keep the ARM7 mostly idle
 	while (!exitflag) {
 		if (0 == (REG_KEYINPUT & (KEY_SELECT | KEY_START | KEY_L | KEY_R))) {

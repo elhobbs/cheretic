@@ -12,6 +12,11 @@
 #include "AM_data.h"
 #include <stdio.h>
 
+#define AM_SCREEN_WIDTH 256
+#define AM_SCREEN_HEIGHT 192
+extern byte* ds_bottom_screen;
+extern boolean automapactive;
+
 vertex_t KeyPoints[NUMKEYS];
 
 #define NUMALIAS 3 // Number of antialiased lines.
@@ -76,8 +81,8 @@ static int grid = 0;
 static int leveljuststarted = 1; // kluge until AM_LevelInit() is called
 
 boolean    automapactive = false;
-static int finit_width = SCREENWIDTH;
-static int finit_height = SCREENHEIGHT-42;
+static int finit_width = AM_SCREEN_WIDTH;
+static int finit_height = AM_SCREEN_HEIGHT;// -42;
 static int f_x, f_y; // location of window on screen
 static int f_w, f_h; // size of window on screen
 static int lightlev; // used for funky strobing effect
@@ -304,7 +309,7 @@ void AM_initVariables(void)
   //static event_t st_notify = { ev_keyup, AM_MSGENTERED };
 
   automapactive = true;
-  fb = screen;
+  fb = ds_bottom_screen;// screen;
 
   f_oldloc.x = MAXINT;
   amclock = 0;
@@ -726,8 +731,8 @@ void AM_clearFB(int color)
 	j=mapystart*finit_width;
 	for(i=0;i<finit_height;i++)
 	{
-		memcpy(screen+i*finit_width, maplump+j+mapxstart, finit_width-mapxstart);
-		memcpy(screen+i*finit_width+finit_width-mapxstart, maplump+j, mapxstart);
+		memcpy(fb+i*finit_width, maplump+j+mapxstart, finit_width-mapxstart);
+		memcpy(fb+i*finit_width+finit_width-mapxstart, maplump+j, mapxstart);
 		j += finit_width;
 		if(j >= finit_height*finit_width)
 			j=0;
@@ -942,17 +947,17 @@ void PUTDOT(short xx,short yy,byte *cc, byte *cm)
 	if(yy == oldyy+1)
 	{
 		oldyy++;
-		oldyyshifted += 320;
+		oldyyshifted += AM_SCREEN_WIDTH;
 	}
 	else if(yy == oldyy-1)
 	{
 		oldyy--;
-		oldyyshifted -= 320;
+		oldyyshifted -= AM_SCREEN_WIDTH;
 	}
 	else if(yy != oldyy)
 	{
 		oldyy = yy;
-		oldyyshifted = yy*320;
+		oldyyshifted = yy* AM_SCREEN_WIDTH;
 	}
 	fb[oldyyshifted+xx] = *(cc);
 // 	fb[(yy)*f_w+(xx)]=*(cc);

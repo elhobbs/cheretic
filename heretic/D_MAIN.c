@@ -172,10 +172,10 @@ void D_Display(void)
 		{
 			AM_Drawer ();
 		}
-		else
-		{
+		//else
+		//{
 			IR_RenderPlayerView (&players[displayplayer]);
-		}
+		//}
 		CT_Drawer();
 		UpdateState |= I_FULLVIEW;
 		SB_Drawer();

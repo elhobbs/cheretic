@@ -2,6 +2,9 @@
 #include "DOOMDATA.h"
 #include "keyboard.h"
 
+extern boolean	automapactive;
+static boolean	automapactive_last = false;
+
 typedef struct {
 	int x, y, type, dx, key;
 	char *text, *shift_text;
@@ -75,8 +78,10 @@ static int key_array_count = sizeof(key_array) / sizeof(sregion_t);
 
 #define RGB8_to_565(r,g,b)  (((b)>>3)&0x1f)|((((g)>>2)&0x3f)<<5)|((((r)>>3)&0x1f)<<11)
 
-static byte keyboard_fg = 1*16;
-static byte keyboard_bg = 8*16;
+static byte keyboard_fg = 1 * 16;
+static byte keyboard_bg = 8 * 16;
+static byte keyboard_fg_am = 0 * 16;
+static byte keyboard_bg_am = 1 * 16;
 
 static int keyboard_vofs;
 static int keyboard_hofs;
@@ -179,8 +184,8 @@ void keyboard_mark(sregion_t *region, int index, int in_touch) {
 		}
 	}
 	//draw regions here to avoid layout change issues
-	keyboard_draw_region(last_touching, last_index, keyboard_fg);
-	keyboard_draw_region(key_touching, key_touching_index, keyboard_bg);
+	keyboard_draw_region(last_touching, last_index, automapactive ? keyboard_fg_am : keyboard_fg);
+	keyboard_draw_region(key_touching, key_touching_index, automapactive ? keyboard_bg_am : keyboard_bg);
 }
 
 int keyboard_scankeys()
@@ -223,7 +228,7 @@ int keyboard_scankeys()
 			keyboard_mark(0, -1, 1);
 			return key_down;
 		}
-		iprintf("Touch: %d %d\n",x,y);
+		//iprintf("Touch: %d %d\n",x,y);
 	}
 	else
 	{
@@ -297,10 +302,10 @@ void keyboard_input() {
 
 	key_last = key;
 	key = keyboard_scankeys();
-	iprintf("key: %d\n", key);
+	//iprintf("key: %d\n", key);
 	if (key_last != 0 && key_last != key)
 	{
-		iprintf("key up: %d %c\n", key_last, key_last);
+		//iprintf("key up: %d %c\n", key_last, key_last);
 		event.type = ev_keyup;
 		event.data1 = key_last;
 		D_PostEvent(&event);
@@ -308,7 +313,7 @@ void keyboard_input() {
 
 	if (key != 0 && key != key_last)
 	{
-		iprintf("key down: %d %c\n", key, key);
+		//iprintf("key down: %d %c\n", key, key);
 		event.type = ev_keydown;
 		event.data1 = key;
 		D_PostEvent(&event);
@@ -391,7 +396,6 @@ void keyboard_draw_char(int x, int y, int c, byte fg) {
 	if (c < 0 || c > 256) return;
 
 	u8* fontdata = default_font_bin + (32 * c);
-	u16 bg = 0;// colorTable[screenColor];
 
 	//if (currentConsole->flags & CONSOLE_UNDERLINE) b8 = 0xff;
 
@@ -404,17 +408,14 @@ void keyboard_draw_char(int x, int y, int c, byte fg) {
 		byte b = *fontdata++;
 
 		if (b & 0xf) {
-			*screen++ = fg;
+			*screen = fg;
 		}
-		else {
-			*screen++ = bg;
-		}
+		screen++;
+
 		if (b & 0xf0) {
-			*screen++ = fg;
+			*screen = fg;
 		}
-		else {
-			*screen++ = bg;
-		}
+		screen++;
 		if ((i & 0x3) == 0x3) {
 			screen += (256 - 8);
 		}
@@ -495,10 +496,10 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 	else if (region->type == 1)
 	{
 		if ((region->key == KEY_CAPSLOCK && key_in_caps) || (region->key == KEY_RSHIFT && key_in_shift)) {
-			c = keyboard_bg;
+			c = automapactive ? keyboard_bg_am : keyboard_bg;
 		}
 		else if ((region->key == KEY_CAPSLOCK && !key_in_caps) || (region->key == KEY_RSHIFT && !key_in_shift)) {
-			c = keyboard_fg;
+			c = automapactive ? keyboard_fg_am : keyboard_fg;
 		}
 		ch = region->text;
 		len = strlen(ch) * 8 + 4;
@@ -576,9 +577,6 @@ void keyboard_draw_region(sregion_t *region, int index, byte c) {
 	}
 }
 
-extern boolean	automapactive;
-static boolean	automapactive_last = false;
-
 void keyboard_draw()
 {
 	//return;
@@ -597,7 +595,9 @@ void keyboard_draw()
 	//keyboard_screen = (u16*)gfxGetFramebuffer(GFX_BOTTOM, GFX_LEFT, &width, &height);
 
 	//see if the keyboard layout has changed or automap toggled
-	if (keyboard_visible != keyboard_visible_last || (automapactive ^ automapactive_last)) {
+	if (keyboard_visible != keyboard_visible_last || 
+		(automapactive ^ automapactive_last) ||
+		automapactive) {
 		keyboard_vofs = KEYBOARD_FULL_VOFS;
 		keyboard_hofs = KEYBOARD_HOFS;
 		h = keyboard_visible == 1 ? 19 : 24;
@@ -606,20 +606,8 @@ void keyboard_draw()
 			keyboard_vofs = KEYBOARD_MINI_VOFS;
 		}
 		//clear the console and set window size
-		if (automapactive && !automapactive_last) {
-			//consoleClear();
-			memset(keyboard_screen, 0, 256*192);
-			//consoleSetWindow(0, 0, h-1, 40, 1);
-		}
-		else if (!automapactive && automapactive_last) {
-			//consoleClear();
+		if (!automapactive) {
 			memset(keyboard_screen, 0, 256 * 192);
-			//consoleSetWindow(0, 0, 0, 40, h);
-		}
-		else {
-			//consoleClear();
-			memset(keyboard_screen, 0, 256 * 192);
-			//consoleSetWindow(0, 0, 0, 40, h);
 		}
 
 		//printf("full refresh: %d %d\n", keyboard_visible, keyboard_visible_last);
@@ -642,8 +630,12 @@ void keyboard_draw()
 
 
 	for (i = 0; i<count; i++) {
-		keyboard_draw_region(&region[i], -1, keyboard_fg);
+		keyboard_draw_region(&region[i], -1, automapactive ? keyboard_fg_am : keyboard_fg);
 	}
+
+	//draw down keys on full draw
+	keyboard_draw_region(last_touching, last_index, automapactive ? keyboard_fg_am : keyboard_fg);
+	keyboard_draw_region(key_touching, key_touching_index, automapactive ? keyboard_bg_am : keyboard_bg);
 #endif
 }
 

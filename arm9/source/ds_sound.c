@@ -1031,6 +1031,8 @@ void S_TransferPaintBuffer(int endtime)
 		outr[out_idx] = (val>>8);// + 128;
 		out_idx = (out_idx + 1) & out_mask;
 	}
+	DC_InvalidateRange(snd_Buffer_left, snd_Samples);
+	DC_InvalidateRange(snd_Buffer_right, snd_Samples);
 
 }
 

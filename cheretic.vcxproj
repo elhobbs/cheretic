@@ -87,6 +87,7 @@
     <None Include="arm7\Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="arm7\source\musplay.c" />
     <ClCompile Include="arm9\source\ds_sound.c" />
     <ClCompile Include="arm9\source\ds_textures2.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -153,6 +154,7 @@
     <ClCompile Include="heretic\polylib.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arm7\include\musplay.h" />
     <ClInclude Include="arm9\include\keyboard.h" />
     <ClInclude Include="arm9\include\v_zone.h" />
     <ClInclude Include="heretic\include\AM_DATA.H" />
@@ -163,6 +165,7 @@
     <ClInclude Include="heretic\include\I_SOUND.H" />
     <ClInclude Include="heretic\include\INFO.H" />
     <ClInclude Include="heretic\include\map.h" />
+    <ClInclude Include="heretic\include\musfifo.h" />
     <ClInclude Include="heretic\include\p_enemy.h" />
     <ClInclude Include="heretic\include\p_inter.h" />
     <ClInclude Include="heretic\include\p_local.h" />

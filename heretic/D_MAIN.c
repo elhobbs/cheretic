@@ -694,7 +694,7 @@ void blitStartup(void)
 char tmsg[300];
 void tprintf(char *msg,int initflag)
 {
-	printf(msg);
+	iprintf(msg);
 #if 0
 	#ifdef __WATCOMC__
 	char    temp[80];

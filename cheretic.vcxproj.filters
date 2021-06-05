@@ -180,6 +180,7 @@
     <ClCompile Include="arm9\source\ds_textures5.c" />
     <ClCompile Include="arm9\source\v_zone.c" />
     <ClCompile Include="arm9\source\keyboard.c" />
+    <ClCompile Include="arm7\source\musplay.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heretic\include\AM_DATA.H">
@@ -257,5 +258,7 @@
     <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
     <ClInclude Include="arm9\include\v_zone.h" />
     <ClInclude Include="arm9\include\keyboard.h" />
+    <ClInclude Include="arm7\include\musplay.h" />
+    <ClInclude Include="heretic\include\musfifo.h" />
   </ItemGroup>
 </Project>

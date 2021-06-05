@@ -32,13 +32,15 @@
 #ifdef USE_WIFI
 #include <dswifi7.h>
 #endif
-#include <maxmod7.h>
+//#include <maxmod7.h>
 
 #ifdef MUSPLAY
 #define FIFO_ADLIB FIFO_USER_01
 
 extern void 	PutAdLibBuffer(int);
 extern void 	AdlibEmulator();
+
+void mus_init();
 
 //---------------------------------------------------------------------------------
 void AdLibHandler(u32 value, void* userdata) {
@@ -70,6 +72,8 @@ void powerButtonCB() {
 	exitflag = true;
 }
 
+int arm7_frame_count = 0;
+
 //---------------------------------------------------------------------------------
 int main() {
 	//---------------------------------------------------------------------------------
@@ -89,7 +93,7 @@ int main() {
 	fifoInit();
 	touchInit();
 
-	mmInstall(FIFO_MAXMOD);
+	//mmInstall(FIFO_MAXMOD);
 
 	SetYtrigger(80);
 
@@ -107,19 +111,29 @@ int main() {
 	irqSet(IRQ_VCOUNT, VcountHandler);
 	irqSet(IRQ_VBLANK, VblankHandler);
 
+#ifdef USE_WIFI
 	irqEnable(IRQ_VBLANK | IRQ_VCOUNT | IRQ_NETWORK);
+#else
+	irqEnable(IRQ_VBLANK | IRQ_VCOUNT);
+#endif
 
 	setPowerButtonCB(powerButtonCB);
 
 #ifdef MUSPLAY
 	AdlibEmulator();		// We never return from here
 #endif
+
+	mus_init();
+
 	// Keep the ARM7 mostly idle
 	while (!exitflag) {
 		if (0 == (REG_KEYINPUT & (KEY_SELECT | KEY_START | KEY_L | KEY_R))) {
 			exitflag = true;
 		}
-		swiWaitForVBlank();
+		void mus_frame();
+		mus_frame();
+		arm7_frame_count++;
+		//swiWaitForVBlank();
 	}
 	return 0;
 }

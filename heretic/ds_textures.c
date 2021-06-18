@@ -420,6 +420,8 @@ byte* ds_load_block(int zone,int block,byte *texture,int size)
 
 #ifdef ARM9
 	{	
+		void S_Update_(void);
+		S_Update_();
 		DC_FlushRange((uint32*)texture, size);
 		ds_unlock_bank(addr);
 		dmaCopyWords(3,(uint32*)(texture), (uint32*)(addr) , size);

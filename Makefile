@@ -10,7 +10,8 @@ export TOPDIR	:=	$(CURDIR)
 
 # specify a directory which contains the nitro filesystem
 # this is relative to the Makefile
-NITRO_FILES	:= nitro
+#NITRO_FILES	:= nitro
+NITRO_FILES	:= 
 
 # These set the information text in the nds file
 #GAME_TITLE     := My Wonderful Homebrew

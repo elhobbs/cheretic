@@ -5,9 +5,34 @@
 void mus_play_timer(void) {
 
 }
+extern int snd_MusicVolume;
+
+volatile mus_state_t mus_state;
 
 void mus_update_volume() {
+	mus_state.volume = snd_MusicVolume;
 
+	//DC_InvalidateAll();
+
+	/*musMessage msg;
+	msg.type = musMessageType_volume;
+	msg.data = (void *)snd_MusicVolume;
+
+	DC_InvalidateAll();
+	
+	iprintf("mus_update_volume\n");
+	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);
+	iprintf("mus_update_volume sent\n");
+
+	while (!fifoCheckValue32(FIFO_MUS));
+
+	int result = (int)fifoGetValue32(FIFO_MUS);
+	if (result) {
+		iprintf("mus_update_volume: arm7 no likey\n");
+	}
+	else {
+		iprintf("mus_update_volume: arm7 do likey\n");
+	}*/
 }
 
 static byte* last_mus_lump = 0;
@@ -19,7 +44,6 @@ void mus_play_music(char* name) {
 		iprintf("mus_play_music: failed\n");
 		return;
 	}
-	DC_InvalidateAll();
 
 	if (last_mus_lump != 0 && last_mus_lump != lump) {
 		Z_ChangeTag(last_mus_lump, PU_CACHE);
@@ -40,8 +64,13 @@ void mus_play_music(char* name) {
 		return;
 	}
 
-	msg.type = musMessageType_play_song;
+	mus_state.mus = lump + header->scoreStart;
+	mus_state.state = MUS_CHANGING;
+
+	/*msg.type = musMessageType_play_song;
 	msg.data = lump + header->scoreStart;
+
+	DC_InvalidateAll();
 
 	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);
 	while (!fifoCheckValue32(FIFO_MUS));
@@ -52,8 +81,12 @@ void mus_play_music(char* name) {
 	}
 	else {
 		iprintf("mus_play_music: arm7 do likey\n");
-	}
+	}*/
 }
+
+volatile byte *mus_init_music_lump = 0;
+
+uint32_t*mix_buffer = 0;
 
 void mus_init_music() {
 	musMessage msg;
@@ -62,21 +95,50 @@ void mus_init_music() {
 		iprintf("mus_init_music: GENMIDI not found\n");
 		return;
 	}
+
+	iprintf("mus_init_music: %08x\n", lump);
+	mix_buffer = malloc(11025 * sizeof(uint32_t));
+
+	mus_state.volume = snd_MusicVolume;
+	mus_state.instruments = lump;
+	mus_state.mus = 0;
+	mus_state.mix_buffer = mix_buffer;
+	mus_state.state = MUS_IDLE;
+
+	msg.type = musMessageType_init;
+	msg.data = &mus_state;
+
 	DC_InvalidateAll();
 
-	iprintf("mus_init_music: %p\n", lump);
-
-	msg.type = musMessageType_instruments;
-	msg.data = lump;
 
 	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);
 	while (!fifoCheckValue32(FIFO_MUS));
 
-	int result =  (int)fifoGetValue32(FIFO_MUS);
+	int result = (int)fifoGetValue32(FIFO_MUS);
 	if (result) {
 		iprintf("mus_init_music: arm7 no likey\n");
 	}
 	else {
 		iprintf("mus_init_music: arm7 do likey\n");
 	}
+
+	/* ---------------------------------------------- 
+	mus_init_music_lump = lump;
+	msg.type = musMessageType_instruments;
+	msg.data = lump;
+
+	DC_InvalidateAll();
+
+	mus_init_music_lump = lump;
+
+	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);
+	while (!fifoCheckValue32(FIFO_MUS));
+
+	result = (int)fifoGetValue32(FIFO_MUS);
+	if (result) {
+		iprintf("mus_init_music: arm7 no likey\n");
+	}
+	else {
+		iprintf("mus_init_music: arm7 do likey\n");
+	}*/
 }

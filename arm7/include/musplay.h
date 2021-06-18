@@ -151,11 +151,6 @@ typedef unsigned char byte;
 typedef unsigned char u8;
 #endif
 
-typedef enum {
-	MUS_IDLE,
-	MUS_PLAYING,
-	MUS_EXIT
-} MUS_STATE;
 
 /*void mus_init();
 void mus_exit();
@@ -163,3 +158,6 @@ void mus_play_music(u8* data);
 void mus_stop_music();
 void mus_play_timer(void);*/
 
+void mus_init();
+void mus_frame();
+void musDataHandler(int bytes, void* user_data);

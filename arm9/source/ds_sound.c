@@ -11,6 +11,7 @@
 #define iprintf printf
 #endif
 void S_Update_(void);
+void SND_PaintChannelFrom8(channel_t* ch, byte* sfx, int count);
 
 /*
 ===============================================================================
@@ -241,10 +242,10 @@ void S_Init(void)
 	S_InitScaletable();
 
 	snd_Samples = SND_SAMPLES;
-	snd_Speed = 11025;
+	snd_Speed = 11031;
 	paintedtime = 0;
 #ifndef USE_MAXMOD
-	TIMER_DATA(1) = 0x10000 - (0x1000000 / snd_Speed) * 2;
+	TIMER_DATA(1) = TIMER_FREQ(snd_Speed);// 0x10000 - (0x1000000 / snd_Speed) * 2;
 	TIMER_CR(1) = TIMER_ENABLE | TIMER_DIV_1;
 	TIMER_DATA(2) = 0;
 	TIMER_CR(2) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
@@ -264,7 +265,7 @@ void S_Init(void)
 	soundPlaySample(c_snd_Buffer_left,
 		SoundFormat_8Bit,
 		snd_Samples,
-		snd_Speed,
+		snd_Speed+10,
 		127,
 		0,
 		true,
@@ -272,7 +273,7 @@ void S_Init(void)
 	soundPlaySample(c_snd_Buffer_right,
 		SoundFormat_8Bit,
 		snd_Samples,
-		snd_Speed,
+		snd_Speed+10,
 		127,
 		127,
 		true,
@@ -962,8 +963,7 @@ void S_SetMaxVolume(boolean fullprocess)
 
 void mus_update_volume();
 
-void S_SetMusicVolume(void)
-{
+void S_SetMusicVolume(void) {
 	mus_update_volume();
 }
 

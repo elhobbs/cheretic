@@ -27,7 +27,7 @@ void mus_play_timer(void);
 volatile int ds_intimer = 0;
 
 void ds_140_timer() {
-	int oldIME = enterCriticalSection();
+	//int oldIME = enterCriticalSection();
 	//if (ds_intimer) {
 		//leaveCriticalSection(oldIME);
 	//	return;
@@ -38,7 +38,7 @@ void ds_140_timer() {
 	mus_play_timer();
 	//oldIME = enterCriticalSection();
 	//ds_intimer = 0;
-	leaveCriticalSection(oldIME);
+	//leaveCriticalSection(oldIME);
 	//iprintf(".");
 }
 
@@ -155,8 +155,8 @@ Wifi_InitDefault(true);
 	glSetToonTableRange( 16, 31, RGB15(24,24,24) );
 
 	printf("Initialing disk...");
-	//ret = fatInitDefault();
-	ret = nitroFSInit(NULL);
+	ret = fatInitDefault();
+	//ret = nitroFSInit(NULL);
 	printf("%s\n",ret ? "done\n" : "failed!\n");
 	if(ret == 0)
 	{

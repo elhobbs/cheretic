@@ -6,8 +6,14 @@
 #include "opl.h"
 #include "musplay.h"
 
+volatile mus_state_t *mus_state;
+mus_state_t last_mus_state = {
+	0,0,0,0
+};
+
+
 #define MUS_MIX_CHANNEL 1
-#define MUS_PLAYBACK_RATE 11025
+#define MUS_PLAYBACK_RATE 11031
 
 /* Flags: */
 #define CH_SECONDARY	0x01
@@ -18,14 +24,14 @@
 #define CHANNEL_ID(ch) (*(ushort *)&(ch))
 #define MAKE_ID(ch, mus) ((ch)|((mus)<<8))
 
-int snd_MusicVolume;    // maximum volume for music 0-15
+//int snd_MusicVolume;    // maximum volume for music 0-15
 
 volatile MUS_STATE musState = MUS_IDLE;
-uint OPLchannels = OPL2CHANNELS;
-static OP2instrEntry* OPLinstruments = 0;
+volatile uint OPLchannels = OPL2CHANNELS;
+volatile OP2instrEntry* OPLinstruments = 0;
 volatile ulong	MLtime = 0;
 volatile uint	playingChannels = 0;
-musicBlock _mus;
+volatile musicBlock _mus;
 static int mus_initialized = 0;
 
 /* OPL channel (voice) data */
@@ -397,12 +403,13 @@ static int releaseSustain(musicBlock* mus, uint channel)
 	return 0;
 }
 
+volatile int last_returned_channel = -1;
 
 static int findFreeChannel(musicBlock* mus, uint flag)
 {
-	static uint last = -1U;
+	static uint last = 0xffffffff;
 	uint i;
-	uint oldest = -1U;
+	uint oldest = 0xffffffff;
 	ulong oldesttime = MLtime;
 
 	/* find free channel */
@@ -411,7 +418,7 @@ static int findFreeChannel(musicBlock* mus, uint flag)
 		if (++last == OPLchannels)	/* use cyclic `Next Fit' algorithm */
 			last = 0;
 		if (channels[last].flags & CH_FREE)
-			return last;
+			return last_returned_channel = last;
 	}
 
 	if (flag & 1)
@@ -437,21 +444,23 @@ static int findFreeChannel(musicBlock* mus, uint flag)
 	}
 
 	/* if possible, kill the oldest channel */
-	if (!(flag & 2) && oldest != -1U)
+	if (!(flag & 2) && oldest != 0xffffffff)
 	{
 #ifdef DEBUG
 		printf("DEBUG: Kill %04X !!!\n", Adlibchannel[oldest]);
 #endif
-		releaseChannel(mus, oldest, -1);
-		return oldest;
+		releaseChannel(mus, oldest, 0xffffffff);
+		return last_returned_channel = oldest;
 	}
 
 	/* can't find any free channel */
 #ifdef DEBUG
 	printf("DEBUG: Full!!!\n");
 #endif
-	return -1;
+	return last_returned_channel = -1;
 }
+
+volatile uint opl_get_intr = -1;
 
 static OP2instrEntry* getInstrument(musicBlock* mus, uint channel, uchar note)
 {
@@ -466,20 +475,27 @@ static OP2instrEntry* getInstrument(musicBlock* mus, uint channel, uchar note)
 	else
 		instrnumber = mus->data.channelInstr[channel];
 
+	opl_get_intr = instrnumber;
+
 	if (OPLinstruments)
 		return &OPLinstruments[instrnumber];
 	else
 		return NULL;
 }
 
+volatile int opl_play_note = -1;
+volatile int opl_play_note_instr = -1;
+
 // code 1: play note
 void OPLplayNote(musicBlock* mus, uint channel, uchar note, int volume)
 {
 	int i;
 	OP2instrEntry* instr;
+	opl_play_note++;
 
 	if ((instr = getInstrument(mus, channel, note)) == NULL)
 		return;
+	opl_play_note_instr++;
 #ifdef DEBUG
 	cprintf("\rDEBUG: play: Ch: %d  N: %d  V: %d (%d)  I: %d (%s)  Fi: %d           \r\n",
 		channel, note, volume, data->channelVolume[channel], instrnumber,
@@ -685,7 +701,7 @@ void OPLunpauseMusic(musicBlock* mus)
 
 
 void mus_stop_music() {
-	musicBlock* mus = &_mus;
+	volatile musicBlock* mus = &_mus;
 
 	if (!mus_initialized) {
 		return;
@@ -706,7 +722,7 @@ void mus_stop_music() {
 
 
 void mus_play_music(u8* data) {
-	musicBlock* mus = &_mus;
+	volatile musicBlock* mus = &_mus;
 
 	if (!mus_initialized) {
 		return;
@@ -739,9 +755,8 @@ void mus_play_music(u8* data) {
 	//printf(" done\n");
 }
 
-void mus_update_volume() {
-	musicBlock* mus = &_mus;
-	int volume = snd_MusicVolume * 34;
+void mus_update_volume(int volume) {
+	volatile musicBlock* mus = &_mus;
 	if (!mus_initialized) {
 		return;
 	}
@@ -749,9 +764,13 @@ void mus_update_volume() {
 	OPLchangeVolume(mus, volume);
 }
 
+volatile byte* opl_mus_inst_data = (byte*)-1L;
+
 int mus_load_instruments(byte *lump) {
 	static byte masterhdr[8] = "#OPL_II#";
 	byte hdr[8];
+
+	opl_mus_inst_data = lump;
 
 	// Check header
 	if (memcmp((char*)lump, masterhdr, sizeof(hdr)) != 0)
@@ -829,6 +848,14 @@ static int playTick(musicBlock* mus)
 
 void mus_play_timer(void) {
 	volatile musicBlock* mus = &_mus;
+	
+	if (mus_state->state == MUS_CHANGING && last_mus_state.state != MUS_CHANGING) {
+		last_mus_state.state = MUS_CHANGING;
+		last_mus_state.mus = 0;
+		if (mus) {
+			mus->state = ST_PAUSED;
+		}
+	}
 	//printf("tick: %x %d %d %d\n", MUSdata, mus->state, mus->ticks, MLtime);
 	if (mus && mus->state == ST_PLAYING) {
 		if (!mus->ticks) {
@@ -850,7 +877,7 @@ ushort snd_Buffer[SND_SAMPLES];
 
 volatile uint filled_mus_pos = 0; //filled to this point in playback
 volatile uint mus_buffer_pos = 0; //the current playback position
-volatile uint mus_buffer_last = 0; //the current playback position
+//volatile uint mus_buffer_last = 0; //the current playback position
 
 uint mus_pos() {
 	u16 time1 = TIMER1_DATA;
@@ -858,10 +885,12 @@ uint mus_pos() {
 	u16 time3 = TIMER3_DATA;
 
 	mus_buffer_pos = (((uint)time3) << 16) + (uint)time2;
+	//mus_buffer_pos += MUS_PLAYBACK_RATE / 60;
+
 	return mus_buffer_pos;
 }
 
-short adlib_data[8182];
+short adlib_data[2048];
 
 static uint samples_to_ticks(uint samples) {
 	return (samples * 140) / MUS_PLAYBACK_RATE;
@@ -879,9 +908,28 @@ void mus_update(short* buffer, int cnt, uint fpos) {
 	}
 }
 
-uint mus_frame_ticks[9] = { 0,0,0,0,0,0,0 };
+//uint mus_frame_ticks[9] = { 0,0,0,0,0,0,0 };
 
 void mus_frame() {
+	if (last_mus_state.volume != mus_state->volume) {
+		last_mus_state.volume = mus_state->volume;
+		mus_update_volume(last_mus_state.volume);
+	}
+	if (last_mus_state.mus == 0 && mus_state->mus != 0) {
+		mus_play_music(mus_state->mus);
+		last_mus_state.mus = mus_state->mus;
+		last_mus_state.state = mus_state->state = MUS_PLAYING;
+	}
+	/*
+	if (last_mus_state.state != mus_state->state) {
+		last_mus_state.state = mus_state->state;
+		last_mus_state.mus = 0;
+		if (mus) {
+			mus->state = ST_PAUSED;
+		}
+	}
+	*/
+
 	if (musState != MUS_PLAYING) {
 		return;
 	}
@@ -891,8 +939,10 @@ void mus_frame() {
 		cpos -= 0x40000000;
 		fpos -= 0x40000000;
 	}
-	mus_frame_ticks[5] = fpos;
-	mus_frame_ticks[6] = mus_buffer_last;
+	
+	//mus_frame_ticks[5] = fpos;
+	//mus_frame_ticks[6] = mus_buffer_last;
+	
 	//if we get behind then push the filled position forward
 	if (fpos < cpos) {
 		fpos = cpos;
@@ -902,11 +952,11 @@ void mus_frame() {
 	uint filled_ticks = samples_to_ticks(fpos);
 	uint ticks = end_ticks - filled_ticks;
 
-	mus_frame_ticks[0] = ticks;
-	mus_frame_ticks[1] = end_ticks;
-	mus_frame_ticks[2] = filled_ticks;
-	mus_frame_ticks[3] = cpos;
-	mus_frame_ticks[4] = fpos;
+	//mus_frame_ticks[0] = ticks;
+	//mus_frame_ticks[1] = end_ticks;
+	//mus_frame_ticks[2] = filled_ticks;
+	//mus_frame_ticks[3] = cpos;
+	//mus_frame_ticks[4] = fpos;
 
 	//render samples here
 	if (ticks) {
@@ -924,7 +974,7 @@ void mus_frame() {
 		filled_mus_pos = fpos;
 #else
 		uint samples = ticks_to_samples(ticks);
-		mus_frame_ticks[8] = samples;
+		//mus_frame_ticks[8] = samples;
 		
 		OPL_Render_Samples(adlib_data, samples);
 		mus_update(adlib_data, samples, fpos);
@@ -933,23 +983,40 @@ void mus_frame() {
 		filled_mus_pos = fpos;
 #endif
 	}
-	mus_buffer_last = cpos;
-	mus_frame_ticks[7] = filled_mus_pos;
+	//mus_buffer_last = cpos;
+	//mus_frame_ticks[7] = filled_mus_pos;
 }
 
 int mus_setup_timer();
+//volatile byte* mus_handler_instr = (byte*)-1L;
+//volatile int mus_handler_instr_count = 0;
+//volatile musMessage mus_msg = { 2,3 };
+extern int* mix_buffer;
 
 void musDataHandler(int bytes, void* user_data) {
 	//---------------------------------------------------------------------------------
 	musMessage msg;
 	byte* data;
 	u32 result = 0;
+	mus_state_t* state;
 
 	fifoGetDatamsg(FIFO_MUS, bytes, (u8*)&msg);
 
 	switch (msg.type) {
-	case musMessageType_instruments:
+	case musMessageType_init:
+		state = (mus_state_t *)msg.data;
+		mus_state = state;
+		mix_buffer = state->mix_buffer;
+		//mus_handler_instr = 
+		data = state->instruments;
+		mus_init();
+		mus_load_instruments(data);
+		break;
+	/*case musMessageType_instruments:
 		data = msg.data;
+		mus_handler_instr = data;
+		mus_handler_instr_count++;
+		memcpy(&mus_msg, &msg, sizeof(musMessage));
 		mus_load_instruments(data);
 		break;
 	case musMessageType_play_song:
@@ -958,6 +1025,10 @@ void musDataHandler(int bytes, void* user_data) {
 		break;
 	case musMessageType_stop_song:
 		break;
+	case musMessageType_volume:
+		int volume = (int)msg.data;
+		mus_update_volume(volume);
+		break;*/
 	default:
 		break;
 	}
@@ -977,25 +1048,25 @@ void mus_init() {
 		return;
 	}
 	memset(channels, 0xFF, sizeof channels);
-	OPLinstruments = 0;
+	//OPLinstruments = 0;
 	OPLinit();
 
 	/*if (mus_load_instruments(instr)) {
 		OPL_Shutdown();
 		return;
 	}*/
-	musicBlock* mus = &_mus;
+	volatile musicBlock* mus = &_mus;
+	memset(mus, 0, sizeof(musicBlock));
 	mus->state = ST_EMPTY;
 	mus->number = 0;
 	mus->volume = 256;
-	mus->channelMask = -1U;
+	mus->channelMask = 0xffffffff;
 	mus->percussMask = 1 << PERCUSSION;
 
 	if (mus_setup_timer()) {
 		mus_initialized = 0;
 	}
 
-	fifoSetDatamsgHandler(FIFO_MUS, musDataHandler, 0);
 
 	mus_initialized = 1;
 
@@ -1011,17 +1082,17 @@ int mus_setup_timer() {
 	SCHANNEL_SOURCE(channel) = (u32)snd_Buffer;
 	SCHANNEL_REPEAT_POINT(channel) = 0;
 	SCHANNEL_LENGTH(channel) = SND_SAMPLES/2;
-	SCHANNEL_TIMER(channel) = SOUND_FREQ(MUS_PLAYBACK_RATE);
+	SCHANNEL_TIMER(channel) = (-(33513982 / 2) / MUS_PLAYBACK_RATE);// SOUND_FREQ(11030);
 	SCHANNEL_CR(channel) = SCHANNEL_ENABLE | SOUND_VOL(127) | SOUND_PAN(64) | (/*SoundFormat_16Bit*/1 << 29) | SOUND_REPEAT;
 
 	timerStart(0, ClockDivider_1024, TIMER_FREQ_1024(140), mus_play_timer);
+	
 	TIMER_DATA(1) = TIMER_FREQ(MUS_PLAYBACK_RATE);
 	TIMER_CR(1) = TIMER_ENABLE | TIMER_DIV_1;
 	TIMER_DATA(2) = 0;
 	TIMER_CR(2) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
 	TIMER_DATA(3) = 0;
 	TIMER_CR(3) = TIMER_ENABLE | TIMER_CASCADE | TIMER_DIV_1;
-
 
 	return 0;
 }

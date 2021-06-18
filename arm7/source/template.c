@@ -33,6 +33,7 @@
 #include <dswifi7.h>
 #endif
 //#include <maxmod7.h>
+#include "musplay.h"
 
 #ifdef MUSPLAY
 #define FIFO_ADLIB FIFO_USER_01
@@ -123,17 +124,17 @@ int main() {
 	AdlibEmulator();		// We never return from here
 #endif
 
-	mus_init();
+	//mus_init();
+	fifoSetDatamsgHandler(FIFO_MUS, musDataHandler, 0);
 
 	// Keep the ARM7 mostly idle
 	while (!exitflag) {
 		if (0 == (REG_KEYINPUT & (KEY_SELECT | KEY_START | KEY_L | KEY_R))) {
 			exitflag = true;
 		}
-		void mus_frame();
 		mus_frame();
 		arm7_frame_count++;
-		//swiWaitForVBlank();
+		swiWaitForVBlank();
 	}
 	return 0;
 }

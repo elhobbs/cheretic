@@ -907,10 +907,19 @@ static inline void Channel__GeneratePercussion(Channel *self, Chip* chip,
   }
 }
 
+volatile int opl_abort_count = 0;
+
+void opl_abort() {
+    do {
+        opl_abort_count++;
+    } while (1);
+}
+
 Channel* Channel__BlockTemplate(Channel *self, Chip* chip,
                                 Bit32u samples, Bit32s* output,
                                 SynthMode mode ) {
         Bitu i;
+
 
   switch( mode ) {
   case sm2AM:
@@ -958,7 +967,7 @@ Channel* Channel__BlockTemplate(Channel *self, Chip* chip,
     break;
 
         default:
-                abort();
+                opl_abort();
   }
   //Init the operators with the the current vibrato and tremolo values
         Operator__Prepare( Channel__Op( self, 0 ), chip );
@@ -1023,19 +1032,19 @@ Channel* Channel__BlockTemplate(Channel *self, Chip* chip,
     case sm3AMFM:
     case sm3FMAM:
     case sm3AMAM:
-      output[ i * 2 + 0 ] += sample & self->maskLeft;
       output[ i * 2 + 1 ] += sample & self->maskRight;
       break;
                 default:
-                        abort();
+                        opl_abort();
     }
   }
+
   switch( mode ) {
   case sm2AM:
   case sm2FM:
   case sm3AM:
   case sm3FM:
-    return ( self + 1 );
+      return ( self + 1 );
   case sm3FMFM:
   case sm3AMFM:
   case sm3FMAM:
@@ -1045,7 +1054,7 @@ Channel* Channel__BlockTemplate(Channel *self, Chip* chip,
   case sm3Percussion:
     return( self + 3 );
         default:
-                abort();
+                opl_abort();
   }
   return 0;
 }

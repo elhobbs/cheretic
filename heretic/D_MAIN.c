@@ -221,6 +221,8 @@ void D_Display(void)
 	S_Update_();
 }
 
+void S_SoundCleanup();
+
 //---------------------------------------------------------------------------
 //
 // PROC D_DoomLoop
@@ -262,6 +264,7 @@ void D_DoomLoop(void)
 		// Move positional sounds
 		S_UpdateSounds(players[consoleplayer].mo);
 		D_Display();
+		S_SoundCleanup();
 	}
 }
 

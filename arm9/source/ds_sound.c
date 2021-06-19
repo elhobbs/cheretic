@@ -832,6 +832,30 @@ void S_ResumeSound(void)
 
 static int nextcleanup;
 
+void S_SoundCleanup() {
+	int i;
+	if (nextcleanup < gametic)
+	{
+		for (i = 0; i < NUMSFX; i++)
+		{
+			if (S_sfx[i].usefulness == 0 && S_sfx[i].snd_ptr)
+			{
+				if (lumpcache[S_sfx[i].lumpnum])
+				{
+					if (((memblock_t*)((byte*)(lumpcache[S_sfx[i].lumpnum]) -
+						sizeof(memblock_t)))->id == 0x1d4a11)
+					{ // taken directly from the Z_ChangeTag macro
+						Z_ChangeTag2(lumpcache[S_sfx[i].lumpnum], PU_CACHE);
+					}
+				}
+				S_sfx[i].usefulness = -1;
+				S_sfx[i].snd_ptr = NULL;
+			}
+		}
+		nextcleanup = gametic + 35; //CLEANUP DEBUG cleans every second
+	}
+}
+
 void S_UpdateSounds(mobj_t *listener)
 {
 	int i, dist, vol;
@@ -846,7 +870,7 @@ void S_UpdateSounds(mobj_t *listener)
 	{
 		return;
 	}
-	if(nextcleanup < gametic)
+	/*if(nextcleanup < gametic)
 	{
 		for(i=0; i < NUMSFX; i++)
 		{
@@ -865,7 +889,7 @@ void S_UpdateSounds(mobj_t *listener)
 			}
 		}
 		nextcleanup = gametic+35; //CLEANUP DEBUG cleans every second
-	}
+	}*/
 	for(i=0;i<snd_Channels;i++)
 	{
 		if(!channel[i].handle || S_sfx[channel[i].sound_id].usefulness == -1)

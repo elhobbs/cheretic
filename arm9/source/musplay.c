@@ -11,6 +11,7 @@ volatile mus_state_t mus_state;
 
 void mus_update_volume() {
 	mus_state.volume = snd_MusicVolume;
+	DC_FlushRange(&mus_state, sizeof(mus_state));
 
 	//DC_InvalidateAll();
 
@@ -66,6 +67,7 @@ void mus_play_music(char* name) {
 
 	mus_state.mus = lump + header->scoreStart;
 	mus_state.state = MUS_CHANGING;
+	DC_FlushRange(&mus_state, sizeof(mus_state));
 
 	/*msg.type = musMessageType_play_song;
 	msg.data = lump + header->scoreStart;
@@ -108,7 +110,7 @@ void mus_init_music() {
 	msg.type = musMessageType_init;
 	msg.data = &mus_state;
 
-	DC_InvalidateAll();
+	DC_FlushRange(&mus_state,sizeof(mus_state));
 
 
 	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);

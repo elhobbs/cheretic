@@ -22,28 +22,28 @@ int tex_cb_walls = 0;
 //DS_TEXTURE_BASE = DS_TEXTURE_BASE3 + (NUM_TEXTURE_BLOCKS3*TEXTURE_BLOCK_SIZE3);
 
 //#define NUM_TEXTURE_BLOCKS 16 //we are going to use the last one for a few small things
-#define NUM_TEXTURE_BLOCKS 40
+#define NUM_TEXTURE_BLOCKS 50
 #define TEXTURE_BLOCK_SIZE (64*64)
 #define TEXTURE_PER_BANK (TEXTURE_BANK_SIZE/TEXTURE_BLOCK_SIZE)
 #define TEXTURE_SIZE (NUM_TEXTURE_BLOCKS*TEXTURE_BLOCK_SIZE)
 
 //256k
-#define NUM_TEXTURE_BLOCKS2 16
+#define NUM_TEXTURE_BLOCKS2 24
 #define TEXTURE_BLOCK_SIZE2 (128*64)
 #define TEXTURE_PER_BANK2 (TEXTURE_BANK_SIZE/TEXTURE_BLOCK_SIZE2)
 #define TEXTURE_SIZE2 (NUM_TEXTURE_BLOCKS2*TEXTURE_BLOCK_SIZE2)
 
-#define NUM_TEXTURE_BLOCKS3 6
+#define NUM_TEXTURE_BLOCKS3 2
 #define TEXTURE_BLOCK_SIZE3 (256*128)
 #define TEXTURE_PER_BANK3 (TEXTURE_BANK_SIZE/TEXTURE_BLOCK_SIZE3)
 #define TEXTURE_SIZE3 (NUM_TEXTURE_BLOCKS3*TEXTURE_BLOCK_SIZE3)
 
-#define NUM_TEXTURE_BLOCKS4 32
+#define NUM_TEXTURE_BLOCKS4 52
 #define TEXTURE_BLOCK_SIZE4 (32*32)
 #define TEXTURE_PER_BANK4 (TEXTURE_BANK_SIZE/TEXTURE_BLOCK_SIZE4)
 #define TEXTURE_SIZE4 (NUM_TEXTURE_BLOCKS4*TEXTURE_BLOCK_SIZE4)
 
-#define NUM_TEXTURE_BLOCKS5 40
+#define NUM_TEXTURE_BLOCKS5 64
 #define TEXTURE_BLOCK_SIZE5 (8*8)
 #define TEXTURE_PER_BANK5 (TEXTURE_BANK_SIZE/TEXTURE_BLOCK_SIZE5)
 #define TEXTURE_SIZE5 (NUM_TEXTURE_BLOCKS5*TEXTURE_BLOCK_SIZE5)
@@ -951,39 +951,76 @@ void ds_init_sprite(int name,patch_t *patch,dstex_t *ds)
 	int max[2];
 	ds->block = -1;
 	ds->name = name+firstspritelump;
-	if(patch->width <= 32 && patch->height <= 32)
+	if ((patch->width * patch->height) <= (12*12))
+	{
+		ds->zone = 4;
+		max[0] = max[1] = 8;
+	}
+	else if ((patch->width * patch->height) <= (48*48))
 	{
 		ds->zone = 3;
-		max[0] = max[1] = 32;
+		if (patch->width >= (patch->height * 2)) {
+			max[0] = 64;
+			max[1] = 16;
+		}
+		else if (patch->height >= (patch->width * 2)) {
+			max[0] = 16;
+			max[1] = 64;
+		}
+		else {
+			max[0] = max[1] = 32;
+		}
 	}
-	else if(patch->width <= 64 && patch->height <= 64)
+	else if((patch->width * patch->height) <= (96*96))
 	{
 		ds->zone = 0;
-		max[0] = max[1] = 64;
+		if (patch->width >= (patch->height * 2)) {
+			max[0] = 128;
+			max[1] = 32;
+		}
+		else if (patch->height >= (patch->width * 2)) {
+			max[0] = 32;
+			max[1] = 128;
+		}
+		else {
+			max[0] = max[1] = 64;
+		}
 	}
-	else if(patch->width > 128 || patch->height > 128)
+	else if(patch->width > 192 || patch->height > 192)
 	{
 		ds->zone = 2;
-		max[0] = 256;
-		max[1] = 128;
+		if (patch->width > patch->height) {
+			max[0] = 256;
+			max[1] = 128;
+		}
+		else {
+			max[0] = 128;
+			max[1] = 256;
+		}
 	}
 	else
 	{
 		ds->zone = 1;
-		max[0] = 128;
-		max[1] = 64;
+		if (patch->width > patch->height) {
+			max[0] = 128;
+			max[1] = 64;
+		}
+		else {
+			max[0] = 64;
+			max[1] = 128;
+		}
 	}
 
-	ds->block_width = ds_adjust_size(patch->width,max[0]);
-	ds->block_height = ds_adjust_size(patch->height,max[0]);
-	if(patch->width >= patch->height && ds->block_height > max[1])
+	ds->block_width = max[0];// ds_adjust_size(patch->width, max[0]);
+	ds->block_height = max[1];// ds_adjust_size(patch->height, max[0]);
+	/*if(patch->width >= patch->height && ds->block_height > max[1])
 	{
 		ds->block_height = max[1];
 	}
 	else if(patch->height >= patch->width && ds->block_width > max[1])
 	{
 		ds->block_width = max[1];
-	}
+	}*/
 	ds->width = MIN(patch->width,ds->block_width);
 	ds->height = MIN(patch->height,ds->block_height);
 }

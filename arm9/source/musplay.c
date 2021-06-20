@@ -1,6 +1,15 @@
+#ifdef ARM9
 #include <nds/fifocommon.h>
+#endif
+#include <stdint.h>
 #include "musfifo.h"
 #include "DoomDef.h"
+
+#ifdef WIN32
+#define iprintf printf
+void DC_FlushRange(void* p, int len) {
+}
+#endif
 
 void mus_play_timer(void) {
 
@@ -88,7 +97,7 @@ void mus_play_music(char* name) {
 
 volatile byte *mus_init_music_lump = 0;
 
-uint32_t*mix_buffer = 0;
+uint32_t *mix_buffer = 0;
 
 void mus_init_music() {
 	musMessage msg;
@@ -112,7 +121,7 @@ void mus_init_music() {
 
 	DC_FlushRange(&mus_state,sizeof(mus_state));
 
-
+#ifdef ARM9
 	fifoSendDatamsg(FIFO_MUS, sizeof(msg), (u8*)&msg);
 	while (!fifoCheckValue32(FIFO_MUS));
 
@@ -123,7 +132,7 @@ void mus_init_music() {
 	else {
 		iprintf("mus_init_music: arm7 do likey\n");
 	}
-
+#endif
 	/* ---------------------------------------------- 
 	mus_init_music_lump = lump;
 	msg.type = musMessageType_instruments;

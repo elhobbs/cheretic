@@ -14,6 +14,10 @@
 #include "P_tick.h"
 #include "soundst.h"
 
+#ifdef WIN32
+#define iprintf printf
+#endif
+
 boolean BorderNeedRefresh;
 boolean shareware = false;		// true if only episode 1 present
 boolean ExtendedWAD = false;	// true if episodes 4 and 5 present

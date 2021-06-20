@@ -1,6 +1,8 @@
 #pragma once
 
+#if defined(ARM7) || defined (ARM9)
 #include <nds/fifocommon.h>
+#endif
 
 #pragma pack(push,1)
 typedef struct {
@@ -42,7 +44,7 @@ typedef enum {
 typedef struct {
 	MUS_STATE state;
 	int volume;
-	byte *instruments;
-	byte* mix_buffer;
-	byte *mus;
+	unsigned char *instruments;
+	unsigned char* mix_buffer;
+	unsigned char *mus;
 } mus_state_t;

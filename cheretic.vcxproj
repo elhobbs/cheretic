@@ -103,6 +103,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="arm9\source\ds_sound.c" />
+    <ClCompile Include="arm9\unused\ds_sound.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="arm9\source\ds_textures4.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>

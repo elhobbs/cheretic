@@ -168,7 +168,7 @@
     <ClCompile Include="win32\glview.cpp" />
     <ClCompile Include="win32\GLWindow.cpp" />
     <ClCompile Include="heretic\polylib.c" />
-    <ClCompile Include="arm9\source\ds_sound.c">
+    <ClCompile Include="arm9\unused\ds_sound.c">
       <Filter>arm9\heretic</Filter>
     </ClCompile>
     <ClCompile Include="arm9\source\musplay.c">
@@ -182,6 +182,7 @@
     <ClCompile Include="arm7\source\opl.c" />
     <ClCompile Include="arm7\source\opl_queue.c" />
     <ClCompile Include="arm7\source\dbopl.c" />
+    <ClCompile Include="arm9\source\ds_sound.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="heretic\include\AM_DATA.H">

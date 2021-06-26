@@ -1826,7 +1826,7 @@ byte *I_ZoneBase (int *size)
 		*size = 2800*1024;
 	}
 #else
-	*size = 2*1024*1024;
+	*size = 2800 * 1024;
 #endif
 #if 0
 	int cb_malloc = 4 * 1024 * 1024;

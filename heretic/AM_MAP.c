@@ -1355,7 +1355,7 @@ void AM_Drawer(void)
 	}
 	if((gameepisode < (ExtendedWAD ? 6 : 4)) && gamemap < 10)
 	{
-		MN_DrTextA(LevelNames[(gameepisode-1)*9+gamemap-1], 20, 145);
+		MN_DrTextA(LevelNames[(gameepisode-1)*9+gamemap-1], 34, 145);
 	}
 //  I_Update();
 //  V_MarkRect(f_x, f_y, f_w, f_h);

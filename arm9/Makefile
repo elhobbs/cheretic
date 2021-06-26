@@ -16,7 +16,7 @@ include $(DEVKITARM)/ds_rules
 #---------------------------------------------------------------------------------
 BUILD		:=	build
 SOURCES		:=	source ../heretic
-INCLUDES	:=	include ../heretic/include
+INCLUDES	:=	include ../heretic/include ../common/include
 DATA		:=
 
 

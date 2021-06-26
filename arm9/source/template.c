@@ -24,10 +24,21 @@ byte* ds_bottom_screen = 0;
 
 volatile int ds_timer_ticks = 0;
 void mus_play_timer(void);
+volatile int ds_intimer = 0;
 
 void ds_140_timer() {
+	//int oldIME = enterCriticalSection();
+	//if (ds_intimer) {
+		//leaveCriticalSection(oldIME);
+	//	return;
+	//}
+	//ds_intimer = 1;
+	//leaveCriticalSection(oldIME);
 	ds_timer_ticks++;
 	mus_play_timer();
+	//oldIME = enterCriticalSection();
+	//ds_intimer = 0;
+	//leaveCriticalSection(oldIME);
 	//iprintf(".");
 }
 
@@ -37,18 +48,6 @@ void memcpy32(void *dst, const void *src, uint wdcount) ITCM_CODE;
 volatile int hblank_timer_ticks = 0;
 void hblank_timer() {
 	hblank_timer_ticks++;
-}
-long long ds_time2()
-{
-	static u16 last;
-	static long long t;
-	u16 time1 = TIMER1_DATA;
-	u16 time = TIMER2_DATA;
-	if(time < last) {
-		t += (1<<32);
-	}
-	last = time;
-	return (t + (time << 16) + time1);
 }
 
 //byte hblank_buffer[256*256*2] ALIGN(32);
@@ -157,6 +156,7 @@ Wifi_InitDefault(true);
 
 	printf("Initialing disk...");
 	ret = fatInitDefault();
+	//ret = nitroFSInit(NULL);
 	printf("%s\n",ret ? "done\n" : "failed!\n");
 	if(ret == 0)
 	{

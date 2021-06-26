@@ -72,7 +72,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\devl\cheretic\win32;C:\devl\cheretic\heretic\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\devl\cheretic\win32;C:\devl\cheretic\heretic\include;c:\devl\cheretic\common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
@@ -81,22 +81,38 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <GenerateMapFile>true</GenerateMapFile>
     </Link>
+    <BuildLog>
+      <Path>$(IntDirFullPath)$(MSBuildProjectName).log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="arm9\Makefile" />
     <None Include="arm7\Makefile" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="arm7\source\dbopl.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="arm7\source\musplay.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="arm7\source\opl.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="arm7\source\opl_queue.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="arm9\source\ds_sound.c" />
-    <ClCompile Include="arm9\source\ds_textures2.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    <ClCompile Include="arm9\unused\ds_sound.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="arm9\source\ds_textures3.c">
+    <ClCompile Include="arm9\source\ds_textures4.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="arm9\source\ds_textures4.c" />
-    <ClCompile Include="arm9\source\ds_textures5.c" />
+    <ClCompile Include="arm9\source\ds_textures5.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="arm9\source\keyboard.c" />
     <ClCompile Include="arm9\source\musplay.c" />
     <ClCompile Include="arm9\source\template.c" />
@@ -153,8 +169,21 @@
     <ClCompile Include="heretic\polylib.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="arm7\include\dbopl.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="arm7\include\musplay.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="arm7\include\opl.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="arm7\include\opl_queue.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug x86|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="arm9\include\keyboard.h" />
     <ClInclude Include="arm9\include\v_zone.h" />
+    <ClInclude Include="common\include\musfifo.h" />
     <ClInclude Include="heretic\include\AM_DATA.H" />
     <ClInclude Include="heretic\include\AM_MAP.H" />
     <ClInclude Include="heretic\include\DOOMDATA.H" />
@@ -163,6 +192,7 @@
     <ClInclude Include="heretic\include\I_SOUND.H" />
     <ClInclude Include="heretic\include\INFO.H" />
     <ClInclude Include="heretic\include\map.h" />
+    <ClInclude Include="heretic\include\musfifo.h" />
     <ClInclude Include="heretic\include\p_enemy.h" />
     <ClInclude Include="heretic\include\p_inter.h" />
     <ClInclude Include="heretic\include\p_local.h" />
@@ -181,7 +211,6 @@
     <ClInclude Include="heretic\include\ds_textures.h" />
     <ClInclude Include="heretic\include\geometry.h" />
     <ClInclude Include="win32\GLWindow.h" />
-    <ClInclude Include="arm9\heretic\include\I_SOUND.H" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

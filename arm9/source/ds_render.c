@@ -2144,8 +2144,8 @@ void IR_RenderPlayerView (player_t* player) {
 		glBegin(GL_TRIANGLE_STRIP);
 		dsTexCoord2f( s, 128 ); dsVertex3f(-32,y,31);
 		dsTexCoord2f( s, 0 ); dsVertex3f(-32,32,31);
-		dsTexCoord2f( s+256, 128 ); dsVertex3f(32,y,31);
-		dsTexCoord2f( s+256, 0 ); dsVertex3f(32,32,31);
+		dsTexCoord2f( s+255, 128 ); dsVertex3f(32,y,31);
+		dsTexCoord2f( s+255, 0 ); dsVertex3f(32,32,31);
 		glEnd();
 
 		// back to the normal drawing matrix
@@ -2359,9 +2359,9 @@ void IR_RenderPlayerView (player_t* player) {
 		//dsTexCoord2f( s, textures_ds[skytexture].height + v0 ); dsVertex3f(-32,y,31);
 		dsTexCoord2f( s, SCREEN_HEIGHT + v0 ); dsVertex3f(-32,y,31);
 		dsTexCoord2f( s, v0 ); dsVertex3f(-32,32,31);
-		dsTexCoord2f( s+256, v0 ); dsVertex3f(32,32,31);
+		dsTexCoord2f( s+255, v0 ); dsVertex3f(32,32,31);
 		//dsTexCoord2f( s+256, textures_ds[skytexture].height + v0 ); dsVertex3f(32,y,31);
-		dsTexCoord2f( s+256, SCREEN_HEIGHT + v0 ); dsVertex3f(32,y,31);
+		dsTexCoord2f( s+255, SCREEN_HEIGHT + v0 ); dsVertex3f(32,y,31);
 		glEnd();
 
 		// back to the normal drawing matrix

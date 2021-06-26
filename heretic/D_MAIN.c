@@ -14,6 +14,10 @@
 #include "P_tick.h"
 #include "soundst.h"
 
+#ifdef WIN32
+#define iprintf printf
+#endif
+
 boolean BorderNeedRefresh;
 boolean shareware = false;		// true if only episode 1 present
 boolean ExtendedWAD = false;	// true if episodes 4 and 5 present
@@ -221,6 +225,8 @@ void D_Display(void)
 	S_Update_();
 }
 
+void S_SoundCleanup();
+
 //---------------------------------------------------------------------------
 //
 // PROC D_DoomLoop
@@ -262,6 +268,7 @@ void D_DoomLoop(void)
 		// Move positional sounds
 		S_UpdateSounds(players[consoleplayer].mo);
 		D_Display();
+		S_SoundCleanup();
 	}
 }
 
@@ -694,7 +701,7 @@ void blitStartup(void)
 char tmsg[300];
 void tprintf(char *msg,int initflag)
 {
-	printf(msg);
+	iprintf(msg);
 #if 0
 	#ifdef __WATCOMC__
 	char    temp[80];

@@ -1,6 +1,9 @@
 #include "DOOMDEF.h"
 #include "DOOMDATA.h"
+
+#ifdef ARM9
 #include "keyboard.h"
+#endif
 
 extern boolean	automapactive;
 static boolean	automapactive_last = false;
@@ -332,8 +335,9 @@ byte* keyboard_screen;
 #endif
 
 #ifdef WIN32
-const u8 default_font_bin[256*64];
-static u16 keyboard_screen[400*240];
+const byte default_font_bin[256*64];
+byte ds_bottom_screen[400 * 240];
+static byte *keyboard_screen = ds_bottom_screen;
 #endif
 
 static int FontABaseLump = -1;
@@ -395,7 +399,7 @@ void keyboard_draw_char_unused(int x, int y, int c, byte fg) {
 void keyboard_draw_char(int x, int y, int c, byte fg) {
 	if (c < 0 || c > 256) return;
 
-	u8* fontdata = default_font_bin + (32 * c);
+	byte* fontdata = default_font_bin + (32 * c);
 
 	//if (currentConsole->flags & CONSOLE_UNDERLINE) b8 = 0xff;
 
